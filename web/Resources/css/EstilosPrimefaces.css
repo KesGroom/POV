@@ -84,6 +84,8 @@ fondo, el grosor de la letra, y eliminando el borde*/
     border: none !important;
 }
 
+
+
 .ui-panelgrid-cell .ui-selectonemenu:hover {
     border:none !important;
 }
@@ -128,6 +130,10 @@ texto que se seleccionó*/
     color: black /*Color del texto*/;
 }
 
+.registro .ui-state-default, .ui-widget-content .ui-state-default {
+    background: none !important/*Color del sistema*/;
+}
+
 /*Se usa la clase registro (Propia del sistema) para especificar que el cambio 
 solo se ejecute en los elementos dentro de este elemento*/
 .registro .ui-panelgrid .ui-panelgrid-cell {
@@ -169,6 +175,12 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
 .chipExcel .iconExcel{
     width: 30px;
     height: 30px;
+}
+
+.chipExcel .accionador{
+    position: fixed;
+    width: 100%;
+    background-color: red;
 }
 
 .fondoTab table tbody td{

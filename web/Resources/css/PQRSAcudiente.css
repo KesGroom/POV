@@ -48,16 +48,31 @@ main{
     background: #c2294b;
     color: #ffffff;
 }
-.titulo_modal{
-    font-size: 2rem;
-    text-align: center;
-    background: #c2294b;
-    color: #ffffff;
-}
+
 .boton-registrar{
     text-align: center;
     color: #ffffff;
 }
 commandButton{
     color: white;
+}
+
+.btnRegistrar{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+}
+.btnRegistrar .white-text{
+    font-size: 2.5em;
+}
+
+#CrearPQRS{
+    padding: 1rem;
+}
+
+#CrearPQRS table{
+    border: none !important;
 }

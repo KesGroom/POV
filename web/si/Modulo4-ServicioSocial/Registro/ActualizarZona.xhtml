@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="../../../Resources/css/zonaCoordinador.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../../../Resources/js/prefix.js" type="text/javascript"></script>
+        <title>Actualizar Zona</title>
+    </h:head>
+    <h:body>
+        <div class="Bread">
+            <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="ZonasSS.xhtml">Zonas Servicio social</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="#">Actualizar Zona de Servicio social</a>
+        </div>
+        <a href="ZonasSS.xhtml" ><ion-icon class="btnReturn" name="arrow-back-circle"></ion-icon></a>
+        <main>
+
+
+            <div class="contenedorAct">
+
+                <f:view>
+
+                    <h:form class="formAct">
+                        <h3 class="tituloFormulario"><h:outputText value="Actualizar"/></h3>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{zonaControlador.zona.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                            <p:outputLabel value="Lugar:" for="lugar" />
+                            <p:inputText id="lugar" value="#{zonaControlador.zona.lugar}" title="Lugar" required="true" requiredMessage="The Lugar field is required."/>
+                            <p:outputLabel value="Encargado:" for="encargado" />
+                            <p:inputText id="encargado" value="#{zonaControlador.zona.encargado}" title="Encargado" required="true" requiredMessage="The Encargado field is required."/>
+                            <p:outputLabel value="Hora Entrada (Horas):" for="horaEntrada" />
+                            <p:inputText id="horaEntrada" value="#{zonaControlador.zona.horaEntrada}" title="HoraEntrada" required="true" requiredMessage="The HoraEntrada field is required.">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </p:inputText>
+                            <p:outputLabel value="Hora Salida (Horas):" for="horaSalida" />
+                            <p:inputText id="horaSalida" value="#{zonaControlador.zona.horaSalida}" title="HoraSalida" required="true" requiredMessage="The HoraSalida field is required.">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </p:inputText>
+                            <p:outputLabel value="Tiempo de Servicio:" for="tiempodeServicio" />
+                            <p:inputText id="tiempodeServicio" value="#{zonaControlador.zona.tiempodeServicio}" title="TiempodeServicio" required="true" requiredMessage="The TiempodeServicio field is required."/>
+                            <p:outputLabel value="Cupos:" for="cupos" />
+                            <p:inputText id="cupos" value="#{zonaControlador.zona.cupos}" title="Cupos" required="true" requiredMessage="The Cupos field is required."/>
+                            <p:outputLabel value="Labores:" for="labores" />
+                            <p:inputTextarea rows="4" cols="30" id="labores" value="#{zonaControlador.zona.labores}" title="Labores" required="true" requiredMessage="The Labores field is required."/>
+                        </p:panelGrid>
+                        <div class="botonesControl">
+
+                            <h:commandButton styleClass=" red darken-4 waves-effect waves-light" action="#{zonaControlador.actualizar()}" value="Actualizar"></h:commandButton>
+                        </div>
+                    </h:form>
+                </f:view>
+
+                <div class="card">
+                    <h5 class="titulo" >¡Importante!</h5>
+                    <p class="textInfo">
+                        <h:form>
+                            #{sesionControlador.usuario.nombre}, recuerda que los cambios que se realicen serán permanentes y no se podrán deshacer,
+                            por lo tanto recomendamos validar varias veces el nuevo contenido que se va a registrar.
+
+                            Recuerda tambien ser claro con la información suministrada para que los Estudiantes que consulten estos datos puedan comprender
+                            facilmente lo que se solicita y las pautas que se deben seguir para realizar su servicio social en esta zona, así se evitarán
+                            problemas para todos los miembros de la institución
+                        </h:form>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+
+        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    </h:body>
+</html>
+

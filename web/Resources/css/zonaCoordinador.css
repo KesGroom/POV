@@ -90,23 +90,28 @@ body::-webkit-scrollbar-thumb{
     transition: all 400ms linear;
 }
 
-#actAddUser{
+#actAddZona{
     top: 45px;
 }
 
-
-#actAddUser.active{
-    right: 30%;
+#actAddBit{
+    top: 90px;
 }
 
+#actAddZona.active{
+    right: 35%;
+}
+#actAddBit.active{
+    right: 35%;
+}
 
 .activador ion-icon{
-    font-size: 35px;
-    color:white;
+    font-size: 20px;
+    color: white;
 }
 
 .registro{
-    width: 30%;
+    width: 35%;
     height: 90vh;
     background-color: #e6e6e1;
     border: 1px solid #d9d9d6;
@@ -115,7 +120,7 @@ body::-webkit-scrollbar-thumb{
 
     transition: all 400ms linear;
     position: fixed;
-    right: -30%;
+    right: -35%;
     z-index: 1000;
 }
 
@@ -128,12 +133,15 @@ body::-webkit-scrollbar-thumb{
     border-radius: 15px;
 }
 
-#formAddUser.active{
+#formAddZona.active{
+    right: 0;
+}
+#formAddBit.active{
     right: 0;
 }
 
 main{
-    padding: 0 50px;
+    padding: 0 50px 1rem 50px;
 }
 
 main .contenedorTitulos{
@@ -191,7 +199,7 @@ main .fondoTab{
     background-color: #d5d3d3;
     width: 98.25% !important;
     margin-left:0.9% !important;
-
+    
 }
 
 .registro form input:not([type]), .registro form input[type=text]:not(.browser-default), .registro form input[type=password]:not(.browser-default), .registro form input[type=email]:not(.browser-default), .registro form input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), .registro form input[type=date]:not(.browser-default), .registro form input[type=datetime]:not(.browser-default), .registro form input[type=datetime-local]:not(.browser-default), .registro form input[type=tel]:not(.browser-default), .registro form input[type=number]:not(.browser-default), .registro form input[type=search]:not(.browser-default), .registro form textarea.materialize-textarea {
@@ -246,28 +254,65 @@ main .fondoTab{
     justify-content: space-around;
     align-items: center;
 } 
-.fondoTab{
-    padding: 10px 10px 50px;
-}
-.fondoTab table{
-    margin-top: 60px;
-    margin-bottom: 20px;
+
+.btnReturn{
+    color: #3f3b3b;
+    font-size: 2em;
+    margin: 2rem 0.5rem 0 3rem;
 }
 
-.fondoTab table thead{
-    background-color: #b71c1c;
+.btnReturn:hover{
+    color: #b71c1c;
+    font-size: 2em;
+}
+
+.contenedorAct{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenedorAct .formAct{
+    width: 45%;
+}
+
+.contenedorAct .card{
+    width: 40%;
+    background-color: #ead897;
+    padding: 0.5rem;
+}
+
+.contenedorAct .card .textInfo{
+    padding: 0.8rem;
+    text-align: center;
+    
+}
+.contenedorAct .card .textInfo form{
+    text-align: center;
+    font-size: 0.8em;
+}
+.contenedorAct .waves-effect input[type="button"],
+.contenedorAct .waves-effect input[type="reset"],
+.contenedorAct .waves-effect input[type="submit"] {
+    padding:0.6rem 0.8rem;
     color: white;
- 
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b71c1c;
 }
+.contenedorAct .botonesControl{
+    width: 100%;
+    margin-top: 1rem;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+} 
 
-.fondoTab table tbody td{
-    background-color: white;
-}
-.eliminar{
-    color: red;
-    font-size: 20px;
-}
-.editar{
-    color: blue;
-    font-size: 20px;
-}
+
+
+
+

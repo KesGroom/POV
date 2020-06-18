@@ -14,7 +14,7 @@
         <!-- Se vincula los estilos css específicos de la página-->
         <link href="../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
         <!--Estilos desarrollados para "mejorar" el uso de PrimeFaces en el sistema-->
-        <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/EP.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
@@ -152,13 +152,13 @@
 
 
                         <h:form>
-                            <h:commandLink>
-                                <div class="chipExcel">
-                                    <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
+                            <div class="chipExcel">
+                                <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
+                                <h:commandButton styleClass="accionador">
                                     <p:dataExporter target="tblPrin" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
-                                    <h:outputText value="Exportar a Excel"></h:outputText>
-                                </div>
-                            </h:commandLink>
+                                </h:commandButton>
+                                <h:outputText value="Exportar a Excel"></h:outputText>
+                            </div>
                             <p:dataTable id="tblPrin" value="#{usuarioControlador.consultarUsuarios()}" var="usuAll"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                          paginator="true" rows="10" style="margin-bottom:5px">
@@ -223,7 +223,9 @@
                                     <h:commandLink>
                                         <div class="chipExcel">
                                             <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
-                                            <p:dataExporter target="tbl#{ro.rol}" type="xls" fileName="#{ro.rol}Registrados"></p:dataExporter>
+                                            <h:commandButton styleClass="accionador">
+                                                <p:dataExporter target="tbl#{ro.rol}" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
+                                            </h:commandButton>
                                             <h:outputText value="Exportar a Excel"></h:outputText>
                                         </div>
                                     </h:commandLink>
