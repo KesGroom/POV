@@ -220,4 +220,20 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin-top: 1rem;
 } 
+
+.modal .botonesControl .waves-effect input[type="button"],
+.modal .botonesControl .waves-effect input[type="reset"],
+.modal .botonesControl .waves-effect input[type="submit"] {
+    padding:0.6rem 0.8rem;
+    color: white;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b71c1c;
+}
+
+table a ion-icon{
+    font-size: 24px;
+    color: black;
+}

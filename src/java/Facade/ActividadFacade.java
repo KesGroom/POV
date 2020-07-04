@@ -36,5 +36,11 @@ public class ActividadFacade extends AbstractFacade<Actividad> {
                 q.setParameter("estado", estado);
                 return q.getResultList();
     }
+    public List<Actividad> consultarActividadXMat(int estado, int Mat){
+        Query q = em.createQuery("SELECT a FROM Actividad a  WHERE a.estado=:estado And a.idDocenteMateria.idDocMat=:Mat");
+                q.setParameter("estado", estado);
+                q.setParameter("Mat", Mat);
+                return q.getResultList();
+    }
     
 }

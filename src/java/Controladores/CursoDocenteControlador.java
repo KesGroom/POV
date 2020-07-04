@@ -67,6 +67,11 @@ public class CursoDocenteControlador implements Serializable {
     public List<CursoDocente> consultarCursoDocente(){
         return cursoDocenteFacade.consultarCursoDocente(1);
     }
+    
+    public List<CursoDocente> consultarCursoxDoc(int Doc){
+        return cursoDocenteFacade.consultarCursoxDoc(1, Doc);
+    }
+    
     public void registrarCursoDocente(){
         cursoDocente.setIdCurso(curso);
         cursoDocente.setIdDocente(docente);

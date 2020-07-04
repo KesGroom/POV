@@ -36,5 +36,14 @@ public class CursoDocenteFacade extends AbstractFacade<CursoDocente> {
         q.setParameter("estado", estado);
         return q.getResultList();
     }
+    
+    public List<CursoDocente> consultarCursoxDoc(int estado, int Doc) {
+        Query q = em.createQuery("SELECT c FROM CursoDocente c WHERE c.estado=:estado AND c.idDocente.idUsuario=:Doc");
+        q.setParameter("estado", estado);
+        q.setParameter("Doc", Doc);
+        return q.getResultList();
+    }
+    
+    
 
 }

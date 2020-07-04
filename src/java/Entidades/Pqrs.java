@@ -47,7 +47,7 @@ public class Pqrs implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_PQRS")
     private Integer idPQRS;
-    @Size(max = 11)
+    @Size(max = 10)
     @Column(name = "Tipo")
     private String tipo;
     @Lob
@@ -57,7 +57,7 @@ public class Pqrs implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @Lob
     @Size(max = 65535)
@@ -69,7 +69,7 @@ public class Pqrs implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Acudiente idAcudiente;
     @JoinColumn(name = "Id_Coordinador", referencedColumnName = "Id_Usuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario idCoordinador;
 
     public Pqrs() {

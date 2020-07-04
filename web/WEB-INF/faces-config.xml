@@ -11,9 +11,15 @@
         </locale-config>
         <resource-bundle>
             <base-name>
-                properties.indexEs
+                properties.index
             </base-name>
             <var>index</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.VistaInicial
+            </base-name>
+            <var>VistaInicial</var>
         </resource-bundle>
     </application>
 </faces-config>

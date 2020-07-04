@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package Controladores;
 
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,7 +28,6 @@ public class LenguajeControlador implements Serializable {
      * Creates a new instance of LenguajeControlador
      */
     public LenguajeControlador() {
-
     }
     private Locale languageSelected;
     private Locale espaniol;
@@ -49,13 +48,6 @@ public class LenguajeControlador implements Serializable {
     public void setIngles(Locale ingles) {
         this.ingles = ingles;
     }
-    public Locale getLanguageSelected() {
-        return languageSelected;
-    }
-
-    public void setLanguageSelected(Locale languageSelected) {
-        this.languageSelected = languageSelected;
-    }
 
     /**
      * Creates a new instance of SessionController
@@ -69,6 +61,13 @@ public class LenguajeControlador implements Serializable {
 
     }
 
+    public Locale getLanguageSelected() {
+        return languageSelected;
+    }
+
+    public void setLanguageSelected(Locale languageSelected) {
+        this.languageSelected = languageSelected;
+    }
 
     public String cambiarIdioma(String idiomas) {
         Locale idioma = new Locale(idiomas);

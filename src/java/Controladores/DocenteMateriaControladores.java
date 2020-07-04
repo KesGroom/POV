@@ -32,11 +32,11 @@ public class DocenteMateriaControladores implements Serializable {
         docente = new Docente();
         materia = new Materia();
     }
-    
+
     DocenteMateria docenteMateria;
     Materia materia;
     Docente docente;
-    
+
     @EJB
     DocenteMateriaFacade docenteMateriaFacade;
 
@@ -48,7 +48,6 @@ public class DocenteMateriaControladores implements Serializable {
         this.docente = docente;
     }
 
-    
     public Materia getMateria() {
         return materia;
     }
@@ -64,11 +63,16 @@ public class DocenteMateriaControladores implements Serializable {
     public void setDocenteMateria(DocenteMateria docenteMateria) {
         this.docenteMateria = docenteMateria;
     }
+
+    public List<DocenteMateria> consultarDocenteMateria() {
+        return docenteMateriaFacade.consultarDocenteMateria(1);
+    }
     
-    public List<DocenteMateria> consultarDocenteMateria(){
-    return docenteMateriaFacade.consultarDocenteMateria(1);
-}
-    public void registrarDocenteMateria(){
+    public List<DocenteMateria> consultarMateria(int Doc) {
+        return docenteMateriaFacade.consultarMateria(1, Doc);
+    }
+
+    public void registrarDocenteMateria() {
         docenteMateria.setIdDocente(docente);
         docenteMateria.setIdMateria(materia);
         docenteMateriaFacade.create(docenteMateria);

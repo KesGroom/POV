@@ -164,6 +164,78 @@ public class SesionControlador implements Serializable {
         
         return Mensaje;
     }
+    public String Message(){
+        ArrayList<String> Messages = new ArrayList<>();
+        Messages.add ("“The best time to plant a tree was 20 years ago. The second best time is NOW.”");
+        Messages.add ("My wife and I were happy for 20 years. Then we met");
+        Messages.add ("“Every day is a new opportunity to change your life.”");
+        Messages.add ("“The scariest moment is always right before we start.”");
+        Messages.add ("“Success in life is not measured by what you achieve but by the obstacles you overcome.”");
+        Messages.add ("«Tomorrow is a wonderful excuse, don't you think?»");
+        Messages.add ("«Waiting to be someone else is a waste of time.»");
+        Messages.add ("«You should do the things you think you cannot do.»");
+        Messages.add ("«Your best teacher is your biggest mistake.»");
+        Messages.add ("“Good things come to those who know how to wait.”");
+        Messages.add ("There are surely many reasons for divorces, but the main one is and will be the wedding");
+        Messages.add ("“Don't look for the perfect moment, just find the moment and make it perfect.”");
+        Messages.add ("“No matter what happens, you always have a story to tell.”");
+        Messages.add ("Having a clear conscience is a sign of bad memory");
+        Messages.add ("“It is strictly forbidden to get up without illusions.”");
+        Messages.add ("“Get up, sigh, smile, and move on.”");
+        Messages.add ("I would like to take you seriously but to do so would be to offend your intelligence");
+        Messages.add ("“I hope you live all the days of your life.”");
+        Messages.add ("There are only two infinite things: the universe and human stupidity. And I'm not so sure about the first one");
+        Messages.add ("“A person who was never wrong never tried anything new.”");
+        Messages.add ("I never forget a face, but in your case I will be happy to make an exception");
+        Messages.add ("“He who thinks long before taking a step will spend his whole life on one foot.”");
+        Messages.add ("“The only thing impossible is what you don't try.”");
+        Messages.add ("“Discipline is the bridge between your goals and your achievements.”");
+        Messages.add ("«Challenges are what make life interesting, and overcoming them is what makes life meaningful.»");
+        Messages.add ("Age is something that doesn't matter, unless you are a cheese");
+        Messages.add ("“If the mountain you are climbing seems more and more imposing, it is because the top is getting closer. ”");
+        Messages.add ("“Live. Money recovers, time does not.”");
+        Messages.add ("I like long walks, especially when annoying people take them");
+        Messages.add ("“The stronger your trials, the greater your victories.”");
+        Messages.add ("Of course I understand. Even a five year old could understand it. Bring a five year old!");
+        Messages.add ("Don't take life too seriously. You won't get out of it alive");
+        Messages.add ("“If you are looking for different results, don't always do the same.”");
+        Messages.add ("«Being positive in a negative situation is not being innocent, it is being a leader.»");
+        Messages.add ("“Do you want to resign? Well then it is time to insist more.”");
+        Messages.add ("Everything is fun, as long as it happens to someone else");
+        Messages.add ("“No calm sea made a sailor expert.”");
+        Messages.add ("“If the plan doesn't work, change the plan, but don't change the goal.”");
+        Messages.add ("“Difficulties do not exist to make you quit but to make you stronger.”");
+        Messages.add ("«If you get tired, learn to rest, not to give up»");
+        Messages.add ("An expert is someone who explains something simple in a confusing way in such a way that makes you think that the confusion is your fault");
+        Messages.add ("Outside the dog, a book is probably man's best friend, and inside the dog it's probably too dark to read");
+        Messages.add ("If you could kick the person responsible for almost all your problems in the butt, you couldn't sit for a month");
+        Messages.add ("I usually cook with wine, sometimes I even add it to food");
+        Messages.add ("Life is hard. After all, it kills you");
+        Messages.add ("“If you feel lost in the world it is because you have not yet come looking for you.”");
+        Messages.add ("Those people who think they know everything are a real nuisance to those who really know everything");
+        Messages.add ("When life gives you lemons, throw someone in the eyes");
+        Messages.add ("Sex is like mus: if you don't have a good partner ... you better have a good hand");
+        Messages.add ("“Work in silence, make success make all the noise.”");
+        Messages.add ("“We seldom realize that we are surrounded by the extraordinary.”");
+        Messages.add ("Never put off until tomorrow what you can do day after tomorrow");
+        Messages.add ("Laugh and the world will laugh with you, snore and you will sleep alone");
+        Messages.add ("I find television very educational. Every time someone turns it on, I retire to another room and read a book");
+        Messages.add ("I exercise often. Look, I just had breakfast in bed yesterday");
+        Messages.add ("My idea of ​​a nice person is a person who agrees with me");
+        Messages.add ("“Working hard will take you to the top, enjoying the journey will take you further.”");
+        Messages.add ("Love never starves; often indigestion");
+        Messages.add ("Santa Claus had the right idea: he visits people once a year");
+        Messages.add ("To get back to being young I wouald do anything in the world except exercise, getting up early or being respectable");
+        Messages.add ("My plastic plants died because I didn't seem to water them");
+        Messages.add ("I went on a diet, I swore I would never drink or overeat again and in fourteen days I had lost two weeks");
+        Messages.add ("I hate household chores! You make the beds, clean the dishes and six months later you have to start again");
+        
+        int numMsg = (int) Math.floor(Math.random()*62+1);
+        
+        String Message = Messages.get(numMsg);
+        
+        return Message;
+    }
 
     public Rol getRolSeleccionado() {
         return rolSeleccionado;

@@ -7,6 +7,7 @@
     <h:head>
         <link href="../../../Resources/css/zonaCoordinador.css" rel="stylesheet" type="text/css"/>
         <link href="../../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
         <script src="../../../Resources/js/prefix.js" type="text/javascript"></script>
         <title>Actualizar Zona</title>
     </h:head>
@@ -39,16 +40,16 @@
                         </p:inputText>
                         <p:outputLabel value="Remitente:" for="Acudiente" />
                         <p:inputText id="Acudiente" value="#{pqrsControladores.acudiente.usuario.nombre}" readonly="true" title="Remitente" />
-                        <p:outputLabel value="Coordinador:" for="idCoordinador" />
+                        <p:outputLabel value="Responde:" for="idCoordinador" />
                         <p:selectOneMenu id="idCoordinador" value="#{pqrsControladores.coordinador.idUsuario}" required="true" requiredMessage="The IdCoordinador field is required.">
                             <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre}" itemValue="#{co.idUsuario}"/>
+                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="Respuesta:" for="respuesta" />
                         <p:inputTextarea rows="4" cols="30" id="respuesta" value="#{pqrsControladores.pqrs.respuesta}" title="Respuesta" />
                     </p:panelGrid>
                         <div class="botonesControl">
-                            <h:commandButton styleClass=" red darken-4 waves-effect waves-light" action="#{pqrsControladores.actualizarPqrs()}" value="Responder"></h:commandButton>
+                            <h:commandButton styleClass="red darken-4 waves-effect waves-light" action="#{pqrsControladores.actualizarPqrs()}" value="Responder"></h:commandButton>
                         </div>
                     </h:form>
 
@@ -60,8 +61,8 @@
                         <h:form>
                             #{sesionControlador.usuario.nombre}, recuerda ser clar@ con la respuesta que se le indica al usuario.
                             
-                            Ser claro y directo con la respuesta, evitando ser ambiguo, habrá mayor comprensión por parte del remitente de la PQRS.
-                            de igual manera, se reitera el hecho de que desvelar información privada o delicada <b>NO</b> está permitido. 
+                            Ser claro y directo con la respuesta, evitando ser ambiguo, mejorará la comprensión por parte del remitente de la PQRS.
+                            de igual manera, se reitera el hecho de que desvelar información privada o delicada <b>NO</b> esta permitido. 
                             
                             
                         </h:form>

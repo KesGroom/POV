@@ -178,9 +178,17 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
 }
 
 .chipExcel .accionador{
-    position: fixed;
-    width: 100%;
-    background-color: red;
+    position: absolute;
+    background: none;
+    border:none;
+    width: 131px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.chipExcel .accionador:active{
+    border:none;
 }
 
 .fondoTab table tbody td{
@@ -191,6 +199,14 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
     font-size: 24px;
     color: black;
 }
+
+.fondoTab .ui-panelgrid .ui-panelgrid-cell {
+    border-width: 0px !important;
+    border-style: solid !important;
+    border-color: white !important;
+    padding: 6px 7px !important;
+}
+
 
 /*Boton de eliminar*/
 
@@ -210,4 +226,29 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin-top: 2rem;
 } 
+
+.botonesControl .waves-effect input[type="button"],
+.botonesControl .waves-effect input[type="reset"],
+.botonesControl .waves-effect input[type="submit"] {
+    padding:0.6rem 0.8rem;
+    color: white;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b71c1c;
+}
+.modal .waves-effect input[type="button"],
+.modal .waves-effect input[type="reset"],
+.modal .waves-effect input[type="submit"] {
+    padding:0.6rem 0.8rem;
+    color: white;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b71c1c;
+}
+
+table .botonesControl a ion-icon{
+    font-size: 24px;
+    color: black;
+}

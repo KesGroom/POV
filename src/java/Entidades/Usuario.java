@@ -129,7 +129,7 @@ public class Usuario implements Serializable {
     private Estudiante estudiante;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "coordinador", fetch = FetchType.LAZY)
     private List<Noticia> noticiaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCoordinador", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCoordinador", fetch = FetchType.LAZY)
     private List<Pqrs> pqrsList;
 
     public Usuario() {

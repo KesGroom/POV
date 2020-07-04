@@ -37,4 +37,10 @@ public class AgendaWebFacade extends AbstractFacade<AgendaWeb> {
                 return q.getResultList();
     }
     
+    public List<AgendaWeb> consultarAgendaCat(int cat){
+        Query q = em.createQuery("SELECT aw FROM AgendaWeb aw WHERE aw.estado=1 AND aw.categoria=:cat");
+                q.setParameter("cat", cat);
+                return q.getResultList();
+    }
+    
 }

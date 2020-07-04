@@ -7,6 +7,7 @@
                 minutos = fecha.getMinutes(),
                 segundos = fecha.getSeconds(),
                 diaSemana = fecha.getDay(),
+                dayWeek = fecha.getDay(),
                 dia = fecha.getDate(),
                 mes = fecha.getMonth(),
                 year = fecha.getFullYear();
@@ -27,7 +28,7 @@
         pDiaSemana.textContent = semana[diaSemana];
 
         var semanaEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        pDaySem.textContent = semanaEn[diaSemana];
+        pDaySem.textContent = semanaEn[dayWeek];
 
         pDia.textContent = dia;
 

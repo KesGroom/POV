@@ -51,6 +51,10 @@ public class EstudianteControladores implements Serializable {
     public List<Estudiante> estudianteBitacora() {
         return estudianteFacade.EstudianteBitacora();
     }
+    
+    public List<Estudiante> estudianteCurso(String Cur) {
+        return estudianteFacade.EstudianteCurso(Cur);
+    }
 
     public Usuario getUsuario() {
         return usuario;

@@ -34,6 +34,15 @@ public class CategoriaControlador implements Serializable {
     @EJB
     CategorianoticiaFacade categoriaFacade;
 
+    
+    public String registrar(){
+        categoria.setEstado(1);
+        categoriaFacade.create(categoria);
+        categoria = new Categorianoticia();
+        
+        return "Categoria";
+    }
+    
     public List<Categorianoticia> consultarCategorias(){
         return categoriaFacade.consultarCategoria(1);
     }

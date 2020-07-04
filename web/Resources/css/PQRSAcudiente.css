@@ -34,7 +34,7 @@ body {
 }
 main{
     margin-top: 40px;
-    padding: 0 50px;
+    padding: 1rem 50px;
    
 }
 .titulo{
@@ -42,37 +42,16 @@ main{
     height: 5rem;
     margin-top: 4rem;
     padding-top: 1rem;
-    font-size: 2em;
+    font-size: 1em;
     border-bottom: 1px solid black;
     text-align: center;
     background: #c2294b;
     color: #ffffff;
 }
 
-.boton-registrar{
-    text-align: center;
-    color: #ffffff;
-}
-commandButton{
-    color: white;
-}
 
-.btnRegistrar{
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 5%;
-}
-.btnRegistrar .white-text{
-    font-size: 2.5em;
-}
 
-#CrearPQRS{
-    padding: 1rem;
-}
-
-#CrearPQRS table{
-    border: none !important;
+main table .botonesControl a .btnTrash{
+    font-size: 2em;
+    color: black;
 }

@@ -9,11 +9,11 @@
         <link href="../../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <!-- Se vincula los estilos css específicos de la página-->
         <link href="../../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
-        <link href="../../../Resources/css/EP.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
-        <script src="../../Resources/js/prefix.js" type="text/javascript"></script>
+        <script src="../../../Resources/js/prefix.js" type="text/javascript"></script>
         <!-- Se incluye el icono del sistema -->
         <link rel="shorcut icon" href="../../Resources/img/Sistema/logoVersionFinal.png"/>
         <!-- Nombre que se visualizará en el navegador -->
@@ -27,7 +27,7 @@
             <a href="PQRS.xhtml">PQRS</a>
         </div>
         <main>
-            
+
             <a class="waves-effect waves-light btn modal-trigger red darken-4 btnRegistrar" href="#CrearPQRS"><ion-icon name="add-circle" class="white-text"></ion-icon></a>
 
             <!-- Modal Structure -->
@@ -36,14 +36,14 @@
                 <f:view>
 
 
+                    <div class="tituloFormulario">Crear pqrs</div>
                     <h:form>
-                        <div class="tituloFormulario">Crear pqrs</div>
                         <p:panelGrid columns="2">
 
                             <p:outputLabel value="Remitente:" for="idAcudiente" />
                             <p:selectOneMenu id="idAcudiente" value="#{pqrsControladores.acudiente.idUsuario}" required="true" requiredMessage="The IdAcudiente field is required.">
                                 <!-- TODO: update below reference to list of available items-->
-                                <f:selectItems  var="acudiente" value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}"  itemValue="#{acudiente.idUsuario}" itemLabel="#{acudiente.nombre}" />
+                                <f:selectItems  var="acudiente" value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}"  itemValue="#{acudiente.idUsuario}" itemLabel="#{acudiente.nombre} - #{acudiente.apellido}" />
                             </p:selectOneMenu>
                             <p:outputLabel value="Fecha:" for="fecha" />
                             <p:inputText id="fecha" type="date" value="#{pqrsControladores.pqrs.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
@@ -57,11 +57,11 @@
                                 <f:selectItem itemLabel="Sugerencia" itemValue="Sugerencia"></f:selectItem>
                             </p:selectOneMenu>
                             <p:outputLabel value="Asunto:" for="asunto" />
-                            <p:inputTextarea rows="4" cols="30" id="asunto" value="#{pqrsControladores.pqrs.asunto}" title="Asunto" />
+                            <p:inputTextarea rows="6" cols="10" id="asunto" value="#{pqrsControladores.pqrs.asunto}" title="Asunto" />
 
                         </p:panelGrid>
                         <div class="botonesControl">
-                            <h:commandButton value="Registrar"  class="red darken-4 waves-effect waves-light" action="#{pqrsControladores.registrarPqrs()}"></h:commandButton>
+                            <h:commandButton styleClass="red darken-4 waves-effect waves-light" action="#{pqrsControladores.registrarPqrs()}" value="Registrar" ></h:commandButton>
                         </div>
                     </h:form>
                 </f:view>
@@ -71,7 +71,7 @@
 
 
                 <h:form>
-                    <h3><h:outputText value="Mis PQRS"/></h3>
+                    <h4><h:outputText value="Mis PQRS"/></h4>
                     <p:dataTable value="#{pqrsControladores.consultarAcudiente(sesionControlador.usuario.idUsuario)}" var="pqrs">
 
                         <p:column>
@@ -100,12 +100,13 @@
                             </f:facet>
                             <h:outputText value="#{pqrs.respuesta}"/>
                         </p:column>
-                        
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Responde"/>
                             </f:facet>
-                            <h:outputText value="#{pqrs.idCoordinador.nombre}"/>
+                            <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
+                            <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                         </p:column>
                         <p:column exportable="false">
                             <div class="botonesControl">
@@ -117,10 +118,10 @@
                 </h:form>
 
 
-                
 
 
-                   
+
+
             </f:view>
 
         </main>

@@ -42,4 +42,10 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
         return q.getResultList();
     }
     
+    public List<Estudiante> EstudianteCurso(String Curso){
+        Query q = em.createQuery("SELECT e FROM Estudiante e WHERE e.estado=1 AND e.idCurso.curso=:Curso ORDER  BY e.usuario.apellido ASC");
+        q.setParameter("Curso", Curso);
+        return q.getResultList();
+    }
+    
 }

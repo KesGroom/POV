@@ -37,4 +37,11 @@ public class DocenteMateriaFacade extends AbstractFacade<DocenteMateria> {
         return q.getResultList();
     }
     
+    public List<DocenteMateria> consultarMateria(int estado, int Doc) {
+        Query q = em.createQuery("SELECT d FROM DocenteMateria d WHERE d.estado=:estado AND d.idDocente.idUsuario=:Doc");
+        q.setParameter("estado", estado);
+        q.setParameter("Doc", Doc);
+        return q.getResultList();
+    }
+    
 }

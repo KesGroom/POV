@@ -25,227 +25,222 @@
 
 
         <!-- Tener el controlador de seleccion de vista -->
-        <f:view locale="#{lenguajeControlador.languageSelected}" >
-            <h:form>
-
-
-                <!-- Se encierra todo el contenido del body en un div con clase contenedor al cual se le asignaran las propiedades de flexbox -->
-                <!-- Elemento Padre -->
-                <div class="contenedor">
-                    <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
-                    <header id="header">
-                        <div class="menu">
-                            <div class="logo">
-                                <a href="#"><img src="Resources/img/Colegio/LogoCanoNombre.png" alt=""/></a>
-                                <a href="#" class="btn-menu" id="btn-menu"><ion-icon name="menu-outline" aria-hidden="true"></ion-icon></a>
-                            </div>
-
-                            <div class="enlaces" id="enlaces">
-                                <a href="#Quienes"><ion-icon name="people"></ion-icon> #{index.lblQuienesSomos} </a>
-                                <a href="#Galeria"><ion-icon name="images"></ion-icon> #{index.lblGalería}</a>
-                                <a href="#Contacto"><ion-icon name="mail"></ion-icon> #{index.lblContactenos}</a>
-                                <a href="#Inicio" class="modal-trigger"><ion-icon name="person-circle"></ion-icon> #{index.lblinicio}</a>
-                            </div>
-                        </div>
-                    </header>
-
-                    <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
-                    <main>
+        <f:view>
 
 
 
-                        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
-                            <div class="opcidioma2">
-                                <h:commandLink value="Ingles" action="#{lenguajeControlador.cambiarIdioma('en')}"/>  
-                                
-                                <img src="Resources/img/Sistema/Estados.png" width="25px"/>  
-                            </div>
-                        </c:if>
-                        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
-                            <div class="opcidioma">
-                                <h:commandLink value="Spanish" action="#{lenguajeControlador.cambiarIdioma('es')}"/>  
-                                
-                                <img src="Resources/img/Sistema/Colombia.png" width="25px"/>  
-                            </div>
-                        </c:if>
-                        
-                        <div class="youtube">
-                            <a href="https://www.youtube.com/channel/UCwXN9rc1PEn3RH2e70Y7RXg" target="_blank">Youtube</a>
-                            <img src="Resources/img/Sistema/youtube.png" alt=""/>
-                        </div>
-                        <div class="facebook">
-                            <a href="https://es-la.facebook.com/pages/Colegio-Mar%C3%ADa-Cano-IED/693807994342789" target="_blank">Facebook</a>
-                            <img src="Resources/img/Sistema/Facebbok.png" alt=""/>
-                        </div>
-                        <div class="instagram">
-                            <a href="https://www.instagram.com/explore/locations/693807994342789/colegio-maria-cano-ied" target="_blank">Instagram</a>
-                            <img src="Resources/img/Sistema/instagram.png" alt=""/>
+            <!-- Se encierra todo el contenido del body en un div con clase contenedor al cual se le asignaran las propiedades de flexbox -->
+            <!-- Elemento Padre -->
+            <div class="contenedor">
+                <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
+                <header id="header">
+                    <div class="menu">
+                        <div class="logo">
+                            <a href="#"><img src="Resources/img/Colegio/LogoCanoNombre.png" alt=""/></a>
+                            <a href="#" class="btn-menu" id="btn-menu"><ion-icon name="menu-outline" aria-hidden="true"></ion-icon></a>
                         </div>
 
-
-                        <div class="parallax-container">
-                            <div class="parallax">
-                                <img src="Resources/img/Colegio/Colegio frontal.jpg" alt=""/>
-                            </div>
-                        </div> 
-
-                        <!-- Quienes somos -->
-                        <div class="seccion">
-                            <hr class="separador"/>
-                            <h2 class="tituloSeccionR center-align" id="Quienes">#{index.lblQuienesSomos}</h2>
+                        <div class="enlaces" id="enlaces">
+                            <a href="#Quienes"><ion-icon name="people"></ion-icon> #{index.lblQuienesSomos} </a>
+                            <a href="#Galeria"><ion-icon name="images"></ion-icon> #{index.lblGalería}</a>
+                            <a href="#Contacto"><ion-icon name="mail"></ion-icon> #{index.lblContactenos}</a>
+                            <a href="#Inicio" class="modal-trigger"><ion-icon name="person-circle"></ion-icon> #{index.lblinicio}</a>
                         </div>
+                        <h:form>
+                            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                                <h:commandLink action="#{lenguajeControlador.cambiarIdioma('en')}">  
+                                    <img src="Resources/img/Sistema/Estados.png" width="20px" height="20px"/>  
+                                </h:commandLink>
+                            </c:if>
+                            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                                <h:commandLink action="#{lenguajeControlador.cambiarIdioma('es')}">  
+                                    <img src="Resources/img/Sistema/Colombia.png" width="20px" height="20px"/>  
+                                </h:commandLink>
+                            </c:if>
+                        </h:form>
+                    </div>
+                </header>
 
-                        <h3 class="tituloQuienes">#{index.lblMaríaCanoBiography}</h3>
+                <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
+                <main>
 
-                        <div class="biografia">
-                            <p>#{index.lblBiografia}
-                                <br/><br/>
-                                #{index.lbllegado}</p>
-                            <img src="Resources/img/Colegio/maria-cano-1.jpg" alt=""/>
+                    <div class="youtube">
+                        <a href="https://www.youtube.com/channel/UCwXN9rc1PEn3RH2e70Y7RXg" target="_blank">Youtube</a>
+                        <img src="Resources/img/Sistema/youtube.png" alt=""/>
+                    </div>
+                    <div class="facebook">
+                        <a href="https://es-la.facebook.com/pages/Colegio-Mar%C3%ADa-Cano-IED/693807994342789" target="_blank">Facebook</a>
+                        <img src="Resources/img/Sistema/Facebbok.png" alt=""/>
+                    </div>
+                    <div class="instagram">
+                        <a href="https://www.instagram.com/explore/locations/693807994342789/colegio-maria-cano-ied" target="_blank">Instagram</a>
+                        <img src="Resources/img/Sistema/instagram.png" alt=""/>
+                    </div>
+
+
+                    <div class="parallax-container">
+                        <div class="parallax">
+                            <img src="Resources/img/Colegio/Colegio frontal.jpg" alt=""/>
                         </div>
+                    </div> 
 
-                        <div class="contenedorMV">
-                            <div class="mision">
-                                <h3 class="tituloQuienes">#{index.titleMisión}</h3>
-                                <p class="center-align">#{index.txtMission}</p>
-                            </div>
-                            <div class="vision">
-                                <h3 class="tituloQuienes">#{index.Vision}</h3>
-                                <p class="center-align">#{index.txtVision}</p>
-                            </div>
+                    <!-- Quienes somos -->
+                    <div class="seccion">
+                        <hr class="separador"/>
+                        <h2 class="tituloSeccionR center-align" id="Quienes">#{index.lblQuienesSomos}</h2>
+                    </div>
+
+                    <h3 class="tituloQuienes">#{index.lblMaríaCanoBiography}</h3>
+
+                    <div class="biografia">
+                        <p>#{index.lblBiografia}
+                            <br/><br/>
+                            #{index.lbllegado}</p>
+                        <img src="Resources/img/Colegio/maria-cano-1.jpg" alt=""/>
+                    </div>
+
+                    <div class="contenedorMV">
+                        <div class="mision">
+                            <h3 class="tituloQuienes">#{index.titleMisión}</h3>
+                            <p class="center-align">#{index.txtMission}</p>
                         </div>
-
-                        <h3 class="tituloQuienes">Himno institucional</h3>
-                        <p class="center-align"><b>#{index.Lyrics} </b> Lic. Silvio Calle Cadavid <br/><b>#{index.Music} </b> Lic. Andrés Martínez</p>
-
-                        <div class="himno">
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.Chorus}</h5>
-                                <p>#{index.txtChorusOne}<br/>
-                                    #{index.txtChorusTwo} <br/>
-                                    #{index.txtChorusTree} <br/>
-                                    #{index.txtChorusFour}</p>
-                            </div>
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.titleStanzaOne}</h5>
-                                <p> #{index.txtOneStanzaOne} <br/>
-                                    #{index.txtOneStanzaTwo} <br/>
-                                    #{index.txtOneStanzaTree}<br/>
-                                    #{index.txtOneStanzaFour}</p>
-                            </div>
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.titleStanzaTwo}</h5>
-                                <p>#{index.txtTwoStanzaOne} <br/>
-                                    #{index.txtTwoStanzaTwo} <br/>
-                                    #{index.txtTwoStanzaTree} <br/>
-                                    #{index.txtTwoStanzaFour}</p>
-                            </div>
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.titleStanzaTree}</h5>
-                                <p>#{index.txtTreeStanzaOne} <br/>
-                                    #{index.txtTreeStanzaTwo}<br/>
-                                    #{index.txtTreeStanzaTree}<br/>
-                                    #{index.txtTreeStanzaFour}</p>
-                            </div>
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.titleStanzaFour}</h5>
-                                <p>#{index.txtFourStanzaOne} <br/>
-                                    #{index.txtFourStanzaTwo} <br/>
-                                    #{index.txtFourStanzaTree} <br/>
-                                    #{index.txtFourStanzaFour}</p>
-                            </div>
-                            <div class="estrofa">
-                                <h5 class="tituloEstrofa">#{index.titleStanzaFive}</h5>
-                                <p>#{index.txtFiveStanzaOne} <br/>
-                                    #{index.txtFiveStanzaTwo} <br/>
-                                    #{index.txtFiveStanzaTree} <br/>
-                                    #{index.txtFiveStanzaFour}</p>
-                            </div>
+                        <div class="vision">
+                            <h3 class="tituloQuienes">#{index.Vision}</h3>
+                            <p class="center-align">#{index.txtVision}</p>
                         </div>
+                    </div>
 
-                        <div class="seccion">
-                            <h2 class="tituloSeccionL" id="Galeria">#{index.lblGalería}</h2>
-                            <div class="separador"></div>
+                    <h3 class="tituloQuienes">Himno institucional</h3>
+                    <p class="center-align"><b>#{index.Lyrics} </b> Lic. Silvio Calle Cadavid <br/><b>#{index.Music} </b> Lic. Andrés Martínez</p>
+
+                    <div class="himno">
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.Chorus}</h5>
+                            <p>#{index.txtChorusOne}<br/>
+                                #{index.txtChorusTwo} <br/>
+                                #{index.txtChorusTree} <br/>
+                                #{index.txtChorusFour}</p>
                         </div>
-
-                        <div class="galeria">
-                            <div class="grupoFoto" id="grop1">
-                                <img src="Resources/img/Colegio/Walk flag.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Flag Cano.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Flag Bogota.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Flag Colombia.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Flag 4.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Formation.jpg" alt="" class="materialboxed"/>
-                            </div>
-                            <div class="grupoFoto GrupoFotosOculto" id="grop2">
-                                <img src="Resources/img/Colegio/Formation 2.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Formation 3.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Colegio ajedrez.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Colegio ascensor.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Colegio frontal.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Colegio interior.jpg" alt="" class="materialboxed"/>
-                            </div>
-                            <div class="grupoFoto GrupoFotosOculto" id="grop3">
-                                <img src="Resources/img/Colegio/Bodies Into.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Bodies Out.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Project Brigde.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Science Cano.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Robito.jpg" alt="" class="materialboxed"/>
-                                <img src="Resources/img/Colegio/Roboto.jpg" alt="" class="materialboxed"/>
-
-                            </div>
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.titleStanzaOne}</h5>
+                            <p> #{index.txtOneStanzaOne} <br/>
+                                #{index.txtOneStanzaTwo} <br/>
+                                #{index.txtOneStanzaTree}<br/>
+                                #{index.txtOneStanzaFour}</p>
                         </div>
-
-                        <ul class="pagination center-align">
-                            <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-                            <li class="waves-effect"><a id="Page1" class="red darken-4 white-text">1</a></li>
-                            <li class="waves-effect"><a id="Page2">2</a></li>
-                            <li class="waves-effect"><a id="Page3">3</a></li>
-                            <li class="waves-effect"><a><i class="material-icons">chevron_right</i></a></li>
-                        </ul>
-
-                        <div class="seccion">
-                            <hr class="separador"/>
-                            <h3 class="tituloSeccionR" id="Contacto">#{index.lblContactenos}</h3>
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.titleStanzaTwo}</h5>
+                            <p>#{index.txtTwoStanzaOne} <br/>
+                                #{index.txtTwoStanzaTwo} <br/>
+                                #{index.txtTwoStanzaTree} <br/>
+                                #{index.txtTwoStanzaFour}</p>
                         </div>
-
-                        <!-- Contactenos -->
-                        <div class="Contacto">
-
-                            <div class="mapa">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.1930873292426!2d-74.11531988534838!3d4.559270504113856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f98b04bf6309b%3A0x9607592718e89acd!2sIED%20MARIA%20CANO!5e0!3m2!1ses!2sco!4v1585064762326!5m2!1ses!2sco"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                            </div>
-
-                            <div class="informacion">
-                                <p><ion-icon name="call-outline"></ion-icon> #{index.txtPhone}: 372 6691</p>
-                                <p><ion-icon name="mail-outline"></ion-icon> #{index.txtEmail}: colmariacano@educacionbogota.edu.co </p>
-                                <p><ion-icon name="time-outline"></ion-icon> #{index.txtopeninghours}: 6:30 am - 3:00 pm</p>
-                                <p><ion-icon name="business-outline"></ion-icon> #{index.txtAddress}: Tranv. 5U #48j - 30 SUR</p>
-                            </div>
-
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.titleStanzaTree}</h5>
+                            <p>#{index.txtTreeStanzaOne} <br/>
+                                #{index.txtTreeStanzaTwo}<br/>
+                                #{index.txtTreeStanzaTree}<br/>
+                                #{index.txtTreeStanzaFour}</p>
                         </div>
-
-                    </main>
-
-                    <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
-                    <footer>
-                        <div class="footerTop">
-
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.titleStanzaFour}</h5>
+                            <p>#{index.txtFourStanzaOne} <br/>
+                                #{index.txtFourStanzaTwo} <br/>
+                                #{index.txtFourStanzaTree} <br/>
+                                #{index.txtFourStanzaFour}</p>
                         </div>
-                        <div class="footerBot">
-                            <p>Designed by <b>POV</b> copyright© 2020</p>
+                        <div class="estrofa">
+                            <h5 class="tituloEstrofa">#{index.titleStanzaFive}</h5>
+                            <p>#{index.txtFiveStanzaOne} <br/>
+                                #{index.txtFiveStanzaTwo} <br/>
+                                #{index.txtFiveStanzaTree} <br/>
+                                #{index.txtFiveStanzaFour}</p>
+                        </div>
+                    </div>
+
+                    <div class="seccion">
+                        <h2 class="tituloSeccionL" id="Galeria">#{index.lblGalería}</h2>
+                        <div class="separador"></div>
+                    </div>
+
+                    <div class="galeria">
+                        <div class="grupoFoto" id="grop1">
+                            <img src="Resources/img/Colegio/Walk flag.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Flag Cano.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Flag Bogota.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Flag Colombia.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Flag 4.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Formation.jpg" alt="" class="materialboxed"/>
+                        </div>
+                        <div class="grupoFoto GrupoFotosOculto" id="grop2">
+                            <img src="Resources/img/Colegio/Formation 2.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Formation 3.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Colegio ajedrez.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Colegio ascensor.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Colegio frontal.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Colegio interior.jpg" alt="" class="materialboxed"/>
+                        </div>
+                        <div class="grupoFoto GrupoFotosOculto" id="grop3">
+                            <img src="Resources/img/Colegio/Bodies Into.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Bodies Out.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Project Brigde.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Science Cano.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Robito.jpg" alt="" class="materialboxed"/>
+                            <img src="Resources/img/Colegio/Roboto.jpg" alt="" class="materialboxed"/>
 
                         </div>
-                    </footer>
+                    </div>
+
+                    <ul class="pagination center-align">
+                        <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+                        <li class="waves-effect"><a id="Page1" class="red darken-4 white-text">1</a></li>
+                        <li class="waves-effect"><a id="Page2">2</a></li>
+                        <li class="waves-effect"><a id="Page3">3</a></li>
+                        <li class="waves-effect"><a><i class="material-icons">chevron_right</i></a></li>
+                    </ul>
+
+                    <div class="seccion">
+                        <hr class="separador"/>
+                        <h3 class="tituloSeccionR" id="Contacto">#{index.lblContactenos}</h3>
+                    </div>
+
+                    <!-- Contactenos -->
+                    <div class="Contacto">
+
+                        <div class="mapa">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.1930873292426!2d-74.11531988534838!3d4.559270504113856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f98b04bf6309b%3A0x9607592718e89acd!2sIED%20MARIA%20CANO!5e0!3m2!1ses!2sco!4v1585064762326!5m2!1ses!2sco"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+
+                        <div class="informacion">
+                            <p><ion-icon name="call-outline"></ion-icon> #{index.txtPhone}: 372 6691</p>
+                            <p><ion-icon name="mail-outline"></ion-icon> #{index.txtEmail}: colmariacano@educacionbogota.edu.co </p>
+                            <p><ion-icon name="time-outline"></ion-icon> #{index.txtopeninghours}: 6:30 am - 3:00 pm</p>
+                            <p><ion-icon name="business-outline"></ion-icon> #{index.txtAddress}: Tranv. 5U #48j - 30 SUR</p>
+                        </div>
+
+                    </div>
+
+                </main>
+
+                <!-- Elemento hijo de contenedor y elemento padre del contenido interno -->
+                <footer>
+                    <div class="footerTop">
+
+                    </div>
+                    <div class="footerBot">
+                        <p>Designed by <b>POV</b> copyright© 2020</p>
+
+                    </div>
+                </footer>
 
 
-                </div>
-            </h:form>
+            </div>
+
         </f:view>
         <div class="modal" id="Inicio">
             <div class="modal-content modalContentBox">
                 <h4 class="red darken-4 white-text">#{index.titleLogin}</h4>
-                <f:view locale="#{lenguajeControlador.languageSelected}">
+                <f:view>
 
                     <h:form id="login-form" prependId="false">
                         <h:messages showSummary="true" showDetail="true"/>

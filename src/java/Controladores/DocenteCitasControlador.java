@@ -13,21 +13,20 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 /**
  *
  * @author PC
  */
-@Named(value = "docenteCitas")
+@Named(value = "docenteCitasControlador")
 @SessionScoped
-public class DocenteCitas implements Serializable {
+public class DocenteCitasControlador implements Serializable {
 
     /**
      * Creates a new instance of DocenteCitas
      */
-    public DocenteCitas() {
+    public DocenteCitasControlador() {
         docente = new Docente();
         cita = new Cita();
         docenteCita = new DocenteCita();
