@@ -58,17 +58,31 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         q.setParameter("estado", estado);
         return q.getResultList();
     }
-    
+
     public List<Usuario> obtenerUsuario(int id) {
         Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.idUsuario=:Id");
         q.setParameter("Id", id);
         return q.getResultList();
     }
-    
-    public List<Usuario> busqueda(String busqueda){
-        Query q=em.createQuery("SELECT u FROM Usuario u WHERE u.nombre LIKE '%:busqueda%' OR u.apellido LIKE '%:busqueda%' OR u.numerodeDocumento LIKE '%:busqueda%'");
+
+    public List<Usuario> busqueda(String busqueda) {
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre LIKE '%:busqueda%' OR u.apellido LIKE '%:busqueda%' OR u.numerodeDocumento LIKE '%:busqueda%'");
         q.setParameter("busqueda", busqueda);
         return q.getResultList();
     }
 
+    public Usuario OlvidoContra(String doc, String mail) {
+        Usuario us = null;
+        try {
+            Query q = em.createQuery("SELECT u FROM Usuario u Where u.numerodeDocumento=:Doc AND u.correoElectronico=:mail AND u.estado=1");
+            q.setParameter("Doc", doc);
+            q.setParameter("mail", mail);
+
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        return us;
+    }
 }

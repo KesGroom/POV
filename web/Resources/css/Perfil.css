@@ -1,0 +1,180 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4/07/2020, 08:04:31 PM
+    Author     : kesgr
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Se le aplica la fuente a todos los elementos del body */
+body{
+    font-family: 'Roboto', sans-serif;
+
+}
+
+/* Se estiliza el scrollbar (Para el navegador Chrome) */
+body::-webkit-scrollbar{
+    width: 5px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 15px;
+}
+
+.Bread{
+    width: 100%;
+    padding: 0.3rem 2rem;
+    border-bottom: 1px solid rgb(139, 136, 136);
+    background-color: honeydew;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.Bread a{
+    color: rgb(126, 119, 119);
+    margin-right: 0.5rem;
+    font-size: 0.8em;
+}
+
+.Bread ion-icon{
+    color: rgb(126, 119, 119);
+    margin-right: 0.3rem;
+    font-size: 0.8em;
+}
+
+.Bread a:hover{
+    color: #b71c1c;
+}
+
+main{
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+}
+
+.tablaDatos{
+    font-size: 1.3em;
+}
+
+.tablaDatos .infoItem{
+    width: 70%;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tablaDatos .infoItem ion-icon{
+    margin-right: 0.5rem;
+}
+
+.tablaDatos .btnActualizar{
+    font-size: 1.5em;
+}
+
+.ContenedorFoto{
+    width: 6rem;
+    height: 6rem;
+    position: relative;
+}
+
+.ContenedorFotoActual{
+    width: 10rem;
+    height: 10rem;
+    
+}
+
+.tituloPerfil{
+    margin-bottom: 5rem;
+}
+.tituloPerfil ion-icon{
+    color: #f9c70a;
+}
+
+.ContenedorTotal{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contenedorCambio{
+    width: 80%;
+    padding: 2rem;
+    border: 1.5px solid #b71c1c;
+    border-radius: 15px;
+    margin: 1rem auto; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FotoPerfil{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.ContenedorFoto .editPhoto{
+    font-size: 1em;
+    border: 0.5px solid gray;
+    border-radius: 50%;
+    padding: 0.5rem;
+    position: absolute;
+    top: 3.6rem;
+    right: 0rem;
+    color: black;
+    background-color: #d5cece;
+}
+
+.contenedorCambio .Opciones .ui-state-default, .ui-widget-content .ui-state-default{
+    background: white !important;
+}
+
+.contenedorCambio .tituloOpciones{
+    font-size: 2em;
+    text-align: center;
+}
+
+.contenedorCambio .imgButton{
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.ContenedorFoto .editPhoto:hover{
+    font-size: 1.2em;
+    background-color: #e1dede;
+    color: #b71c1c;
+}
+
+.imgMuestra{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 1px solid #d5cece;
+}

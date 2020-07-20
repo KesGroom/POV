@@ -17,10 +17,22 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import static java.lang.Integer.getInteger;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -37,12 +49,23 @@ public class UsuarioControlador implements Serializable {
         rol = new Rol();
         tipo = new Tipo();
         usuario = new Usuario();
+        usuarioPrueba = new Usuario();
         usuarioFacade = new UsuarioFacade();
     }
 
     private Usuario usuario;
+    private Usuario usuarioPrueba;
     private Rol rol;
     private Tipo tipo;
+    private String FotoSeleccionada;
+
+    //Variables para el olvido de contraseña
+    private String Documento;
+    private String Correo;
+    private String Codigo = "MC-";
+    private String Code;
+    private String digito;  
+    private String Cod = "MC-" + Code;
 
     @EJB
     UsuarioFacade usuarioFacade;
@@ -56,8 +79,8 @@ public class UsuarioControlador implements Serializable {
     public String registrarUsu() {
         usuario.setEstado(1);
         usuario.setFoto("../img/imgPerfil/default-user.png");
-        usuario.setIdRoles(rolFacade.find(rol.getIdRoles()));
-        usuario.setIdTipo(tipoFacade.find(tipo.getIdTipo()));
+        usuario.setIdRoles(rol);
+        usuario.setIdTipo(tipo);
         usuarioFacade.create(usuario);
         usuario = new Usuario();
 
@@ -70,10 +93,116 @@ public class UsuarioControlador implements Serializable {
         usuarioFacade.edit(usuario);
     }
 
-    public List<Usuario> conseguirUsuario(int id){
+    public String actualizarPerfil(Usuario usuarioActualizar) {
+        usuario = usuarioActualizar;
+        rol = usuarioActualizar.getIdRoles();
+        tipo = usuarioActualizar.getIdTipo();
+
+        return "ActualizarPerfil";
+    }
+
+    public String actualizarPhoto(Usuario usuarioActualizar) {
+        usuario = usuarioActualizar;
+        rol = usuarioActualizar.getIdRoles();
+        tipo = usuarioActualizar.getIdTipo();
+
+        return "Avatar";
+    }
+
+    public String actualizarP() {
+        usuario.setIdRoles(rol);
+        usuario.setIdTipo(tipo);
+        usuarioFacade.edit(usuario);
+        usuario = new Usuario();
+
+        return "Perfil";
+    }
+
+    public String actualizarFoto() {
+        usuario.setIdRoles(rol);
+        usuario.setIdTipo(tipo);
+        usuarioFacade.edit(usuario);
+        usuario = new Usuario();
+
+        return "Perfil";
+    }
+
+    public void fotoPrueba() {
+
+        this.FotoSeleccionada = this.usuario.getFoto();
+
+    }
+
+    public String olvido() throws NoSuchProviderException, MessagingException {
+
+        usuarioPrueba = usuarioFacade.OlvidoContra(Documento, Correo);
+
+        if (usuarioPrueba != null) {
+
+            for (int i = 0; i < 6; i++) {
+
+                int num = (int) Math.floor(Math.random() * 10);
+                digito = String.valueOf(num);
+
+                Codigo = Codigo + digito;
+
+            }
+
+            Properties propiedad = new Properties();
+            propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+            propiedad.setProperty("mail.smtp.starttls.enable", "true");
+            propiedad.setProperty("mail.smtp.port", "587");
+            propiedad.setProperty("mail.smtp.auth", "true");
+
+            Session sesion = Session.getDefaultInstance(propiedad);
+
+            String correoEnvia = "mariacano.pov@gmail.com";
+            String contrasena = "PovGaes7";
+            String destinatario = Correo;
+            String asunto = "Código de reestablecimiento de contraseña";
+            String mensaje = "Estimad@ " + usuarioPrueba.getNombre() + " se ha solicitado realizar el reestablecimiento de su contraseña.\n"
+                    + "Si usted no ha realizado está solicitud le recomendamos ingresar a su perfil y validar su información, "
+                    + "y comunicarse lo antes posible con la institución a tráves del correo MariaCano.Pov@gmail.com o llamando al 372 6691.\n\n"
+                    + "\t Su código de válidación es: " + Codigo;
+
+            MimeMessage mail = new MimeMessage(sesion);
+
+            try {
+                mail.setFrom(new InternetAddress(correoEnvia));
+                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+                mail.setSubject(asunto);
+                mail.setText(mensaje);
+
+                Transport transporte = sesion.getTransport("smtp");
+                transporte.connect(correoEnvia, contrasena);
+                transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+                transporte.close();
+
+            } catch (AddressException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MessagingException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return "Validacion";
+        } else {
+            return "olvido";
+        }
+
+    }
+
+    public String validacion() {
+        if (Codigo.equals(Cod)) {
+            return "DefinirContra";
+        } else {
+            return "Validacion";
+        }
+    }
+
+    public List<Usuario> conseguirUsuario(int id) {
         return usuarioFacade.obtenerUsuario(id);
     }
-    
+
     public List<Usuario> consultarUsuarios() {
         return usuarioFacade.consultarUsuario(1);
     }
@@ -82,6 +211,7 @@ public class UsuarioControlador implements Serializable {
         return usuarioFacade.busquedaRol(rol);
     }
 
+    //Getters and Setters
     public Usuario getUsuario() {
         return usuario;
     }
@@ -106,8 +236,69 @@ public class UsuarioControlador implements Serializable {
         this.tipo = tipo;
     }
 
+    public String getFotoSeleccionada() {
+        return FotoSeleccionada;
+    }
+
+    public void setFotoSeleccionada(String FotoSeleccionada) {
+        this.FotoSeleccionada = FotoSeleccionada;
+    }
+
+    public String getDocumento() {
+        return Documento;
+    }
+
+    public void setDocumento(String Documento) {
+        this.Documento = Documento;
+    }
+
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public Usuario getUsuarioPrueba() {
+        return usuarioPrueba;
+    }
+
+    public void setUsuarioPrueba(Usuario usuarioPrueba) {
+        this.usuarioPrueba = usuarioPrueba;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String Code) {
+        this.Code = Code;
+    }
+
+    public String getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
+    }
+
+    public String getDigito() {
+        return digito;
+    }
+
+    public void setDigito(String digito) {
+        this.digito = digito;
+    }
+
+    public String getCod() {
+        return Cod;
+    }
+
+    public void setCod(String Cod) {
+        this.Cod = Cod;
+    }
     
-
+    
 }
-
-

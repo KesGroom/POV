@@ -37,4 +37,10 @@ public class MateriaFacade extends AbstractFacade<Materia> {
         return q.getResultList();
     }
     
+    public List<Materia> consultarMateriaxEst(int grado) {
+        Query q = em.createQuery("SELECT m FROM Materia m WHERE m.estado=1 AND m.idArea.grado.idGrado=:grado");
+        q.setParameter("grado", grado);
+        return q.getResultList();
+    }
+    
 }

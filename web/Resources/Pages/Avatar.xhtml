@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/Perfil.css" rel="stylesheet" type="text/css"/>
+        <h:form>
+            <title>Cambiar avatar de #{sesionControlador.usuario.nombre}</title>
+        </h:form>
+    </h:head>
+    <h:body>
+        <div class="Bread">
+            <a href="VistaInicialDash.xhtml">Principal</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="Perfil.xhtml">Perfil de #{sesionControlador.usuario.nombre}</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="">Cambiar avatar de #{sesionControlador.usuario.nombre}</a>
+        </div>
+        <main>
+            <h:form id="CambioAvatar">
+                <h4>Cambiar Avatar</h4>
+                <div class="ContenedorTotal">
+                    <h6>Selección actual:</h6>
+                    <div class="ContenedorFotoActual">                    
+                        <img class="FotoPerfil" src="#{usuarioControlador.usuario.foto}"></img>
+                    </div>
+                </div>
+                <div class="contenedorCambio">
+                    <div class="Opciones">
+                        <h:panelGrid columns="1" style="margin-left:10px" cellpadding="3">
+                            <p:outputLabel value="Opciones" class="black-text center tituloOpciones" for="Opcs"></p:outputLabel>
+                            <p:selectOneRadio id="Opcs" value="#{usuarioControlador.usuario.foto}">
+                                <f:selectItem itemLabel="Por defecto" itemValue="../img/imgPerfil/default-user.png">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="C3PO" itemValue="../img/imgPerfil/C3PO.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="R2D2" itemValue="../img/imgPerfil/R2D2.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="Falcon" itemValue="../img/imgPerfil/Falcon.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="Trooper" itemValue="../img/imgPerfil/Trooper.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="Este Vato" itemValue="../img/imgPerfil/EsteMen.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="Darth" itemValue="../img/imgPerfil/Darth.jpg">
+                                </f:selectItem>
+                                <f:selectItem itemLabel="Death Star" itemValue="../img/imgPerfil/BlackStar.jpg">
+                                </f:selectItem>
+                                <p:ajax listener="#{usuarioControlador.fotoPrueba()}" process=":CambioAvatar:Opcs" update=":CambioAvatar:imgMuestra"></p:ajax>
+                            </p:selectOneRadio>
+                        </h:panelGrid>
+                    </div>
+                    <div class="imgButton">
+                        <p:graphicImage class="imgMuestra" id="imgMuestra" url="#{usuarioControlador.fotoSeleccionada}"></p:graphicImage><br/>
+                        <p:commandButton value="Guardar" action="#{usuarioControlador.actualizarFoto()}"></p:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </main>
+        <script src="../js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    </h:body>
+</html>
+

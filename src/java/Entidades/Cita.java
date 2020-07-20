@@ -7,9 +7,7 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,14 +19,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -70,8 +66,12 @@ public class Cita implements Serializable {
     @JoinColumn(name = "Acudiente", referencedColumnName = "Id_Usuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Acudiente acudiente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita", fetch = FetchType.LAZY)
-    private List<DocenteCita> docenteCitaList;
+    @JoinColumn(name = "AtencionArea", referencedColumnName = "Id_AtencionArea")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Atencionarea atencionArea;
+    @JoinColumn(name = "AtencionCurso", referencedColumnName = "Id_AtencionCurso")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Atencioncurso atencionCurso;
 
     public Cita() {
     }
@@ -134,13 +134,20 @@ public class Cita implements Serializable {
         this.acudiente = acudiente;
     }
 
-    @XmlTransient
-    public List<DocenteCita> getDocenteCitaList() {
-        return docenteCitaList;
+    public Atencionarea getAtencionArea() {
+        return atencionArea;
     }
 
-    public void setDocenteCitaList(List<DocenteCita> docenteCitaList) {
-        this.docenteCitaList = docenteCitaList;
+    public void setAtencionArea(Atencionarea atencionArea) {
+        this.atencionArea = atencionArea;
+    }
+
+    public Atencioncurso getAtencionCurso() {
+        return atencionCurso;
+    }
+
+    public void setAtencionCurso(Atencioncurso atencionCurso) {
+        this.atencionCurso = atencionCurso;
     }
 
     @Override

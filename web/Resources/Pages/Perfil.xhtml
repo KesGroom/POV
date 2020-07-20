@@ -2,15 +2,119 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <link href="../css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/Perfil.css" rel="stylesheet" type="text/css"/>
         <h:form>
             <title>Perfil de #{sesionControlador.usuario.nombre}</title>
         </h:form>
     </h:head>
     <h:body>
+        <div class="Bread">
+            <a href="VistaInicialDash.xhtml">Principal</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="PQRS.xhtml">Perfil de #{sesionControlador.usuario.nombre}</a>
+        </div>
+        <main>
 
-        <h1>Perfil</h1>
+            <h3 class="center tituloPerfil">¡Que bien te ves hoy! <ion-icon name="happy"></ion-icon></h3>
+
+            <f:view>
+
+                <h:form>
+                    <h:dataTable class="tablaDatos" value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="UsuRes">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <div class="ContenedorFoto">
+                                <img class="FotoPerfil" src="#{UsuRes.foto}" width="50px" height="50px"></img>
+                                <h:commandLink action="#{usuarioControlador.actualizarPhoto(UsuRes)}" class="modal-trigger"><ion-icon name="create" class="editPhoto"></ion-icon></h:commandLink>    
+                            </div>
+                        </h:column><br/>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Información personal"/>
+                            </f:facet>
+                            <div class="infoItem">
+                                <ion-icon name="lock-open"></ion-icon><h:outputText value="#{UsuRes.idRoles.rol}"/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="person"></ion-icon><h:outputText value="#{UsuRes.nombre} #{UsuRes.apellido}"/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="card"></ion-icon><h:outputText value="#{UsuRes.idTipo.tipo}"/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="medical"></ion-icon><h:outputText value="#{UsuRes.numerodeDocumento}"/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="calendar-outline"></ion-icon><h:outputText value="#{UsuRes.fechadeNacimiento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="male-female"></ion-icon><h:outputText value="#{UsuRes.genero}"/><br/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="key"></ion-icon><h:outputText value="#{UsuRes.contrasenna}"/>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Información de contacto"/>
+                            </f:facet>
+                            <div class="infoItem">
+                                <ion-icon name="home"></ion-icon><h:outputText value="#{UsuRes.direccion}"/><br/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="phone-portrait"></ion-icon><h:outputText value="#{UsuRes.celular}"/><br/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="call"></ion-icon><h:outputText value="#{UsuRes.telefonoFijo}"/><br/>
+                            </div>
+                            <div class="infoItem">
+                                <ion-icon name="mail"></ion-icon><h:outputText value="#{UsuRes.correoElectronico}"/>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:commandLink class="btnActualizar" action="#{usuarioControlador.actualizarPerfil(UsuRes)}"><ion-icon name="pencil" class="black-text"></ion-icon></h:commandLink>
+                        </h:column>
+
+
+                    </h:dataTable>
+                </h:form>
+                <div id="CambiarAvatar" class="modal">
+                    <div class="modal-content">
+                        <h:form>
+                            <h4>Cambiar Avatar</h4>
+                            <p:selectOneRadio value="">
+
+                            </p:selectOneRadio>
+                        </h:form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+            </f:view>
+        </main>
+
+        <script src="../js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     </h:body>
 </html>
 

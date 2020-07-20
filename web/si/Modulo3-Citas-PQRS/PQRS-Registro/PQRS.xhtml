@@ -45,10 +45,6 @@
                                 <!-- TODO: update below reference to list of available items-->
                                 <f:selectItems  var="acudiente" value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}"  itemValue="#{acudiente.idUsuario}" itemLabel="#{acudiente.nombre} - #{acudiente.apellido}" />
                             </p:selectOneMenu>
-                            <p:outputLabel value="Fecha:" for="fecha" />
-                            <p:inputText id="fecha" type="date" value="#{pqrsControladores.pqrs.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                                <f:convertDateTime pattern="yyyy-MM-dd" />
-                            </p:inputText>
                             <p:outputLabel value="Categoria" for="tipo" />
                             <p:selectOneMenu value="#{pqrsControladores.pqrs.tipo}" id="tipo">
                                 <f:selectItem itemLabel="Pregunta" itemValue="Pregunta"></f:selectItem>
@@ -91,7 +87,7 @@
                                 <h:outputText value="Fecha"/>
                             </f:facet>
                             <h:outputText value="#{pqrs.fecha}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
                             </h:outputText>
                         </p:column>
                         <p:column>

@@ -7,6 +7,7 @@ package Controladores;
 
 import Entidades.Acudiente;
 import Entidades.Docente;
+import java.util.Date;
 import Entidades.Pqrs;
 import Entidades.Usuario;
 import Facade.PqrsFacade;
@@ -32,10 +33,13 @@ public class PqrsControladores implements Serializable {
         pqrs = new Pqrs();
         acudiente = new Acudiente();
         coordinador = new Usuario();
+        
     }
-    Pqrs pqrs;
-    Acudiente acudiente;
-    Usuario coordinador;
+    
+    private Pqrs pqrs;
+    private Acudiente acudiente;
+    private Usuario coordinador;
+    private Date fecha = new Date();
     
     @EJB
     PqrsFacade pqrsFacade;
@@ -59,6 +63,7 @@ public class PqrsControladores implements Serializable {
     public void registrarPqrs(){
         pqrs.setIdAcudiente(acudiente);
         pqrs.setEstado(1);
+        pqrs.setFecha(fecha);
         pqrsFacade.create(pqrs);
         pqrs = new Pqrs();
     }
@@ -111,6 +116,14 @@ public class PqrsControladores implements Serializable {
 
     public void setCoordinador(Usuario coordinador) {
         this.coordinador = coordinador;
+    }
+
+    public java.util.Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(java.util.Date fecha) {
+        this.fecha = fecha;
     }
     
     

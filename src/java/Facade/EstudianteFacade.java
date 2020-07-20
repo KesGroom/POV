@@ -48,4 +48,9 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
         return q.getResultList();
     }
     
+    public List<Estudiante> EstudianteAcudiente(int id){
+        Query q = em.createQuery("SELECT e FROM Estudiante e WHERE e.estado=1 AND e.idAcudiente.idUsuario=:id");
+        q.setParameter("id", id);
+        return q.getResultList();
+    }
 }

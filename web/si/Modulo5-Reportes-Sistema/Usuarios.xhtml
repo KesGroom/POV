@@ -159,6 +159,7 @@
                                 </h:commandButton>
                                 <h:outputText value="Exportar a Excel"></h:outputText>
                             </div>
+                            
                             <p:dataTable id="tblPrin" value="#{usuarioControlador.consultarUsuarios()}" var="usuAll"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                          paginator="true" rows="10" style="margin-bottom:5px">
@@ -224,12 +225,12 @@
                                         <div class="chipExcel">
                                             <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
                                             <h:commandButton styleClass="accionador">
-                                                <p:dataExporter target="tbl#{ro.rol}" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
+                                                <p:dataExporter target="tblsub" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
                                             </h:commandButton>
                                             <h:outputText value="Exportar a Excel"></h:outputText>
                                         </div>
                                     </h:commandLink>
-                                    <p:dataTable id="tbl#{ro.rol}" value="#{usuarioControlador.buscarRol(ro.idRoles)}" var="rolUsu">
+                                    <p:dataTable id="tblsub" value="#{usuarioControlador.buscarRol(ro.idRoles)}" var="rolUsu">
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="NUIP"/>

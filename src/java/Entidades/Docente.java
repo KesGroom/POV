@@ -55,8 +55,6 @@ public class Docente implements Serializable {
     private List<DocenteMateria> docenteMateriaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "docenteACargo", fetch = FetchType.LAZY)
     private List<Atencioncurso> atencioncursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDocente", fetch = FetchType.LAZY)
-    private List<DocenteCita> docenteCitaList;
 
     public Docente() {
     }
@@ -123,15 +121,6 @@ public class Docente implements Serializable {
 
     public void setAtencioncursoList(List<Atencioncurso> atencioncursoList) {
         this.atencioncursoList = atencioncursoList;
-    }
-
-    @XmlTransient
-    public List<DocenteCita> getDocenteCitaList() {
-        return docenteCitaList;
-    }
-
-    public void setDocenteCitaList(List<DocenteCita> docenteCitaList) {
-        this.docenteCitaList = docenteCitaList;
     }
 
     @Override

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/Perfil.css" rel="stylesheet" type="text/css"/>
+        <h:form>
+            <title> Actualizar Perfil de #{sesionControlador.usuario.nombre}</title>
+        </h:form>
+    </h:head>
+    <h:body>
+        <div class="Bread">
+            <a href="VistaInicialDash.xhtml">Principal</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="Perfil.xhtml">Perfil de #{sesionControlador.usuario.nombre}</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="">Actualizar Perfil de #{sesionControlador.usuario.nombre}</a>
+        </div>
+
+        <main>
+            <f:view>
+
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Rol:" for="idRoles" />
+                        <p:inputText id="idRoles" readonly="true" value="#{usuarioControlador.rol.rol}" title="Rol" required="true" requiredMessage="The Nombre field is required."/>
+                        <p:outputLabel value="Nombre:" for="nombre" />
+                        <p:inputText id="nombre" readonly="true" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                        <p:outputLabel value="Apellido:" for="apellido" />
+                        <p:inputText id="apellido" readonly="true" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
+                        <p:outputLabel value="Tipo de documento:" for="idTipo" />
+                        <p:inputText id="idTipo" readonly="true" value="#{usuarioControlador.tipo.tipo}" title="Tipo de documento" required="true" requiredMessage="The Nombre field is required."/>
+                        <p:outputLabel value="Numero de Documento:" for="numerodeDocumento" />
+                        <p:inputText id="numerodeDocumento" readonly="true" value="#{usuarioControlador.usuario.numerodeDocumento}" title="NumerodeDocumento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
+                        <p:outputLabel value="Fecha de Nacimiento:" for="fechadeNacimiento" />
+                        <p:inputText id="fechadeNacimiento" readonly="true" value="#{usuarioControlador.usuario.fechadeNacimiento}" title="FechadeNacimiento" required="true" requiredMessage="The FechadeNacimiento field is required.">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:inputText>
+                        <p:outputLabel value="Direccion:" for="direccion" />
+                        <p:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                        <p:outputLabel value="Celular:" for="celular" />
+                        <p:inputText id="celular" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
+                        <p:outputLabel value="Telefono Fijo:" for="telefonoFijo" />
+                        <p:inputText id="telefonoFijo" value="#{usuarioControlador.usuario.telefonoFijo}" title="TelefonoFijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
+                        <p:outputLabel value="Correo Electronico:" for="correoElectronico" />
+                        <p:inputText id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="CorreoElectronico" required="true" requiredMessage="The CorreoElectronico field is required."/>
+                        <p:outputLabel value="Contraseña:" for="contrasenna" />
+                        <p:inputText id="contrasenna" value="#{usuarioControlador.usuario.contrasenna}" title="Contrasenna" required="true" requiredMessage="The Contrasenna field is required."/>
+
+                    </p:panelGrid>
+                    <div class="botonesControl">
+
+                        <p:commandButton action="#{usuarioControlador.actualizarP()}" value="Actualizar perfil"></p:commandButton>
+                    </div>
+                </h:form>
+            </f:view>
+        </main>
+        <script src="../js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    </h:body>
+</html>
+

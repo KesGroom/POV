@@ -5,6 +5,7 @@ package Controladores;
 import Entidades.Rol;
 import Entidades.Permiso;
 import Entidades.RolHasPermiso;
+import Entidades.Tipo;
 import Entidades.Usuario;
 import Facade.PermisoFacade;
 import Facade.RolFacade;
@@ -49,7 +50,9 @@ public class SesionControlador implements Serializable {
     private String documento;
     private String clave;
     private Rol rolSeleccionado;
+    private Rol rol;
     private Usuario usuario;
+    private Tipo tipo;
     
 
     public String iniciarSesion() {
@@ -88,6 +91,8 @@ public class SesionControlador implements Serializable {
         return false;
     }
 
+    
+    
     public List<Permiso> hijos(int id){
         return permisoFacade.consultarHijos(id);
     }
@@ -164,6 +169,7 @@ public class SesionControlador implements Serializable {
         
         return Mensaje;
     }
+    
     public String Message(){
         ArrayList<String> Messages = new ArrayList<>();
         Messages.add ("“The best time to plant a tree was 20 years ago. The second best time is NOW.”");
@@ -270,4 +276,22 @@ public class SesionControlador implements Serializable {
         this.clave = clave;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    
+    
 }
