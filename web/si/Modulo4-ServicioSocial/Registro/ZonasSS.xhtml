@@ -78,10 +78,6 @@
             <h:form>
                 <h3 class="tituloFormulario">Registrar Bitácora</h3>
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Fecha de registro:" for="FRegistro" />
-                    <p:inputText id="FRegistro" type="date" title="Fecha de registro" value="#{bitacoraControlador.bitacora.fechaRegistro}" required="true">
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </p:inputText>
                     <p:outputLabel value="Coordinador:" for="coordinador" />
                     <p:selectOneMenu id="coordinador" value="#{bitacoraControlador.us.idUsuario}" required="true" requiredMessage="The Coordinador field is required.">
                         <!-- TODO: update below reference to list of available items-->
@@ -138,25 +134,25 @@
                                 <h:outputText value="Exportar a Excel"></h:outputText>
                             </div>
                             <p:dataTable id="ZonTbl" value="#{zonaControlador.consultarZona()}" var="Zon">
-                                <p:column>
+                                <p:column filterBy="#{Zon.nombre}">
                                     <f:facet name="header">
                                         <h:outputText value="Nombre"/>
                                     </f:facet>
                                     <h:outputText value="#{Zon.nombre}"/>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.lugar}">
                                     <f:facet name="header">
                                         <h:outputText value="Lugar"/>
                                     </f:facet>
                                     <h:outputText value="#{Zon.lugar}"/>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.encargado}">
                                     <f:facet name="header">
                                         <h:outputText value="Encargado"/>
                                     </f:facet>
                                     <h:outputText value="#{Zon.encargado}"/>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.horaEntrada}">
                                     <f:facet name="header">
                                         <h:outputText value="Hora Entrada"/>
                                     </f:facet>
@@ -164,7 +160,7 @@
                                         <f:convertDateTime pattern="HH:mm:ss" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.horaSalida}">
                                     <f:facet name="header">
                                         <h:outputText value="Hora Salida"/>
                                     </f:facet>
@@ -172,19 +168,19 @@
                                         <f:convertDateTime pattern="HH:mm:ss" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.tiempodeServicio}">
                                     <f:facet name="header">
                                         <h:outputText value="Tiempo de Servicio"/>
                                     </f:facet>
                                     <h:outputText value="#{Zon.tiempodeServicio}"/>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.cupos}">
                                     <f:facet name="header">
                                         <h:outputText value="Cupos"/>
                                     </f:facet>
                                     <h:outputText value="#{Zon.cupos}"/>
                                 </p:column>
-                                <p:column>
+                                <p:column filterBy="#{Zon.labores}">
                                     <f:facet name="header">
                                         <h:outputText value="Labores"/>
                                     </f:facet>

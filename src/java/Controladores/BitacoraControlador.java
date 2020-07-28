@@ -13,6 +13,7 @@ import Facade.BitacoraServicioSocialFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -38,6 +39,7 @@ public class BitacoraControlador implements Serializable {
     private Estudiante estudiante;
     private ZonaServicioSocial zona;
     private Usuario us;
+    private Date fechaRegistro = new Date();
     
     @EJB
     BitacoraServicioSocialFacade bitacoraFacade;
@@ -46,6 +48,7 @@ public class BitacoraControlador implements Serializable {
     
     public String registrar(){
         bitacora.setCoordinador(us);
+        bitacora.setFechaRegistro(fechaRegistro);
         bitacora.setEstudiante(estudiante);
         bitacora.setZonadeServicio(zona);
         bitacora.setEstado(1);
@@ -98,8 +101,12 @@ public class BitacoraControlador implements Serializable {
         this.us = us;
     }
 
-    
-    
-    
-    
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
 }

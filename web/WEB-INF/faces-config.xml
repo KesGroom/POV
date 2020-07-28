@@ -21,5 +21,11 @@
             </base-name>
             <var>VistaInicial</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.PQRS
+            </base-name>
+            <var>PQRS</var>
+        </resource-bundle>
     </application>
 </faces-config>

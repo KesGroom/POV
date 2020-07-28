@@ -12,65 +12,60 @@
         <title>Actualizar Zona</title>
     </h:head>
     <h:body>
-        <div class="Bread">
-            <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="PQRS.xhtml">Lista de PQRS</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="#">Responder PQRS</a>
-        </div>
-        <a href="PQRS.xhtml" ><ion-icon class="btnReturn" name="arrow-back-circle"></ion-icon></a>
-        <main>
-
-
-            <div class="contenedorAct">
-
-                <f:view>
-
-                    <h:form>
-                        <h3 class="tituloFormulario"><h:outputText value="Responder PQRS"/></h3>
-                        <p:panelGrid columns="2">
-                        <p:outputLabel value="Categoria:" for="tipo" />
-                        <p:inputText id="tipo" value="#{pqrsControladores.pqrs.tipo}" readonly="true" title="Tipo" />
-                        <p:outputLabel value="Asunto:" for="asunto" />
-                        <p:inputTextarea rows="4" cols="30" id="asunto" readonly="true" value="#{pqrsControladores.pqrs.asunto}" title="Asunto" />
-                        <p:outputLabel value="Fecha de registro:" for="fecha" />
-                        <p:inputText id="fecha" readonly="true" value="#{pqrsControladores.pqrs.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </p:inputText>
-                        <p:outputLabel value="Remitente:" for="Acudiente" />
-                        <p:inputText id="Acudiente" value="#{pqrsControladores.acudiente.usuario.nombre}" readonly="true" title="Remitente" />
-                        <p:outputLabel value="Responde:" for="idCoordinador" />
-                        <p:selectOneMenu id="idCoordinador" value="#{pqrsControladores.coordinador.idUsuario}" required="true" requiredMessage="The IdCoordinador field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Respuesta:" for="respuesta" />
-                        <p:inputTextarea rows="4" cols="30" id="respuesta" value="#{pqrsControladores.pqrs.respuesta}" title="Respuesta" />
-                    </p:panelGrid>
-                        <div class="botonesControl">
-                            <h:commandButton styleClass="red darken-4 waves-effect waves-light" action="#{pqrsControladores.actualizarPqrs()}" value="Responder"></h:commandButton>
-                        </div>
-                    </h:form>
-
-                </f:view>
-
-                <div class="card">
-                    <h5 class="titulo" >¡Importante!</h5>
-                    <p class="textInfo">
-                        <h:form>
-                            #{sesionControlador.usuario.nombre}, recuerda ser clar@ con la respuesta que se le indica al usuario.
-                            
-                            Ser claro y directo con la respuesta, evitando ser ambiguo, mejorará la comprensión por parte del remitente de la PQRS.
-                            de igual manera, se reitera el hecho de que desvelar información privada o delicada <b>NO</b> esta permitido. 
-                            
-                            
-                        </h:form>
-                    </p>
-                </div>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
+            <div class="Bread">
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">#{PQRS.bcPrincipal}</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="PQRS.xhtml">#{PQRS.bcListaAcu}</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="#">#{PQRS.bcResponder}</a>
             </div>
-        </main>
+            <a href="PQRS.xhtml" ><ion-icon class="btnReturn" name="arrow-back-circle"></ion-icon></a>
+            <main>
 
+
+                <div class="contenedorAct">
+
+                        <h:form>
+                            <h3 class="tituloFormulario"><h:outputText value="#{PQRS.bcResponder}"/></h3>
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="#{PQRS.lblCategoria}:" for="tipo" />
+                                <p:inputText id="tipo" value="#{pqrsControladores.pqrs.tipo}" readonly="true" title="Tipo" />
+                                <p:outputLabel value="#{PQRS.lblAsunto}:" for="asunto" />
+                                <p:inputTextarea rows="4" cols="30" id="asunto" readonly="true" value="#{pqrsControladores.pqrs.asunto}" title="Asunto" />
+                                <p:outputLabel value="#{PQRS.lblFechaAct}:" for="fecha" />
+                                <p:inputText id="fecha" readonly="true" value="#{pqrsControladores.pqrs.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </p:inputText>
+                                <p:outputLabel value="#{PQRS.lblRemitente}:" for="Acudiente" />
+                                <p:inputText id="Acudiente" value="#{pqrsControladores.acudiente.usuario.nombre}" readonly="true" title="Remitente" />
+                                <p:outputLabel value="#{PQRS.thResponde}:" for="idCoordinador" />
+                                <p:selectOneMenu id="idCoordinador" value="#{pqrsControladores.coordinador.idUsuario}" required="true" requiredMessage="The IdCoordinador field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{PQRS.thRespuesta}:" for="respuesta" />
+                                <p:inputTextarea rows="4" cols="30" id="respuesta" value="#{pqrsControladores.pqrs.respuesta}" title="Respuesta" />
+                            </p:panelGrid>
+                            <div class="botonesControl">
+                                <h:commandButton styleClass="red darken-4 waves-effect waves-light" action="#{pqrsControladores.actualizarPqrs()}" value="#{PQRS.thResponder}"></h:commandButton>
+                            </div>
+                        </h:form>
+
+                    <div class="card">
+                        <h5 class="titulo" >#{PQRS.tltTarjeta}</h5>
+                        <p class="textInfo">
+                            <h:form>
+                                #{sesionControlador.usuario.nombre} #{PQRS.txtCard1}
+
+                                #{PQRS.txtCard2}
+                                
+                            </h:form>
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </f:view>
 
         <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
         <script>

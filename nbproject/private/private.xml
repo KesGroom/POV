@@ -10,34 +10,34 @@
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>36</line>
+                <line>35</line>
                 <key/>
             </bookmark>
             <bookmark id="3">
                 <name/>
-                <line>55</line>
+                <line>53</line>
                 <key/>
             </bookmark>
             <bookmark id="4">
                 <name/>
-                <line>73</line>
+                <line>69</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo5-Reportes-Sistema/Usuarios.xhtml</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Facade/TipoFacade.java</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/js/Alertas.js</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Facade/RolFacade.java</file>
             <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/UsuarioControlador.java</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/Pages/olvido.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/css/olvidoContra.css</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/SesionControlador.java</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Facade/MateriaFacade.java</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo5-Reportes-Sistema/Roles.xhtml</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/RolControlador.java</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo5-Reportes-Sistema/UsuariosActualizar.xhtml</file>
             <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/Pages/Validacion.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/MateriaControlador.java</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/js/Calendario.js</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/js/CalendarioEsp.js</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/CitaControlador.java</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo3-Citas-PQRS/CitasRegistro.xhtml</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/TipoControlador.java</file>
+            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Facade/UsuarioFacade.java</file>
         </group>
     </open-files>
 </project-private>

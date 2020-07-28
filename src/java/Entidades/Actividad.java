@@ -78,9 +78,6 @@ public class Actividad implements Serializable {
     private String descripcion;
     @Column(name = "Estado")
     private Integer estado;
-    @JoinColumn(name = "Curso", referencedColumnName = "Id_Curso")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Curso curso;
     @JoinColumn(name = "Id_DocenteMateria", referencedColumnName = "Id_DocMat")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private DocenteMateria idDocenteMateria;
@@ -158,14 +155,6 @@ public class Actividad implements Serializable {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
     }
 
     public DocenteMateria getIdDocenteMateria() {

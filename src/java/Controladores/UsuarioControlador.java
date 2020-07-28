@@ -17,6 +17,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import static java.lang.Integer.getInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
@@ -58,14 +60,18 @@ public class UsuarioControlador implements Serializable {
     private Rol rol;
     private Tipo tipo;
     private String FotoSeleccionada;
+    private String numDocumento;
 
     //Variables para el olvido de contraseña
     private String Documento;
     private String Correo;
     private String Codigo = "MC-";
     private String Code;
-    private String digito;  
+    private String digito;
     private String Cod = "MC-" + Code;
+
+    @Inject
+    AlertasControlador alerta;
 
     @EJB
     UsuarioFacade usuarioFacade;
@@ -77,20 +83,53 @@ public class UsuarioControlador implements Serializable {
     TipoFacade tipoFacade;
 
     public String registrarUsu() {
-        usuario.setEstado(1);
-        usuario.setFoto("../img/imgPerfil/default-user.png");
-        usuario.setIdRoles(rol);
-        usuario.setIdTipo(tipo);
-        usuarioFacade.create(usuario);
-        usuario = new Usuario();
+        usuarioPrueba = usuarioFacade.validacionDoc(numDocumento);
+        if (usuarioPrueba == null) {
+            usuario.setEstado(1);
+            usuario.setNumerodeDocumento(numDocumento);
+            usuario.setFoto("../img/imgPerfil/default-user.png");
+            usuario.setIdRoles(rol);
+            usuario.setIdTipo(tipo);
+            usuarioFacade.create(usuario);
+            usuario = new Usuario();
+            alerta.setMensaje("AlertaToast('Usuario registrado con éxito','success');");
 
-        return "Usuarios";
+            return "Usuarios";
+
+        } else {
+            alerta.setMensaje("AlertaPopUp('Usuario existente','El usuario que desea registrar ya existe en el sistema','error');");
+            return "Usuarios";
+        }
+
     }
 
-    public void Remover(Usuario usuarioRemover) {
+    public String Remover(Usuario usuarioRemover) {
         usuario = usuarioRemover;
-        usuario.setEstado(2);
+        if (usuario.getIdRoles().getIdRoles() != 1) {
+            usuario.setEstado(2);
+            usuarioFacade.edit(usuario);
+            alerta.setMensaje("AlertaToast('El usuario "+usuario.getNombre()+" ha sido eliminado','success');");
+            return "Usuarios";
+        }
+        else{
+            alerta.setMensaje("AlertaPopUp('Error al eliminar','El usuario "+usuario.getNombre()+" no puede ser eliminado porque es un Coordinador','error');");
+            return "Usuarios";
+        }
+    }
+
+    public String preActualizar(Usuario usuarioPre) {
+        usuario = usuarioPre;
+        rol = usuarioPre.getIdRoles();
+        tipo = usuarioPre.getIdTipo();
+
+        return "UsuariosActualizar";
+    }
+
+    public String actualizar() {
+        usuario.setIdRoles(rolFacade.find(rol.getIdRoles()));
+        usuario.setIdTipo(tipoFacade.find(tipo.getIdTipo()));
         usuarioFacade.edit(usuario);
+        return "Usuarios";
     }
 
     public String actualizarPerfil(Usuario usuarioActualizar) {
@@ -186,7 +225,7 @@ public class UsuarioControlador implements Serializable {
 
             return "Validacion";
         } else {
-            return "olvido";
+            return "";
         }
 
     }
@@ -195,7 +234,7 @@ public class UsuarioControlador implements Serializable {
         if (Codigo.equals(Cod)) {
             return "DefinirContra";
         } else {
-            return "Validacion";
+            return "";
         }
     }
 
@@ -299,6 +338,13 @@ public class UsuarioControlador implements Serializable {
     public void setCod(String Cod) {
         this.Cod = Cod;
     }
-    
-    
+
+    public String getNumDocumento() {
+        return numDocumento;
+    }
+
+    public void setNumDocumento(String numDocumento) {
+        this.numDocumento = numDocumento;
+    }
+
 }

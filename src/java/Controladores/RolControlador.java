@@ -12,6 +12,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 /**
  *
@@ -26,37 +27,56 @@ public class RolControlador implements Serializable {
      */
     public RolControlador() {
         rol = new Rol();
+        rolPrueba = new Rol();
         rolFacade = new RolFacade();
     }
     private Rol rol;
-    
-    @EJB 
+    private Rol rolPrueba;
+    private String rolCrear;
+
+    @EJB
     RolFacade rolFacade;
-    
-   
-    public String registrar(){
-        rol.setEstado(1);
-        rolFacade.create(rol);
-        
-        rol = new Rol();
-        return "Roles";
+
+    @Inject
+    AlertasControlador alerta;
+
+    public String registrar() {
+        rolPrueba = rolFacade.busquedaRol(rolCrear);
+        if (rolPrueba == null) {
+
+            rol.setEstado(1);
+            rol.setRol(rolCrear);
+            rolFacade.create(rol);
+
+            rol = new Rol();
+            alerta.setMensaje("AlertaToast('Registro realizado con éxito','success');");
+            return "Roles";
+        }
+        else{
+            alerta.setMensaje("AlertaPopUp('Error al registrar','Este rol ya existe en el sistema','error');");
+            return "Roles";
+        }
     }
-    
-    public List<Rol> consultarRol(){
+
+    public List<Rol> consultarRol() {
         return rolFacade.consultarRol(1);
     }
-    
-    public void remover(Rol rolRemover){
-        rol = rolRemover;
-        rol.setEstado(2);
-        rolFacade.edit(rol);
-    }        
 
-    
-    public void consultarId(int id){
+    public void remover(Rol rolRemover) {
+        rol = rolRemover;
+        if (rol.getIdRoles() != 1 && rol.getIdRoles() != 2 && rol.getIdRoles() != 3 && rol.getIdRoles() != 4) {
+            rol.setEstado(2);
+            rolFacade.edit(rol);
+            alerta.setMensaje("AlertaToast('Eliminación realizada con éxito','success');");
+        } else {
+            alerta.setMensaje("AlertaPopUp('Error al eliminar','El rol " + rol.getRol() + " no puede ser eliminado, ya que es un rol predeterminado','error');");
+        }
+    }
+
+    public void consultarId(int id) {
         rol = rolFacade.find(id);
     }
-    
+
     public Rol getRol() {
         return rol;
     }
@@ -64,5 +84,21 @@ public class RolControlador implements Serializable {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
+
+    public String getRolCrear() {
+        return rolCrear;
+    }
+
+    public void setRolCrear(String rolCrear) {
+        this.rolCrear = rolCrear;
+    }
+
+    public Rol getRolPrueba() {
+        return rolPrueba;
+    }
+
+    public void setRolPrueba(Rol rolPrueba) {
+        this.rolPrueba = rolPrueba;
+    }
+
 }

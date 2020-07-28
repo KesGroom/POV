@@ -1,12 +1,78 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <link href="../../Resources/css/Perfil.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <title>Actualizar usuario</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <div class="Bread">
+            <a href="../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="Usuarios.xhtml">Lista de usuarios</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <a href="">Actualizar usuario</a>
+        </div>
+        <main style="margin-top: 2rem;">
+            <f:view>
+
+
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Número de Documento:" for="numerodeDocumento" />
+                        <p:inputText id="numerodeDocumento" value="#{usuarioControlador.usuario.numerodeDocumento}" title="NumerodeDocumento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
+                        <p:outputLabel value="Nombre:" for="nombre" />
+                        <p:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                        <p:outputLabel value="Apellido:" for="apellido" />
+                        <p:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
+                        <p:outputLabel value="Fecha de Nacimiento:" for="fechadeNacimiento" />
+                        <p:inputText id="fechadeNacimiento" type="date" value="#{usuarioControlador.usuario.fechadeNacimiento}" title="FechadeNacimiento" required="true" requiredMessage="The FechadeNacimiento field is required.">
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                        </p:inputText>
+                        <p:outputLabel value="Dirección:" for="direccion" />
+                        <p:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
+                        <p:outputLabel value="Celular:" for="celular" />
+                        <p:inputText id="celular" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
+                        <p:outputLabel value="Telefono Fijo:" for="telefonoFijo" />
+                        <p:inputText id="telefonoFijo" value="#{usuarioControlador.usuario.telefonoFijo}" title="TelefonoFijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
+                        <p:outputLabel value="Género:" for="genero" />
+                        <p:inputText id="genero" value="#{usuarioControlador.usuario.genero}" title="Genero" required="true" requiredMessage="The Genero field is required."/>
+                        <p:outputLabel value="Correo Electrónico:" for="correoElectronico" />
+                        <p:inputText id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="CorreoElectronico" required="true" requiredMessage="The CorreoElectronico field is required."/>
+                        <p:outputLabel value="Contraseña:" for="contrasenna" />
+                        <p:inputText id="contrasenna" value="#{usuarioControlador.usuario.contrasenna}" title="Contrasenna" required="true" requiredMessage="The Contrasenna field is required."/>
+                        <p:outputLabel value="Rol:" for="idRoles" />
+                        <p:selectOneMenu id="idRoles" value="#{usuarioControlador.rol.idRoles}" required="true" requiredMessage="The IdRoles field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.idRoles}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Tipo de documento:" for="idTipo" />
+                        <p:selectOneMenu id="idTipo" value="#{usuarioControlador.usuario.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <div class="botonesControl">
+                        <p:commandButton value="Actualizar" action="#{usuarioControlador.actualizar()}" styleClass="red darken-4 waves-effect waves-light"></p:commandButton>
+                    </div>
+                </h:form>
+            </f:view>
+        </main>
+        <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
+        <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->
+        <script type="text/javascript">
+            M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     </h:body>
 </html>
 

@@ -34,7 +34,7 @@ quitando la negrita, cambiando el color de texto, solo se conserva el border */
     background-color: #b71c1c /*Color del sistema*/;
     font-weight: normal /*Letra a con grosor normal*/;
     color: #ecebeb /*Color del texto*/;
-    
+
 }
 
 /*La etiqueta !important es para emplear los estilos que se escriben en vez de 
@@ -49,7 +49,7 @@ se alinea el texto al centro, se conservan los demás estilos predeterminados*/
 td, th {
     padding: 15px 5px;
     display: table-cell;
-    
+
     text-align: center;
     vertical-align: middle;
     border-radius: 2px;
@@ -57,11 +57,11 @@ td, th {
 
 /*Se estilizan los tamaños de las fuentes de los distintos componentes de la tabla*/
 th{
-   font-size: 1em; 
+    font-size: 1em; 
 }
 
 td{
-  font-size: 0.8em;  
+    font-size: 0.8em;  
 }
 
 /*Para el uso de paginación de Primefaces, se conserva el borde y se cambia el 
@@ -107,7 +107,7 @@ texto que se seleccionó*/
     white-space: nowrap;
     overflow: hidden;
     font-weight: normal;
-    
+
     width: 100%;
     box-shadow: none;
     text-align: left;
@@ -146,7 +146,39 @@ mejor manera el Primefaces, ya podrán adaptarlo con sus propios solores y estil
 solo no se pongan muy excesivos con esto.
 
 Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningún elemento*/
-
+.ui-filter-column input:not([type]), 
+.ui-filter-column input[type=text]:not(.browser-default), 
+.ui-filter-column input[type=password]:not(.browser-default), 
+.ui-filter-column input[type=email]:not(.browser-default), 
+.ui-filter-column input[type=url]:not(.browser-default), 
+.ui-filter-column input[type=time]:not(.browser-default), 
+.ui-filter-column input[type=date]:not(.browser-default), 
+.ui-filter-column input[type=datetime]:not(.browser-default), 
+.ui-filter-column input[type=datetime-local]:not(.browser-default), 
+.ui-filter-column input[type=tel]:not(.browser-default), 
+.ui-filter-column input[type=number]:not(.browser-default), 
+.ui-filter-column input[type=search]:not(.browser-default), 
+.ui-filter-column textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: border .3s, -webkit-box-shadow .3s;
+    transition: border .3s, -webkit-box-shadow .3s;
+    transition: box-shadow .3s, border .3s;
+    transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
+}
 
 /*----------------Estilos propios----------------------*/
 
@@ -251,4 +283,8 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
 table .botonesControl a ion-icon{
     font-size: 24px;
     color: black;
+}
+
+.swal2-content .select-wrapper{
+    display: none;
 }

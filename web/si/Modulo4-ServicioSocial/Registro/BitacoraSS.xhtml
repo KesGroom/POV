@@ -72,10 +72,6 @@
             <h:form>
                 <h3 class="tituloFormulario">Registrar Bitácora</h3>
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Fecha de registro:" for="FRegistro" />
-                    <p:inputText id="FRegistro" type="date" title="Fecha de registro" value="#{bitacoraControlador.bitacora.fechaRegistro}" required="true">
-                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                    </p:inputText>
                     <p:outputLabel value="Coordinador:" for="coordinador" />
                     <p:selectOneMenu id="coordinador" value="#{bitacoraControlador.us.idUsuario}" required="true" requiredMessage="The Coordinador field is required.">
                         <!-- TODO: update below reference to list of available items-->
@@ -116,8 +112,16 @@
             <div id="todos" class="col fondoTab">
                 <f:view>
                     <h:form>
-                        <p:dataTable value="#{bitacoraControlador.consultarBitacora()}" var="bita">
-                            <p:column>
+                        <div class="chipExcel">
+                                <img src="../../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
+                                <h:commandButton styleClass="accionador">
+                                    <p:dataExporter target="btaTable" type="xls" fileName="BitacorasDeServicio"></p:dataExporter>
+                                </h:commandButton>
+                                <h:outputText value="Exportar a Excel"></h:outputText>
+                            </div>
+                        <p:dataTable id="btaTable" value="#{bitacoraControlador.consultarBitacora()}" var="bita">
+                            
+                            <p:column filterBy="#{bita.fechaRegistro}">
                                 <f:facet name="header">
                                     <h:outputText value="FechaRegistro"/>
                                 </f:facet>
@@ -125,45 +129,45 @@
                                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                                 </h:outputText>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.coordinador.nombre}">
                                 <f:facet name="header">
                                     <h:outputText value="Coordinador"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.coordinador.nombre}"/><br/>
                                 <h:outputText value="#{bita.coordinador.apellido}"/>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.estudiante.usuario.nombre}">
                                 <f:facet name="header">
                                     <h:outputText value="Estudiante"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.estudiante.usuario.nombre}"/><br/>
                                 <h:outputText value="#{bita.estudiante.usuario.apellido}"/>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.zonadeServicio.nombre}">
                                 <f:facet name="header">
                                     <h:outputText value="Zona de Servicio"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.zonadeServicio.nombre}"/>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.tiempoPrestado}">
                                 <f:facet name="header">
                                     <h:outputText value="Tiempo Prestado"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.tiempoPrestado}"/>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.laboresRealizadas}">
                                 <f:facet name="header">
                                     <h:outputText value="Labores Realizadas"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.laboresRealizadas}"/>
                             </p:column>
-                            <p:column>
+                            <p:column filterBy="#{bita.observaciones}">
                                 <f:facet name="header">
                                     <h:outputText value="Observaciones"/>
                                 </f:facet>
                                 <h:outputText value="#{bita.observaciones}"/>
                             </p:column>
-                            <p:column>
+                            <p:column exportable="false">
                                 <f:facet name="header">
                                     <h:outputText value=""/>
                                 </f:facet>

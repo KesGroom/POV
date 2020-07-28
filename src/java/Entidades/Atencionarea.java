@@ -7,7 +7,6 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -71,8 +68,6 @@ public class Atencionarea implements Serializable {
     @JoinColumn(name = "DocenteACargo", referencedColumnName = "Id_Usuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Docente docenteACargo;
-    @OneToMany(mappedBy = "atencionArea", fetch = FetchType.LAZY)
-    private List<Cita> citaList;
 
     public Atencionarea() {
     }
@@ -142,15 +137,6 @@ public class Atencionarea implements Serializable {
 
     public void setDocenteACargo(Docente docenteACargo) {
         this.docenteACargo = docenteACargo;
-    }
-
-    @XmlTransient
-    public List<Cita> getCitaList() {
-        return citaList;
-    }
-
-    public void setCitaList(List<Cita> citaList) {
-        this.citaList = citaList;
     }
 
     @Override

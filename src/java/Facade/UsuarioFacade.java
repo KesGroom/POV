@@ -33,7 +33,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     public List<Usuario> busquedaRol(int rol) {
 
-        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.idRoles.idRoles=:rol");
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.idRoles.idRoles=:rol AND u.estado=1");
         q.setParameter("rol", rol);
 
         return q.getResultList();
@@ -42,7 +42,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public Usuario UserLog(String documento, String contrasenna) {
         Usuario usuario = null;
         try {
-            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.numerodeDocumento=:Doc AND u.contrasenna=:Pass AND u.estado=1");
+            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.numerodeDocumento=:Doc AND u.contrasenna=:Pass");
             q.setParameter("Doc", documento);
             q.setParameter("Pass", contrasenna);
             usuario = (Usuario) q.getSingleResult();
@@ -69,6 +69,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre LIKE '%:busqueda%' OR u.apellido LIKE '%:busqueda%' OR u.numerodeDocumento LIKE '%:busqueda%'");
         q.setParameter("busqueda", busqueda);
         return q.getResultList();
+    }
+
+    public Usuario validacionDoc(String doc) {
+        Usuario usuario = null;
+        try {
+            Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.numerodeDocumento=:doc");
+            q.setParameter("doc", doc);
+            usuario = (Usuario) q.getSingleResult();
+
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getMessage());
+        }
+        return usuario;
     }
 
     public Usuario OlvidoContra(String doc, String mail) {

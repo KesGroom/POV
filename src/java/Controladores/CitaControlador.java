@@ -28,51 +28,46 @@ import javax.ejb.EJB;
 public class CitaControlador implements Serializable {
 
     //----- Builders ---------------------------------------------------------\\
-    
     public CitaControlador() {
         cita = new Cita();
         acudiente = new Acudiente();
     }
-    
+
     //----- Attributes -------------------------------------------------------\\
-    
     private Cita cita;
     private Acudiente acudiente;
     private Estudiante estudiante;
     private Date fecha;
-    
-        //--List to register------------------------------------------\\
-        private List<Materia> materias; 
-    
+
+    //--List to register------------------------------------------\\
+    private List<Materia> materias;
+
     @EJB
     CitaFacade citaFacade;
-    
-    @EJB 
+
+    @EJB
     EstudianteFacade estudianteFacade;
-    
-    @EJB 
+
+    @EJB
     MateriaFacade materiaFacade;
-    
+
     //----- Methods ----------------------------------------------------------\\
-    
-    public List<Cita> consultarCita(){
+    public List<Cita> consultarCita() {
         return citaFacade.consultarCita(1);
     }
-    
-    public List<Estudiante> AcudienteEst(int id){
+
+    public List<Estudiante> AcudienteEst(int id) {
         return estudianteFacade.EstudianteAcudiente(id);
     }
-    
-    public void registrarCita(){
+
+    public void registrarCita() {
         cita.setAcudiente(acudiente);
         cita.setEstado(1);
         cita.setFechaRegistro(fecha);
         citaFacade.create(cita);
     }
 
-    
     //----- Getters and Setters ----------------------------------------------\\
-    
     public Date getFecha() {
         return fecha;
     }
@@ -80,7 +75,7 @@ public class CitaControlador implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     public Cita getCita() {
         return cita;
     }
@@ -104,7 +99,5 @@ public class CitaControlador implements Serializable {
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
     }
-    
-    
-    
+
 }

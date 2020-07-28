@@ -65,8 +65,6 @@ public class Curso implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso", fetch = FetchType.LAZY)
     private List<CursoDocente> cursoDocenteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso", fetch = FetchType.LAZY)
-    private List<Actividad> actividadList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso", fetch = FetchType.LAZY)
     private List<Atencioncurso> atencioncursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso", fetch = FetchType.LAZY)
     private List<Estudiante> estudianteList;
@@ -131,15 +129,6 @@ public class Curso implements Serializable {
 
     public void setCursoDocenteList(List<CursoDocente> cursoDocenteList) {
         this.cursoDocenteList = cursoDocenteList;
-    }
-
-    @XmlTransient
-    public List<Actividad> getActividadList() {
-        return actividadList;
-    }
-
-    public void setActividadList(List<Actividad> actividadList) {
-        this.actividadList = actividadList;
     }
 
     @XmlTransient

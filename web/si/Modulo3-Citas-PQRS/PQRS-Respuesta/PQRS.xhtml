@@ -20,28 +20,28 @@
         <title>PQRS</title>
     </h:head>
     <h:body>
-        <f:view>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
 
             <div class="Bread">
-                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">#{PQRS.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="PQRS.xhtml">Lista PQRS</a>
+                <a href="PQRS.xhtml">#{PQRS.bcListaAcu}</a>
             </div>
 
             <main>
 
                 <div class="contenedorTitulos">
-                    <a href="PQRS.xhtml" class="titulo">Lista de PQRS</a>
+                    <a href="PQRS.xhtml" class="titulo">#{PQRS.bcListaAcu}</a>
                 </div> 
 
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs">
-                            <li class="tab col s2"><a class="active" href="#todos">Todos</a></li>
-                            <li class="tab col s3"><a class="active" href="#Preguntas">Preguntas</a></li>
-                            <li class="tab col s2"><a class="active" href="#Quejas">Quejas</a></li>
-                            <li class="tab col s2"><a class="active" href="#Reclamos">Reclamos</a></li>
-                            <li class="tab col s3"><a class="active" href="#Sugerencias">Sugerencias</a></li>
+                            <li class="tab col s2"><a class="active" href="#todos">#{PQRS.catPQRS0}</a></li>
+                            <li class="tab col s3"><a class="active" href="#Preguntas">#{PQRS.catPQRS1}</a></li>
+                            <li class="tab col s2"><a class="active" href="#Quejas">#{PQRS.catPQRS2}</a></li>
+                            <li class="tab col s2"><a class="active" href="#Reclamos">#{PQRS.catPQRS3}</a></li>
+                            <li class="tab col s3"><a class="active" href="#Sugerencias">#{PQRS.catPQRS4}</a></li>
                         </ul>
                     </div>
 
@@ -51,26 +51,26 @@
                             <p:dataTable value="#{pqrsControladores.consultarPqrs()}" var="pqrs">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Remitente"/>
+                                        <h:outputText value="#{PQRS.lblRemitente}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/><br/>
                                     <h:outputText value="#{pqrs.idAcudiente.usuario.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Tipo"/>
+                                        <h:outputText value="#{PQRS.thCategoria}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.tipo}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Asunto"/>
+                                        <h:outputText value="#{PQRS.thAsunto}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.asunto}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
+                                        <h:outputText value="#{PQRS.thFecha}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -78,21 +78,21 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Respuesta"/>
+                                        <h:outputText value="#{PQRS.thRespuesta}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.respuesta}"/>
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responde"/>
+                                        <h:outputText value="#{PQRS.thResponde}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
                                     <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responder"/>
+                                        <h:outputText value="#{PQRS.thResponder}"/>
                                     </f:facet>
                                     <h:commandLink action="#{pqrsControladores.preActualizar(pqrs)}"><ion-icon name="arrow-undo-circle" class="black-text"></ion-icon></h:commandLink>
                                 </p:column>
@@ -107,25 +107,26 @@
                             <p:dataTable value="#{pqrsControladores.consultarCategoria('Pregunta')}" var="pqrs">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Remitente"/>
+                                        <h:outputText value="#{PQRS.lblRemitente}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Tipo"/>
+                                        <h:outputText value="#{PQRS.thCategoria}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.tipo}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Asunto"/>
+                                        <h:outputText value="#{PQRS.thAsunto}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.asunto}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
+                                        <h:outputText value="#{PQRS.thFecha}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -133,20 +134,21 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Respuesta"/>
+                                        <h:outputText value="#{PQRS.thRespuesta}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.respuesta}"/>
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responde"/>
+                                        <h:outputText value="#{PQRS.thResponde}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/>
+                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responder"/>
+                                        <h:outputText value="#{PQRS.thResponder}"/>
                                     </f:facet>
                                     <h:commandLink action="#{pqrsControladores.preActualizar(pqrs)}"><ion-icon name="arrow-undo-circle" class="black-text"></ion-icon></h:commandLink>
                                 </p:column>
@@ -160,25 +162,26 @@
                             <p:dataTable value="#{pqrsControladores.consultarCategoria('Queja')}" var="pqrs">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Remitente"/>
+                                        <h:outputText value="#{PQRS.lblRemitente}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Tipo"/>
+                                        <h:outputText value="#{PQRS.thCategoria}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.tipo}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Asunto"/>
+                                        <h:outputText value="#{PQRS.thAsunto}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.asunto}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
+                                        <h:outputText value="#{PQRS.thFecha}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -186,20 +189,21 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Respuesta"/>
+                                        <h:outputText value="#{PQRS.thRespuesta}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.respuesta}"/>
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responde"/>
+                                        <h:outputText value="#{PQRS.thResponde}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/>
+                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responder"/>
+                                        <h:outputText value="#{PQRS.thResponder}"/>
                                     </f:facet>
                                     <h:commandLink action="#{pqrsControladores.preActualizar(pqrs)}"><ion-icon name="arrow-undo-circle" class="black-text"></ion-icon></h:commandLink>
                                 </p:column>
@@ -213,25 +217,26 @@
                             <p:dataTable value="#{pqrsControladores.consultarCategoria('Reclamo')}" var="pqrs">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Remitente"/>
+                                        <h:outputText value="#{PQRS.lblRemitente}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Tipo"/>
+                                        <h:outputText value="#{PQRS.thCategoria}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.tipo}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Asunto"/>
+                                        <h:outputText value="#{PQRS.thAsunto}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.asunto}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
+                                        <h:outputText value="#{PQRS.thFecha}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -239,20 +244,21 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Respuesta"/>
+                                        <h:outputText value="#{PQRS.thRespuesta}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.respuesta}"/>
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responde"/>
+                                        <h:outputText value="#{PQRS.thResponde}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/>
+                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responder"/>
+                                        <h:outputText value="#{PQRS.thResponder}"/>
                                     </f:facet>
                                     <h:commandLink action="#{pqrsControladores.preActualizar(pqrs)}"><ion-icon name="arrow-undo-circle" class="black-text"></ion-icon></h:commandLink>
                                 </p:column>
@@ -266,25 +272,26 @@
                             <p:dataTable value="#{pqrsControladores.consultarCategoria('Sugerencia')}" var="pqrs">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Remitente"/>
+                                        <h:outputText value="#{PQRS.lblRemitente}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idAcudiente.usuario.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Tipo"/>
+                                        <h:outputText value="#{PQRS.thCategoria}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.tipo}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Asunto"/>
+                                        <h:outputText value="#{PQRS.thAsunto}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.asunto}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
+                                        <h:outputText value="#{PQRS.thFecha}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -292,20 +299,21 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Respuesta"/>
+                                        <h:outputText value="#{PQRS.thRespuesta}"/>
                                     </f:facet>
                                     <h:outputText value="#{pqrs.respuesta}"/>
                                 </p:column>
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responde"/>
+                                        <h:outputText value="#{PQRS.thResponde}"/>
                                     </f:facet>
-                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/>
+                                    <h:outputText value="#{pqrs.idCoordinador.nombre}"/><br/>
+                                    <h:outputText value="#{pqrs.idCoordinador.apellido}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Responder"/>
+                                        <h:outputText value="#{PQRS.thResponder}"/>
                                     </f:facet>
                                     <h:commandLink action="#{pqrsControladores.preActualizar(pqrs)}"><ion-icon name="arrow-undo-circle" class="black-text"></ion-icon></h:commandLink>
                                 </p:column>

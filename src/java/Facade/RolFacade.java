@@ -30,11 +30,23 @@ public class RolFacade extends AbstractFacade<Rol> {
     public RolFacade() {
         super(Rol.class);
     }
-    
+
     public List<Rol> consultarRol(int estado) {
         Query q = em.createQuery("SELECT r FROM Rol r WHERE r.estado=:estado");
         q.setParameter("estado", estado);
         return q.getResultList();
     }
-    
+
+    public Rol busquedaRol(String rel) {
+        Rol rol = null;
+        try {
+            Query q = em.createQuery("SELECT r FROM Rol r WHERE r.rol=:rel");
+            q.setParameter("rel", rel);
+            rol = (Rol) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return rol;
+    }
+
 }

@@ -35,11 +35,12 @@ main{
    
 }
 
-.titulo_modal{
-    font-size: 2rem;
-    text-align: center;
-    background: #c2294b;
-    color: #ffffff;
+.modal{
+    padding: 1rem;
+    height: 90rem;
+}
+.titulo{
+    margin: 2rem 1rem;
 }
 .boton-registrar{
     text-align: center;

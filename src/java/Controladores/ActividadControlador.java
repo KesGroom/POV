@@ -6,14 +6,13 @@
 package Controladores;
 
 import Entidades.Actividad;
-import Entidades.Curso;
+
 import Entidades.DocenteMateria;
 import Facade.ActividadFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 /**
@@ -24,27 +23,35 @@ import javax.ejb.EJB;
 @SessionScoped
 public class ActividadControlador implements Serializable {
 
+//----- Builders ---------------------------------------------------------\\
+
     public ActividadControlador() {
         actividad = new Actividad();
-        curso = new Curso();
+
         docenteMateria = new DocenteMateria();
     }
-    
+
+
+//----- Attributes -------------------------------------------------------\\
+
     Actividad actividad;
-    Curso curso;
+
     DocenteMateria docenteMateria;
     
     @EJB
     ActividadFacade actividadFacade;
 
+
+//----- Methods ----------------------------------------------------------\\
+
     public List<Actividad> consultarActividad(){
         return actividadFacade.consultarActividad(1);
     }
     
-    public void registrarActividad(){
-        actividad.setCurso(curso);
+    public String registrarActividad(){
         actividad.setIdDocenteMateria(docenteMateria);
         actividadFacade.create(actividad);
+        return "Actividades";
     }
     
     public String Remover(Actividad actividadRemover) {
@@ -54,20 +61,21 @@ public class ActividadControlador implements Serializable {
         return "Actividades";
     }
     
+    public List<Actividad> actividadxMateria(int id){
+        return actividadFacade.consultarActividadXMat(1, id);
+    }
+
+
+//----- Getters and Setters ----------------------------------------------\\
+    
+
+    
     public Actividad getActividad() {
         return actividad;
     }
 
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
     }
 
     public DocenteMateria getDocenteMateria() {

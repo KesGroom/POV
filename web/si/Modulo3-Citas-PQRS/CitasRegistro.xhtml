@@ -40,17 +40,17 @@
                                         <!-- TODO: update below reference to list of available items-->
                                         <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="Acu" itemValue="#{Acu.idUsuario}" itemLabel="#{Acu.nombre} #{Acu.apellido}"/>
                                     </p:selectOneMenu>
-                                    
+
                                     <p:outputLabel value="Asunto:" for="asunto" />
                                     <p:inputTextarea rows="4" cols="30" id="asunto" value="#{citaControlador.cita.asunto}" title="Asunto" required="true" requiredMessage="The Asunto field is required."/>
-                                    
+
                                     <p:outputLabel value="Estudiante:" class="black-text" for="Estudiante" />
                                     <p:selectOneMenu id="Estudiante" required="true" value="#{citaControlador.estudiante.idUsuario}">
                                         <!-- TODO: update below reference to list of available items-->
                                         <f:selectItem itemLabel="--Seleccione--" itemValue="'0'"></f:selectItem>
                                         <f:selectItems value="#{citaControlador.AcudienteEst(sesionControlador.usuario.idUsuario)}" var="cD" itemLabel="#{cD.usuario.nombre} #{cD.usuario.apellido}" itemValue="#{cD.idCurso.curso}"/>
                                     </p:selectOneMenu>
-                                    
+
                                     <p:outputLabel value="AtencionArea:" for="atencionArea" />
                                     <p:selectOneMenu id="atencionArea" value="#{citaControlador.cita.atencionArea}" >
                                         <!-- TODO: update below reference to list of available items-->
@@ -103,8 +103,8 @@
         <!-- Se vincula los scripts propios de la página-->
         <script src="../../Resources/js/CalendarIng.js" type="text/javascript"></script>
         <script src="../../Resources/js/CalendarioEsp.js" type="text/javascript"></script>
-        
-        <script type="text/javascript">
+        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+            <script type="text/javascript">
             let calendar = new Calendario('calendar');
             var inputFecha = document.getElementById("j_idt6:fechaCita");
             var FechaSelected;
@@ -112,14 +112,17 @@
                 FechaSelected = (calendar.value().format('DD/MM/YYYY'));
                 inputFecha.value = FechaSelected;
             });
-        </script>
-        <script type="text/javascript">
-            let calendar2 = new Calendar('calendar2');
-            calendar2.getElement().addEventListener('change', e => {
-                FechaSelected = (calendar.value().format('DD/MM/YYYY'));
-                inputFecha.value = FechaSelected;
-            });
-        </script>
+            </script>
+        </c:if>
+        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+            <script type="text/javascript">
+                let calendar2 = new Calendar('calendar2');
+                calendar2.getElement().addEventListener('change', e => {
+                    FechaSelected = (calendar.value().format('DD/MM/YYYY'));
+                    inputFecha.value = FechaSelected;
+                });
+            </script>
+        </c:if>
     </h:body>
 </html>
 

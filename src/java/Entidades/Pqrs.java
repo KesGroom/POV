@@ -47,17 +47,21 @@ public class Pqrs implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_PQRS")
     private Integer idPQRS;
-    @Size(max = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "Tipo")
     private String tipo;
+    @Basic(optional = false)
+    @NotNull
     @Lob
-    @Size(max = 65535)
+    @Size(min = 1, max = 65535)
     @Column(name = "Asunto")
     private String asunto;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @Lob
     @Size(max = 65535)
@@ -79,8 +83,10 @@ public class Pqrs implements Serializable {
         this.idPQRS = idPQRS;
     }
 
-    public Pqrs(Integer idPQRS, Date fecha) {
+    public Pqrs(Integer idPQRS, String tipo, String asunto, Date fecha) {
         this.idPQRS = idPQRS;
+        this.tipo = tipo;
+        this.asunto = asunto;
         this.fecha = fecha;
     }
 

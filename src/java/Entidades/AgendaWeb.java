@@ -45,7 +45,7 @@ public class AgendaWeb implements Serializable {
     private Integer idAgendaWeb;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 21)
     @Column(name = "Categoria")
     private String categoria;
     @Basic(optional = false)

@@ -201,6 +201,40 @@ Cosas como los degradados de los thead no se modificaron, ni lo hovers de ningú
 }
 
 
+.ui-filter-column input:not([type]), 
+.ui-filter-column input[type=text]:not(.browser-default), 
+.ui-filter-column input[type=password]:not(.browser-default), 
+.ui-filter-column input[type=email]:not(.browser-default), 
+.ui-filter-column input[type=url]:not(.browser-default), 
+.ui-filter-column input[type=time]:not(.browser-default), 
+.ui-filter-column input[type=date]:not(.browser-default), 
+.ui-filter-column input[type=datetime]:not(.browser-default), 
+.ui-filter-column input[type=datetime-local]:not(.browser-default), 
+.ui-filter-column input[type=tel]:not(.browser-default), 
+.ui-filter-column input[type=number]:not(.browser-default), 
+.ui-filter-column input[type=search]:not(.browser-default), 
+.ui-filter-column textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    color: white;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: border .3s, -webkit-box-shadow .3s;
+    transition: border .3s, -webkit-box-shadow .3s;
+    transition: box-shadow .3s, border .3s;
+    transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
+}
+
 
 /*Boton de eliminar*/
 

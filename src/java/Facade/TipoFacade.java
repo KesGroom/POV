@@ -37,4 +37,16 @@ public class TipoFacade extends AbstractFacade<Tipo> {
         return q.getResultList();
     }
     
+    public Tipo busquedaRol(String rel) {
+        Tipo tip = null;
+        try {
+            Query q = em.createQuery("SELECT t FROM Tipo t WHERE t.tipo=:rel");
+            q.setParameter("rel", rel);
+            tip = (Tipo) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return tip;
+    }
+
 }
