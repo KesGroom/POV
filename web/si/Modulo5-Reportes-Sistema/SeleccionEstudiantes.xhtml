@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <title>Prueba</title>
+    </h:head>
+    <h:body class="scrollbarStyle">
+        <f:view>
+            <script>
+                #{alertasControlador.mensaje}
+            </script>
+            <h:form>
+                <div class="row">
+                    <div class="col s12"><label>Estudiantes vinculados</label></div>
+                    <div class="col s12 input-field">
+                        <h:inputText class="solo-numero" value="#{usuarioControlador.numEst}" autocomplete="off">
+                            <f:ajax event="keyup" listener="#{usuarioControlador.changeListEst}" render="Holi"></f:ajax>
+                        </h:inputText>
+                        <span class="helper-text">Ingrese el número de documento del estudiante</span>
+                    </div>
+
+                    <h:dataTable id="Holi" class="col s6" value="#{usuarioControlador.listByEst}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estudiantes existentes"/>
+                            </f:facet>
+                            <div class="chipStudent displayRowSbC">
+                                <div class="imgChip displayColCC">
+                                    <img src="#{item.foto}" alt="fotito"></img>
+                                </div>
+                                <div class="infoChip displayColSaC">
+                                    <h:outputText value="#{item.numerodeDocumento}"/><br/>
+                                    <h:outputText value="#{item.apellido}"/><br/>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </div>
+                                <div class="btnChip displayColCC">
+                                    <h:commandLink action="#{usuarioControlador.addStudent(item)}" title="Añadir"><ion-icon class="btnAddChip" name="add-circle"></ion-icon></h:commandLink>
+                                </div>
+                            </div>
+
+                        </h:column>
+                    </h:dataTable>
+                    <h:dataTable class="col s6" value="#{usuarioControlador.estListSelect}" var="item2">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estudiantes agregados"/>
+                            </f:facet>
+                            <div class="chipStudent displayRowSbC">
+                                <div class="imgChip displayColCC">
+                                    <img src="#{item2.foto}" alt="fotito"></img>
+                                </div>
+                                <div class="infoChip displayColSaC">
+                                    <h:outputText value="#{item2.numerodeDocumento}"/><br/>
+                                    <h:outputText value="#{item2.apellido}"/><br/>
+                                    <h:outputText value="#{item2.nombre}"/>
+                                </div>
+                                <div class="btnChip displayColCC">
+                                    <h:commandLink action="#{usuarioControlador.removeStudent(item2)}" title="Remover"><ion-icon class="btnRemoveChip" name="close-circle"></ion-icon></h:commandLink>
+                                </div>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+
+        </f:view>
+        <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>M.AutoInit();</script>
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <script src="../../Resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../Resources/js/jquery.numeric.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.solo-numero').numeric();
+                });
+        </script>
+    </h:body>
+</html>
+

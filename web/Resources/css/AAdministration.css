@@ -94,29 +94,24 @@ body::-webkit-scrollbar-thumb{
     top: 45px;
 }
 
-#actAddCurso{
+#actAddArea{
     top: 90px;
 }
-#actAddArea{
+#actAddMat{
     top: 135px;
 }
-#actAddArea{
-    top: 175px;
-}
+
 
 #actAddGrado.active{
     right: 30%;
 }
 
-#actAddCurso.active{
-    right: 30%;
-}
 
 #actAddArea.active{
     right: 30%;
 }
 
-#actAddMateria.active{
+#actAddMat.active{
     right: 30%;
 }
 
@@ -148,13 +143,13 @@ body::-webkit-scrollbar-thumb{
     border-radius: 15px;
 }
 
-#formAddUser.active{
+#formAddGrado.active{
     right: 0;
 }
-#formAddRol.active{
+#formAddArea.active{
     right: 0;
 }
-#formAddTipo.active{
+#formAddMat.active{
     right: 0;
 }
 

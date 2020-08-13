@@ -7,14 +7,15 @@ package Controladores;
 
 import Entidades.Area;
 import Entidades.Atencionarea;
+import Entidades.Atencioncurso;
 import Entidades.Curso;
 import Entidades.Docente;
 import Facade.AtencionareaFacade;
+import Facade.AtencioncursoFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 /**
@@ -30,17 +31,42 @@ public class AtencionAreaControlador implements Serializable {
      */
     public AtencionAreaControlador() {
         atencionarea = new Atencionarea();
+        atencioncurso = new Atencioncurso();
         area = new Area();
+        curso = new Curso();
         docente = new Docente();
     }
     
-    Atencionarea atencionarea;
-    Area area;
-    Docente docente;
+    private Atencionarea atencionarea;
+    private Atencioncurso atencioncurso;
+    private Area area;
+    private Curso curso;
+    private Docente docente;
     
     @EJB
     AtencionareaFacade atencionAreaFacade;
+    
+    @EJB
+    AtencioncursoFacade atencionCursoFacade;
 
+    public void registrarAtencionArea(){
+        atencionarea.setEstado(1);
+        atencionarea.setDocenteACargo(docente);
+        atencionarea.setArea(area);
+        atencionAreaFacade.create(atencionarea);
+    }
+    
+    public void registrarAtencionCurso(){
+        atencioncurso.setEstado(1);
+        atencioncurso.setDocenteACargo(docente);
+        atencioncurso.setCurso(curso);
+        atencionCursoFacade.create(atencioncurso);
+    }
+    
+    public List<Atencionarea> consultarAtencionarea(){
+        return atencionAreaFacade.consultarAtencionarea(1);
+    }
+    
     public Atencionarea getAtencionarea() {
         return atencionarea;
     }
@@ -65,13 +91,22 @@ public class AtencionAreaControlador implements Serializable {
         this.area = area;
     }
 
-    public List<Atencionarea> consultarAtencionarea(){
-        return atencionAreaFacade.consultarAtencionarea(1);
+    public Atencioncurso getAtencioncurso() {
+        return atencioncurso;
+    }
+
+    public void setAtencioncurso(Atencioncurso atencioncurso) {
+        this.atencioncurso = atencioncurso;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
     
-    public void registrarAtencionArea(){
-        atencionarea.setDocenteACargo(docente);
-        atencionarea.setArea(area);
-        atencionAreaFacade.create(atencionarea);
-    }
+    
+
 }

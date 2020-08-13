@@ -1,20 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htth://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="htth://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-
-      xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
         <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!-- Se vincula los estilos css específicos de la página-->
-        <link href="../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
-        <!--Estilos desarrollados para "mejorar" el uso de PrimeFaces en el sistema-->
-        <link href="../../Resources/css/EP.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
@@ -22,17 +17,14 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <!-- Se incluye el icono del sistema -->
+        <link href="../../Resources/css/1.css" rel="stylesheet" type="text/css"/>
         <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png"/>
         <!-- Nombre que se visualizará en el navegador -->
         <title>Usuarios</title>
 
     </h:head>
-    <h:body>
-        <style>
-            .swal2-content .select-wrapper{
-                display: none;
-            }
-        </style>
+    <h:body class="scrollbarStyle">
+
         <f:view>
             <script>
                 #{alertasControlador.mensaje}
@@ -43,63 +35,180 @@
                 <a href="#">Usuarios</a>
             </div>
 
-            <div class="activador tooltipped" id="actAddUser" data-position="bottom" data-tooltip="Añadir usuario"><ion-icon id="iconUser" name="person-add"></ion-icon></div>
-            <div class="activador tooltipped" id="actAddRol" data-position="bottom" data-tooltip="Añadir rol"><ion-icon id="iconRol" name="body"></ion-icon></div>
-            <div class="activador tooltipped" id="actAddTipo" data-position="bottom" data-tooltip="Añadir tipo de documento"><ion-icon id="iconTipo" name="card"></ion-icon></div>
-            <div class="registro" id="formAddUser">
+            <div class="activador" id="act1" title="Añadir usuario"><ion-icon id="icon1" name="person-add"></ion-icon></div>
+            <div class="activador" id="act2" title="Añadir rol o tipo de documento" ><ion-icon id="icon2" name="body"></ion-icon></div>
 
-
+            <div class="registro scrollbarStyle" id="formAdd1">
 
                 <h3 class="tituloFormulario">Registrar usuario</h3>
                 <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Numero de Documento:" class="black-text" for="numerodeDocumento" />
-                        <p:inputText id="numerodeDocumento" class="solo-numero" value="#{usuarioControlador.numDocumento}" title="NumerodeDocumento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
-                        <p:outputLabel value="Nombre:" class="black-text" for="nombre" />
-                        <p:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                        <p:outputLabel value="Apellido:" class="black-text" for="apellido" />
-                        <p:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
-                        <p:outputLabel value="Fecha de Nacimiento:" class="black-text" for="fechadeNacimiento" />
-                        <p:inputText id="fechadeNacimiento" type="date" class="black-text" value="#{usuarioControlador.usuario.fechadeNacimiento}" title="FechadeNacimiento" required="true" requiredMessage="The FechadeNacimiento field is required.">
-                            <f:convertDateTime pattern="yyyy-MM-dd" />
-                        </p:inputText>
-                        <p:outputLabel value="Dirección:" class="black-text" for="direccion" />
-                        <p:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                        <p:outputLabel value="Celular:" class="black-text" for="celular" />
-                        <p:inputText id="celular" class="solo-numero" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
-                        <p:outputLabel value="Telefono Fijo:" class="black-text" for="telefonoFijo" />
-                        <p:inputText id="telefonoFijo" class="solo-numero" value="#{usuarioControlador.usuario.telefonoFijo}" title="TelefonoFijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
-                        <p:outputLabel value="Género:" class="black-text" for="genero" />
-                        <p:selectOneMenu value="#{usuarioControlador.usuario.genero}" id="genero">
-                            <f:selectItem itemValue="0" itemLabel="--Seleccione--" noSelectionOption="true"></f:selectItem>
-                            <f:selectItem itemValue="Femenino" itemLabel="Femenino"></f:selectItem>
-                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"></f:selectItem>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Correo Electrónico:" class="black-text" for="correoElectronico" />
-                        <p:inputText id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="CorreoElectronico" required="true" requiredMessage="The CorreoElectronico field is required."/>
-                        <p:outputLabel value="Contraseña:" class="black-text" for="contrasenna" />
-                        <p:inputText id="contrasenna"  value="#{usuarioControlador.usuario.contrasenna}" title="Contrasenna" required="true" requiredMessage="The Contrasenna field is required."/>
-                        <p:outputLabel value="Rol:" class="black-text" for="idRoles" />
-                        <p:selectOneMenu id="idRoles" value="#{usuarioControlador.rol.idRoles}" required="true" requiredMessage="The IdRoles field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItem itemLabel="--Seleccione--" itemValue="0" noSelectionOption="true"></f:selectItem>
-                            <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.idRoles}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Tipo de documento:" class="black-text" for="idTipo" />
-                        <p:selectOneMenu id="idTipo" value="#{usuarioControlador.tipo.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItem itemLabel="--Seleccione--" itemValue="0" noSelectionOption="true"></f:selectItem>
-                            <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <div class="botonesControl">
-                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
-                    </div>
+                    <div class="row">
+                        <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
+                            <p style="font-size: 1em; font-weight: bold;">Información personal</p><hr class="" style="border: none; width: 50%; height: 0.1rem; background-color: rgb(148, 148, 148);"></hr>
+                        </div>
+                        <div class="col s12"><label>Tipo de documento</label></div>
+                        <div class="input-field col s12">
+                            <h:selectOneMenu class="browser-default" id="idTipo" value="#{usuarioControlador.tipo.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItem itemLabel="Tipo de documento" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col s12"><label>Número de documento</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="numerodeDocumento" class="solo-numero" value="#{usuarioControlador.numDocumento}" title="Numero de Documento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
+                        </div>
+                        <div class="col s12"><label>Nombre</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                        </div>
+                        <div class="col s12"><label>Apellido</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
+                        </div>
+                        <div class="col s12"><label>Fecha de nacimiento</label></div>
+                        <div class="input-field col s12 displayRowSbC">
+                            <div class="row">
+                                <div class="col s3">
+                                    <h:inputText a:placeholder="Día" class="solo-numero" maxlength="2" value="#{usuarioControlador.diaFN}" title="Día de nacimiento" required="true"/>
+                                </div>
+                                <div class="col s6">
+                                    <h:selectOneMenu class="browser-default" required="true" value="#{usuarioControlador.mesFN}">
+                                        <f:selectItem itemLabel="Mes" itemValue="12" noSelectionOption="true"></f:selectItem>
+                                        <f:selectItem itemLabel="Enero" itemValue="0"></f:selectItem>
+                                        <f:selectItem itemLabel="Febrero" itemValue="1"></f:selectItem>
+                                        <f:selectItem itemLabel="Marzo" itemValue="2"></f:selectItem>
+                                        <f:selectItem itemLabel="Abril" itemValue="3"></f:selectItem>
+                                        <f:selectItem itemLabel="Mayo" itemValue="4"></f:selectItem>
+                                        <f:selectItem itemLabel="Junio" itemValue="5"></f:selectItem>
+                                        <f:selectItem itemLabel="Julio" itemValue="6"></f:selectItem>
+                                        <f:selectItem itemLabel="Agosto" itemValue="7"></f:selectItem>
+                                        <f:selectItem itemLabel="Septiembre" itemValue="8"></f:selectItem>
+                                        <f:selectItem itemLabel="Octubre" itemValue="9"></f:selectItem>
+                                        <f:selectItem itemLabel="Noviembre" itemValue="10"></f:selectItem>
+                                        <f:selectItem itemLabel="Diciembre" itemValue="11"></f:selectItem>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col s3">
+                                    <h:inputText a:placeholder="Año" class="solo-numero" maxlength="4" value="#{usuarioControlador.anioFN}" title="Año de nacimiento" required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12"><label>Género</label></div>
+                        <div class="input-field col s12">
+                            <h:selectOneMenu class="browser-default" value="#{usuarioControlador.usuario.genero}" id="genero">
+                                <f:selectItem itemValue="0" itemLabel="Género" noSelectionOption="true"></f:selectItem>
+                                <f:selectItem itemValue="Femenino" itemLabel="Femenino"></f:selectItem>
+                                <f:selectItem itemValue="Masculino" itemLabel="Masculino"></f:selectItem>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
+                            <hr class="" style="border: none; width: 45%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr><p style="font-size: 1em; font-weight: bold;">Información de contacto</p>
+                        </div>
+                        <div class="col s12"><label>Dirección</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Dirección" required="true" requiredMessage="The Direccion field is required."/>
+                        </div>
+                        <div class="col s12"><label>Celular</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="celular" class="solo-numero" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
+                        </div>
+                        <div class="col s12"><label>Telefono fijo</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="telefonoFijo" class="solo-numero" value="#{usuarioControlador.usuario.telefonoFijo}" title="Teléfono Fijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
+                        </div>
+                        <div class="col s12"><label>Correo electrónico</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText a:type="email" id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="Correo electrónico" required="true" requiredMessage="The CorreoElectronico field is required."/>
+                        </div>
+                        <div class="col s12"><label>Contraseña</label></div>
+                        <div class="input-field col s12">
+                            <h:inputText id="contrasenna"  value="#{usuarioControlador.usuario.contrasenna}" title="Contraseña" required="true" requiredMessage="The Contrasenna field is required."/>
+                        </div>
+                        <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
+                            <p style="font-size: 1em; font-weight: bold;">Configuración de usuario</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
+                        </div>
+                        <div class="input-field col s12">
+                            <h:selectOneMenu class="browser-default prueba" id="idRoles" value="#{usuarioControlador.rol.idRoles}" required="true" requiredMessage="The IdRoles field is required.">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItem itemLabel="Rol del usuario" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.idRoles}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="complementForm" id="Pai">
+                            <div id="4" class="Oculto col s12">
+                                <div class="row">
+                                    <div class="col s12"><label>Estudiantes vinculados</label></div>
+                                    <div class="col s12 input-field">
+                                        <h:inputText value="#{usuarioControlador.numEst}">
+                                            <f:ajax event="keyup" listener="#{usuarioControlador.changeListEst}" render="Holi"></f:ajax>
+                                        </h:inputText>
+                                        <span class="helper-text">Ingrese el número de documento del estudiante</span>
+                                    </div>
 
+                                    <div class="col s12">
+                                        <div class="row">
+                                            <h:dataTable id="Holi" class="col s6" value="#{usuarioControlador.listByEst}" var="chipExcel">
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Estudiantes existentes"/>
+                                                    </f:facet>
+                                                    <div class="chipStudent displayRowSbC">
+                                                        <div class="imgChip displayColCC">
+                                                            <img src="#{chipExcel.foto}" alt="fotito"></img>
+                                                        </div>
+                                                        <div class="infoChip displayColSaC">
+                                                            <h:outputText value="#{chipExcel.numerodeDocumento}"/><br/>
+                                                            <h:outputText value="#{chipExcel.apellido}"/><br/>
+                                                            <h:outputText value="#{chipExcel.nombre}"/>
+                                                        </div>
+                                                        <div class="btnChip displayColCC">
+                                                            <h:commandLink action="#{usuarioControlador.addStudent(chipExcel)}" title="Añadir"><ion-icon class="btnAddChip" name="add-circle"></ion-icon></h:commandLink>
+                                                        </div>
+                                                    </div>
+
+                                                </h:column>
+                                            </h:dataTable>
+                                            <h:dataTable class="col s6" value="#{usuarioControlador.estListSelect}" var="chipSelect">
+                                                <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Estudiantes agregados"/>
+                                                    </f:facet>
+                                                    <div class="chipStudent displayRowSbC">
+                                                        <div class="imgChip displayColCC">
+                                                            <img src="#{chipSelect.foto}" alt="fotito"></img>
+                                                        </div>
+                                                        <div class="infoChip displayColSaC">
+                                                            <h:outputText value="#{chipSelect.numerodeDocumento}"/><br/>
+                                                            <h:outputText value="#{chipSelect.apellido}"/><br/>
+                                                            <h:outputText value="#{chipSelect.nombre}"/>
+                                                        </div>
+                                                        <div class="btnChip displayColCC">
+                                                            <h:commandLink action="#{usuarioControlador.removeStudent(chipSelect)}" title="Remover"><ion-icon class="btnRemoveChip" name="close-circle"></ion-icon></h:commandLink>
+                                                        </div>
+                                                    </div>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Oculto col s12" id="3">
+                                Estudiante
+                            </div>
+                            <div class="Oculto col s12" id="2">
+                                Docente
+                            </div>
+                        </div>
+
+                        <div class="botonesControl col s12">
+                            <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
+                        </div>
+                    </div>
                 </h:form>
 
             </div>
-            <div class="registro" id="formAddRol">
+            <div class="registro scrollbarStyle" id="formAdd2">
 
                 <h3 class="tituloFormulario">Registrar rol</h3>
                 <h:form>
@@ -109,24 +218,7 @@
                         <h:inputText id="rol" value="#{rolControlador.rol.rol}" title="Rol" required="true" requiredMessage="The Rol field is required."/>
                     </h:panelGrid>
                     <div class="botonesControl">
-                        <input type="reset" class=" red darken-4 waves-effect waves-light" value="Vaciar"></input>
                         <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{rolControlador.registrar()}"></h:commandButton>
-                    </div>
-                </h:form>
-
-            </div>
-
-            <div class="registro" id="formAddTipo">
-
-                <h3 class="tituloFormulario">Registrar tipo de documento</h3>
-                <h:form>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Tipo de documento:" for="tipo" />
-                        <h:inputText id="tipo" value="#{tipoControlador.tipo.tipo}" title="Tipo" required="true" requiredMessage="The Tipo field is required."/>
-                    </h:panelGrid>
-                    <div class="botonesControl">
-                        <input type="reset" class=" red darken-4 waves-effect waves-light" value="Vaciar"></input>
-                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{tipoControlador.registrar()}"></h:commandButton>
                     </div>
                 </h:form>
 
@@ -141,160 +233,169 @@
                 </div>
 
 
-                <div class="row">
-                    <h:form>
-                        <div class="contenedorTabs">
-                            <ul class="tabs">
-                                <li class="tab"><a class="active" href="#todos">Todos</a></li>
-                                <c:forEach items="#{rolControlador.consultarRol()}" var="r">
-                                    <li class="tab">
-                                        <a href="##{r.rol}">#{r.rol}</a>
-                                    </li>
-                                </c:forEach>
-
-                            </ul>
+                <h:form>
+                    <div class="etiquetas displayRowIniC">
+                        <div id="btnSearch" class="opcExport opcSearch displayRowSaC">
+                            <i class="material-icons">search</i>
+                            <p id="lblSearch">Buscar por:</p>
                         </div>
-                    </h:form>
-                    <div id="todos" class="col s12 fondoTab">
+                        <div id="btnExcel" class="opcExport opcExcel displayRowSaC">
+                            <img src="../../Resources/img/Sistema/excel.png" alt="" style="width: 24px; height: 24px;"/>
+                            <p id="lblExcel" class="">Exportar a excel</p>
+                        </div>
+                    </div>
 
+                    <div id="SSearch" class="selectExport">
+                        <div id="fondoSea" class="fondo"></div>
+                        <div class="marco1"></div>
+                        <div class="marco2">
+                            <div id="contFilter" class="row">
+                                <div class="input-field col s4">
+                                    <h:outputLabel  value="Número de documento" for="nndoc"></h:outputLabel>
+                                    <h:inputText id="nndoc" class="solo-numero" value="#{usuarioControlador.numDoc}">
+                                        <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                    </h:inputText>
+                                </div>
+                                <div class="input-field col s4">
+                                    <h:outputLabel value="Nombre" for="nameSearch"></h:outputLabel>
+                                    <h:inputText id="nameSearch" value="#{usuarioControlador.nombre}">
+                                        <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                    </h:inputText>
+                                </div>
+                                <div class="input-field col s4">
+                                    <h:outputLabel value="Apellido" for="lastnameSearch"></h:outputLabel>
+                                    <h:inputText id="lastnameSearch" value="#{usuarioControlador.apellido}">
+                                        <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                    </h:inputText>
+                                </div>
 
-                        <h:form>
-                            <div class="chipExcel">
-                                <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
-                                <h:commandButton styleClass="accionador">
-                                    <p:dataExporter target="tblPrin" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
-                                </h:commandButton>
-                                <h:outputText value="Exportar a Excel"></h:outputText>
+                                <h:selectOneMenu class="browser-default col s4" value="#{usuarioControlador.role}">
+                                    <f:selectItem itemValue="" itemLabel="--Rol--"></f:selectItem>
+                                    <f:selectItems value="#{rolControlador.consultarRol()}" var="rol" itemValue="#{rol.rol}" itemLabel="#{rol.rol}"></f:selectItems>
+                                    <f:ajax event="change" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                </h:selectOneMenu>
+
+                                <h:selectOneMenu class="browser-default col s4" value="#{usuarioControlador.tipe}">
+                                    <f:selectItem itemValue="" itemLabel="--Tipo de documento--"></f:selectItem>
+                                    <f:selectItems value="#{tipoControlador.consultarTodos()}" var="ro" itemValue="#{ro.tipo}" itemLabel="#{ro.tipo}"></f:selectItems>
+                                    <f:ajax event="change" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                </h:selectOneMenu>
+                                <div class="col s1"></div>
+                                <h:selectOneRadio class="browser-default iconosRadio col s3" value="#{usuarioControlador.genero}">
+                                    <f:selectItem itemEscaped="false" itemValue="null" itemLabel="&lt;ion-icon name=&quot;male-female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:selectItem itemEscaped="false" itemValue="Femenino" itemLabel="&lt;ion-icon name=&quot;female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:selectItem itemEscaped="false" itemValue="Masculino" itemLabel="&lt;ion-icon name=&quot;male&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:ajax event="change" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
+                                </h:selectOneRadio>
                             </div>
+                        </div>
+                    </div>
 
-                            <p:dataTable id="tblPrin" value="#{usuarioControlador.consultarUsuarios()}" var="usuAll">
+                    <div id="SExcel" class="selectExport">
+                        <div id="fondoExc" class="fondo"></div>
+                        <div class="marco1"></div>
+                        <div class="marco2">
+                            <div class="row">
+                                <div class="displayColSaC col s6">
+                                    <div class="row">
+                                        <div class="input-field col s12 helpSpawn">
+                                            <h:outputLabel for="nameArc" value="Nombre del archivo"></h:outputLabel>
+                                            <h:inputText id="nameArc" autocomplete="off" value="#{usuarioControlador.nombreArch}" required="true"></h:inputText>
+                                            <span class="helper-text">Defina el nombre del archivo de Excel</span>
+                                        </div>
+                                        <div class="col s12 displayRowCC">
+                                            <h:commandButton value="Exportar" class="modal-close" action="#{usuarioControlador.generarExcel()}"></h:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 exportExcel">
+                                    <div class="row displayRowSbC">
+                                        <p class="col s6">Alineación de las celdas:</p>
+                                        <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.alineacion}">
+                                            <f:selectItem itemEscaped="false" itemValue="Izquierda" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/a&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="Centro" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/a&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="Derecha" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/a&gt;"></f:selectItem>
+                                        </h:selectOneRadio>
+                                    </div>
+                                    <div class="row displayRowSbC">
+                                        <p class="col s6">Borde:</p>
+                                        <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.estilo}">
+                                            <f:selectItem itemEscaped="false" itemValue="Con" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_all &lt;/a&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="Sin" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_clear &lt;/a&gt;"></f:selectItem>
+                                        </h:selectOneRadio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <p:column filterBy="#{usuAll.numerodeDocumento} #{usuAll.idTipo.tipo}">
-                                    <f:facet name="header">
-                                        <h:outputText value="NIUP"/>
+                    <div class="consulta">
+
+                        <div class="row">
+                            <h:dataTable class="col s12"  id="userTable" value="#{usuarioControlador.listByName}" var="usu">
+                                <h:column>
+                                    <f:facet  name="header">
+                                        <h:outputText value="Rol"/>
                                     </f:facet>
-                                    <h:outputText value="#{usuAll.idTipo.tipo}"/><br/>
-                                    <h:outputText value="#{usuAll.numerodeDocumento}"/>
-                                </p:column>
-                                <p:column filterBy="#{usuAll.nombre}">
+                                    <h:outputText value="#{usu.idRoles.rol}"/>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nombre Completo"/>
+                                        <h:outputText value="NUIP"/>
                                     </f:facet>
-                                    <h:outputText value="#{usuAll.nombre}"/><br/>
-                                    <h:outputText value="#{usuAll.apellido}"/>
-                                </p:column>
-
-                                <p:column filterBy="#{usuAll.direccion}">
+                                    <h:outputText value="#{usu.idTipo.tipo}"/><br/>
+                                    <h:outputText value="#{usu.numerodeDocumento}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre completo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{usu.nombre}"/><br/>
+                                    <h:outputText value="#{usu.apellido}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha de Nacimiento"/>
+                                    </f:facet>
+                                    <h:outputText style="text-transform: uppercase;" value="#{usu.fechadeNacimiento}">
+                                        <f:convertDateTime pattern="dd/MMM/yyyy" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Dirección"/>
                                     </f:facet>
-                                    <h:outputText value="#{usuAll.direccion}"/>
-                                </p:column>
-                                <p:column filterBy="#{usuAll.celular}">
+                                    <h:outputText value="#{usu.direccion}"/>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Celular"/>
+                                        <h:outputText value="Contacto"/>
                                     </f:facet>
-                                    <h:outputText value="#{usuAll.celular}"/>
-                                </p:column>
-                                <p:column filterBy="#{usuAll.telefonoFijo}">
+                                    <h:outputText value="#{usu.celular}"/><br/>
+                                    <h:outputText value="#{usu.telefonoFijo}"/><br/>
+                                    <h:outputText value="#{usu.correoElectronico}"/>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Telefono"/>
+                                        <h:outputText value="Género"/>
                                     </f:facet>
-                                    <h:outputText value="#{usuAll.telefonoFijo}"/>
-                                </p:column>
-                                <p:column filterBy="#{usuAll.correoElectronico}">
-                                    <f:facet name="header">
-                                        <h:outputText value="Correo"/>
-                                    </f:facet>
-                                    <h:outputText value="#{usuAll.correoElectronico}"/>
-                                </p:column>
-                                <p:column exportable="false">
+                                    <h:outputText value="#{usu.genero}"/>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
                                         <h:outputText value=""/>
                                     </f:facet>
-                                    <div class="botonesControl">
-                                        <p:commandLink action="#{usuarioControlador.preActualizar(usuAll)}"><ion-icon class="btnUpdate" name="repeat"></ion-icon></p:commandLink>
-                                        <p:commandLink action="#{usuarioControlador.Remover(usuAll)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></p:commandLink>
+                                    <div class="botonesControlVarios">
+                                        <h:commandLink action="#{usuarioControlador.preActualizar(usu)}"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
+                                        <h:commandLink action="#{usuarioControlador.remover(usu)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
                                     </div>
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
+                                </h:column>
 
-                    </div>
-                    <c:forEach items="#{rolControlador.consultarRol()}" var="ro">
-                        <div id="#{ro.rol}" class="col s12 fondoTab">
-
-
-                            <h:form>
-                                <h:commandLink>
-                                    <div class="chipExcel">
-                                        <img src="../../Resources/img/Sistema/excel.png" alt="" class="iconExcel"/>
-                                        <h:commandButton styleClass="accionador">
-                                            <p:dataExporter target="tblsub" type="xls" fileName="UsuariosRegistrados"></p:dataExporter>
-                                        </h:commandButton>
-                                        <h:outputText value="Exportar a Excel"></h:outputText>
-                                    </div>
-                                </h:commandLink>
-                                <p:dataTable id="tblsub" value="#{usuarioControlador.buscarRol(ro.idRoles)}" var="rolUsu">
-                                    <p:column filterBy="#{rolUsu.idTipo.tipo}">
-                                        <f:facet name="header">
-                                            <h:outputText value="NUIP"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.idTipo.tipo}"/><br/>
-                                        <h:outputText value="#{rolUsu.numerodeDocumento}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Nombre completo"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.nombre}"/><br/>
-                                        <h:outputText value="#{rolUsu.apellido}"/>
-                                    </p:column> 
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Direccion"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.direccion}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Celular"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.celular}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Telefono"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.telefonoFijo}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Genero"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.genero}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Correo"/>
-                                        </f:facet>
-                                        <h:outputText value="#{rolUsu.correoElectronico}"/>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value=""/>
-                                        </f:facet>
-                                        <div class="botonesControl">
-                                            <h:commandLink action="#{usuarioControlador.preActualizar(rolUsu)}"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
-                                            <h:commandLink action="#{usuarioControlador.Remover(rolUsu)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
-                                        </div>
-                                    </p:column>
-
-                                </p:dataTable>
-                            </h:form>
+                            </h:dataTable>
                         </div>
-                    </c:forEach>
-                </div>
+                    </div>
+                </h:form>
+
             </main>
 
         </f:view>
@@ -307,20 +408,26 @@
         <!-- Se hace uso de la iconografia de ionicons -->
         <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-        <!-- Se vincula los scripts propios de la página-->
-        <script src="../../Resources/js/UsersPage.js" type="text/javascript"></script>
+        <script src="../../Resources/js/jquery.min.js" type="text/javascript"></script>
+        <script>
+                $(document).ready(function () {
+                    $('.prueba').on('change', function () {
+                        var selectValor = '#' + $(this).val();
 
+                        $('#Pai').children('div').hide();
+                        $('#Pai').children(selectValor).show();
+                    });
+                });
+        </script>
         <script src="../../Resources/js/jquery.numeric.js" type="text/javascript"></script>
         <script type="text/javascript">
                 $(document).ready(function () {
                     $('.solo-numero').numeric();
                 });
         </script>
-        <script>
-            function limpiarFormulario() {
-                document.getElementsByClassName("Formulario").reset();
-            }
-        </script>
+        <!-- Se vincula los scripts propios de la página-->
+        <script src="../../Resources/js/FormulariosAct.js" type="text/javascript"></script>
+        <script src="../../Resources/js/ExpExcel.js" type="text/javascript"></script>
 
     </h:body>
 </html>

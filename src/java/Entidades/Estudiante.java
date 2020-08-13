@@ -60,7 +60,7 @@ public class Estudiante implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
     private List<AgendaWeb> agendaWebList;
     @JoinColumn(name = "Id_Acudiente", referencedColumnName = "Id_Usuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Acudiente idAcudiente;
     @JoinColumn(name = "Id_Curso", referencedColumnName = "Id_Curso")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

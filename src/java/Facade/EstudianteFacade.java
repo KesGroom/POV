@@ -6,6 +6,7 @@
 package Facade;
 
 import Entidades.Estudiante;
+import Entidades.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -52,5 +53,17 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
         Query q = em.createQuery("SELECT e FROM Estudiante e WHERE e.estado=1 AND e.idAcudiente.idUsuario=:id");
         q.setParameter("id", id);
         return q.getResultList();
+    }
+    
+    public Estudiante EstudianteDoc(Usuario id){
+        Estudiante estudiante = null;
+        try {
+        Query q = em.createQuery("SELECT e FROM Estudiante e WHERE e.estado=1 AND e.usuario=:id");
+        q.setParameter("id", id);
+        estudiante = (Estudiante) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getMessage());
+        }
+        return estudiante;
     }
 }

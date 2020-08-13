@@ -5,7 +5,7 @@
  */
 package Facade;
 
-import Entidades.Curso;
+import Entidades.Areagrado;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  * @author kesgr
  */
 @Stateless
-public class CursoFacade extends AbstractFacade<Curso> {
+public class AreaGradoFacade extends AbstractFacade<Areagrado> {
 
     @PersistenceContext(unitName = "POV_Gaes7PU")
     private EntityManager em;
@@ -27,20 +27,14 @@ public class CursoFacade extends AbstractFacade<Curso> {
         return em;
     }
 
-    public CursoFacade() {
-        super(Curso.class);
+    public AreaGradoFacade() {
+        super(Areagrado.class);
     }
-    
-    public List<Curso> consultarCurso(int estado) {
-        Query q = em.createQuery("SELECT c FROM Curso c WHERE c.estado=:estado");
+
+    public List<Areagrado> consultarAreaGrado(int estado) {
+        Query q = em.createQuery("SELECT ar FROM Areagrado ar WHERE ar.estado=:estado");
         q.setParameter("estado", estado);
         return q.getResultList();
     }
-    
-    public List<Curso> consultarCursoxGrado(int grado) {
-        Query q = em.createQuery("SELECT c FROM Curso c WHERE c.estado=1 AND c.grado.idGrado=:grado");
-        q.setParameter("grado", grado);
-        return q.getResultList();
-    }
-    
+
 }

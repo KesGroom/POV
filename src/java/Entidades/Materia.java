@@ -61,9 +61,9 @@ public class Materia implements Serializable {
     private Integer estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMateria", fetch = FetchType.LAZY)
     private List<DocenteMateria> docenteMateriaList;
-    @JoinColumn(name = "Id_Area", referencedColumnName = "Id_Area")
+    @JoinColumn(name = "Id_Area", referencedColumnName = "idAreaGrado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Area idArea;
+    private Areagrado idArea;
 
     public Materia() {
     }
@@ -119,11 +119,11 @@ public class Materia implements Serializable {
         this.docenteMateriaList = docenteMateriaList;
     }
 
-    public Area getIdArea() {
+    public Areagrado getIdArea() {
         return idArea;
     }
 
-    public void setIdArea(Area idArea) {
+    public void setIdArea(Areagrado idArea) {
         this.idArea = idArea;
     }
 

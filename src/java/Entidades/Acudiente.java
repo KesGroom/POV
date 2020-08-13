@@ -49,7 +49,7 @@ public class Acudiente implements Serializable {
     private Usuario usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acudiente", fetch = FetchType.LAZY)
     private List<Cita> citaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAcudiente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idAcudiente", fetch = FetchType.LAZY)
     private List<Estudiante> estudianteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAcudiente", fetch = FetchType.LAZY)
     private List<Pqrs> pqrsList;

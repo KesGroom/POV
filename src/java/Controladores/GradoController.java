@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 
+
 /**
  *
  * @author kesgr
@@ -40,6 +41,12 @@ public class GradoController implements Serializable {
  
     public List<Grado> consultarTodos(){
         return gradoFacade.consultarGrado(1);
+    }
+    
+    public String consultarGradoName(String name){
+        gradoFacade.consultGrado(1, name);
+        
+        return "";
     }
 
     public Grado getGrado() {

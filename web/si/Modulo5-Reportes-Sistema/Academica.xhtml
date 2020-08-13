@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
         <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <!-- Se vincula los estilos css específicos de la página-->
-        <link href="../../Resources/css/AAdministration.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/AA.css" rel="stylesheet" type="text/css"/>
         <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/POV_StylesProject.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
@@ -27,61 +29,97 @@
         </div>
 
         <div class="activador tooltipped" id="actAddGrado" data-position="bottom" data-tooltip="Añadir Grado"><ion-icon id="iconGrado" name="people"></ion-icon></div>
-        <div class="activador tooltipped" id="actAddCurso" data-position="bottom" data-tooltip="Añadir Curso"><ion-icon id="iconCurso" name="people-circle"></ion-icon></div>
         <div class="activador tooltipped" id="actAddArea" data-position="bottom" data-tooltip="Añadir Area"><ion-icon id="iconArea" name="folder-open"></ion-icon></div>
         <div class="activador tooltipped" id="actAddMat" data-position="bottom" data-tooltip="Añadir Materia"><ion-icon id="iconMateria" name="book"></ion-icon></div>
+
+        <div class="registro" id="formAddArea">
+
+            <h3 class="tituloFormulario">Registrar Area</h3>
+            <h:form>
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Area:" for="area" />
+                    <p:inputText value="#{areaGradoControlador.area.area}" required="true" id="area" title="Area"></p:inputText>
+                    <p:outputLabel value="Grado:"/>
+                    <p:panelGrid columns="4">
+                        <c:forEach items="#{gradoController.consultarTodos}" var="gd">
+                            <p:selectBooleanCheckbox value="#{areaGradoControlador}"></p:selectBooleanCheckbox><p>#{gd.grado}</p>
+                        </c:forEach>
+                        
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.primero}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Primero</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.segundo}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Segundo</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.tercero}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Tercero</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.cuarto}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Cuarto</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.quinto}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Quinto</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.sexto}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Sexto</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.septimo}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Septimo</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.octavo}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Octavo</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.noveno}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Noveno</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.decimo}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Decimo</p>
+                        <p:selectBooleanCheckbox value="#{areaGradoControlador.once}"></p:selectBooleanCheckbox><p style="margin-left: 0.5rem;">Once</p>
+                    </p:panelGrid>
+                    <div class="botonesControl">
+                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{areaGradoControlador.registrar()}"></h:commandButton>
+                    </div>
+                </p:panelGrid>
+            </h:form>
+
+
+        </div>
         
+        <div id="formAddGrado" class="registro"></div>
+        <div id="formAddMat" class="registro"></div>
+
         <main>
-        <div class="contenedorTitulos">
+            <div class="contenedorTitulos">
                 <a href="Cursos.xhtml" class="subTitulo">Cursos</a>
                 <ion-icon name="chevron-back-outline"></ion-icon>
                 <a href="Academica.xhtml" class="titulo">Grados</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <a href="Areas.xhtml" class="subTitulo">Areas</a>
-        </div>
-        
-        <div class="row">
+            </div>
+            <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
                         <li class="tab col s2"><a class="active" href="#todos">Todos</a></li>
                     </ul>
                 </div>
-            <div id="todos" class="col fondoTab">
-                <f:view>
+                <div id="todos" class="col fondoTab">
+                    <f:view>
 
 
 
-                    <h:form>
-                        <h1><h:outputText value="List"/></h1>
-                        <p:dataTable value="#{gradoController.consultarTodos()}" var="item">
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="IdGrado"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idGrado}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Grado"/>
-                                </f:facet>
-                                <h:outputText value="#{item.grado}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Estado"/>
-                                </f:facet>
-                                <h:outputText value="#{item.estado}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>
+                        <h:form>
+                            <h1><h:outputText value="List"/></h1>
+                            <p:dataTable value="#{gradoController.consultarTodos()}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdGrado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idGrado}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Grado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.grado}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.estado}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
 
-                </f:view>
+                    </f:view>
+
+                </div>
 
             </div>
-                
-        </div>
         </main>
-        
+
         <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
         <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
         <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->

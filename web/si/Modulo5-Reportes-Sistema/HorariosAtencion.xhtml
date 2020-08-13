@@ -1,12 +1,54 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
+        <script src="../../Resources/js/prefix.js" type="text/javascript"></script>
+        <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
+        <title>Horarios de atención</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        
+        <f:view>
+
+
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="DiaSemana:" for="diaSemana" />
+                    <p:inputText id="diaSemana" value="#{atencionAreaControlador.atencionarea.diaSemana}" title="DiaSemana" required="true" requiredMessage="The DiaSemana field is required."/>
+                    <p:outputLabel value="Hora inicio atención:" for="horaInicioAtencion" />
+                    <p:inputText id="horaInicioAtencion" type="time" value="#{atencionAreaControlador.atencionarea.horaInicioAtencion}" title="HoraInicioAtencion" required="true" requiredMessage="The HoraInicioAtencion field is required.">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </p:inputText>
+                    <p:outputLabel value="Hora final atención:" for="horaFinalAtencion" />
+                    <p:inputText id="horaFinalAtencion" type="time" value="#{atencionAreaControlador.atencionarea.horaFinalAtencion}" title="HoraFinalAtencion" required="true" requiredMessage="The HoraFinalAtencion field is required.">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </p:inputText>
+                    
+                    <p:outputLabel value="Area:" for="area" />
+                    <p:selectOneMenu id="area" value="#{atencionAreaControlador.atencionarea.area}" required="true" requiredMessage="The Area field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Docente a cargo:" for="docenteACargo" />
+                    <p:selectOneMenu id="docenteACargo" value="#{atencionAreaControlador.atencionarea.docenteACargo}" required="true" requiredMessage="The DocenteACargo field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
+        
+        <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
     </h:body>
 </html>
 

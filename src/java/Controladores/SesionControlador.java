@@ -7,6 +7,7 @@ import Entidades.Tipo;
 import Entidades.Usuario;
 import Facade.PermisoFacade;
 import Facade.RolFacade;
+import Controladores.LenguajeControlador;
 
 import Facade.UsuarioFacade;
 import javax.inject.Named;
@@ -31,7 +32,6 @@ public class SesionControlador implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         rolFacade = new RolFacade();
         usuarioFacade = new UsuarioFacade();
-
     }
 
     //----- Attributes -------------------------------------------------------\\
@@ -45,7 +45,7 @@ public class SesionControlador implements Serializable {
     PermisoFacade permisoFacade;
 
     @Inject
-    private AlertasControlador alerta;
+    AlertasControlador alerta;
 
     private String documento;
     private String clave;
@@ -53,6 +53,7 @@ public class SesionControlador implements Serializable {
     private Rol rol;
     private Usuario usuario;
     private Tipo tipo;
+    private String lenguaje;
 
     //----- Methods ----------------------------------------------------------\\
     public String iniciarSesion() {
@@ -69,9 +70,17 @@ public class SesionControlador implements Serializable {
             }
 
         } else {
-            alerta.setMensaje("AlertaPopUp('Error al iniciar sesión','El número de documento o contraseña son incorrectos, compruebe la información e intente nuevamente.','error');");
+            if("es".equals(lenguaje)){
+                alerta.setMensaje("AlertaPopUp('Error al iniciar sesión','El número de documento o contraseña son incorrectos, compruebe la información e intente nuevamente.','error');");
+            }else{
+                alerta.setMensaje("AlertaPopUp('Failed to login','The document number or password is incorrect, please check the information and try again.','error');");
+            }
             return "";
         }
+    }
+    
+    public void lenguaje(String lg){
+        this.lenguaje = lg;
     }
 
     public String cerrarSesion() {
@@ -298,12 +307,14 @@ public class SesionControlador implements Serializable {
         this.rol = rol;
     }
 
-    public AlertasControlador getAlerta() {
-        return alerta;
+    public String getLenguaje() {
+        return lenguaje;
     }
 
-    public void setAlerta(AlertasControlador alerta) {
-        this.alerta = alerta;
+    public void setLenguaje(String lenguaje) {
+        this.lenguaje = lenguaje;
     }
+
+    
 
 }

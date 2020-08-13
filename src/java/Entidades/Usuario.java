@@ -105,9 +105,7 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "Correo_Electronico")
     private String correoElectronico;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Size(max = 15)
     @Column(name = "Contrasenna")
     private String contrasenna;
     @Size(max = 150)
@@ -141,7 +139,7 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String numerodeDocumento, String nombre, String apellido, Date fechadeNacimiento, String direccion, String celular, String telefonoFijo, String genero, String correoElectronico, String contrasenna) {
+    public Usuario(Integer idUsuario, String numerodeDocumento, String nombre, String apellido, Date fechadeNacimiento, String direccion, String celular, String telefonoFijo, String genero, String correoElectronico) {
         this.idUsuario = idUsuario;
         this.numerodeDocumento = numerodeDocumento;
         this.nombre = nombre;
@@ -152,7 +150,6 @@ public class Usuario implements Serializable {
         this.telefonoFijo = telefonoFijo;
         this.genero = genero;
         this.correoElectronico = correoElectronico;
-        this.contrasenna = contrasenna;
     }
 
     public Integer getIdUsuario() {

@@ -15,9 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,21 +49,12 @@ public class Area implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "Area")
     private String area;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "Competencias")
-    private String competencias;
     @Column(name = "Estado")
     private Integer estado;
-    @JoinColumn(name = "Grado", referencedColumnName = "Id_Grado")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Grado grado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area", fetch = FetchType.LAZY)
+    private List<Areagrado> areagradoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area", fetch = FetchType.LAZY)
     private List<Atencionarea> atencionareaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idArea", fetch = FetchType.LAZY)
-    private List<Materia> materiaList;
 
     public Area() {
     }
@@ -75,10 +63,9 @@ public class Area implements Serializable {
         this.idArea = idArea;
     }
 
-    public Area(Integer idArea, String area, String competencias) {
+    public Area(Integer idArea, String area) {
         this.idArea = idArea;
         this.area = area;
-        this.competencias = competencias;
     }
 
     public Integer getIdArea() {
@@ -97,14 +84,6 @@ public class Area implements Serializable {
         this.area = area;
     }
 
-    public String getCompetencias() {
-        return competencias;
-    }
-
-    public void setCompetencias(String competencias) {
-        this.competencias = competencias;
-    }
-
     public Integer getEstado() {
         return estado;
     }
@@ -113,12 +92,13 @@ public class Area implements Serializable {
         this.estado = estado;
     }
 
-    public Grado getGrado() {
-        return grado;
+    @XmlTransient
+    public List<Areagrado> getAreagradoList() {
+        return areagradoList;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
+    public void setAreagradoList(List<Areagrado> areagradoList) {
+        this.areagradoList = areagradoList;
     }
 
     @XmlTransient
@@ -128,15 +108,6 @@ public class Area implements Serializable {
 
     public void setAtencionareaList(List<Atencionarea> atencionareaList) {
         this.atencionareaList = atencionareaList;
-    }
-
-    @XmlTransient
-    public List<Materia> getMateriaList() {
-        return materiaList;
-    }
-
-    public void setMateriaList(List<Materia> materiaList) {
-        this.materiaList = materiaList;
     }
 
     @Override

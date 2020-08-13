@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Grado.findAll", query = "SELECT g FROM Grado g")
     , @NamedQuery(name = "Grado.findByIdGrado", query = "SELECT g FROM Grado g WHERE g.idGrado = :idGrado")
     , @NamedQuery(name = "Grado.findByGrado", query = "SELECT g FROM Grado g WHERE g.grado = :grado")
+    , @NamedQuery(name = "Grado.findByEducacion", query = "SELECT g FROM Grado g WHERE g.educacion = :educacion")
     , @NamedQuery(name = "Grado.findByEstado", query = "SELECT g FROM Grado g WHERE g.estado = :estado")})
 public class Grado implements Serializable {
 
@@ -49,12 +50,17 @@ public class Grado implements Serializable {
     @Size(min = 1, max = 12)
     @Column(name = "Grado")
     private String grado;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "Educacion")
+    private String educacion;
     @Column(name = "Estado")
     private Integer estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.LAZY)
     private List<Curso> cursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.LAZY)
-    private List<Area> areaList;
+    private List<Areagrado> areagradoList;
 
     public Grado() {
     }
@@ -63,9 +69,10 @@ public class Grado implements Serializable {
         this.idGrado = idGrado;
     }
 
-    public Grado(Integer idGrado, String grado) {
+    public Grado(Integer idGrado, String grado, String educacion) {
         this.idGrado = idGrado;
         this.grado = grado;
+        this.educacion = educacion;
     }
 
     public Integer getIdGrado() {
@@ -82,6 +89,14 @@ public class Grado implements Serializable {
 
     public void setGrado(String grado) {
         this.grado = grado;
+    }
+
+    public String getEducacion() {
+        return educacion;
+    }
+
+    public void setEducacion(String educacion) {
+        this.educacion = educacion;
     }
 
     public Integer getEstado() {
@@ -102,12 +117,12 @@ public class Grado implements Serializable {
     }
 
     @XmlTransient
-    public List<Area> getAreaList() {
-        return areaList;
+    public List<Areagrado> getAreagradoList() {
+        return areagradoList;
     }
 
-    public void setAreaList(List<Area> areaList) {
-        this.areaList = areaList;
+    public void setAreagradoList(List<Areagrado> areagradoList) {
+        this.areagradoList = areagradoList;
     }
 
     @Override

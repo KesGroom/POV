@@ -41,7 +41,7 @@ public class TipoControlador implements Serializable {
     TipoFacade tipoFacade;
 
     public String registrar() {
-        tipoPrueba = tipoFacade.busquedaRol(tipoCrear);
+        tipoPrueba = tipoFacade.busquedaTipo(tipoCrear);
         if (tipoPrueba == null) {
             tipo.setTipo(tipoCrear);
             tipo.setEstado(1);

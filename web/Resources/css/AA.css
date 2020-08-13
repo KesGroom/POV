@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : 1/06/2020, 10:00:26 AM
     Author     : kesgr
 */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
 /* Se reinician las margenes y espaciados predeterminados del navegador y se establecen  en 0*/
 *{
     margin: 0;
@@ -78,7 +78,7 @@ body::-webkit-scrollbar-thumb{
     width: 45px;
     height: 40px;
     position: fixed;
-
+    
     right: 0;
     border-radius: 50px 0 0 50px;
     cursor: pointer;
@@ -90,26 +90,28 @@ body::-webkit-scrollbar-thumb{
     transition: all 400ms linear;
 }
 
-#actAddUser{
+#actAddGrado{
     top: 45px;
 }
 
-#actAddTipo{
+#actAddArea{
     top: 90px;
 }
-#actAddRol{
+#actAddMat{
     top: 135px;
 }
 
-#actAddUser.active{
+
+#actAddGrado.active{
     right: 30%;
 }
 
-#actAddRol.active{
+
+#actAddArea.active{
     right: 30%;
 }
 
-#actAddTipo.active{
+#actAddMat.active{
     right: 30%;
 }
 
@@ -141,13 +143,13 @@ body::-webkit-scrollbar-thumb{
     border-radius: 15px;
 }
 
-#formAddUser.active{
+#formAddGrado.active{
     right: 0;
 }
-#formAddRol.active{
+#formAddArea.active{
     right: 0;
 }
-#formAddTipo.active{
+#formAddMat.active{
     right: 0;
 }
 
@@ -162,7 +164,7 @@ main .contenedorTitulos{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
+    
     margin-top: 45px;
     margin-bottom:  20px;
 }
@@ -180,11 +182,6 @@ main .subTitulo{
 main .tabs{
     border: 1px solid #d3d0d0; 
     box-shadow: 0 2.5px 4.5px 0 #808080;
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
 }
 
 main .tabs .tab a{
@@ -197,6 +194,9 @@ main .tabs .tab a.active {
     color: #b71c1c;
 }
 
+/*main .tabs .tab a.active{
+    border-bottom: 2px solid #b71c1c;
+}*/
 
 main .tabs .indicator{
     background-color: #b71c1c;
@@ -255,7 +255,7 @@ main .fondoTab{
 .registro .botonesControl{
     width: 100%;
     margin-top: 1rem;
-
+    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -270,7 +270,7 @@ main .fondoTab{
 .fondoTab table thead{
     background-color: #b71c1c;
     color: white;
-
+ 
 }
 
 .fondoTab table tbody td{
@@ -282,6 +282,52 @@ main .fondoTab{
     color: black;
 }
 
+#btnTrash:hover{
+    color: red;
+}
+
+.msgRemoveContent{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    width: 25rem;
+    height: 25rem;
+}
+
+.modal-content{
+    width: 100%;
+    height: 100%;
+}
+
+.msgRemoveContent ion-icon{
+    color: red;
+    font-size: 160px;
+    
+    margin-bottom: 2rem;
+}
+
+.msgRemoveContent p{
+    font-size: 1em;
+    
+}
+
+.msgRemoveContent .botonesControl{
+    width: 100%;
+    margin-top: 2.5rem;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+} 
+
 .msgRemoveContent .waves-effect input[type="button"],
 .msgRemoveContent .waves-effect input[type="reset"],
 .msgRemoveContent .waves-effect input[type="submit"] {
@@ -289,10 +335,8 @@ main .fondoTab{
     color: white;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
-
+    
 }
-
-
 
 
 

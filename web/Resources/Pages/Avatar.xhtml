@@ -34,21 +34,21 @@
                         <h:panelGrid columns="1" style="margin-left:10px" cellpadding="3">
                             <p:outputLabel value="Opciones" class="black-text center tituloOpciones" for="Opcs"></p:outputLabel>
                             <p:selectOneRadio id="Opcs" value="#{usuarioControlador.usuario.foto}">
-                                <f:selectItem itemLabel="Por defecto" itemValue="../img/imgPerfil/default-user.png">
+                                <f:selectItem itemLabel="Por defecto" itemValue="http://imgfz.com/i/pRBCSy5.png">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="C3PO" itemValue="../img/imgPerfil/C3PO.jpg">
+                                <f:selectItem itemLabel="C3PO" itemValue="http://imgfz.com/i/jfIclPY.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="R2D2" itemValue="../img/imgPerfil/R2D2.jpg">
+                                <f:selectItem itemLabel="R2D2" itemValue="http://imgfz.com/i/3GbEU5I.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="Falcon" itemValue="../img/imgPerfil/Falcon.jpg">
+                                <f:selectItem itemLabel="Falcon" itemValue="http://imgfz.com/i/3VMeZUw.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="Trooper" itemValue="../img/imgPerfil/Trooper.jpg">
+                                <f:selectItem itemLabel="Trooper" itemValue="http://imgfz.com/i/uEDoX75.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="Este Vato" itemValue="../img/imgPerfil/EsteMen.jpg">
+                                <f:selectItem itemLabel="Este Vato" itemValue="http://imgfz.com/i/LfDdXAY.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="Darth" itemValue="../img/imgPerfil/Darth.jpg">
+                                <f:selectItem itemLabel="Darth" itemValue="http://imgfz.com/i/LfDdXAY.jpeg">
                                 </f:selectItem>
-                                <f:selectItem itemLabel="Death Star" itemValue="../img/imgPerfil/BlackStar.jpg">
+                                <f:selectItem itemLabel="Death Star" itemValue="http://imgfz.com/i/jVU3sDH.jpeg">
                                 </f:selectItem>
                                 <p:ajax listener="#{usuarioControlador.fotoPrueba()}" process=":CambioAvatar:Opcs" update=":CambioAvatar:imgMuestra"></p:ajax>
                             </p:selectOneRadio>
