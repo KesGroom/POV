@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
+        <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <!-- Se vincula los estilos css específicos de la página-->
+        <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
+        de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
+        la página inicie para evitar fallos-->
+        <script src="../../Resources/js/prefix.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
+        <!-- Se incluye el icono del sistema -->
+        <link href="../../Resources/css/2.css" rel="stylesheet" type="text/css"/>
+        <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png"/>
+        <!-- Nombre que se visualizará en el navegador -->
+        <title>Registrar rol</title>
+    </h:head>
+    <h:body class="scrollbarStyle">
+        <f:view>
+            <script>
+                #{alertasControlador.mensaje}
+            </script>
+            <div class="Bread">
+                <a href="../../Resources/Pages/VistaInicialDash.xhtml">Inicio</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="Roles.xhtml">Lista de roles</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="">Registrar rol</a>
+            </div>
+            <main>
+                <div class="contenedorFormulario displayRowSbC">
+                    <h:form>
+                        <div class="displayRowSaC" style="width: 100%;">
+                            <div class="displayColSaC" style="width:40%; height: 100%;">
+                                <div class="row">
+                                    <div class="col s12"><label>Nombre del rol</label></div>
+                                    <div class="input-field col s12">
+                                        <h:inputText autocomplete="off" id="roe" value="#{rolControlador.rolCrear}" title="Nombre del rol" required="true" requiredMessage="The NumerodeDocumento field is required."/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h:selectManyCheckbox class="Check">
+                            <f:selectItem itemLabel="Usar permisos de otro rol" itemValue="0"></f:selectItem>
+                        </h:selectManyCheckbox>
+                        <hr/>
+                        <div class="rolesContenedor">
+                            <h:selectOneMenu value="#{rolControlador.rolSelect}" class="browser-default">
+                                <f:selectItem itemLabel="Asignar permisos de --" itemValue="0"></f:selectItem>
+                                <f:selectItems value="#{rolControlador.consultarRol()}" var="r" itemLabel="#{r.rol}" itemValue="#{r.idRoles}"></f:selectItems>
+                            </h:selectOneMenu>
+                            <div class="nota">
+                                <p>Recuerde qué esta opción copiará los permisos otorgados a un rol existente y los asignará al nuevo rol creado,
+                                    para editarlo después del registro debe seleccionar la opción <b>Editar permisos</b> que se muestra como una llave en la tabla de roles</p>
+                            </div>
+                        </div>
+                        <div class="permisosContenedor">
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="usu" value="Usuario"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="usu" layout="pageDirection"  value="#{rolControlador.usuario}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(3)}" var="us" itemValue="#{us.idPermiso}" itemLabel="#{us.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="cit" value="Citas"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="cit" layout="pageDirection"  value="#{rolControlador.citas}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(8)}" var="ci" itemValue="#{ci.idPermiso}" itemLabel="#{ci.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="adm" value="Administración acádemica"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="adm" layout="pageDirection"  value="#{rolControlador.administracion}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(9)}" var="ad" itemValue="#{ad.idPermiso}" itemLabel="#{ad.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="por" value="Portafolio"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="por" layout="pageDirection"  value="#{rolControlador.portafolio}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(19)}" var="por" itemValue="#{por.idPermiso}" itemLabel="#{por.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="SS" value="Servicio Social"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="SS" layout="pageDirection"  value="#{rolControlador.servicio}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(4)}" var="ss" itemValue="#{ss.idPermiso}" itemLabel="#{ss.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="nn" value="Noticias"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="nn" layout="pageDirection"  value="#{rolControlador.noticias}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(10)}" var="nt" itemValue="#{nt.idPermiso}" itemLabel="#{nt.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="pd" value="PQRS"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="pd" layout="pageDirection"  value="#{rolControlador.pqrs}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(7)}" var="pq" itemValue="#{pq.idPermiso}" itemLabel="#{pq.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="agenda" value="Agenda Web"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="agenda" layout="pageDirection"  value="#{rolControlador.agenda}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(20)}" var="ag" itemValue="#{ag.idPermiso}" itemLabel="#{ag.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="pla" value="Planillas"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="pla" layout="pageDirection"  value="#{rolControlador.planillas}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(22)}" var="pl" itemValue="#{pl.idPermiso}" itemLabel="#{pl.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="aca" value="Consultas académica"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="aca" layout="pageDirection"  value="#{rolControlador.consultasAca}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(23)}" var="ac" itemValue="#{ac.idPermiso}" itemLabel="#{ac.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+
+                            <div class="optionContent carpetaContenedor">
+                                <div class="marcadorCarpeta">
+                                    <h:outputLabel for="hor" value="Horario"></h:outputLabel>
+                                    <ion-icon name="help-circle-outline" title="Info"></ion-icon>
+                                </div>
+                                <div class="carpeta Check">
+                                    <h:selectManyCheckbox id="hor" layout="pageDirection"  value="#{rolControlador.horario}">
+                                        <f:selectItems value="#{rolControlador.consultarPermiso(21)}" var="ho" itemValue="#{ho.idPermiso}" itemLabel="#{ho.nombre}"></f:selectItems>
+                                    </h:selectManyCheckbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="botonesControl">
+                            <h:commandButton action="#{rolControlador.registrar()}" value="Registrar"></h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </main>
+        </f:view>
+        <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
+        <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->
+        <script type="text/javascript">
+                M.AutoInit();
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    </h:body>
+</html>
+

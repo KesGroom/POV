@@ -59,7 +59,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     }
 
     public List<Usuario> consultarUsuario(int estado) {
-        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.estado=:estado ORDER BY u.idUsuario DESC");
+        Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.estado=:estado");
         q.setParameter("estado", estado);
         return q.getResultList();
     }
@@ -139,6 +139,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         List<Usuario> list = em.createQuery(criteriaQuery).getResultList();
         return list;
     }
+    
     public List<Usuario> findByName(String name, String lastname, String doc) {
         String $nombre = "%" + name.replaceAll(" ", "%") + "%";
         int $estado = 1;
@@ -299,9 +300,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return list;
     }
 
-    public int contarUsuario(int estado) {
-        Query q = em.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.estado=:estado");
-        q.setParameter("estado", estado);
+    public int contarUsuario(int id) {
+        Query q = em.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.estado=1 AND u.idRoles.idRoles=:id");
+        q.setParameter("id", id);
         return ((Long) q.getSingleResult()).intValue();
 
     }

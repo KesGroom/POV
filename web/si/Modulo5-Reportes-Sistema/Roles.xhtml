@@ -2,16 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
-        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!-- Se vincula los estilos css específicos de la página-->
-        <link href="../../Resources/css/Users.css" rel="stylesheet" type="text/css"/>
-        <!--Estilos desarrollados para "mejorar" el uso de PrimeFaces en el sistema-->
-        <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/1.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
@@ -19,203 +16,90 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <!-- Se incluye el icono del sistema -->
-        <link rel="shorcut icon" href="../../Resources/img/Sistema/logoVersionFinal.png"/>
+        <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png"/>
         <!-- Nombre que se visualizará en el navegador -->
         <title>Roles</title>
     </h:head>
-    <h:body>
-        <style>
-            .swal2-content .select-wrapper{
-                display: none;
-            }
-        </style>
+    <h:body class="scrollbarStyle">
+        <f:view>
 
-        <script>
-            #{alertasControlador.mensaje}
-        </script>
-        <div class="Bread">
-            <a href="">Principal</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="Usuarios.xhtml">Usuarios</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="Roles.xhtml">Roles y Tipo de documento</a>
-        </div>
-
-        <div class="activador tooltipped" id="actAddUser" data-position="bottom" data-tooltip="Añadir usuario"><ion-icon id="iconUser" name="person-add"></ion-icon></div>
-        <div class="activador tooltipped" id="actAddRol" data-position="bottom" data-tooltip="Añadir rol"><ion-icon id="iconRol" name="body"></ion-icon></div>
-        <div class="activador tooltipped" id="actAddTipo" data-position="bottom" data-tooltip="Añadir tipo de documento"><ion-icon id="iconTipo" name="card"></ion-icon></div>
-        <div class="registro" id="formAddUser">
-
-            <f:view>
-
-                <h3 class="tituloFormulario">Registrar usuario</h3>
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Numero de Documento:" for="numerodeDocumento" />
-                        <p:inputText id="numerodeDocumento" value="#{usuarioControlador.numDocumento}" title="NumerodeDocumento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
-                        <p:outputLabel value="Nombre:" for="nombre" />
-                        <p:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                        <p:outputLabel value="Apellido:" for="apellido" />
-                        <p:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
-                        <p:outputLabel value="Fecha de Nacimiento:" for="fechadeNacimiento" />
-                        <p:inputText id="fechadeNacimiento" type="date" class="black-text" value="#{usuarioControlador.usuario.fechadeNacimiento}" title="FechadeNacimiento" required="true" requiredMessage="The FechadeNacimiento field is required.">
-                            <f:convertDateTime pattern="yyyy-MM-dd" />
-                        </p:inputText>
-                        <p:outputLabel value="Dirección:" for="direccion" />
-                        <p:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                        <p:outputLabel value="Celular:" for="celular" />
-                        <p:inputText id="celular" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
-                        <p:outputLabel value="Telefono Fijo:" for="telefonoFijo" />
-                        <p:inputText id="telefonoFijo" value="#{usuarioControlador.usuario.telefonoFijo}" title="TelefonoFijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
-                        <p:outputLabel value="Género:" for="genero" />
-                        <p:selectOneMenu value="#{usuarioControlador.usuario.genero}" id="genero">
-                            <f:selectItem itemValue="0" itemLabel="--Seleccione--" noSelectionOption="true"></f:selectItem>
-                            <f:selectItem itemValue="Femenino" itemLabel="Femenino"></f:selectItem>
-                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"></f:selectItem>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Correo Electrónico:" for="correoElectronico" />
-                        <p:inputText id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="CorreoElectronico" required="true" requiredMessage="The CorreoElectronico field is required."/>
-                        <p:outputLabel value="Contraseña:" for="contrasenna" />
-                        <p:inputText id="contrasenna" value="#{usuarioControlador.usuario.contrasenna}" title="Contrasenna" required="true" requiredMessage="The Contrasenna field is required."/>
-                        <p:outputLabel value="Rol:" for="idRoles" />
-                        <p:selectOneMenu id="idRoles" value="#{usuarioControlador.rol.idRoles}" required="true" requiredMessage="The IdRoles field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItem itemLabel="--Seleccione--" itemValue="0" noSelectionOption="true"></f:selectItem>
-                            <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.idRoles}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Tipo de documento:" for="idTipo" />
-                        <p:selectOneMenu id="idTipo" value="#{usuarioControlador.tipo.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItem itemLabel="--Seleccione--" itemValue="0" noSelectionOption="true"></f:selectItem>
-                            <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <div class="botonesControl">
-                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
-                    </div>
-
-                </h:form>
-            </f:view>
-
-        </div>
-        <div class="registro" id="formAddRol">
-            <f:view>
-                <h3 class="tituloFormulario">Registrar rol</h3>
-                <h:form>
-
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Rol:" for="rol" />
-                        <h:inputText id="rol" value="#{rolControlador.rolCrear}" title="Rol" required="true" requiredMessage="The Rol field is required."/>
-                    </h:panelGrid>
-                    <div class="botonesControl">
-                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{rolControlador.registrar()}"></h:commandButton>
-                    </div>
-                </h:form>
-            </f:view>
-        </div>
-
-        <div class="registro" id="formAddTipo">
-            <f:view>
-                <h3 class="tituloFormulario">Registrar tipo de documento</h3>
-                <h:form>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Tipo de documento:" for="tipo" />
-                        <h:inputText id="tipo" value="#{usuarioControlador.tipo.tipo}" title="Tipo" required="true" requiredMessage="The Tipo field is required."/>
-                    </h:panelGrid>
-                    <div class="botonesControl">
-                        <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{tipoControlador.registrar()}"></h:commandButton>
-                    </div>
-                </h:form>
-            </f:view>
-        </div>
-        <main>
-
-            <div class="contenedorTitulos">
-                <a href="Roles.xhtml" class="titulo">Roles</a>
+            <script>
+                #{alertasControlador.mensaje}
+            </script>
+            <div class="Bread">
+                <a href="">Principal</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="Usuarios.xhtml" class="subTitulo">Usuarios</a>
-
+                <a href="Usuarios.xhtml">Usuarios</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="Roles.xhtml">Roles y Tipo de documento</a>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s6"><a class="active" href="#roleo">Roles</a></li>
-                        <li class="tab col s6"><a href="#tipo">Tipos de documento</a></li>
-                    </ul>
-                </div>
-                <div id="roleo" class="col fondoTab">
-                    <f:view>
 
+            <main>
 
-                        <h:form>
-                            <p:dataTable value="#{rolControlador.consultarRol()}" var="Rol">
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Nombre del Rol"/>
-                                    </f:facet>
-                                    <h:outputText value="#{Rol.rol}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value=""/>
-                                    </f:facet>
-                                    <div class="botonesControl">
-                                        <h:commandLink><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
-                                        <h:commandLink action="#{rolControlador.remover(Rol)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
-                                    </div>
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-
-
-                    </f:view>
+                <div class="contenedorTitulos">
+                    <a href="Roles.xhtml" class="titulo">Roles</a>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <a href="ListUsuario.xhtml" class="subTitulo">Usuarios</a>
 
                 </div>
-
-                <div id="tipo" class="col fondoTab">
-                    <f:view>
-
-
-                        <h:form>
-                            <p:dataTable value="#{tipoControlador.consultarTodos()}" var="Tipin">
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Tipo de documento"/>
-                                    </f:facet>
-                                    <h:outputText value="#{Tipin.tipo}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value=""/>
-                                    </f:facet>
-                                    <div class="botonesControl">
-                                        <h:commandLink><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
-                                        <h:commandLink action="#{tipoControlador.remove(Tipin)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
-                                    </div>
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-
-
-                    </f:view>
-
+                <div class="displayRowSbC" style="width: 100%; height: 100vh; border: 1px solid black; padding: 1rem;">
+                    <h:form style="width: 50%;">
+                        <h:dataTable class="" value="#{rolControlador.consultarRol()}"  var="Rol">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre del Rol"/>
+                                </f:facet>
+                                <h:outputText value="#{Rol.rol}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+                                <div class="botonesControlVarios">
+                                    <h:commandLink title="Editar"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{rolControlador.preActualizarPermisos(Rol)}" title="Editar permisos"><ion-icon class="btnUpdate" name="key-outline"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{rolControlador.remover(Rol)}" title="Eliminar"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                    <div class="graficas" style="width: 45%; padding: 5rem;">
+                        <canvas id="grafica" widht="350" height="350"></canvas>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
+        </f:view>
 
         <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
         <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
         <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->
         <script>
-            M.AutoInit();
+                M.AutoInit();
         </script>
         <!-- Se hace uso de la iconografia de ionicons -->
         <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
         <!-- Se vincula los scripts propios de la página-->
-        <script src="../../Resources/js/UsersPage.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+        <script>
+            var role = #{rolControlador.consultarRolNombre()};
+            var dataUs = #{rolControlador.contadorUsuRol()};
+            var colores = #{rolControlador.generarColores()};
+                var ctx = document.getElementById("grafica").getContext("2d");
+                var graf = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: role,
+                        datasets: [{
+                                label: "cosas",
+                                data: dataUs,
+                                backgroundColor: colores
+                            }]
+                    }
 
+                });
+        </script>
     </h:body>
 </html>
 

@@ -14,6 +14,7 @@ import Facade.GradoFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -73,6 +74,7 @@ public class AreaGradoControlador implements Serializable {
     
     @EJB
     AreaGradoFacade AGFacade;
+    
     
     @Inject
     AlertasControlador alerta;
@@ -174,6 +176,10 @@ public class AreaGradoControlador implements Serializable {
         this.area = new Area();
         this.AG = new Areagrado();
 
+    }
+    
+    public List<Area> consultarArea(){
+        return areaFacade.consultarArea(1);
     }
 
     //----- Getters and Setters ----------------------------------------------\\

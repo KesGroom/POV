@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/6.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -54,12 +54,12 @@
                             </f:facet>
                             <div class="chipStudent displayRowSbC">
                                 <div class="imgChip displayColCC">
-                                    <img src="#{item2.foto}" alt="fotito"></img>
+                                    <img src="#{item2.usuario.foto}" alt="fotito"></img>
                                 </div>
                                 <div class="infoChip displayColSaC">
-                                    <h:outputText value="#{item2.numerodeDocumento}"/><br/>
-                                    <h:outputText value="#{item2.apellido}"/><br/>
-                                    <h:outputText value="#{item2.nombre}"/>
+                                    <h:outputText value="#{item2.usuario.numerodeDocumento}"/><br/>
+                                    <h:outputText value="#{item2.usuario.apellido}"/><br/>
+                                    <h:outputText value="#{item2.usuario.nombre}"/>
                                 </div>
                                 <div class="btnChip displayColCC">
                                     <h:commandLink action="#{usuarioControlador.removeStudent(item2)}" title="Remover"><ion-icon class="btnRemoveChip" name="close-circle"></ion-icon></h:commandLink>

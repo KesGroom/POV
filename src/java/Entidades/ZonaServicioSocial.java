@@ -95,8 +95,8 @@ public class ZonaServicioSocial implements Serializable {
     private String labores;
     @Column(name = "Estado")
     private Integer estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "zonadeServicio", fetch = FetchType.LAZY)
-    private List<BitacoraServicioSocial> bitacoraServicioSocialList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "zonaServicio", fetch = FetchType.LAZY)
+    private List<Salaserviciosocial> salaserviciosocialList;
 
     public ZonaServicioSocial() {
     }
@@ -198,12 +198,12 @@ public class ZonaServicioSocial implements Serializable {
     }
 
     @XmlTransient
-    public List<BitacoraServicioSocial> getBitacoraServicioSocialList() {
-        return bitacoraServicioSocialList;
+    public List<Salaserviciosocial> getSalaserviciosocialList() {
+        return salaserviciosocialList;
     }
 
-    public void setBitacoraServicioSocialList(List<BitacoraServicioSocial> bitacoraServicioSocialList) {
-        this.bitacoraServicioSocialList = bitacoraServicioSocialList;
+    public void setSalaserviciosocialList(List<Salaserviciosocial> salaserviciosocialList) {
+        this.salaserviciosocialList = salaserviciosocialList;
     }
 
     @Override

@@ -6,7 +6,7 @@
     <h:head>
         <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <link href="../../Resources/css/3.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/2.css" rel="stylesheet" type="text/css"/>
         <script src="../../Resources/js/prefix.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
@@ -30,7 +30,7 @@
                 </a>
                 <ul>
                     <li><a title="Añadir usuario" href="RegistrarUsuario.xhtml" class="btn-floating red"><i class="material-icons">person_add</i></a></li>
-                    <li><a title="Añadir rol" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="Añadir rol" href="RegistrarRol.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
                     <li><a title="Añadir tipo de documento" class="btn-floating green"><i class="material-icons">credit_card</i></a></li>
                     <li><a title="Recuperar datos" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
                 </ul>
@@ -75,9 +75,9 @@
                                     <div class="row displayRowSbC">
                                         <p class="col s6">Alineación de las celdas:</p>
                                         <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.alineacion}">
-                                            <f:selectItem itemEscaped="false" itemValue="Izquierda" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/a&gt;" />
-                                            <f:selectItem itemEscaped="false" itemValue="Centro" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/a&gt;"></f:selectItem>
-                                            <f:selectItem itemEscaped="false" itemValue="Derecha" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/a&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="Izquierda" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/i&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="Centro" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/i&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="Derecha" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/i&gt;"></f:selectItem>
                                         </h:selectOneRadio>
                                     </div>
                                     <div class="row displayRowSbC">

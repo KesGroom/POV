@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/2.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../../js/Alertas.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <title>Prueba</title>
+    </h:head>
+    <h:body class="scrollbarStyle">
+        <f:view>
+            <script>
+                #{alertasControlador.mensaje}
+            </script>
+            <h2>Ejemplo JSF2.3 SelectManyCheckbox</h2> 
+            <h:form id="form">
+                <div class="row">
+                    <h:selectOneMenu class="browser-default col s12" value="#{correoControlador.area}">
+                        <f:selectItem itemLabel="Area" itemValue="0" noSelectionOption="true"></f:selectItem>
+                        <f:selectItems value="#{areaGradoControlador.consultarArea()}" var="ar" itemValue="#{ar.idArea}" itemLabel="#{ar.area}"></f:selectItems>
+                        <f:ajax event="change" listener="#{correoControlador.cambioMaterias}" render="materias"></f:ajax>
+                    </h:selectOneMenu>
+                    <h:selectOneMenu value="#{correoControlador.nivel2}" class="browser-default col s12">
+                        <f:selectItem itemLabel="Nivel educativo" itemValue="0" noSelectionOption="true"></f:selectItem>
+                        <f:selectItem itemLabel="Primaria" itemValue="Primaria"></f:selectItem>
+                        <f:selectItem itemLabel="Secundaria" itemValue="Secundaria"></f:selectItem>
+                        <f:selectItem itemLabel="Media" itemValue="Media"></f:selectItem>
+                        <f:ajax event="change" listener="#{correoControlador.cambioMaterias}" render="materias"></f:ajax>
+                    </h:selectOneMenu>
+
+                    <label class="col s4 displayRowCC" style="margin-top: 3rem;">Materias</label>
+                    <div class="optionContent Check">
+                        <h:selectManyCheckbox id="materias" value="#{correoControlador.coloresPreferidos}" layout="pageDirection"  class="browser-default radioTable col s8">
+                            <f:selectItems value="#{correoControlador.materiaList}" var="mat" itemLabel="#{mat.materia} - #{mat.idArea.grado.grado}" itemValue="#{mat.idMateria}"></f:selectItems>
+                        </h:selectManyCheckbox>
+                    </div>
+
+                    <label class="col s4 displayRowCC" style="margin-top: 3rem;">Roles</label>
+                    <div class="optionContent reverseCheck">
+                        <h:selectManyCheckbox id="roles" value="#{correoControlador.coloresPreferidos2}" layout="pageDirection"  class="browser-default radioTable col s8">
+                            <f:selectItems value="#{rolControlador.consultarRol()}" var="ro" itemLabel="#{ro.rol}" itemValue="#{ro.idRoles}"></f:selectItems>
+                        </h:selectManyCheckbox>
+                    </div>
+                    <div class="botonesControl col s12" style="margin-top: 5rem;">
+                        <h:commandButton value="Enviar" action="PP2" />
+                    </div>
+                </div>
+            </h:form>
+            <h:form>
+                <h:commandButton value="Colores" action="#{correoControlador.colores(3)}"></h:commandButton>
+            </h:form>
+
+        </f:view>
+        <script src="../../js/materialize.min.js" type="text/javascript"></script>
+        <script>M.AutoInit();</script>
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <script src="../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../js/jquery.numeric.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.solo-numero').numeric();
+                });
+        </script>
+    </h:body>
+</html>
+

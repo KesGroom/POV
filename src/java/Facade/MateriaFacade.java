@@ -30,17 +30,29 @@ public class MateriaFacade extends AbstractFacade<Materia> {
     public MateriaFacade() {
         super(Materia.class);
     }
-    
+
     public List<Materia> consultarMateria(int estado) {
         Query q = em.createQuery("SELECT m FROM Materia m WHERE m.estado=:estado");
         q.setParameter("estado", estado);
         return q.getResultList();
     }
-    
+
     public List<Materia> consultarMateriaxEst(int grado) {
         Query q = em.createQuery("SELECT m FROM Materia m WHERE m.estado=1 AND m.idArea.grado.idGrado=:grado");
         q.setParameter("grado", grado);
         return q.getResultList();
     }
-    
+
+    public Materia findUnique(int id) {
+        Materia materia = null;
+        try {
+            Query q = em.createQuery("SELECT m FROM Materia m WHERE m.estado=1 AND m.idMateria=:id");
+            q.setParameter("id", id);
+            materia = (Materia) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getMessage());
+        }
+        return materia;
+    }
+
 }

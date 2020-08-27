@@ -53,25 +53,122 @@ permiten */
 
 /* Inputs*/
 /* --- radio, checkbox --- */
-[type="radio"]:not(:checked),
-[type="checkbox"]:not(:checked){
+[type="radio"],
+[type="checkbox"]{
     position: absolute; 
-    opacity: 0; 
+    opacity: 0;
+    display: none;
     pointer-events: initial;
 
 }
 
-[type="radio"],
-[type="checkbox"],
+[type="radio"]+label,
+[type="checkbox"] + label,
 .exportExcel label{
     cursor: pointer;
     user-select: none; 
 }
 
-[type="radio"]:checked~label{
-    color: #b71c1c;
-} 
+.Check label,
+.Radio label{
+    color: #9e9e9e;
+    padding: 5px 15px 5px 36px;
+    display: inline-block;
+    position: relative;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
 
+.Check label:hover,
+.Radio label:hover{
+    background: rgba(183, 28, 28, 0.4);
+    color: white;
+}
+
+.Check label:hover:before,
+.Radio label:hover:before{
+    border: 1.5px solid white;
+}
+
+.Check label:before,
+.Radio label:before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: none;
+    display: inline-block;
+    border: 1.5px solid #b71c1c;
+    border-radius: 50%;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    transition: all 0.3s ease;
+}
+
+.Check label:before{
+    border-radius: 2px;
+}
+
+.Check input[type="checkbox"]:checked+label,
+.Radio input[type="radio"]:checked+label{
+    padding: 5px 15px;
+    background: #b71c1c;
+    border-radius: 15px;
+    color: white;
+}
+
+.Check input[type="checkbox"]:checked+label:before,
+.Radio input[type="radio"]:checked+label:before{
+    display: none;
+}
+
+/* Engaño visual para cuando el checkbox está "Seleccionado" */
+
+.reverseCheck label{
+    color: white;
+    padding: 5px 15px;
+    display: inline-block;
+    position: relative;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: #b71c1c;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:hover{
+    background: rgba(183, 28, 28, 0.4);
+    color: white;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:hover:before{
+    border: 1.5px solid white;
+}
+
+.reverseCheck label:before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: none;
+    display: none;
+    border: 1.5px solid transparent;
+    border-radius: 3px;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    transition: all 0.3s ease;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label{
+    padding: 5px 15px 5px 36px;
+    background: none;
+    border-radius: 3px;
+    color: #9e9e9e;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:before{
+    display: inline-block;
+    border: 1.5px solid #b71c1c;
+    
+}
 
 /* text */
 input[type="text"]:focus~.helper-text{
@@ -106,6 +203,10 @@ input[type="submit"]:hover{
     background-color: #9c1818;
 }
 
+.btn{
+    text-transform: capitalize !important;
+}
+
 /* utilidades Materialize para inputs */
 .helper-text{
     display:none !important;
@@ -132,6 +233,12 @@ input[type="submit"]:hover{
     justify-content: space-around;
     align-items: center;
 }
+.displayRowSaIni{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
 .displayRowIniC{
     display: flex;
     flex-direction: row;
@@ -157,6 +264,13 @@ input[type="submit"]:hover{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+
+.displayColSaIni{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .displayColSaC{
@@ -332,9 +446,10 @@ input[type="submit"]:hover{
 }
 
 .seccionFormulario{
-    background-color: pink;
-    height: 100vh;
-    width: 5px !important;
+    background-color: #b4b4b4;
+    height: 90vh;
+    border-radius: 5px;
+    width: 2px !important;
 }
 
 .browser-default{
@@ -463,3 +578,82 @@ input[type="submit"]:hover{
 .chipStudent .btnChip .btnRemoveChip:hover{
     color: red;
 }
+
+td label{
+    cursor: pointer;
+}
+
+
+/*Las opciones de los checkbox se generan en tablas y con este codigo se elimina
+la organización que se les otroga por defecto para que se muestren sin bordes*/
+
+.optionContent table{
+    border-collapse: initial !important;
+}
+
+/*Contenedor de las carpetas de permisos */
+
+.permisosContenedor{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/* Estilos de las carpetas de permisos */
+
+.carpetaContenedor{
+    width: 18rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+} 
+
+.carpetaContenedor .marcadorCarpeta{
+    width: 90%;
+    height: 15%;
+    padding: 0.3rem 1rem;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.carpetaContenedor .marcadorCarpeta label,
+.carpetaContenedor .marcadorCarpeta ion-icon{
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+}
+
+.carpetaContenedor .marcadorCarpeta ion-icon{
+    cursor: pointer;
+}
+
+.carpetaContenedor .marcadorCarpeta ion-icon:hover{
+    color: #359bde;
+}
+
+.carpetaContenedor .carpeta{
+    width: 100%;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.rolesContenedor{
+    width: 100%;
+    padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+

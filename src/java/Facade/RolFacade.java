@@ -36,7 +36,7 @@ public class RolFacade extends AbstractFacade<Rol> {
         q.setParameter("estado", estado);
         return q.getResultList();
     }
-
+    
     public Rol busquedaRol(String rel) {
         Rol rol = null;
         try {
@@ -49,4 +49,11 @@ public class RolFacade extends AbstractFacade<Rol> {
         return rol;
     }
 
+    public int contarRol(int estado) {
+        Query q = em.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.estado=:estado");
+        q.setParameter("estado", estado);
+        return ((Long) q.getSingleResult()).intValue();
+
+    }
+    
 }

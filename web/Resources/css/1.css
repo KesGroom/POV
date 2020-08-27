@@ -22,6 +22,13 @@ body{
 
 }
 
+/* Propiedades globales para etiquetas principales */
+main{
+    width: 97.5%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
 /* Se estiliza el scrollbar para cambiar su apariencia en los navegadores que lo
 permiten */
 
@@ -54,6 +61,13 @@ permiten */
 
 }
 
+[type="checkbox"]:checked{
+    position: absolute; 
+    opacity: 0; 
+    pointer-events: initial;
+
+}
+
 [type="radio"],
 [type="checkbox"],
 .exportExcel label{
@@ -61,9 +75,30 @@ permiten */
     user-select: none; 
 }
 
-[type="radio"]:checked~label{
+[type="radio"]:checked~label,
+[type="checkbox"]:checked~label{
     color: #b71c1c;
-} 
+}
+
+.reverseCheck [type="checkbox"]:checked {
+    position: absolute; 
+    opacity: 0; 
+    pointer-events: initial;
+}
+
+.reverseCheck [type="checkbox"]:not(:checked){
+    position: absolute; 
+    opacity: 0; 
+    pointer-events: initial;
+}
+
+.reverseCheck [type="checkbox"]:not(:checked)~label{
+    color: #b71c1c;
+}
+
+.reverseCheck [type="checkbox"]:checked~label{
+    color: #9e9e9e;
+}
 
 
 /* text */
@@ -73,15 +108,34 @@ input[type="text"]:focus~.helper-text{
 
 /* submit */
 input[type="submit"]{
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: 0.5px solid #670f0f;
-    color: white;
+    font-size: 14px;
+    outline: 0;
+    text-decoration: none;
+    color: #fff;
     background-color: #b71c1c;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
     cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 input[type="submit"]:hover{
     background-color: #9c1818;
+}
+
+.btn{
+    text-transform: capitalize !important;
 }
 
 /* utilidades Materialize para inputs */
@@ -274,6 +328,16 @@ input[type="submit"]:hover{
     font-size: 1.5em;
 }
 
+/* Reestructuración de propiedades de Materialize */
+.fixed-action-btn {
+    position: fixed;
+    right: 23px;
+    top: 50px !important;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 500;
+}
+
 /* Estilos de los formularios de coordinador */
 /* Contenedor de activadores */
 .contenedorAdd{
@@ -286,71 +350,27 @@ input[type="submit"]:hover{
 }
 
 
-/* Activador del formulario */
-.activador{
-    background-color: #b71c1c;
-    width: 45px;
-    height: 40px;
-    margin: 0.5rem 0;
-    position: fixed;
-    right: 0;
-    border-radius: 50px 0 0 50px;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 400ms linear;
-}
-
-.activador ion-icon, .activador i{
-    font-size: 20px;
-    color:white;
-}
-
-/* Activadores individuales */
-
-#act1{
-    top: 45px;
-}
-
-#act2{
-    top: 90px;
-}
-
-#act1.active{
-    right: 30%;
-}
-
-#act2.active{
-    right: 30%;
-}
-
 /* Contenedor del formulario */
-.registro{
-    width: 30%;
-    height: 90vh;
-    background-color: #e6e6e1;
-    border: 1px solid #d9d9d6;
-    padding: 0.5rem;
-    overflow: scroll;
-
-    transition: all 400ms linear;
-    position: fixed;
-    right: -30%;
-    z-index: 1000;
-}
-
-.tituloFormulario{
-    font-size: 1.8em;
-    padding: 0 0 0.8rem 0;
-    border-bottom: 2px solid #b71c1c;
-    text-align: center;
+.contenedorFormulario{
     width: 100%;
+    padding: 1.5rem;
+    border-bottom: 1px solid #b4b4b4;
+    border-left: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+    border-top: 2px solid #b71c1c;
+    border-radius: 5px;
+    margin-top: 3rem;
+
 }
 
-.registro .browser-default{
+.seccionFormulario{
+    background-color: #b4b4b4;
+    height: 90vh;
+    border-radius: 5px;
+    width: 2px !important;
+}
+
+.browser-default{
     background: none !important;
     border: none !important;
     font-size: .8rem !important;
@@ -358,18 +378,10 @@ input[type="submit"]:hover{
     border-bottom: 1px solid #b71c1c !important;
     outline: none !important;
 }
-.registro .browser-default:focus{
+.browser-default:focus{
     background: none !important;
     border-bottom: 2px solid #b71c1c !important;
     outline: none !important;
-}
-
-#formAdd1.active{
-    right: 0;
-}
-
-#formAdd2.active{
-    right: 0;
 }
 
 /* Textos */
@@ -394,6 +406,15 @@ input[type="submit"]:hover{
 .subTitulo{
     font-size: 24px;
     color: #9e9e9e;
+}
+
+.tituloFormulario{
+    font-size: 1.8em;
+    padding: 0 0 0.8rem 0;
+    border-bottom: 2px solid #b71c1c;
+    text-align: center;
+    width: 100%;
+    margin-bottom: -0.1rem;
 }
 
 /* Contenedores de botones */
@@ -436,6 +457,12 @@ input[type="submit"]:hover{
 }
 
 /*Chips SelectStudents*/
+.contenedorChip{
+    height: 29.36rem;
+    width: 100%;
+}
+
+
 .chipStudent{
     width: 15rem;
     height: 5rem;
@@ -468,4 +495,13 @@ input[type="submit"]:hover{
 }
 .chipStudent .btnChip .btnRemoveChip:hover{
     color: red;
+}
+
+td label{
+    cursor: pointer;
+}
+
+
+.optionContent table{
+    border-collapse: initial !important;
 }

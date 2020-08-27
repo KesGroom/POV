@@ -54,8 +54,6 @@ public class Estudiante implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
     private List<RegistroNota> registroNotaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private List<BitacoraServicioSocial> bitacoraServicioSocialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
     private List<RegistroAsistencia> registroAsistenciaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
     private List<AgendaWeb> agendaWebList;
@@ -68,6 +66,8 @@ public class Estudiante implements Serializable {
     @JoinColumn(name = "Id_Usuario", referencedColumnName = "Id_Usuario", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante", fetch = FetchType.LAZY)
+    private List<Salaserviciosocial> salaserviciosocialList;
 
     public Estudiante() {
     }
@@ -118,15 +118,6 @@ public class Estudiante implements Serializable {
     }
 
     @XmlTransient
-    public List<BitacoraServicioSocial> getBitacoraServicioSocialList() {
-        return bitacoraServicioSocialList;
-    }
-
-    public void setBitacoraServicioSocialList(List<BitacoraServicioSocial> bitacoraServicioSocialList) {
-        this.bitacoraServicioSocialList = bitacoraServicioSocialList;
-    }
-
-    @XmlTransient
     public List<RegistroAsistencia> getRegistroAsistenciaList() {
         return registroAsistenciaList;
     }
@@ -166,6 +157,15 @@ public class Estudiante implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @XmlTransient
+    public List<Salaserviciosocial> getSalaserviciosocialList() {
+        return salaserviciosocialList;
+    }
+
+    public void setSalaserviciosocialList(List<Salaserviciosocial> salaserviciosocialList) {
+        this.salaserviciosocialList = salaserviciosocialList;
     }
 
     @Override

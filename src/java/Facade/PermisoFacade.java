@@ -38,6 +38,12 @@ public class PermisoFacade extends AbstractFacade<Permiso> {
         return q.getResultList();
     }
     
+    public List<Permiso> consultarPermis(int estado) {
+        Query q = em.createQuery("SELECT p FROM Permiso p WHERE p.estado=:estado");
+        q.setParameter("estado", estado);
+        return q.getResultList();
+    }
+    
     public List<Permiso> consultarHijos(int idPadre){
         List<Permiso> listaPerPadre = new ArrayList<>();
         try {
@@ -49,6 +55,18 @@ public class PermisoFacade extends AbstractFacade<Permiso> {
         }
         
         return listaPerPadre;
+    }
+    
+    public Permiso obtenerPermiso(int id){
+        Permiso permiso = null;
+        try {
+            Query q = em.createQuery("SELECT p FROM Permiso p WHERE p.estado=1 AND p.idPermiso=:id");
+            q.setParameter("id", id);
+            permiso = (Permiso) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getMessage());
+        }
+        return permiso;
     }
     
 }

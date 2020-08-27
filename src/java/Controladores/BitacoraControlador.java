@@ -49,8 +49,6 @@ public class BitacoraControlador implements Serializable {
     public String registrar(){
         bitacora.setCoordinador(us);
         bitacora.setFechaRegistro(fechaRegistro);
-        bitacora.setEstudiante(estudiante);
-        bitacora.setZonadeServicio(zona);
         bitacora.setEstado(1);
         bitacoraFacade.create(bitacora);
         bitacora = new BitacoraServicioSocial();// nose olvide d esscjnxs jv xjvn cxnsjv dsnvj ds --Kevin: Kha?

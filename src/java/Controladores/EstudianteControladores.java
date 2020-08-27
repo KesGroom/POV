@@ -22,13 +22,15 @@ import javax.ejb.EJB;
 @SessionScoped
 public class EstudianteControladores implements Serializable {
 
-    /**
-     * Creates a new instance of EstudianteControladores
-     */
+//----- Builders ---------------------------------------------------------\\
+
     public EstudianteControladores() {
         estudiante = new Estudiante();
         usuario = new Usuario();
     }
+
+
+//----- Attributes -------------------------------------------------------\\
 
     private Estudiante estudiante;
     private Usuario usuario;
@@ -36,12 +38,10 @@ public class EstudianteControladores implements Serializable {
     @EJB
     EstudianteFacade estudianteFacade;
 
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
+//----- Methods ----------------------------------------------------------\\
+    
+    public int countStudent(int id){
+        return estudianteFacade.countStudent(id);
     }
 
     public List<Estudiante> consultarEstudiante() {
@@ -56,6 +56,18 @@ public class EstudianteControladores implements Serializable {
         return estudianteFacade.EstudianteCurso(Cur);
     }
 
+
+//----- Getters and Setters ----------------------------------------------\\
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -63,7 +75,5 @@ public class EstudianteControladores implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
 
 }

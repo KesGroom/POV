@@ -69,12 +69,9 @@ public class BitacoraServicioSocial implements Serializable {
     @JoinColumn(name = "Coordinador", referencedColumnName = "Id_Usuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario coordinador;
-    @JoinColumn(name = "Estudiante", referencedColumnName = "Id_Usuario")
+    @JoinColumn(name = "SalaDeServicio", referencedColumnName = "idSSS")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Estudiante estudiante;
-    @JoinColumn(name = "Zona_de_Servicio", referencedColumnName = "Id_ZonaSS")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ZonaServicioSocial zonadeServicio;
+    private Salaserviciosocial salaDeServicio;
 
     public BitacoraServicioSocial() {
     }
@@ -145,20 +142,12 @@ public class BitacoraServicioSocial implements Serializable {
         this.coordinador = coordinador;
     }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
+    public Salaserviciosocial getSalaDeServicio() {
+        return salaDeServicio;
     }
 
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public ZonaServicioSocial getZonadeServicio() {
-        return zonadeServicio;
-    }
-
-    public void setZonadeServicio(ZonaServicioSocial zonadeServicio) {
-        this.zonadeServicio = zonadeServicio;
+    public void setSalaDeServicio(Salaserviciosocial salaDeServicio) {
+        this.salaDeServicio = salaDeServicio;
     }
 
     @Override

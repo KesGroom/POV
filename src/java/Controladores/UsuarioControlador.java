@@ -9,6 +9,7 @@ import Entidades.Acudiente;
 import Entidades.Area;
 import Entidades.Curso;
 import Entidades.Docente;
+import Entidades.DocenteMateria;
 import Entidades.Estudiante;
 import Entidades.Grado;
 import Entidades.Materia;
@@ -18,8 +19,10 @@ import Entidades.Usuario;
 import Facade.AcudienteFacade;
 import Facade.CursoFacade;
 import Facade.DocenteFacade;
+import Facade.DocenteMateriaFacade;
 import Facade.EstudianteFacade;
 import Facade.GradoFacade;
+import Facade.MateriaFacade;
 import Facade.RolFacade;
 import Facade.TipoFacade;
 import Facade.UsuarioFacade;
@@ -76,7 +79,8 @@ public class UsuarioControlador implements Serializable {
         estudiante = new Estudiante();
         usuario = new Usuario();
         usuarioPrueba = new Usuario();
-        usuarioFacade = new UsuarioFacade();
+        DM = new DocenteMateria();
+        materia = new Materia();
     }
 
     //----- Attributes -------------------------------------------------------\\
@@ -102,10 +106,16 @@ public class UsuarioControlador implements Serializable {
     EstudianteFacade estFacade;
 
     @EJB
+    CursoFacade cursoFacade;
+
+    @EJB
     GradoFacade gradoFacade;
 
     @EJB
-    CursoFacade cursoFacade;
+    MateriaFacade matFacade;
+
+    @EJB
+    DocenteMateriaFacade DMFacade;
 
     private Usuario usuario;
     private Usuario usuarioPrueba;
@@ -121,14 +131,20 @@ public class UsuarioControlador implements Serializable {
     private String selectedRol;
     private Acudiente acudiente;
     private Docente docente;
+    private Materia materia;
+    private DocenteMateria DM;
     private Estudiante estudiante;
     private List<Grado> gradoList;
     private List<Curso> cursoList;
     private List<Area> areaList;
     private List<Materia> materiaList;
+    private int[] materiasSeleccionadas;
     private String nivel = "0";
+    private String nivel2 = "0";
     private String grado = "0";
+    private String grado2 = "0";
     private Curso curso;
+    private int area = 0;
 
     //----- Variables para el olvido de contraseña ------------------\\
     private String Documento;
@@ -141,7 +157,7 @@ public class UsuarioControlador implements Serializable {
     //----- Variables para busqueda ---------------------------------\\
     private List<Usuario> usuList;
     private List<Usuario> estList;
-    private List<Usuario> estListSelect = new ArrayList<>();
+    private List<Estudiante> estListSelect = new ArrayList<>();
     private String numDoc = "";
     private String nombre = "";
     private String apellido = "";
@@ -176,7 +192,27 @@ public class UsuarioControlador implements Serializable {
             switch (selectedRol) {
                 case "Docente":
                     usuarioFacade.create(usuario);
+                    docente.setIdUsuario(usuario.getIdUsuario());
+                    docente.setEstado(1);
+                    docFacade.create(docente);
 
+                    for (int i = 0; i < materiasSeleccionadas.length; i++) {
+                        DM.setEstado(1);
+                        DM.setIdDocente(docente);
+                        materia = matFacade.findUnique(materiasSeleccionadas[i]);
+                        DM.setIdMateria(materia);
+                        DMFacade.create(DM);
+                    }
+
+                    this.docente = null;
+                    this.materiasSeleccionadas = null;
+                    this.DM = null;
+                    this.usuario = new Usuario();
+                    this.materia = null;
+                    this.area = 0;
+                    this.nivel2 = "";
+                    this.materiaList = null;
+                    
                     break;
                 case "Estudiante":
                     usuarioFacade.create(usuario);
@@ -196,11 +232,10 @@ public class UsuarioControlador implements Serializable {
                     acudiente.setEstado(1);
                     acuFacade.create(acudiente);
                     for (int i = 0; i < estListSelect.size(); i++) {
-                        estudiante = estFacade.EstudianteDoc(estListSelect.get(i));
+                        estudiante = estListSelect.get(i);
                         estudiante.setIdAcudiente(acudiente);
                         estFacade.edit(estudiante);
                         this.estudiante = null;
-
                     }
 
                     this.acudiente = null;
@@ -280,6 +315,7 @@ public class UsuarioControlador implements Serializable {
     public List<Usuario> buscarRol(int rol) {
         return usuarioFacade.busquedaRol(rol);
     }
+    
 
     //----- Edición de perfil ----------------------------------------------\\
     public String actualizarPerfil(Usuario usuarioActualizar) {
@@ -362,18 +398,18 @@ public class UsuarioControlador implements Serializable {
 
     //----- Actualización de Selects -----------------------------------\\
     public void addStudent(Usuario usuarioSeleccion) {
-        usuario = usuarioSeleccion;
-        estListSelect.add(usuario);
+        estudiante = estFacade.EstudianteDoc(usuarioSeleccion);
+        estListSelect.add(estudiante);
     }
 
     public void removeStudent(Usuario usuarioSeleccion) {
-        usuario = usuarioSeleccion;
-        estListSelect.remove(usuario);
+        estudiante = estFacade.EstudianteDoc(usuarioSeleccion);
+        estListSelect.remove(estudiante);
     }
 
     public List<Usuario> getListByEst() {
         if (estList == null) { //si es la primera vez que se accederá a la lista...
-            estList = usuarioFacade.consultarUsuario(3); //... actualizar el contenido
+            estList = null; //... actualizar el contenido
         }
         return estList; //devuelve la lista con los elementos encontrados
     }
@@ -398,6 +434,17 @@ public class UsuarioControlador implements Serializable {
         }
     }
 
+    public void cambioGrade2(AjaxBehaviorEvent event) {
+        if (!"0".equals(nivel2)) {
+            gradoList = new ArrayList<>();
+            for (Grado g : gradoFacade.consultarGrado(1)) {
+                if (g.getEducacion() == null ? nivel2 == null : g.getEducacion().equals(nivel2)) {
+                    gradoList.add(g);
+                }
+            }
+        }
+    }
+
     public void cambioCourse(AjaxBehaviorEvent event) {
         if (!"0".equals(grado)) {
             cursoList = new ArrayList<>();
@@ -406,6 +453,18 @@ public class UsuarioControlador implements Serializable {
                     cursoList.add(c);
                 }
             }
+        }
+    }
+
+    public void cambioMaterias(AjaxBehaviorEvent event) {
+        if (!"0".equals(nivel2) && area != 0) {
+            materiaList = new ArrayList<>();
+            for (Materia m : matFacade.consultarMateria(1)) {
+                if (m.getIdArea().getArea().getIdArea() == area && m.getIdArea().getGrado().getEducacion().equals(nivel2)) {
+                    materiaList.add(m);
+                }
+            }
+
         }
     }
 
@@ -960,11 +1019,11 @@ public class UsuarioControlador implements Serializable {
         this.rolSearch2 = rolSearch2;
     }
 
-    public List<Usuario> getEstListSelect() {
+    public List<Estudiante> getEstListSelect() {
         return estListSelect;
     }
 
-    public void setEstListSelect(List<Usuario> estListSelect) {
+    public void setEstListSelect(List<Estudiante> estListSelect) {
         this.estListSelect = estListSelect;
     }
 
@@ -1054,6 +1113,54 @@ public class UsuarioControlador implements Serializable {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public String getNivel2() {
+        return nivel2;
+    }
+
+    public void setNivel2(String nivel2) {
+        this.nivel2 = nivel2;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+
+    public DocenteMateria getDM() {
+        return DM;
+    }
+
+    public void setDM(DocenteMateria DM) {
+        this.DM = DM;
+    }
+
+    public String getGrado2() {
+        return grado2;
+    }
+
+    public void setGrado2(String grado2) {
+        this.grado2 = grado2;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public int[] getMateriasSeleccionadas() {
+        return materiasSeleccionadas;
+    }
+
+    public void setMateriasSeleccionadas(int[] materiasSeleccionadas) {
+        this.materiasSeleccionadas = materiasSeleccionadas;
     }
 
 }
