@@ -65,21 +65,25 @@ public class SesionControlador implements Serializable {
 
                 return "Resources/Pages/Dashboard?faces-redirect=true";
             } else {
-                alerta.setMensaje("AlertaPopUp('Usuario removido','El usuario ha sido retirado del sistema, por favor comuniquese con la institución.','error');");
+                if ("es".equals(lenguaje)) {
+                    alerta.setMensaje("AlertaPopUp('Usuario removido','El usuario ha sido retirado del sistema, por favor comuniquese con la institución.','error');");
+                }else{
+                    alerta.setMensaje("AlertaPopUp('User removed','The user has been removed from the system, please contact the institution.','error');");
+                }
                 return "";
             }
 
         } else {
-            if("es".equals(lenguaje)){
+            if ("es".equals(lenguaje)) {
                 alerta.setMensaje("AlertaPopUp('Error al iniciar sesión','El número de documento o contraseña son incorrectos, compruebe la información e intente nuevamente.','error');");
-            }else{
+            } else {
                 alerta.setMensaje("AlertaPopUp('Failed to login','The document number or password is incorrect, please check the information and try again.','error');");
             }
             return "";
         }
     }
-    
-    public void lenguaje(String lg){
+
+    public void lenguaje(String lg) {
         this.lenguaje = lg;
     }
 
@@ -314,7 +318,5 @@ public class SesionControlador implements Serializable {
     public void setLenguaje(String lenguaje) {
         this.lenguaje = lenguaje;
     }
-
-    
 
 }

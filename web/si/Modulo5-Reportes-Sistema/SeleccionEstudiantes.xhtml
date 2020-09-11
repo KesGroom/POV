@@ -4,32 +4,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Resources/css/6.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/2.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <title>Prueba</title>
     </h:head>
     <h:body class="scrollbarStyle">
-        <f:view>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
             <script>
                 #{alertasControlador.mensaje}
             </script>
             <h:form>
                 <div class="row">
-                    <div class="col s12"><label>Estudiantes vinculados</label></div>
+                    <div class="col s12"><label>#{Dash.tltVinculados}</label></div>
                     <div class="col s12 input-field">
                         <h:inputText class="solo-numero" value="#{usuarioControlador.numEst}" autocomplete="off">
                             <f:ajax event="keyup" listener="#{usuarioControlador.changeListEst}" render="Holi"></f:ajax>
                         </h:inputText>
-                        <span class="helper-text">Ingrese el número de documento del estudiante</span>
+                        <span class="helper-text">#{Dash.helpInput}</span>
                     </div>
 
                     <h:dataTable id="Holi" class="col s6" value="#{usuarioControlador.listByEst}" var="item">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Estudiantes existentes"/>
+                                <h:outputText value="#{Dash.tltExistentes}"/>
                             </f:facet>
                             <div class="chipStudent displayRowSbC">
                                 <div class="imgChip displayColCC">
@@ -41,7 +41,7 @@
                                     <h:outputText value="#{item.nombre}"/>
                                 </div>
                                 <div class="btnChip displayColCC">
-                                    <h:commandLink action="#{usuarioControlador.addStudent(item)}" title="Añadir"><ion-icon class="btnAddChip" name="add-circle"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{usuarioControlador.addStudent(item)}" title="#{Dash.txtAñadir}"><ion-icon class="btnAddChip" name="add-circle"></ion-icon></h:commandLink>
                                 </div>
                             </div>
 
@@ -50,7 +50,7 @@
                     <h:dataTable class="col s6" value="#{usuarioControlador.estListSelect}" var="item2">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Estudiantes agregados"/>
+                                <h:outputText value="#{Dash.tltAgregados}}"/>
                             </f:facet>
                             <div class="chipStudent displayRowSbC">
                                 <div class="imgChip displayColCC">
@@ -62,7 +62,7 @@
                                     <h:outputText value="#{item2.usuario.nombre}"/>
                                 </div>
                                 <div class="btnChip displayColCC">
-                                    <h:commandLink action="#{usuarioControlador.removeStudent(item2)}" title="Remover"><ion-icon class="btnRemoveChip" name="close-circle"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{usuarioControlador.removeStudent(item2)}" title="#{Dash.txtRemover}"><ion-icon class="btnRemoveChip" name="close-circle"></ion-icon></h:commandLink>
                                 </div>
                             </div>
                         </h:column>

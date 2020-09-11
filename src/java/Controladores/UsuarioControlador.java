@@ -145,6 +145,7 @@ public class UsuarioControlador implements Serializable {
     private String grado2 = "0";
     private Curso curso;
     private int area = 0;
+    private String lenguaje;
 
     //----- Variables para el olvido de contraseña ------------------\\
     private String Documento;
@@ -175,6 +176,10 @@ public class UsuarioControlador implements Serializable {
     private String estilo;
 
     //----- Methods ----------------------------------------------------------\\
+    public void lenguaje(String lg) {
+        this.lenguaje = lg;
+    }
+
     public String registrarUsu() {
         usuarioPrueba = usuarioFacade.validacionDoc(numDocumento);
         if (usuarioPrueba == null) {
@@ -212,7 +217,7 @@ public class UsuarioControlador implements Serializable {
                     this.area = 0;
                     this.nivel2 = "";
                     this.materiaList = null;
-                    
+
                     break;
                 case "Estudiante":
                     usuarioFacade.create(usuario);
@@ -247,8 +252,11 @@ public class UsuarioControlador implements Serializable {
                     usuarioFacade.create(usuario);
                     break;
             }
-
-            alerta.setMensaje("AlertaToast('Usuario registrado con éxito','success');");
+            if ("es".equals(lenguaje)) {
+                alerta.setMensaje("AlertaToast('Usuario registrado con éxito','success');");
+            } else {
+                alerta.setMensaje("AlertaToast('Registered user successfully','success');");
+            }
 
             //Reinicio del formulario
             this.usuario = new Usuario();
@@ -262,7 +270,11 @@ public class UsuarioControlador implements Serializable {
             return "RegistrarUsuario";
 
         } else {
-            alerta.setMensaje("AlertaPopUp('Usuario existente','El usuario que desea registrar ya existe en el sistema','error');");
+            if ("es".equals(lenguaje)) {
+                alerta.setMensaje("AlertaPopUp('Usuario existente','El usuario que desea registrar ya existe en el sistema','error');");
+            } else {
+                alerta.setMensaje("AlertaPopUp('Existing user','The user you want to register already exists in the system','error');");
+            }
             this.usuario = new Usuario();
             this.numDocumento = "";
             this.mesFN = 12;
@@ -280,10 +292,18 @@ public class UsuarioControlador implements Serializable {
         if (usuario.getIdRoles().getIdRoles() != 1) {
             usuario.setEstado(2);
             usuarioFacade.edit(usuario);
-            alerta.setMensaje("AlertaToast('El usuario " + usuario.getNombre() + " ha sido eliminado','success');");
+            if ("es".equals(lenguaje)) {
+                alerta.setMensaje("AlertaToast('El usuario " + usuario.getNombre() + " ha sido eliminado','success');");
+            } else {
+                alerta.setMensaje("AlertaToast('The user " + usuario.getNombre() + " has been deleted','success');");
+            }
             return "ListUsuario";
         } else {
-            alerta.setMensaje("AlertaPopUp('Error al eliminar','El usuario " + usuario.getNombre() + " no puede ser eliminado porque es un Coordinador','error');");
+            if ("es".equals(lenguaje)) {
+                alerta.setMensaje("AlertaPopUp('Error al eliminar','El usuario " + usuario.getNombre() + " no puede ser eliminado porque es un Coordinador','error');");
+            } else {
+                alerta.setMensaje("AlertaPopUp('Delete failed','The user " + usuario.getNombre() + " cannot be eliminated because he is a Coordinator','error');");
+            }
             return "ListUsuario";
         }
     }
@@ -315,7 +335,6 @@ public class UsuarioControlador implements Serializable {
     public List<Usuario> buscarRol(int rol) {
         return usuarioFacade.busquedaRol(rol);
     }
-    
 
     //----- Edición de perfil ----------------------------------------------\\
     public String actualizarPerfil(Usuario usuarioActualizar) {
@@ -1161,6 +1180,14 @@ public class UsuarioControlador implements Serializable {
 
     public void setMateriasSeleccionadas(int[] materiasSeleccionadas) {
         this.materiasSeleccionadas = materiasSeleccionadas;
+    }
+
+    public String getLenguaje() {
+        return lenguaje;
+    }
+
+    public void setLenguaje(String lenguaje) {
+        this.lenguaje = lenguaje;
     }
 
 }
