@@ -33,16 +33,17 @@ public class PqrsControladores implements Serializable {
         coordinador = new Usuario();
 
     }
-    
+
     //----- Attributes -------------------------------------------------------\\
     private Pqrs pqrs;
     private Acudiente acudiente;
     private Usuario coordinador;
     private Date fecha = new Date();
-    
+    private String lenguaje;
+
     @EJB
     PqrsFacade pqrsFacade;
-    
+
     @Inject
     AlertasControlador alerta;
 
@@ -53,11 +54,19 @@ public class PqrsControladores implements Serializable {
         pqrs.setFecha(fecha);
         pqrsFacade.create(pqrs);
         pqrs = new Pqrs();
-        alerta.setMensaje("AlertaToast('¡PQRS registrada con exito!','success');");
+        if ("es".equals(lenguaje)) {
+            alerta.setMensaje("AlertaToast('¡PQRS registrada con éxito!','success');");
+        } else {
+            alerta.setMensaje("AlertaToast('QCCS successfully registered!','success');");
+        }
     }
 
     public List<Pqrs> consultarPqrs() {
         return pqrsFacade.consultarPQRS(1);
+    }
+
+    public void lenguaje(String lg) {
+        this.lenguaje = lg;
     }
 
     public String preActualizar(Pqrs pqrsActualizar) {
@@ -70,7 +79,11 @@ public class PqrsControladores implements Serializable {
     public String preActualizarAcu(Pqrs pqrsActualizar) {
         pqrs = pqrsActualizar;
         acudiente = pqrsActualizar.getIdAcudiente();
-        alerta.setMensaje("AlertaToast('¡PQRS actualizada con exito!','success');");
+        if ("es".equals(lenguaje)) {
+            alerta.setMensaje("AlertaToast('¡PQRS actualizada con éxito!','success');");
+        } else {
+            alerta.setMensaje("AlertaToast('QCCS successfully updated!','success');");
+        }
         return "ActualizarPQRS";
     }
 
@@ -93,7 +106,11 @@ public class PqrsControladores implements Serializable {
         pqrs = pqrsEliminar;
         pqrs.setEstado(2);
         pqrsFacade.edit(pqrs);
-        alerta.setMensaje("AlertaToast('¡PQRS eliminada con exito!','success');");
+        if ("es".equals(lenguaje)) {
+            alerta.setMensaje("AlertaToast('¡PQRS eliminada con éxito!','success');");
+        } else {
+            alerta.setMensaje("AlertaToast('QCCS successfully eliminated!','success');");
+        }
     }
 
     public List<Pqrs> consultarCategoria(String cat) {
@@ -136,4 +153,13 @@ public class PqrsControladores implements Serializable {
     public void setAcudiente(Acudiente acudiente) {
         this.acudiente = acudiente;
     }
+
+    public String getLenguaje() {
+        return lenguaje;
+    }
+
+    public void setLenguaje(String lenguaje) {
+        this.lenguaje = lenguaje;
+    }
+
 }
