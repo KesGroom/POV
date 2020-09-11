@@ -23,9 +23,39 @@
         </resource-bundle>
         <resource-bundle>
             <base-name>
+                properties.ListUsuario
+            </base-name>
+            <var>ListUsuario</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
                 properties.PQRS
             </base-name>
             <var>PQRS</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.RegistrarRol
+            </base-name>
+            <var>RegistrarRol</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.RegistrarUsuario
+            </base-name>
+            <var>RegistrarUsuario</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Roles
+            </base-name>
+            <var>Roles</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.UsuariosActualizar
+            </base-name>
+            <var>UsuariosActualizar</var>
         </resource-bundle>
     </application>
 </faces-config>

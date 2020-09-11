@@ -27,19 +27,19 @@
                 #{alertasControlador.mensaje}
             </script>
             <div class="Bread">
-                <a href="">Principal</a>
+                <a href="">#{Roles.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="Usuarios.xhtml">Usuarios</a>
+                <a href="Usuarios.xhtml">#{Roles.bcUsuarios}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="Roles.xhtml">Roles y Tipo de documento</a>
+                <a href="Roles.xhtml">#{Roles.bcRolesTipoDoc}</a>
             </div>
 
             <main>
 
                 <div class="contenedorTitulos">
-                    <a href="Roles.xhtml" class="titulo">Roles</a>
+                    <a href="Roles.xhtml" class="titulo">#{Roles.tilteRoles}</a>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
-                    <a href="ListUsuario.xhtml" class="subTitulo">Usuarios</a>
+                    <a href="ListUsuario.xhtml" class="subTitulo">#{Roles.titleUsuarios}</a>
 
                 </div>
                 <div class="displayRowSbC" style="width: 100%; height: 100vh; border: 1px solid black; padding: 1rem;">
@@ -47,7 +47,7 @@
                         <h:dataTable class="" value="#{rolControlador.consultarRol()}"  var="Rol">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Nombre del Rol"/>
+                                    <h:outputText value="#{Roles.txtNombreRol}"/>
                                 </f:facet>
                                 <h:outputText value="#{Rol.rol}"/>
                             </h:column>

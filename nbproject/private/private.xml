@@ -49,37 +49,6 @@
             </bookmark>
         </file>
         <file>
-            <url>web/Resources/css/1.css</url>
-            <bookmark id="7">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="8">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="6">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="13">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>web/si/Modulo5-Reportes-Sistema/Usuarios.xhtml</url>
-            <bookmark id="15">
-                <name/>
-                <line>43</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>src/java/Controladores/UsuarioControlador.java</url>
             <bookmark id="10">
                 <name/>
@@ -112,8 +81,43 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>web/Resources/css/1.css</url>
+            <bookmark id="7">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+            <bookmark id="8">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+            <bookmark id="6">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+            <bookmark id="13">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>web/si/Modulo5-Reportes-Sistema/Usuarios.xhtml</url>
+            <bookmark id="15">
+                <name/>
+                <line>43</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/farma/Documents/GitHub/POV/web/si/Modulo5-Reportes-Sistema/UsuariosActualizar.xhtml</file>
+            <file>file:/C:/Users/farma/Documents/GitHub/POV/src/java/properties/UsuariosActualizar_en.properties</file>
+            <file>file:/C:/Users/farma/Documents/GitHub/POV/src/java/properties/UsuariosActualizar.properties</file>
+        </group>
     </open-files>
 </project-private>

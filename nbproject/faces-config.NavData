@@ -2,11 +2,10 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="si/Modulo3-Citas-PQRS/PQRS-Respuesta/ResponderPQRS.xhtml" x="17145" y="32" zoom="true"/>
         <Node id="si/Modulo1-RegistroAcademico/PlanMejoramiento.xhtml" x="4335" y="32" zoom="true"/>
+        <Node id="si/Modulo3-Citas-PQRS/PQRS-Respuesta/ResponderPQRS.xhtml" x="17145" y="32" zoom="true"/>
         <Node id="si/Modulo5-Reportes-Sistema/Categoria.xhtml" x="8062" y="32" zoom="true"/>
         <Node id="si/Modulo1-RegistroAcademico/PlanillaNotas.xhtml" x="1789" y="32" zoom="true"/>
-        <Node id="si/Modulo5-Reportes-Sistema/Usuarios.xhtml" x="13015" y="32" zoom="true"/>
         <Node id="si/Modulo5-Reportes-Sistema/RolActualizar.xhtml" x="14336" y="32" zoom="true"/>
         <Node id="si/Modulo4-ServicioSocial/Consulta/ZonasSS.xhtml" x="854" y="32" zoom="true"/>
         <Node id="si/Modulo5-Reportes-Sistema/Roles.xhtml" x="12154" y="32" zoom="true"/>
@@ -35,7 +34,6 @@
         <Node id="si/Modulo1-RegistroAcademico/Consulta/Actividades.xhtml" x="15588" y="32" zoom="true"/>
         <Node id="si/Modulo1-RegistroAcademico/Actividades.xhtml" x="12563" y="32" zoom="true"/>
         <Node id="si/Modulo2-RegistroConvivencial/PlanillaAsistencia.xhtml" x="16651" y="32" zoom="true"/>
-        <Node id="si/Modulo5-Reportes-Sistema/Tipos.xhtml" x="11280" y="32" zoom="true"/>
         <Node id="si/Modulo1-RegistroAcademico/ConsultarNotas.xhtml" x="9524" y="32" zoom="true"/>
         <Node id="si/Modulo5-Reportes-Sistema/UsuariosActualizar.xhtml" x="5296" y="32" zoom="true"/>
         <Node id="si/Modulo4-ServicioSocial/Registro/BitacoraSS.xhtml" x="13866" y="32" zoom="true"/>

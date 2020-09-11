@@ -22,16 +22,16 @@
         <title>Registrar usuario</title>
     </h:head>
     <h:body class="scrollbarStyle">
-        <f:view>
+        <f:view  locale="#{lenguajeControlador.languageSelected}">
             <script>
                 #{alertasControlador.mensaje}
             </script>
             <div class="Bread">
-                <a href="../../Resources/Pages/VistaInicialDash.xhtml">Inicio</a>
+                <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{RegistrarUsuario.bcInicio}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="ListUsuario.xhtml">Usuarios</a>
+                <a href="ListUsuario.xhtml">#{RegistrarUsuario.bcUsuarios}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="">Registrar usuario</a>
+                <a href="">#{RegistrarUsuario.bcResgisterUs}</a>
             </div>
             <main>
                 <div class="contenedorFormulario displayRowSbC">
@@ -40,53 +40,53 @@
                             <div class="col s12 m12 l4" style="padding: 0.5rem;">
                                 <div class="row">
                                     <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
-                                        <p style="font-size: 1em; font-weight: bold;">Información personal</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
+                                        <p style="font-size: 1em; font-weight: bold;">#{RegistrarUsuario.txtPersonalInfo}</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
                                     </div>
-                                    <div class="col s12"><label>Tipo de documento</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblTipoDoc}</label></div>
                                     <div class="input-field col s12">
                                         <h:selectOneMenu class="browser-default" id="idTipo" value="#{usuarioControlador.tipo.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
                                             <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItem itemLabel="Tipo de documento" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                            <f:selectItem itemLabel="#{RegistrarUsuario.opcTipoDoc}" itemValue="0" noSelectionOption="true"></f:selectItem>
                                             <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
                                         </h:selectOneMenu>
                                     </div>
-                                    <div class="col s12"><label>Número de documento</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblNumDoc}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="numerodeDocumento" class="solo-numero" value="#{usuarioControlador.numDocumento}" title="Numero de Documento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Nombre</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblNombre}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Apellido</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblApellido}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Fecha de nacimiento</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblBirthdate}</label></div>
                                     <div class="input-field col s12 displayRowSbC">
                                         <div class="row">
                                             <div class="col s3">
-                                                <h:inputText autocomplete="off" a:placeholder="Día" class="solo-numero" maxlength="2" value="#{usuarioControlador.diaFN}" title="Día de nacimiento" required="true"/>
+                                                <h:inputText autocomplete="off" a:placeholder="Día" class="solo-numero" maxlength="2" value="#{usuarioControlador.diaFN}" title="#{RegistrarUsuario.txtBirthday}" required="true"/>
                                             </div>
                                             <div class="col s6">
                                                 <h:selectOneMenu class="browser-default" required="true" value="#{usuarioControlador.mesFN}">
-                                                    <f:selectItem itemLabel="Mes" itemValue="12" noSelectionOption="true"></f:selectItem>
-                                                    <f:selectItem itemLabel="Enero" itemValue="0"></f:selectItem>
-                                                    <f:selectItem itemLabel="Febrero" itemValue="1"></f:selectItem>
-                                                    <f:selectItem itemLabel="Marzo" itemValue="2"></f:selectItem>
-                                                    <f:selectItem itemLabel="Abril" itemValue="3"></f:selectItem>
-                                                    <f:selectItem itemLabel="Mayo" itemValue="4"></f:selectItem>
-                                                    <f:selectItem itemLabel="Junio" itemValue="5"></f:selectItem>
-                                                    <f:selectItem itemLabel="Julio" itemValue="6"></f:selectItem>
-                                                    <f:selectItem itemLabel="Agosto" itemValue="7"></f:selectItem>
-                                                    <f:selectItem itemLabel="Septiembre" itemValue="8"></f:selectItem>
-                                                    <f:selectItem itemLabel="Octubre" itemValue="9"></f:selectItem>
-                                                    <f:selectItem itemLabel="Noviembre" itemValue="10"></f:selectItem>
-                                                    <f:selectItem itemLabel="Diciembre" itemValue="11"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcMes}" itemValue="12" noSelectionOption="true"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcEne}" itemValue="0"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcFeb}" itemValue="1"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcMar}" itemValue="2"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcAbr}" itemValue="3"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcMay}" itemValue="4"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcJun}" itemValue="5"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcJul}" itemValue="6"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcAgo}" itemValue="7"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcSep}" itemValue="8"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcOct}" itemValue="9"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcNov}" itemValue="10"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcDec}" itemValue="11"></f:selectItem>
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="col s3">
-                                                <h:inputText autocomplete="off" a:placeholder="Año" class="solo-numero" maxlength="4" value="#{usuarioControlador.anioFN}" title="Año de nacimiento" required="true"/>
+                                                <h:inputText autocomplete="off" a:placeholder="Año" class="solo-numero" maxlength="4" value="#{usuarioControlador.anioFN}" title="#{RegistrarUsuario.txtYearBirth}" required="true"/>
                                             </div>
                                         </div>
                                     </div>
@@ -95,32 +95,32 @@
                             </div>
                             <div class="col s12 m12 l4" style="padding: 0.5rem;">
                                 <div class="row">
-                                    <div class="col s12"><label>Género</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblGenero}</label></div>
                                     <div class="input-field col s12">
                                         <h:selectOneMenu class="browser-default" value="#{usuarioControlador.usuario.genero}" id="genero">
-                                            <f:selectItem itemValue="0" itemLabel="Género" noSelectionOption="true"></f:selectItem>
-                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino"></f:selectItem>
-                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"></f:selectItem>
+                                            <f:selectItem itemValue="0" itemLabel="#{RegistrarUsuario.opcGenero}" noSelectionOption="true"></f:selectItem>
+                                            <f:selectItem itemValue="#{RegistrarUsuario.opcFemenino}" itemLabel="Femenino"></f:selectItem>
+                                            <f:selectItem itemValue="#{RegistrarUsuario.opcMasculino}" itemLabel="Masculino"></f:selectItem>
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
-                                        <p style="font-size: 1em; font-weight: bold;">Información de contacto</p>
+                                        <p style="font-size: 1em; font-weight: bold;">#{RegistrarUsuario.txtContactInfo}</p>
                                         <hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
                                     </div>
 
-                                    <div class="col s12"><label>Dirección</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblDireccion}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Dirección" required="true" requiredMessage="The Direccion field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Celular</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblCelular}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="celular" class="solo-numero" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Telefono fijo</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lbllandline}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="telefonoFijo" class="solo-numero" value="#{usuarioControlador.usuario.telefonoFijo}" title="Teléfono Fijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
                                     </div>
-                                    <div class="col s12"><label>Correo electrónico</label></div>
+                                    <div class="col s12"><label>#{RegistrarUsuario.lblEmail}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" a:type="email" id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="Correo electrónico" required="true" requiredMessage="The CorreoElectronico field is required."/>
                                     </div>
@@ -133,7 +133,7 @@
                             <div class="col s12 m12 l4" style="padding: 0.5rem;">
                                 <div class="row">
                                     <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
-                                        <p style="font-size: 1em; font-weight: bold;">Configuración de usuario</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
+                                        <p style="font-size: 1em; font-weight: bold;">#{RegistrarUsuario.txtUsSettings}</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
                                     </div>
                                     <div class="input-field col s12">
                                         <h:selectOneMenu class="browser-default prueba" id="idRoles" value="#{usuarioControlador.selectedRol}" required="true" requiredMessage="The IdRoles field is required.">
@@ -156,10 +156,10 @@
                                         <div class="Oculto col s12" id="Estudiante">
 
                                             <h:selectOneMenu value="#{usuarioControlador.nivel}" class="browser-default">
-                                                <f:selectItem itemLabel="Nivel educativo" itemValue="0" noSelectionOption="true"></f:selectItem>
-                                                <f:selectItem itemLabel="Primaria" itemValue="Primaria"></f:selectItem>
-                                                <f:selectItem itemLabel="Secundaria" itemValue="Secundaria"></f:selectItem>
-                                                <f:selectItem itemLabel="Media" itemValue="Media"></f:selectItem>
+                                                <f:selectItem itemLabel="#{RegistrarUsuario.opcEduLevel}" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                                <f:selectItem itemLabel="#{RegistrarUsuario.opcPri}" itemValue="Primaria"></f:selectItem>
+                                                <f:selectItem itemLabel="#{RegistrarUsuario.opcSec}" itemValue="Secundaria"></f:selectItem>
+                                                <f:selectItem itemLabel="#{RegistrarUsuario.opcMed}" itemValue="Media"></f:selectItem>
                                                 <f:ajax event="change" listener="#{usuarioControlador.cambioGrade}" render="gradoSelect"></f:ajax>
                                             </h:selectOneMenu>
                                             <h:selectOneMenu id="gradoSelect" value="#{usuarioControlador.grado}" class="browser-default">
@@ -180,19 +180,19 @@
                                         <div class="Oculto col s12" id="Docente">
                                             <div class="row">
                                                 <h:selectOneMenu class="browser-default col s12" value="#{usuarioControlador.area}">
-                                                    <f:selectItem itemLabel="Area" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcArea}" itemValue="0" noSelectionOption="true"></f:selectItem>
                                                     <f:selectItems value="#{areaGradoControlador.consultarArea()}" var="ar" itemValue="#{ar.idArea}" itemLabel="#{ar.area}"></f:selectItems>
                                                     <f:ajax event="change" listener="#{usuarioControlador.cambioMaterias}" render="materias"></f:ajax>
                                                 </h:selectOneMenu>
                                                 <h:selectOneMenu value="#{usuarioControlador.nivel2}" class="browser-default col s12">
-                                                    <f:selectItem itemLabel="Nivel educativo" itemValue="0" noSelectionOption="true"></f:selectItem>
-                                                    <f:selectItem itemLabel="Primaria" itemValue="Primaria"></f:selectItem>
-                                                    <f:selectItem itemLabel="Secundaria" itemValue="Secundaria"></f:selectItem>
-                                                    <f:selectItem itemLabel="Media" itemValue="Media"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcEduLevel}" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcPri}" itemValue="Primaria"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcSec}" itemValue="Secundaria"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcMed}" itemValue="Media"></f:selectItem>
                                                     <f:ajax event="change" listener="#{usuarioControlador.cambioMaterias}" render="materias"></f:ajax>
                                                 </h:selectOneMenu>
 
-                                                <label class="col s4 displayRowCC" style="margin-top: 3rem;">Materias</label>
+                                                <label class="col s4 displayRowCC" style="margin-top: 3rem;">#{RegistrarUsuario.lblMateria}</label>
                                                 <h:selectManyCheckbox id="materias" value="#{usuarioControlador.materiasSeleccionadas}" layout="pageDirection"  class="browser-default radioTable col s8">
                                                     <f:selectItems value="#{usuarioControlador.materiaList}" var="mat" itemLabel="#{mat.materia} - #{mat.idArea.grado.grado}" itemValue="#{mat.idMateria}"></f:selectItems>
                                                 </h:selectManyCheckbox>

@@ -13,46 +13,46 @@
     </h:head>
     <h:body>
         <div class="Bread">
-            <a href="../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+            <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{UsuariosActualizar.bcPrincipal}</a>
             <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="Usuarios.xhtml">Lista de usuarios</a>
+            <a href="Usuarios.xhtml">#{UsuariosActualizar.bcListaUser}</a>
             <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="">Actualizar usuario</a>
+            <a href="">#{UsuariosActualizar.bcUpdateUser}</a>
         </div>
         <main style="margin-top: 2rem;">
-            <f:view>
+            <f:view locale="#{lenguajeControlador.languageSelected}">
 
 
                 <h:form>
                     <p:panelGrid columns="2">
-                        <p:outputLabel value="Número de Documento:" for="numerodeDocumento" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblNumDoc}" for="numerodeDocumento" />
                         <p:inputText id="numerodeDocumento" value="#{usuarioControlador.usuario.numerodeDocumento}" title="NumerodeDocumento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
-                        <p:outputLabel value="Nombre:" for="nombre" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblNombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
-                        <p:outputLabel value="Apellido:" for="apellido" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblApellido}" for="apellido" />
                         <p:inputText id="apellido" value="#{usuarioControlador.usuario.apellido}" title="Apellido" required="true" requiredMessage="The Apellido field is required."/>
-                        <p:outputLabel value="Fecha de Nacimiento:" for="fechadeNacimiento" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblBirthDate}" for="fechadeNacimiento" />
                         <p:inputText id="fechadeNacimiento" type="date" value="#{usuarioControlador.usuario.fechadeNacimiento}" title="FechadeNacimiento" required="true" requiredMessage="The FechadeNacimiento field is required.">
                             <f:convertDateTime pattern="yyyy-MM-dd" />
                         </p:inputText>
-                        <p:outputLabel value="Dirección:" for="direccion" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblDireccion}" for="direccion" />
                         <p:inputText id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Direccion" required="true" requiredMessage="The Direccion field is required."/>
-                        <p:outputLabel value="Celular:" for="celular" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblCelular}" for="celular" />
                         <p:inputText id="celular" value="#{usuarioControlador.usuario.celular}" title="Celular" required="true" requiredMessage="The Celular field is required."/>
-                        <p:outputLabel value="Telefono Fijo:" for="telefonoFijo" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblTelefono}" for="telefonoFijo" />
                         <p:inputText id="telefonoFijo" value="#{usuarioControlador.usuario.telefonoFijo}" title="TelefonoFijo" required="true" requiredMessage="The TelefonoFijo field is required."/>
-                        <p:outputLabel value="Género:" for="genero" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblGenero}" for="genero" />
                         <p:inputText id="genero" value="#{usuarioControlador.usuario.genero}" title="Genero" required="true" requiredMessage="The Genero field is required."/>
-                        <p:outputLabel value="Correo Electrónico:" for="correoElectronico" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblEmail}" for="correoElectronico" />
                         <p:inputText id="correoElectronico" value="#{usuarioControlador.usuario.correoElectronico}" title="CorreoElectronico" required="true" requiredMessage="The CorreoElectronico field is required."/>
-                        <p:outputLabel value="Contraseña:" for="contrasenna" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblContraseña}" for="contrasenna" />
                         <p:inputText id="contrasenna" value="#{usuarioControlador.usuario.contrasenna}" title="Contrasenna" required="true" requiredMessage="The Contrasenna field is required."/>
-                        <p:outputLabel value="Rol:" for="idRoles" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblRol}" for="idRoles" />
                         <p:selectOneMenu id="idRoles" value="#{usuarioControlador.rol.idRoles}" required="true" requiredMessage="The IdRoles field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.idRoles}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="Tipo de documento:" for="idTipo" />
+                        <p:outputLabel value="#{UsuariosActualizar.lblTipoDoc}" for="idTipo" />
                         <p:selectOneMenu id="idTipo" value="#{usuarioControlador.usuario.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
                             <!-- TODO: update below reference to list of available items-->
                             <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
