@@ -23,21 +23,27 @@
         </resource-bundle>
         <resource-bundle>
             <base-name>
+                properties.ListUsuario
+            </base-name>
+            <var>ListUsuario</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
                 properties.PQRS
             </base-name>
             <var>PQRS</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>
-                properties.Dash
+                properties.RegistrarRol
             </base-name>
-            <var>Dash</var>
+            <var>RegistrarRol</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>
-                properties.ListUsuario
+                properties.RegistrarUsuario
             </base-name>
-            <var>ListUsuario</var>
+            <var>RegistrarUsuario</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>
@@ -47,9 +53,27 @@
         </resource-bundle>
         <resource-bundle>
             <base-name>
-                properties.RegistroUsuario
+                properties.UsuariosActualizar
             </base-name>
-            <var>RegistrarUsuario</var>
+            <var>UsuariosActualizar</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.ListaNoticias
+            </base-name>
+            <var>ListaNoticias</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Noticias
+            </base-name>
+            <var>Noticias</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Academica
+            </base-name>
+            <var>Academica</var>
         </resource-bundle>
     </application>
 </faces-config>

@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
         <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
@@ -17,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <!-- Se incluye el icono del sistema -->
-        <link href="../../Resources/css/2.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/6.css" rel="stylesheet" type="text/css"/>
         <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png"/>
         <!-- Nombre que se visualizará en el navegador -->
         <title>Registrar usuario</title>
@@ -27,12 +26,6 @@
             <script>
                 #{alertasControlador.mensaje}
             </script>
-            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
-                #{usuarioControlador.lenguaje("es")}
-            </c:if>
-            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
-                #{usuarioControlador.lenguaje("en")}
-            </c:if>
             <div class="Bread">
                 <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{RegistrarUsuario.bcInicio}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -89,7 +82,7 @@
                                                     <f:selectItem itemLabel="#{RegistrarUsuario.opcSep}" itemValue="8"></f:selectItem>
                                                     <f:selectItem itemLabel="#{RegistrarUsuario.opcOct}" itemValue="9"></f:selectItem>
                                                     <f:selectItem itemLabel="#{RegistrarUsuario.opcNov}" itemValue="10"></f:selectItem>
-                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcDic}" itemValue="11"></f:selectItem>
+                                                    <f:selectItem itemLabel="#{RegistrarUsuario.opcDec}" itemValue="11"></f:selectItem>
                                                 </h:selectOneMenu>
                                             </div>
                                             <div class="col s3">
@@ -106,8 +99,8 @@
                                     <div class="input-field col s12">
                                         <h:selectOneMenu class="browser-default" value="#{usuarioControlador.usuario.genero}" id="genero">
                                             <f:selectItem itemValue="0" itemLabel="#{RegistrarUsuario.opcGenero}" noSelectionOption="true"></f:selectItem>
-                                            <f:selectItem itemValue="Femenino" itemLabel="#{RegistrarUsuario.opcFemenino}"></f:selectItem>
-                                            <f:selectItem itemValue="Masculino" itemLabel="#{RegistrarUsuario.opcMasculino}"></f:selectItem>
+                                            <f:selectItem itemValue="#{RegistrarUsuario.opcFemenino}" itemLabel="Femenino"></f:selectItem>
+                                            <f:selectItem itemValue="#{RegistrarUsuario.opcMasculino}" itemLabel="Masculino"></f:selectItem>
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
@@ -117,7 +110,7 @@
 
                                     <div class="col s12"><label>#{RegistrarUsuario.lblDireccion}</label></div>
                                     <div class="input-field col s12">
-                                        <h:inputText autocomplete="off" id="direccion" value="#{usuarioControlador.usuario.direccion}" title="#{RegistrarUsuario.txtDireccion}" required="true" requiredMessage="The Direccion field is required."/>
+                                        <h:inputText autocomplete="off" id="direccion" value="#{usuarioControlador.usuario.direccion}" title="Dirección" required="true" requiredMessage="The Direccion field is required."/>
                                     </div>
                                     <div class="col s12"><label>#{RegistrarUsuario.lblCelular}</label></div>
                                     <div class="input-field col s12">
@@ -145,7 +138,7 @@
                                     <div class="input-field col s12">
                                         <h:selectOneMenu class="browser-default prueba" id="idRoles" value="#{usuarioControlador.selectedRol}" required="true" requiredMessage="The IdRoles field is required.">
                                             <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItem itemLabel="#{RegistrarUsuario.opcUserRole}" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                            <f:selectItem itemLabel="Rol del usuario" itemValue="0" noSelectionOption="true"></f:selectItem>
                                             <f:selectItems value="#{rolControlador.consultarRol()}" var="rola" itemLabel="#{rola.rol}" itemValue="#{rola.rol}"/>
                                         </h:selectOneMenu>
                                     </div>
@@ -156,7 +149,7 @@
                                                     <iframe class="contenedorChip scrollbarStyle" frameborder="0" src="SeleccionEstudiantes.xhtml"></iframe>
                                                 </div>
                                                 <div class="botonesControl col s12">
-                                                    <h:commandButton action="#{usuarioControlador.registrarUsu()}" value="#{RegistrarUsuario.btnRegister}"></h:commandButton>
+                                                    <h:commandButton action="#{usuarioControlador.registrarUsu()}" value="Registrar"></h:commandButton>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,13 +168,13 @@
                                                 <f:ajax event="change" listener="#{usuarioControlador.cambioCourse}" render="courses"></f:ajax>
                                             </h:selectOneMenu>
                                             <h:selectOneMenu id="courses" value="#{usuarioControlador.curso.idCurso}" class="browser-default">
-                                                <f:selectItem itemLabel="#{RegistrarUsuario.opcCurso}" itemValue="0" noSelectionOption="true"></f:selectItem>
+                                                <f:selectItem itemLabel="Curso" itemValue="0" noSelectionOption="true"></f:selectItem>
                                                 <f:selectItems value="#{usuarioControlador.cursoList}" var="cu" itemValue="#{cu.idCurso}" itemLabel="#{cu.curso} | Estudiantes actuales: #{estudianteControladores.countStudent(cu.idCurso)}"></f:selectItems>
                                             </h:selectOneMenu>
 
 
                                             <div class="botonesControl">
-                                                <h:commandButton value="#{RegistrarUsuario.btnRegister}" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
+                                                <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
                                             </div>
                                         </div>
                                         <div class="Oculto col s12" id="Docente">
@@ -204,13 +197,13 @@
                                                     <f:selectItems value="#{usuarioControlador.materiaList}" var="mat" itemLabel="#{mat.materia} - #{mat.idArea.grado.grado}" itemValue="#{mat.idMateria}"></f:selectItems>
                                                 </h:selectManyCheckbox>
                                                 <div class="botonesControl col s12" style="margin-top: 5rem;">
-                                                    <h:commandButton value="#{RegistrarUsuario.btnRegister}" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
+                                                    <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="Oculto col s12" id="anything">
                                             <div class="botonesControl">
-                                                <h:commandButton value="#{RegistrarUsuario.btnRegister}" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
+                                                <h:commandButton value="Registrar" styleClass=" red darken-4 waves-effect waves-light" action="#{usuarioControlador.registrarUsu()}"></h:commandButton>
                                             </div>
                                         </div>
                                     </div>

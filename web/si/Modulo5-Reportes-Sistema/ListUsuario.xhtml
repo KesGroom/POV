@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -19,12 +18,6 @@
             <script>
                 #{alertasControlador.mensaje}
             </script>
-            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
-                #{usuarioControlador.lenguaje("es")}
-            </c:if>
-            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
-                #{usuarioControlador.lenguaje("en")}
-            </c:if>
             <div class="Bread">
                 <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{ListUsuario.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -37,7 +30,7 @@
                 </a>
                 <ul>
                     <li><a title="#{ListUsuario.titleAddUser}" href="RegistrarUsuario.xhtml" class="btn-floating red"><i class="material-icons">person_add</i></a></li>
-                    <li><a title="#{ListUsuario.titleAddRole}" href="RegistrarRol.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="#{ListUsuario.titleAddUser}" href="RegistrarRol.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
                     <li><a title="#{ListUsuario.titleTipoDoc}" class="btn-floating green"><i class="material-icons">credit_card</i></a></li>
                     <li><a title="#{ListUsuario.titleRecData}" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
                 </ul>
