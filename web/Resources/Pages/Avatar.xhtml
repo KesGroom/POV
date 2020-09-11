@@ -2,65 +2,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link href="../css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/Perfil.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/materialize.POV.css" rel="stylesheet" type="text/css"/>
         <h:form>
             <title>Cambiar avatar de #{sesionControlador.usuario.nombre}</title>
         </h:form>
     </h:head>
     <h:body>
-        <div class="Bread">
-            <a href="VistaInicialDash.xhtml">Principal</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="Perfil.xhtml">Perfil de #{sesionControlador.usuario.nombre}</a>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <a href="">Cambiar avatar de #{sesionControlador.usuario.nombre}</a>
-        </div>
-        <main>
-            <h:form id="CambioAvatar">
-                <h4>Cambiar Avatar</h4>
-                <div class="ContenedorTotal">
-                    <h6>Selección actual:</h6>
-                    <div class="ContenedorFotoActual">                    
-                        <img class="FotoPerfil" src="#{usuarioControlador.usuario.foto}"></img>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
+            <div class="Bread">
+                <a href="VistaInicialDash.xhtml">#{PQRS.bcPrincipal}</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="Perfil.xhtml">#{Dash.bcPerfil} #{sesionControlador.usuario.nombre}</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="">#{Dash.bcCamAvatar} #{sesionControlador.usuario.nombre}</a>
+            </div>
+            <main>
+                <h:form id="CambioAvatar">
+                    <h4>#{Dash.txtCamAvatar}</h4>
+                    <div class="ContenedorTotal">
+                        <h6>#{Dash.txtSelect}</h6>
+                        <div class="ContenedorFotoActual">                    
+                            <img class="FotoPerfil" src="#{sesionControlador.usuario.foto}"></img>
+                        </div>
                     </div>
-                </div>
-                <div class="contenedorCambio">
-                    <div class="Opciones">
-                        <h:panelGrid columns="1" style="margin-left:10px" cellpadding="3">
-                            <p:outputLabel value="Opciones" class="black-text center tituloOpciones" for="Opcs"></p:outputLabel>
-                            <p:selectOneRadio id="Opcs" value="#{usuarioControlador.usuario.foto}">
-                                <f:selectItem itemLabel="Por defecto" itemValue="http://imgfz.com/i/pRBCSy5.png">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="C3PO" itemValue="http://imgfz.com/i/jfIclPY.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="R2D2" itemValue="http://imgfz.com/i/3GbEU5I.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="Falcon" itemValue="http://imgfz.com/i/3VMeZUw.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="Trooper" itemValue="http://imgfz.com/i/uEDoX75.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="Este Vato" itemValue="http://imgfz.com/i/LfDdXAY.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="Darth" itemValue="http://imgfz.com/i/LfDdXAY.jpeg">
-                                </f:selectItem>
-                                <f:selectItem itemLabel="Death Star" itemValue="http://imgfz.com/i/jVU3sDH.jpeg">
-                                </f:selectItem>
-                                <p:ajax listener="#{usuarioControlador.fotoPrueba()}" process=":CambioAvatar:Opcs" update=":CambioAvatar:imgMuestra"></p:ajax>
-                            </p:selectOneRadio>
-                        </h:panelGrid>
+                    <div class="contenedorCambio">
+                        <div class="Opciones">
+                            <h:outputLabel value="#{Dash.txtOpciones}" class="black-text center tituloOpciones" for="Opcs"></h:outputLabel>
+                            <div class="Radio optionContent scrollbarStyle" style="height: 12rem; overflow: scroll; width: 25rem;">
+                                <h:selectOneRadio class="row" id="Opcs" layout="pageDirection" value="#{usuarioControlador.avatar}">
+                                    
+                                    <f:selectItem class="col s6" itemLabel="Por defecto" itemValue="http://imgfz.com/i/pRBCSy5.png">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="C3PO" itemValue="http://imgfz.com/i/jfIclPY.jpeg">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="R2D2" itemValue="http://imgfz.com/i/3GbEU5I.jpeg">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="Falcon" itemValue="http://imgfz.com/i/3VMeZUw.jpeg">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="Trooper" itemValue="http://imgfz.com/i/uEDoX75.jpeg">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="Darth" itemValue="http://imgfz.com/i/LfDdXAY.jpeg">
+                                    </f:selectItem>
+                                    <f:selectItem class="col s6" itemLabel="Death Star" itemValue="http://imgfz.com/i/jVU3sDH.jpeg">
+                                    </f:selectItem>
+                                    <f:ajax event="change" listener="#{usuarioControlador.fotoPrueba()}" render="imgMuestra"></f:ajax>
+                                </h:selectOneRadio>
+                            </div>
+                        </div>
+                        <div class="imgButton">
+                            <h:graphicImage class="imgMuestra" id="imgMuestra" url="#{usuarioControlador.fotoSeleccionada}"></h:graphicImage><br/>
+                            <h:commandButton value="#{Dash.btnGuardar}" action="#{usuarioControlador.actualizarFoto()}"></h:commandButton>
+                        </div>
                     </div>
-                    <div class="imgButton">
-                        <p:graphicImage class="imgMuestra" id="imgMuestra" url="#{usuarioControlador.fotoSeleccionada}"></p:graphicImage><br/>
-                        <p:commandButton value="Guardar" action="#{usuarioControlador.actualizarFoto()}"></p:commandButton>
-                    </div>
-                </div>
-            </h:form>
-        </main>
+                </h:form>
+            </main>
+        </f:view>
         <script src="../js/materialize.min.js" type="text/javascript"></script>
         <script>
             M.AutoInit();

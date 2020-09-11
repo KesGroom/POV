@@ -18,7 +18,7 @@
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <a href="#">Noticias actuales</a>
             </div>
-            <main>
+            <main style="margin-top: 3rem;">
                 <h:form id="tabsNoticia">
                     <ul class="tabs">
                         <c:forEach items="#{categoriaControlador.consultarCategorias()}" var="cn">
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="card-content">
                                             <span class="card-title activator grey-text text-darken-4">#{noti.titulo}<i class="material-icons right">more_vert</i></span>
-                                            <p style="font-size: 0.8em;"><b>Publicado por:</b> #{noti.coordinador.nombre} <br/> <b>Fecha de publicación:</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month}/#{noti.fechaPublicacion.year}</p>
+                                            <p style="font-size: 0.8em;"><b>Publicado por:</b> #{noti.coordinador.nombre} <br/> <b>Fecha de publicación:</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month+1}/#{noti.fechaPublicacion.year+1900}</p>
                                         </div>
                                         <div class="card-reveal">
                                             <span class="card-title grey-text text-darken-4">#{noti.subtitulo}<i class="material-icons right">close</i></span>
@@ -57,7 +57,8 @@
         <script>
             M.AutoInit();
         </script>
-
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     </h:body>
 </html>
 
