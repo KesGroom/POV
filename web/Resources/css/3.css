@@ -695,3 +695,7 @@ main .important{
     justify-content: space-between;
     align-content: center;
 }
+
+.FalseLabel{
+    color: #9e9e9e;
+}

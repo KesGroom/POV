@@ -146,6 +146,7 @@ public class UsuarioControlador implements Serializable {
     private Curso curso;
     private int area = 0;
     private String lenguaje;
+    private String avatar;
 
     //----- Variables para el olvido de contraseña ------------------\\
     private String Documento;
@@ -363,8 +364,7 @@ public class UsuarioControlador implements Serializable {
     }
 
     public String actualizarFoto() {
-        usuario.setIdRoles(rol);
-        usuario.setIdTipo(tipo);
+        usuario.setFoto(avatar);
         usuarioFacade.edit(usuario);
         usuario = new Usuario();
 
@@ -373,7 +373,7 @@ public class UsuarioControlador implements Serializable {
 
     public void fotoPrueba() {
 
-        this.FotoSeleccionada = this.usuario.getFoto();
+        this.FotoSeleccionada = this.avatar;
 
     }
 
@@ -1190,4 +1190,14 @@ public class UsuarioControlador implements Serializable {
         this.lenguaje = lenguaje;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    
+    
 }
