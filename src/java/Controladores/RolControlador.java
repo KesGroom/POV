@@ -57,6 +57,7 @@ public class RolControlador implements Serializable {
     private List<Permiso> padreList;
     private List<RolHasPermiso> rolPermisoList;
     private int rolSelect;
+    private String lenguaje;
 
     //----- Variables para actualizar permisos ------------------------\\
     private int[] permisosEliminados;
@@ -81,6 +82,10 @@ public class RolControlador implements Serializable {
 
     @Inject
     CorreoControlador correo;
+
+    public void lenguaje(String lg) {
+        this.lenguaje = lg;
+    }
 
     public String registrar() {
         if (!"".equals(rolCrear)) {
@@ -159,7 +164,11 @@ public class RolControlador implements Serializable {
                         RHFacade.create(rh);
                     }
                     rol = new Rol();
-                    alerta.setMensaje("AlertaToast('Registro realizado con éxito','success');");
+                    if ("es".equals(lenguaje)) {
+                        alerta.setMensaje("AlertaToast('Registro realizado con éxito','success');");
+                    } else {
+                        alerta.setMensaje("AlertaToast('Successful registration','success');");
+                    }
                     return "Roles";
                 }
             } else {
@@ -467,6 +476,14 @@ public class RolControlador implements Serializable {
 
     public void setPermisosNoRegistrados(List<Permiso> permisosNoRegistrados) {
         this.permisosNoRegistrados = permisosNoRegistrados;
+    }
+
+    public String getLenguaje() {
+        return lenguaje;
+    }
+
+    public void setLenguaje(String lenguaje) {
+        this.lenguaje = lenguaje;
     }
 
 }

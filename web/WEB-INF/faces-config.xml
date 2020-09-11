@@ -27,5 +27,29 @@
             </base-name>
             <var>PQRS</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Dash
+            </base-name>
+            <var>Dash</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.ListUsuario
+            </base-name>
+            <var>ListUsuario</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Roles
+            </base-name>
+            <var>Roles</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.RegistroUsuario
+            </base-name>
+            <var>RegistrarUsuario</var>
+        </resource-bundle>
     </application>
 </faces-config>

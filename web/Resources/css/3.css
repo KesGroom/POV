@@ -672,12 +672,26 @@ main .tabs .tab a.active {
     color: #b71c1c;
 }
 
-/*main .tabs .tab a.active{
-    border-bottom: 2px solid #b71c1c;
-}*/
-
 main .tabs .indicator{
     background-color: #b71c1c;
 }
 
+/* Card de noticias */
+.noticiaCard{
+    width: 30% !important;
+}
 
+main .fondoTab{
+    background-color: #d5d3d3;
+    width: 98.25% !important;
+    margin-left:0.9% !important;
+    padding: 1rem; 
+}
+
+main .important{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: center;
+}

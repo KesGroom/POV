@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
         <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
@@ -21,25 +22,31 @@
         <title>Roles</title>
     </h:head>
     <h:body class="scrollbarStyle">
-        <f:view>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
 
             <script>
                 #{alertasControlador.mensaje}
             </script>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                #{rolControlador.lenguaje("es")}
+            </c:if>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                #{rolControlador.lenguaje("en")}
+            </c:if>
             <div class="Bread">
-                <a href="">Principal</a>
+                <a href="">#{Roles.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="Usuarios.xhtml">Usuarios</a>
+                <a href="Usuarios.xhtml">#{Roles.bcUsuarios}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="Roles.xhtml">Roles y Tipo de documento</a>
+                <a href="Roles.xhtml">#{Roles.bcRolesTipoDoc}</a>
             </div>
 
             <main>
 
                 <div class="contenedorTitulos">
-                    <a href="Roles.xhtml" class="titulo">Roles</a>
+                    <a href="Roles.xhtml" class="titulo">#{Roles.tilteRoles}</a>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
-                    <a href="ListUsuario.xhtml" class="subTitulo">Usuarios</a>
+                    <a href="ListUsuario.xhtml" class="subTitulo">#{Roles.titleUsuarios}</a>
 
                 </div>
                 <div class="displayRowSbC" style="width: 100%; height: 100vh; border: 1px solid black; padding: 1rem;">
@@ -47,7 +54,7 @@
                         <h:dataTable class="" value="#{rolControlador.consultarRol()}"  var="Rol">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Nombre del Rol"/>
+                                    <h:outputText value="#{Roles.txtNombreRol}"/>
                                 </f:facet>
                                 <h:outputText value="#{Rol.rol}"/>
                             </h:column>
@@ -56,9 +63,9 @@
                                     <h:outputText value=""/>
                                 </f:facet>
                                 <div class="botonesControlVarios">
-                                    <h:commandLink title="Editar"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
-                                    <h:commandLink action="#{rolControlador.preActualizarPermisos(Rol)}" title="Editar permisos"><ion-icon class="btnUpdate" name="key-outline"></ion-icon></h:commandLink>
-                                    <h:commandLink action="#{rolControlador.remover(Rol)}" title="Eliminar"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
+                                    <h:commandLink title="#{Roles.titleEditar}"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{rolControlador.preActualizarPermisos(Rol)}" title="#{Roles.titlePermisos}"><ion-icon class="btnUpdate" name="key-outline"></ion-icon></h:commandLink>
+                                    <h:commandLink action="#{rolControlador.remover(Rol)}" title="#{Roles.titleEliminar}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
                                 </div>
                             </h:column>
                         </h:dataTable>
@@ -83,9 +90,9 @@
         <!-- Se vincula los scripts propios de la página-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
         <script>
-            var role = #{rolControlador.consultarRolNombre()};
-            var dataUs = #{rolControlador.contadorUsuRol()};
-            var colores = #{rolControlador.generarColores()};
+                var role = #{rolControlador.consultarRolNombre()};
+                var dataUs = #{rolControlador.contadorUsuRol()};
+                var colores = #{rolControlador.generarColores()};
                 var ctx = document.getElementById("grafica").getContext("2d");
                 var graf = new Chart(ctx, {
                     type: 'doughnut',
@@ -102,4 +109,6 @@
         </script>
     </h:body>
 </html>
+
+
 

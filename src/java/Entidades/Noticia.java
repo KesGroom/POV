@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,7 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Noticia.findByTitulo", query = "SELECT n FROM Noticia n WHERE n.titulo = :titulo")
     , @NamedQuery(name = "Noticia.findBySubtitulo", query = "SELECT n FROM Noticia n WHERE n.subtitulo = :subtitulo")
     , @NamedQuery(name = "Noticia.findByImagen", query = "SELECT n FROM Noticia n WHERE n.imagen = :imagen")
-    , @NamedQuery(name = "Noticia.findByEstado", query = "SELECT n FROM Noticia n WHERE n.estado = :estado")})
+    , @NamedQuery(name = "Noticia.findByEstado", query = "SELECT n FROM Noticia n WHERE n.estado = :estado")
+    , @NamedQuery(name = "Noticia.findByFechaPublicacion", query = "SELECT n FROM Noticia n WHERE n.fechaPublicacion = :fechaPublicacion")})
 public class Noticia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +70,9 @@ public class Noticia implements Serializable {
     private String imagen;
     @Column(name = "Estado")
     private Integer estado;
+    @Column(name = "FechaPublicacion")
+    @Temporal(TemporalType.DATE)
+    private Date fechaPublicacion;
     @JoinColumn(name = "Categoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Categorianoticia categoria;
@@ -133,6 +140,14 @@ public class Noticia implements Serializable {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public Categorianoticia getCategoria() {

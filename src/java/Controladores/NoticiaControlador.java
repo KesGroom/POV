@@ -13,8 +13,10 @@ import Facade.NoticiaFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 /**
  *
@@ -37,20 +39,23 @@ public class NoticiaControlador implements Serializable {
     private Noticia noticia;
     private Usuario coordinador;
     private Categorianoticia categoria;
+    private Date fecha = new Date();
     
     @EJB
     NoticiaFacade noticiaFacade;
     
-    public String registrar(){
-        
+    @Inject
+    AlertasControlador alerta;
+    
+    public String registrar(){     
         noticia.setCategoria(categoria);
         noticia.setCoordinador(coordinador);
         noticia.setEstado(1);
+        noticia.setFechaPublicacion(fecha);
         if(noticia.getImagen() == null){
             noticia.setImagen("../../Resources/img/Noticias/ESCUDO.jpg");
         }
-        noticiaFacade.create(noticia);
-        
+        noticiaFacade.create(noticia);  
         return "Noticias";
     }
     
@@ -86,6 +91,14 @@ public class NoticiaControlador implements Serializable {
 
     public void setCategoria(Categorianoticia categoria) {
         this.categoria = categoria;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     

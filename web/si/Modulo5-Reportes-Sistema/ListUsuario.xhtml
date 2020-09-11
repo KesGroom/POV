@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -14,14 +15,20 @@
         <title>Usuario</title>
     </h:head>
     <h:body class="scrollbarStyle">
-        <f:view>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
             <script>
                 #{alertasControlador.mensaje}
             </script>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                #{usuarioControlador.lenguaje("es")}
+            </c:if>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                #{usuarioControlador.lenguaje("en")}
+            </c:if>
             <div class="Bread">
-                <a href="../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+                <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{ListUsuario.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="#">Usuarios</a>
+                <a href="#">#{ListUsuario.bcUsuarios}</a>
             </div>
 
             <div class="fixed-action-btn">
@@ -29,28 +36,28 @@
                     <i class="large material-icons">menu</i>
                 </a>
                 <ul>
-                    <li><a title="Añadir usuario" href="RegistrarUsuario.xhtml" class="btn-floating red"><i class="material-icons">person_add</i></a></li>
-                    <li><a title="Añadir rol" href="RegistrarRol.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
-                    <li><a title="Añadir tipo de documento" class="btn-floating green"><i class="material-icons">credit_card</i></a></li>
-                    <li><a title="Recuperar datos" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
+                    <li><a title="#{ListUsuario.titleAddUser}" href="RegistrarUsuario.xhtml" class="btn-floating red"><i class="material-icons">person_add</i></a></li>
+                    <li><a title="#{ListUsuario.titleAddRole}" href="RegistrarRol.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="#{ListUsuario.titleTipoDoc}" class="btn-floating green"><i class="material-icons">credit_card</i></a></li>
+                    <li><a title="#{ListUsuario.titleRecData}" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
                 </ul>
             </div>
 
             <main>
                 <div class="contenedorTitulos">
-                    <a href="Usuarios.xhtml" class="titulo">Usuarios</a>
+                    <a href="Usuarios.xhtml" class="titulo">#{ListUsuario.titleUsuarios}</a>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
-                    <a href="Roles.xhtml" class="subTitulo">Roles</a>
+                    <a href="Roles.xhtml" class="subTitulo">#{ListUsuario.titleRoles}</a>
                 </div>
 
                 <div class="etiquetas displayRowIniC">
                     <div id="btnSearch" class="opcExport opcSearch displayRowSaC">
                         <i class="material-icons">search</i>
-                        <p id="lblSearch">Buscar por:</p>
+                        <p id="lblSearch">#{ListUsuario.txtBuscar}</p>
                     </div>
                     <div id="btnExcel" class="opcExport opcExcel displayRowSaC">
                         <img src="../../Resources/img/Sistema/excel.png" alt="" style="width: 24px; height: 24px;"/>
-                        <p id="lblExcel" class="">Exportar a excel</p>
+                        <p id="lblExcel" class="">#{ListUsuario.txtExportar}</p>
                     </div>
                 </div>
                 <h:form>
@@ -64,7 +71,7 @@
                                         <div class="input-field col s12 helpSpawn">
                                             <h:outputLabel for="nameArc" value="Nombre del archivo"></h:outputLabel>
                                             <h:inputText id="nameArc" autocomplete="off" value="#{usuarioControlador.nombreArch}" required="true"></h:inputText>
-                                            <span class="helper-text">Defina el nombre del archivo de Excel</span>
+                                            <span class="helper-text">#{ListUsuario.txtNameExcel}</span>
                                         </div>
                                         <div class="col s12 displayRowCC">
                                             <h:commandButton value="Exportar" class="modal-close" action="#{usuarioControlador.generarExcel()}"></h:commandButton>
@@ -73,18 +80,18 @@
                                 </div>
                                 <div class="col s6 exportExcel">
                                     <div class="row displayRowSbC">
-                                        <p class="col s6">Alineación de las celdas:</p>
+                                        <p class="col s6">#{ListUsuario.txtAlinearCelda}</p>
                                         <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.alineacion}">
-                                            <f:selectItem itemEscaped="false" itemValue="Izquierda" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/i&gt;" />
-                                            <f:selectItem itemEscaped="false" itemValue="Centro" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/i&gt;"></f:selectItem>
-                                            <f:selectItem itemEscaped="false" itemValue="Derecha" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/i&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcIzquierda}" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/i&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcCentro}" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/i&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcDerecha}" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/i&gt;"></f:selectItem>
                                         </h:selectOneRadio>
                                     </div>
                                     <div class="row displayRowSbC">
-                                        <p class="col s6">Borde:</p>
+                                        <p class="col s6">#{ListUsuario.txtBorde}</p>
                                         <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.estilo}">
-                                            <f:selectItem itemEscaped="false" itemValue="Con" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_all &lt;/a&gt;" />
-                                            <f:selectItem itemEscaped="false" itemValue="Sin" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_clear &lt;/a&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcCon}" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_all &lt;/a&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcSin}" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_clear &lt;/a&gt;"></f:selectItem>
                                         </h:selectOneRadio>
                                     </div>
                                 </div>
@@ -99,19 +106,19 @@
                         <div class="marco2">
                             <div id="contFilter" class="row">
                                 <div class="input-field col s4">
-                                    <h:outputLabel  value="Número de documento" for="nndoc"></h:outputLabel>
+                                    <h:outputLabel  value="#{ListUsuario.lblNumDoc}" for="nndoc"></h:outputLabel>
                                     <h:inputText id="nndoc" class="solo-numero" value="#{usuarioControlador.numDoc}">
                                         <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
                                     </h:inputText>
                                 </div>
                                 <div class="input-field col s4">
-                                    <h:outputLabel value="Nombre" for="nameSearch"></h:outputLabel>
+                                    <h:outputLabel value="#{ListUsuario.lblNombre}" for="nameSearch"></h:outputLabel>
                                     <h:inputText id="nameSearch" value="#{usuarioControlador.nombre}">
                                         <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
                                     </h:inputText>
                                 </div>
                                 <div class="input-field col s4">
-                                    <h:outputLabel value="Apellido" for="lastnameSearch"></h:outputLabel>
+                                    <h:outputLabel value="#{ListUsuario.lblApellido}" for="lastnameSearch"></h:outputLabel>
                                     <h:inputText id="lastnameSearch" value="#{usuarioControlador.apellido}">
                                         <f:ajax event="keyup" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
                                     </h:inputText>
@@ -130,9 +137,9 @@
                                 </h:selectOneMenu>
                                 <div class="col s1"></div>
                                 <h:selectOneRadio class="browser-default iconosRadio col s3" value="#{usuarioControlador.genero}">
-                                    <f:selectItem itemEscaped="false" itemValue="null" itemLabel="&lt;ion-icon name=&quot;male-female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
-                                    <f:selectItem itemEscaped="false" itemValue="Femenino" itemLabel="&lt;ion-icon name=&quot;female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
-                                    <f:selectItem itemEscaped="false" itemValue="Masculino" itemLabel="&lt;ion-icon name=&quot;male&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcNull}" itemLabel="&lt;ion-icon name=&quot;male-female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcFemenino}" itemLabel="&lt;ion-icon name=&quot;female&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
+                                    <f:selectItem itemEscaped="false" itemValue="#{ListUsuario.opcMasculino}" itemLabel="&lt;ion-icon name=&quot;male&quot;&gt;&lt;/ion-icon&gt;"></f:selectItem>
                                     <f:ajax event="change" listener="#{usuarioControlador.changeListener}" render="userTable mostrar"></f:ajax> 
                                 </h:selectOneRadio>
                             </div>
@@ -144,27 +151,27 @@
                             <h:dataTable class="col s12"  id="userTable" value="#{usuarioControlador.listByName}" var="usu">
                                 <h:column>
                                     <f:facet  name="header">
-                                        <h:outputText value="Rol"/>
+                                        <h:outputText value="#{ListUsuario.txtRol}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.idRoles.rol}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="NUIP"/>
+                                        <h:outputText value="#{ListUsuario.txtNUIP}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.idTipo.tipo}"/><br/>
                                     <h:outputText value="#{usu.numerodeDocumento}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nombre completo"/>
+                                        <h:outputText value="#{ListUsuario.txtFullName}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.nombre}"/><br/>
                                     <h:outputText value="#{usu.apellido}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Fecha de Nacimiento"/>
+                                        <h:outputText value="#{ListUsuario.txtBirthDate}"/>
                                     </f:facet>
                                     <h:outputText style="text-transform: uppercase;" value="#{usu.fechadeNacimiento}">
                                         <f:convertDateTime pattern="dd/MMM/yyyy" />
@@ -172,13 +179,13 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Dirección"/>
+                                        <h:outputText value="#{ListUsuario.txtDireccion}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.direccion}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Contacto"/>
+                                        <h:outputText value="#{ListUsuario.txtContacto}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.celular}"/><br/>
                                     <h:outputText value="#{usu.telefonoFijo}"/><br/>
@@ -186,7 +193,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Género"/>
+                                        <h:outputText value="#{ListUsuario.txtGenero}"/>
                                     </f:facet>
                                     <h:outputText value="#{usu.genero}"/>
                                 </h:column>
