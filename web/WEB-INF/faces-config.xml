@@ -57,5 +57,23 @@
             </base-name>
             <var>UsuariosActualizar</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.ListaNoticias
+            </base-name>
+            <var>ListaNoticias</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Noticias
+            </base-name>
+            <var>Noticias</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
+                properties.Academica
+            </base-name>
+            <var>Academica</var>
+        </resource-bundle>
     </application>
 </faces-config>

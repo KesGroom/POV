@@ -14,9 +14,9 @@
     <h:body class="scrollbarStyle">
         <f:view locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
-                <a href="../../Resources/Pages/VistaInicialDash.xhtml">Inicio</a>
+                <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{ListaNoticias.bcInicio}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="#">Noticias actuales</a>
+                <a href="#">#{ListaNoticias.bcCurrentNews}</a>
             </div>
             <main>
                 <h:form id="tabsNoticia">
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="card-content">
                                             <span class="card-title activator grey-text text-darken-4">#{noti.titulo}<i class="material-icons right">more_vert</i></span>
-                                            <p style="font-size: 0.8em;"><b>Publicado por:</b> #{noti.coordinador.nombre} <br/> <b>Fecha de publicación:</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month}/#{noti.fechaPublicacion.year}</p>
+                                            <p style="font-size: 0.8em;"><b>#{ListaNoticias.txtPublicadoPor}</b> #{noti.coordinador.nombre} <br/> <b>#{ListaNoticias.txtPublicationDate}</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month}/#{noti.fechaPublicacion.year}</p>
                                         </div>
                                         <div class="card-reveal">
                                             <span class="card-title grey-text text-darken-4">#{noti.subtitulo}<i class="material-icons right">close</i></span>
