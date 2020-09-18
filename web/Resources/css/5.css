@@ -809,3 +809,8 @@ main .important{
     border-radius: 50%;
     border: 1px solid #d5cece;
 }
+
+/* Fondo para formularios */
+.bodyFormBackground{
+    background-color: #b3b2b2;
+}
