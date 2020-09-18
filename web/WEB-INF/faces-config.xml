@@ -17,6 +17,12 @@
         </resource-bundle>
         <resource-bundle>
             <base-name>
+                properties.Dash
+            </base-name>
+            <var>Dash</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>
                 properties.VistaInicial
             </base-name>
             <var>VistaInicial</var>

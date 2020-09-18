@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Error 404</title>
+        <link href="../../css/ErrorPages.css" rel="stylesheet" type="text/css"/>
+        <link rel="shorcut icon" href="../../img/Sistema/LOGOFavicon.png"/>
+    </h:head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=poppins:100,200,300,400,500,600,700,800,900');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing:  border-box;
+            font-family: 'Poppins' , sans-serif;
+
+        }
+        body{
+            background: linear-gradient(45deg,#8500ff,#5acaff);
+            height: 100vh;
+        }
+        #container{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right:10%;
+            bottom:10%;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('../../img/Sistema/p404.png'), #151729;
+            box-shadow: 0 15px 30px rgba(0,0,0,.5);
+
+        }
+        #container .content{
+            max-width: 600px;
+            text-align: center;
+        }
+        #container .content h2{
+            font-size: 18vw;
+            color: #fff;
+            line-height: 1em;
+        }
+        #container .content h4{
+            position: relative;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color : #111;
+            background: #fff;
+            font-weight: 300;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        #container .content p{
+            color: #fff;
+            font-size: 1.2em;
+        }
+        #container .content a{
+            position: relative;
+            display: inline-block;
+            padding:  10px 25px;
+            background: #ff0562;
+            color : #fff;
+            text-decoration: none;
+            margin-top: 25px;
+            border-radius: 25px;
+            border-bottom: 4px solid #d00d56;
+
+        }
+    </style>
+    <h:body>
+        <f:view locale="#{lenguajeControlador.languageSelected}">
+            <div id ="container">
+                <div class="content"> 
+                    <h2>404</h2>
+                    <h4>#{Dash.txtError404Title}</h4>
+                    <p>
+                        #{Dash.txtError404Text}
+                    </p>
+                    <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                        <a href="#">Volver</a>
+                    </c:if>
+                    <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                        <a href="#">Return</a>
+                    </c:if>
+                </div>
+            </div>
+        </f:view>
+        <script text="text/javascript">
+            var container = document.getElementById('container');
+            window.onmousemove = function (e) {
+                var x = e.clientX,
+                        y = e.clienY;
+                container.style.backgroundPositionX = x + 'px';
+                container.style.backgroundPositionX = y + 'px';
+            };
+        </script>
+    </h:body>
+</html>

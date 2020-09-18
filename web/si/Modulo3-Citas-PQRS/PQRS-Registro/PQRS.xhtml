@@ -2,11 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
         <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
-        <link href="../../../Resources/css/4.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
         de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
         la página inicie para evitar fallos-->
@@ -16,7 +17,6 @@
         <!-- Se incluye el icono del sistema -->
         <link rel="shorcut icon" href="../../../Resources/img/Sistema/LOGOFavicon.png"/>
         <!-- Nombre que se visualizará en el navegador -->
-        <link href="../../../Resources/css/PQRSAcudiente.css" rel="stylesheet" type="text/css"/>
         <title>PQRS</title>
     </h:head>
     <h:body class="scrollbarStyle">
@@ -24,6 +24,12 @@
             <script>
                 #{alertasControlador.mensaje}
             </script>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                #{PqrsControlador.lenguaje("es")}
+            </c:if>
+            <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                #{PqrsControlador.lenguaje("en")}
+            </c:if>
             <div class="Bread">
                 <a href="../../../Resources/Pages/VistaInicialDash.xhtml">#{PQRS.bcPrincipal}</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>

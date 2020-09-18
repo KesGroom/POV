@@ -5,13 +5,12 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link href="../../Resources/css/3.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Resources/css/Noticias.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
         <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
         <title>Noticias</title>
     </h:head>
-    <h:body class="scrollbarStyle">
+    <h:body class="scrollbarStyle bodyFormBackground">
         <f:view  locale="#{lenguajeControlador.languageSelected}">
         <div class="Bread">
             <a href="../../Resources/Pages/VistaInicialDash.xhtml">#{Noticias.bcInicio}</a>
@@ -22,6 +21,7 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                    <!-- Titulo -->
                     <div class="card red darken-4">
                         <div class="card-content white-text">
                             <span class="card-title center-align">#{Noticias.titleNewsForm}</span>
