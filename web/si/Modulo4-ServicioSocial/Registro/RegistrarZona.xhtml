@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
-        <link href="../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!-- Se vincula los estilos css específicos de la página-->
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
@@ -16,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../../Resources/js/Alertas.js" type="text/javascript"></script>
         <!-- Se incluye el icono del sistema -->
-        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <link rel="shorcut icon" href="../../Resources/img/Sistema/LOGOFavicon.png"/>
         <!-- Nombre que se visualizará en el navegador -->
         <title>Registrar usuario</title>
@@ -35,6 +35,7 @@
             </div>
             <main>
                 <div class="contenedorFormulario displayRowSbC">
+                    
                     <h:form>
                         <div class="row">
                             <div class="col s12 m12 l4" style="padding: 0.5rem;">
@@ -42,18 +43,7 @@
                                     <div class="col s12 displayRowSaC" style="margin-bottom: 0.5rem;">
                                         <p style="font-size: 1em; font-weight: bold;">#{RegistrarUsuario.txtPersonalInfo}</p><hr class="" style="border: none; width: 50%; height: 0.15rem; background-color: rgb(148, 148, 148);"></hr>
                                     </div>
-                                    <div class="col s12"><label>#{RegistrarUsuario.lblTipoDoc}</label></div>
-                                    <div class="input-field col s12">
-                                        <h:selectOneMenu class="browser-default" id="idTipo" value="#{usuarioControlador.tipo.idTipo}" required="true" requiredMessage="The IdTipo field is required.">
-                                            <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItem itemLabel="#{RegistrarUsuario.opcTipoDoc}" itemValue="0" noSelectionOption="true"></f:selectItem>
-                                            <f:selectItems value="#{tipoControlador.consultarTodos()}" var="tip" itemLabel="#{tip.tipo}" itemValue="#{tip.idTipo}"/>
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="col s12"><label>#{RegistrarUsuario.lblNumDoc}</label></div>
-                                    <div class="input-field col s12">
-                                        <h:inputText autocomplete="off" id="numerodeDocumento" class="solo-numero" value="#{usuarioControlador.numDocumento}" title="Numero de Documento" required="true" requiredMessage="The NumerodeDocumento field is required."/>
-                                    </div>
+                                  
                                     <div class="col s12"><label>#{RegistrarUsuario.lblNombre}</label></div>
                                     <div class="input-field col s12">
                                         <h:inputText autocomplete="off" id="nombre" value="#{usuarioControlador.usuario.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>

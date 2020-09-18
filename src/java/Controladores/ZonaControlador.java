@@ -30,6 +30,10 @@ public class ZonaControlador implements Serializable {
     }
 
     private ZonaServicioSocial zona;
+    private String nmb;
+    private String lug;
+    private String gado;
+    private String tservi;
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
@@ -68,4 +72,38 @@ public class ZonaControlador implements Serializable {
         this.zona = zona;
     }
 
+    public String getNmb() {
+        return nmb;
+    }
+
+    public void setNmb(String nmb) {
+        this.nmb = nmb;
+    }
+
+    public String getLug() {
+        return lug;
+    }
+
+    public void setLug(String lug) {
+        this.lug = lug;
+    }
+
+    public String getGado() {
+        return gado;
+    }
+
+    public void setGado(String gado) {
+        this.gado = gado;
+    }
+
+    public String getTservi() {
+        return tservi;
+    }
+
+    public void setTservi(String tservi) {
+        this.tservi = tservi;
+    }
+    
+    
 }
+    

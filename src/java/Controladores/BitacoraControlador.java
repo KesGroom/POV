@@ -40,6 +40,9 @@ public class BitacoraControlador implements Serializable {
     private ZonaServicioSocial zona;
     private Usuario us;
     private Date fechaRegistro = new Date();
+    private String coo;
+    private String est;
+    private String tpres;
     
     @EJB
     BitacoraServicioSocialFacade bitacoraFacade;
@@ -105,6 +108,30 @@ public class BitacoraControlador implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getCoo() {
+        return coo;
+    }
+
+    public void setCoo(String coo) {
+        this.coo = coo;
+    }
+
+    public String getEst() {
+        return est;
+    }
+
+    public void setEst(String est) {
+        this.est = est;
+    }
+
+    public String getTpres() {
+        return tpres;
+    }
+
+    public void setTpres(String tpres) {
+        this.tpres = tpres;
     }
 
 }
