@@ -1,0 +1,701 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/07/2020, 07:10:09 PM
+    Author     : kesgr
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+/* Se reinician las margenes y espaciados predeterminados del navegador y se establecen  en 0*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Se le aplica la fuente a todos los elementos del body */
+body{
+    font-family: 'Roboto', sans-serif;
+
+}
+
+/* Propiedades globales para etiquetas principales */
+main{
+    width: 97.5%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+/* Se estiliza el scrollbar para cambiar su apariencia en los navegadores que lo
+permiten */
+
+.scrollbarStyle::-webkit-scrollbar{
+    width: 5px;
+} 
+
+.scrollbarStyle::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 15px;
+}
+
+/* SweetAlert */
+.swal2-content .select-wrapper{
+    display: none;
+}
+
+/* Clase para ocultar cosas */
+.Oculto{
+    display: none;
+}
+
+/* Inputs*/
+/* --- radio, checkbox --- */
+[type="radio"],
+[type="checkbox"]{
+    position: absolute; 
+    opacity: 0;
+    display: none;
+    pointer-events: initial;
+
+}
+
+[type="radio"]+label,
+[type="checkbox"] + label,
+.exportExcel label{
+    cursor: pointer;
+    user-select: none; 
+}
+
+.Check label,
+.Radio label{
+    color: #9e9e9e;
+    padding: 5px 15px 5px 36px;
+    display: inline-block;
+    position: relative;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.Check label:hover,
+.Radio label:hover{
+    background: rgba(183, 28, 28, 0.4);
+    color: white;
+}
+
+.Check label:hover:before,
+.Radio label:hover:before{
+    border: 1.5px solid white;
+}
+
+.Check label:before,
+.Radio label:before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: none;
+    display: inline-block;
+    border: 1.5px solid #b71c1c;
+    border-radius: 50%;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    transition: all 0.3s ease;
+}
+
+.Check label:before{
+    border-radius: 2px;
+}
+
+.Check input[type="checkbox"]:checked+label,
+.Radio input[type="radio"]:checked+label{
+    padding: 5px 15px;
+    background: #b71c1c;
+    border-radius: 15px;
+    color: white;
+}
+
+.Check input[type="checkbox"]:checked+label:before,
+.Radio input[type="radio"]:checked+label:before{
+    display: none;
+}
+
+/* Engaño visual para cuando el checkbox está "Seleccionado" */
+
+.reverseCheck label{
+    color: white;
+    padding: 5px 15px;
+    display: inline-block;
+    position: relative;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: #b71c1c;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:hover{
+    background: rgba(183, 28, 28, 0.4);
+    color: white;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:hover:before{
+    border: 1.5px solid white;
+}
+
+.reverseCheck label:before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: none;
+    display: none;
+    border: 1.5px solid transparent;
+    border-radius: 3px;
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    transition: all 0.3s ease;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label{
+    padding: 5px 15px 5px 36px;
+    background: none;
+    border-radius: 3px;
+    color: #9e9e9e;
+}
+
+.reverseCheck input[type="checkbox"]:checked+label:before{
+    display: inline-block;
+    border: 1.5px solid #b71c1c;
+
+}
+
+/* text */
+input[type="text"]:focus~.helper-text{
+    display: inline !important;
+}
+
+/* submit */
+input[type="submit"]{
+    font-size: 14px;
+    outline: 0;
+    text-decoration: none;
+    color: #fff;
+    background-color: #b71c1c;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+input[type="submit"]:hover{
+    background-color: #9c1818;
+}
+
+.btn{
+    text-transform: capitalize !important;
+}
+
+/* utilidades Materialize para inputs */
+.helper-text{
+    display:none !important;
+}
+
+/* FlexBox */
+.displayRowCC{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.displayRowSbC{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.displayRowSaC{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.displayRowSaIni{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.displayRowIniC{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.displayColCC{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.displayColSbC{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.displayColIniC{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.displayColSaIni{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.displayColSaC{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Estilos para el breadcrumb */
+.Bread{
+    width: 100%;
+    padding: 0.3rem 2rem;
+    border-bottom: 1px solid rgb(139, 136, 136);
+    background-color: honeydew;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+
+    /* Flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.Bread a{
+    color: rgb(126, 119, 119);
+    margin-right: 0.5rem;
+    font-size: 0.8em;
+}
+
+.Bread ion-icon{
+    color: rgb(126, 119, 119);
+    margin-right: 0.3rem;
+    font-size: 0.8em;
+}
+
+.Bread a:hover{
+    color: #b71c1c;
+}
+
+/* Opciones de busqueda y exportación */
+.etiquetas{
+    width: 97.5%;
+    margin: auto;
+    height: 2.5rem;
+    border-bottom: 1px solid #b4b4b4;
+}
+
+.etiquetas .opcExport{
+    padding: 0 1rem;
+    background-color: white;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: -0.4rem;
+    margin-left: 0.1rem;
+    height: 100%;
+    border: 1px solid #b4b4b4;
+    border-bottom: 2px solid white;
+    cursor: pointer;
+}
+
+.etiquetas .opcExport p{
+    font-size: 0px;
+    margin-left: 0.5rem;
+    transition: all linear 200ms;
+}
+
+.etiquetas .opcExport p.active{
+    font-size: 12px;
+}
+
+.etiquetas .opcExport i:hover~p,
+.etiquetas .opcExport img:hover~p{
+    font-size: 12px;
+}
+
+.selectExport{
+    width: 100%;
+    height: 0rem;
+    overflow: hidden;
+    transition: all linear 200ms;
+    position: relative;
+}
+
+.selectExport.active{
+    height: 14rem;;
+}
+
+.selectExport .marco1{
+    width: 100%;
+    height: 100%;
+    border: 10px solid white;
+    position: absolute;
+}
+
+.selectExport .marco2{
+    width: 97.7%;
+    margin: 1.1%;
+    height: 84%;
+    padding: 1rem;
+    background-color: white;
+    position: absolute;
+}
+
+.selectExport .fondo{
+    width: 100%;
+    height: 100%;
+    top:-120%;
+    transition: all linear 1500ms;
+    position: absolute;
+}
+
+.selectExport .fondo.active{
+    top:-0%; 
+}
+
+#fondoExc{
+    background-color: #1d6832;
+}
+
+#fondoSea{
+    background-color: #b71c1c;
+}
+
+.consulta{
+    width: 97.5%;
+    margin: auto;
+    padding: 2rem;
+    border-bottom: 1px solid #b4b4b4;
+    border-left: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+}
+
+.iconosRadio label{
+    font-size: 1.5em;
+}
+
+/* Reestructuración de propiedades de Materialize */
+.fixed-action-btn {
+    position: fixed;
+    right: 23px;
+    top: 50px !important;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 500;
+}
+
+/* Estilos de los formularios de coordinador */
+/* Contenedor de activadores */
+.contenedorAdd{
+    height: 6rem;    
+    position: fixed;
+    padding: 2rem 0;
+    align-items: flex-end !important;
+    border: 1px solid black;
+    right: 0;
+}
+
+
+/* Contenedor del formulario */
+.contenedorFormulario{
+    width: 100%;
+    padding: 1.5rem;
+    border-bottom: 1px solid #b4b4b4;
+    border-left: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+    border-top: 2px solid #b71c1c;
+    border-radius: 5px;
+    margin-top: 3rem;
+
+}
+
+.seccionFormulario{
+    background-color: #b4b4b4;
+    height: 90vh;
+    border-radius: 5px;
+    width: 2px !important;
+}
+
+.browser-default{
+    background: none !important;
+    border: none !important;
+    font-size: .8rem !important;
+    color: #9e9e9e !important;
+    border-bottom: 1px solid #b71c1c !important;
+    outline: none !important;
+}
+.browser-default:focus{
+    background: none !important;
+    border-bottom: 2px solid #b71c1c !important;
+    outline: none !important;
+}
+
+/* Textos */
+
+.contenedorTitulos{
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 45px;
+    margin-bottom:  20px;
+}
+
+.titulo{
+    font-size: 48px;
+    color: black;
+}
+
+.subTitulo{
+    font-size: 24px;
+    color: #9e9e9e;
+}
+
+.tituloFormulario{
+    font-size: 1.8em;
+    padding: 0 0 0.8rem 0;
+    border-bottom: 2px solid #b71c1c;
+    text-align: center;
+    width: 100%;
+    margin-bottom: -0.1rem;
+}
+
+/* Contenedores de botones */
+.botonesControl{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonesControlVarios{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+} 
+
+.botonesControlVarios ion-icon,
+.botonesControlVarios i{
+    font-size: 1.5em;
+    color: black;
+}
+
+
+/* Botones */
+
+/*Boton de eliminar*/
+
+.btnTrash:hover{
+    color: red;
+}
+
+/*Boton Actualizar*/
+.btnUpdate:hover{
+    color: #0091ea;
+}
+
+/*Chips SelectStudents*/
+.contenedorChip{
+    height: 29.36rem;
+    width: 100%;
+}
+
+
+.chipStudent{
+    width: 15rem;
+    height: 5rem;
+    border-radius: 50px;
+    border: 1px solid #bdb0b0;
+    padding: 0.5rem 1rem;
+}
+
+.chipStudent .imgChip img{
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+}
+
+.chipStudent .infoChip{
+    font-size: 0.8em;
+    height: 100%;
+}
+
+.chipStudent .btnChip a{
+    font-size: 1.9em;
+    color: black;
+}
+.chipStudent .btnChip{
+    height: 100%;
+    padding: 1rem 0;
+}
+.chipStudent .btnChip .btnAddChip:hover{
+    color: cadetblue;
+}
+.chipStudent .btnChip .btnRemoveChip:hover{
+    color: red;
+}
+
+td label{
+    cursor: pointer;
+}
+
+
+/*Las opciones de los checkbox se generan en tablas y con este codigo se elimina
+la organización que se les otroga por defecto para que se muestren sin bordes*/
+
+.optionContent table{
+    border-collapse: initial !important;
+}
+
+/*Contenedor de las carpetas de permisos */
+
+.permisosContenedor{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/* Estilos de las carpetas de permisos */
+
+.carpetaContenedor{
+    width: 18rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+} 
+
+.carpetaContenedor .marcadorCarpeta{
+    width: 90%;
+    height: 15%;
+    padding: 0.3rem 1rem;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.carpetaContenedor .marcadorCarpeta label,
+.carpetaContenedor .marcadorCarpeta ion-icon{
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+}
+
+.carpetaContenedor .marcadorCarpeta ion-icon{
+    cursor: pointer;
+}
+
+.carpetaContenedor .marcadorCarpeta ion-icon:hover{
+    color: #359bde;
+}
+
+.carpetaContenedor .carpeta{
+    width: 100%;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.rolesContenedor{
+    width: 100%;
+    padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Reinicio de estilos de los tabs de materialize */
+main .tabs{
+    border: 1px solid #d3d0d0; 
+    box-shadow: 0 2.5px 4.5px 0 #808080;
+}
+
+main .tabs .tab a{
+    color: black;
+}
+
+main .tabs .tab a:hover, 
+main .tabs .tab a.active {
+    background-color: transparent;
+    color: #b71c1c;
+}
+
+main .tabs .indicator{
+    background-color: #b71c1c;
+}
+
+/* Card de noticias */
+.noticiaCard{
+    width: 30% !important;
+}
+
+main .fondoTab{
+    background-color: #d5d3d3;
+    width: 98.25% !important;
+    margin-left:0.9% !important;
+    padding: 1rem; 
+}
+
+main .important{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.FalseLabel{
+    color: #9e9e9e;
+}

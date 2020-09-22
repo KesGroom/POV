@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -38,8 +39,9 @@
                     <i class="large material-icons">menu</i>
                 </a>
                 <ul>
-                    <li><a title="Añadir zona de servicio" href="RegistrarZona.xhtml" class="btn-floating red"><i class="material-icons">person_add</i></a></li>
-                    <li><a title="Añadir bitácora de servicio" href="RegistarBitacora.xtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="Añadir zona de servicio" href="RegistrarZona.xhtml" class="btn-floating red"><i class="material-icons">person_pin_circle</i></a></li>
+                    <li><a title="Añadir bitácora de servicio" href="RegistrarBitacora.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="Solicitudes" href="RegistrarBitacora.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
                     <li><a title="Recuperar datos" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
                 </ul>
             </div>
@@ -188,7 +190,11 @@
                                         <f:facet name="header">
                                             <h:outputText value="Labores"/>
                                         </f:facet>
-                                        <h:outputText value="#{zss.labores}"/>
+                                        <h:dataTable value="#{zonaControlador.retornarLista(zss.idZonaSS)}" var="item">
+                                            <h:column >
+                                                <h:outputText value="#{item.itemList}"></h:outputText>
+                                            </h:column>
+                                        </h:dataTable>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
@@ -230,6 +236,7 @@
         <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
         <!-- Se vincula los scripts propios de la página-->
+
 
     </h:body>
 </html>
