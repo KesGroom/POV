@@ -48,6 +48,7 @@ public class ZonaControlador implements Serializable {
     private String tservi;
     private String labores;
     private Estudiante estudiante;
+    private String contItem;
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
@@ -67,6 +68,7 @@ public class ZonaControlador implements Serializable {
     public String registrar() {
         zona.setEstado(1);
         zonaFacade.create(zona);
+        alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
          String texto = labores;
         List<String> Elementos = new ArrayList<>();
         String item;
@@ -93,8 +95,9 @@ public class ZonaControlador implements Serializable {
         return "ActualizarZona";
     }
 
-    public void actualizar() {
+    public String actualizar() {
         zonaFacade.edit(zona);
+        return "ZonasSS";
     }
 
     public void Remover(ZonaServicioSocial zonaRemover) {
@@ -108,6 +111,9 @@ public class ZonaControlador implements Serializable {
     }
     public List<Elementoslista> retornarLista(int id){
        return elFacade.obtenerElementosZona(id);
+    }
+    public List<Salaserviciosocial> consultarSala(){
+    return salaFacade.findAll();
     }
     //Metodos para la separación de los elementos de la lista
     public static String reemplazar(String cadena, String busqueda, String reemplazo) {
@@ -151,6 +157,20 @@ public class ZonaControlador implements Serializable {
             alerta.setMensaje("AlertaPopUp('Ha ocurrido un error','Ya se ha postulado a esta zona, por favor espere una respuesta','error');");
         }
     }
+    
+    public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon){
+         zona = zon;  
+         elLista = editarLabor;
+         return "ActualizarLabor";
+    }
+    
+    public String editarLabor(){
+       elLista.setZonaServicio(zona);
+       elFacade.edit(elLista);
+       alerta.setMensaje("AlertaToast('Cambio de labor exitosa','success');");
+       return "ZonasSS";
+    }
+    
     public ZonaServicioSocial getZona() {
         return zona;
     }
@@ -221,6 +241,14 @@ public class ZonaControlador implements Serializable {
 
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
+    }
+
+    public String getContItem() {
+        return contItem;
+    }
+
+    public void setContItem(String contItem) {
+        this.contItem = contItem;
     }
     
     

@@ -7,8 +7,10 @@ package Controladores;
 
 import Entidades.BitacoraServicioSocial;
 import Entidades.Estudiante;
+import Entidades.Salaserviciosocial;
 import Entidades.Usuario;
 import Entidades.ZonaServicioSocial;
+
 import Facade.BitacoraServicioSocialFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -43,6 +45,7 @@ public class BitacoraControlador implements Serializable {
     private String coo;
     private String est;
     private String tpres;
+    private Salaserviciosocial sala;
     
     @EJB
     BitacoraServicioSocialFacade bitacoraFacade;
@@ -50,8 +53,10 @@ public class BitacoraControlador implements Serializable {
     
     
     public String registrar(){
+        bitacora.setSalaDeServicio(sala);
         bitacora.setCoordinador(us);
         bitacora.setFechaRegistro(fechaRegistro);
+        
         bitacora.setEstado(1);
         bitacoraFacade.create(bitacora);
         bitacora = new BitacoraServicioSocial();// nose olvide d esscjnxs jv xjvn cxnsjv dsnvj ds --Kevin: Kha?
@@ -65,6 +70,16 @@ public class BitacoraControlador implements Serializable {
         bitacoraFacade.edit(bitacora);
     }
     
+     public String preActualizar(BitacoraServicioSocial biPre){
+        biPre = bitacora;
+        return "ActualizarBitacora";
+    }
+    public void actualizar() {
+        bitacoraFacade.edit(bitacora);
+    }
+
+     
+     
     public List<BitacoraServicioSocial> consultarBitacora(){
         return bitacoraFacade.consultarBitacoraServicioSocial(1);
     }
@@ -132,6 +147,14 @@ public class BitacoraControlador implements Serializable {
 
     public void setTpres(String tpres) {
         this.tpres = tpres;
+    }
+
+    public Salaserviciosocial getSala() {
+        return sala;
+    }
+
+    public void setSala(Salaserviciosocial sala) {
+        this.sala = sala;
     }
 
 }

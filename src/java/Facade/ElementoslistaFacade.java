@@ -46,4 +46,9 @@ public class ElementoslistaFacade extends AbstractFacade<Elementoslista> {
         q.setParameter("id", id);
         return q.getResultList();
     } 
+        public List<Elementoslista> consultarElementos(int estado) {
+        Query q = em.createQuery("SELECT e FROM ZonaServicioSocial e WHERE e.estado=:estado");
+        q.setParameter("estado", estado);
+        return q.getResultList();
+    }
 }

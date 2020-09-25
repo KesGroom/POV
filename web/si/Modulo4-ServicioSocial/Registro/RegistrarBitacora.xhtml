@@ -34,15 +34,22 @@
                                         <h:outputLabel class="FalseLabel" value="Coordinador:" for="coordinador" />
                                         <h:selectOneMenu class="browser-default" id="coordinador" value="#{bitacoraControlador.bitacora.coordinador}" required="true"><br/>
                                             <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}}"/>
+                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}"/>
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="input-field cols12">
                                         <h:selectOneMenu  class="browser-default" id="salaDeServicio" value="#{bitacoraControlador.bitacora.salaDeServicio}" title="Sala De Servicio" required="true"><br/>
                                             <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{fixme}"/>
+                                            <f:selectItems value="#{zonaControlador.consultarSala()}" var="es" itemLabel="#{es.estudiante.usuario.nombre} #{es.estudiante.usuario.apellido} #{es.estudiante.idCurso.curso}" />
                                         </h:selectOneMenu>
                                         <h:outputLabel value="Sala de servicio:" for="salaDeServicio" />
+                                    </div>
+                                    <div class="input-field cols12">
+                                        <h:selectOneMenu  class="browser-default" id="zonaServicio" value="#{bitacoraControlador.bitacora.salaDeServicio}" title="Zona de servicio" required="true"><br/>
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{zonaControlador.consultarZona()}" var="zo" itemLabel="#{zo.nombre}" />
+                                        </h:selectOneMenu>
+                                        <h:outputLabel value="Zona de servicio:" for="zonaServicio"/>
                                     </div>
                                     <div class="input-field col s12">
                                         <h:inputText value="#{bitacoraControlador.bitacora.fechaRegistro}" title="Fecha de registro" required="true" autocomplete="off" id="fRegistro"></h:inputText>

@@ -36,6 +36,7 @@ public class ZonaServicioSocialFacade extends AbstractFacade<ZonaServicioSocial>
         q.setParameter("estado", estado);
         return q.getResultList();
     }
+   
     
     public ZonaServicioSocial obtenerZona(int id){
         ZonaServicioSocial zona = null;

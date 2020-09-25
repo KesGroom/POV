@@ -13,7 +13,7 @@
     <h:body class="scrollbarStyle bodyFormBackground">
         <f:view  locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
-                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Registrar bitácora</a>
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Actualizar bitácora</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <a href="#">Registro</a>
             </div>
@@ -24,17 +24,29 @@
                         <!-- Titulo -->
                         <div class="card red darken-4">
                             <div class="card-content white-text">
-                                <span class="card-title center-align">Registrar solicitud</span>
+                                <span class="card-title center-align">Actualizar bitácora</span>
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="row">
                                 <h:form>
-                                    
+                                    <div class="input-field cols12">
+                                        <h:outputLabel class="FalseLabel" value="Coordinador:" for="coordinador" />
+                                        <h:selectOneMenu class="browser-default" id="coordinador" value="#{bitacoraControlador.bitacora.coordinador}" required="true"><br/>
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}}"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="input-field cols12">
+                                        <h:selectOneMenu  class="browser-default" id="salaDeServicio" value="#{bitacoraControlador.bitacora.salaDeServicio}" title="Sala De Servicio" required="true"><br/>
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{fixme}"/>
+                                        </h:selectOneMenu>
+                                        <h:outputLabel value="Sala de servicio:" for="salaDeServicio" />
+                                    </div>
                                     <div class="input-field col s12">
-                                        
-                                        <h:inputText value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" title="Esudiante" required="true" autocomplete="off" id="estu"></h:inputText>
-                                        <h:outputLabel for="estu" value="Querido estudiante #{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)} desea postularse a la"></h:outputLabel>
+                                        <h:inputText value="#{bitacoraControlador.bitacora.fechaRegistro}" title="Fecha de registro" required="true" autocomplete="off" id="fRegistro"></h:inputText>
+                                        <h:outputLabel for="fRegistro" value="Fecha de registro"></h:outputLabel>
                                     </div>
                                     <div class="input-field col s12">
                                         <h:inputText value="#{bitacoraControlador.bitacora.tiempoPrestado}" title="Tiempo prestado" required="true" autocomplete="off" id="tPrestado"></h:inputText>
@@ -49,7 +61,7 @@
                                         <h:outputLabel for="labor" value="Labores"></h:outputLabel>
                                     </div>
                                     <div class="botonesControl">
-                                        <h:commandButton value="Registrar" action="#{bitacoraControlador.registrar()}"></h:commandButton>
+                                        <h:commandButton value="Registrar" action="#{bitacoraControlador.actualizar()}"></h:commandButton>
                                     </div>
                                 </h:form>
                             </div>

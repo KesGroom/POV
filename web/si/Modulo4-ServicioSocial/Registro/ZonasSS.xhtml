@@ -41,7 +41,7 @@
                 <ul>
                     <li><a title="Añadir zona de servicio" href="RegistrarZona.xhtml" class="btn-floating red"><i class="material-icons">person_pin_circle</i></a></li>
                     <li><a title="Añadir bitácora de servicio" href="RegistrarBitacora.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
-                    <li><a title="Solicitudes" href="RegistrarBitacora.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
+                    <li><a title="Solicitudes" href="SalaDeEspera.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
                     <li><a title="Recuperar datos" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
                 </ul>
             </div>
@@ -178,7 +178,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Tiempo de Servicio"/>
                                         </f:facet>
-                                        <h:outputText value="#{zss.tiempodeServicio}"/>
+                                        <h:outputText value="#{zss.tiempodeServicio} Hrs"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
@@ -194,15 +194,21 @@
                                             <h:column >
                                                 <h:outputText value="#{item.itemList}"></h:outputText>
                                             </h:column>
+                                            <h:column>
+                                                <div class="botonesControl">
+                                                    <h:commandButton action="#{zonaControlador.preEditarLabor(item,zss)}" value="Editar"></h:commandButton>
+                                                </div>
+                                            </h:column>
                                         </h:dataTable>
                                     </h:column>
+
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value=""/>
                                         </f:facet>
                                         <div class="botonesControlVarios">
-                                            <h:commandLink action="#{zonaControlador.Remover(zss)}"><ion-icon class="btnTrash" name="trash-outline"></ion-icon></h:commandLink>
-                                            <h:commandLink action="#{zonaControlador.preActualizar(zss)}"><ion-icon class="btnUpdate" name="repeat"></ion-icon></h:commandLink>
+                                            <h:commandButton value="Eliminar" action="#{zonaControlador.Remover(zss)}"></h:commandButton>
+                                            <h:commandButton value="Actualizar" action="#{zonaControlador.preActualizar(zss)}"></h:commandButton>
                                         </div>
                                     </h:column>
                                 </h:dataTable>

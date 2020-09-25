@@ -59,24 +59,6 @@
                                             </f:facet>
                                             <h:outputText style="color: orange;" value="#{sa.estadoServicio}"/>
                                         </h:column>
-
-
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Aceptar"/>
-                                            </f:facet>
-                                            <div class="botonesControl">
-                                                <h:commandLink action="#{bitacoraControlador.preActualizar(bi)}"><i class="material-icons" style="color: green;">check</i></h:commandLink>
-                                            </div>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Rechazar"/>
-                                            </f:facet>
-                                            <div class="botonesControl">
-                                                <h:commandLink action="#{bitacoraControlador.preActualizar(bi)}"><i class="material-icons" style="color: red;">clear</i></h:commandLink>
-                                            </div>
-                                        </h:column>
                                     </h:dataTable>
                                 </h:form>
                             </f:view>
