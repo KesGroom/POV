@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="../../../Resources/js/Alertas.js" type="text/javascript"></script>
+        <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
+        <link href="../../../Resources/css/Materialize.css" rel="stylesheet" type="text/css"/>
+        <!-- Se vincula los estilos css específicos de la página-->
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
+        de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
+        la página inicie para evitar fallos-->
+        <script src="../../../Resources/js/prefix.js" type="text/javascript"></script>
+        <!-- Se incluye el icono del sistema -->
+        <link rel="shorcut icon" href="../../../Resources/img/Sistema/LOGOFavicon.png"/>
+        <!-- Nombre que se visualizará en el navegador -->
+        <title>Zonas servicio social</title>
+
+    </h:head>
+    <h:body class="scrollbarStyle">
+        <f:view>
+            <script>
+                #{alertasControlador.mensaje}
+            </script>
+
+            <div class="Bread">
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="#">Zonas servicio social</a>
+            </div>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red darken-4">
+                    <i class="large material-icons">menu</i>
+                </a>
+                <ul>
+                    <li><a title="Añadir zona de servicio" href="RegistrarZona.xhtml" class="btn-floating red"><i class="material-icons">person_pin_circle</i></a></li>
+                    <li><a title="Añadir bitácora de servicio" href="RegistrarBitacora.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
+                    <li><a title="Solicitudes" href="SalaDeEspera.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
+                    <li><a title="Recuperar datos" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
+                </ul>
+            </div>
+            <main>
+                <div class="contenedorTitulos">
+                    <a href="ZonasSS.xhtml" class="titulo">Zonas</a>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <a href="BitacoraSS.xhtml" class="subTitulo">Bitácoras</a>
+                </div>
+                <div class="etiquetas displayRowIniC">
+                    <div id="btnSearch" class="opcExport opcSearch displayRowSaC">
+                        <i class="material-icons">search</i>
+                        <p id="lblSearch">Buscar por:</p>
+                    </div>
+                    <div id="btnExcel" class="opcExport opcExcel displayRowSaC">
+                        <img src="../../../Resources/img/Sistema/excel.png" alt="" style="width: 24px; height: 24px;"/>
+                        <p id="lblExcel" class="">Exportar a excel</p>
+                    </div>
+                </div>
+                <h:form>
+                    <div id="SExcel" class="selectExport">
+                        <div id="fondoExc" class="fondo"></div>
+                        <div class="marco1"></div>
+                        <div class="marco2">
+                            <div class="row">
+                                <div class="displayColSaC col s6">
+                                    <div class="row">
+                                        <div class="input-field col s12 helpSpawn">
+                                            <h:outputLabel for="nameArc" value="Nombre del archivo"></h:outputLabel>
+                                            <h:inputText id="nameArc" autocomplete="off" value="#{usuarioControlador.nombreArch}" required="true"></h:inputText>
+                                            <span class="helper-text">Defina el nombre del archivo de Excel</span>
+                                        </div>
+                                        <div class="col s12 displayRowCC">
+                                            <h:commandButton value="Exportar" class="modal-close" action="#{usuarioControlador.generarExcel()}"></h:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6 exportExcel">
+                                    <div class="row displayRowSbC">
+                                        <p class="col s6">Alineación de las celdas:</p>
+                                        <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.alineacion}">
+                                            <f:selectItem itemEscaped="false" itemValue="Izquierda" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_left &lt;/a&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="Centro" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_center &lt;/a&gt;"></f:selectItem>
+                                            <f:selectItem itemEscaped="false" itemValue="Derecha" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;format_align_right &lt;/a&gt;"></f:selectItem>
+                                        </h:selectOneRadio>
+                                    </div>
+                                    <div class="row displayRowSbC">
+                                        <p class="col s6">Borde:</p>
+                                        <h:selectOneRadio class="browser-default col s6" value="#{usuarioControlador.estilo}">
+                                            <f:selectItem itemEscaped="false" itemValue="Con" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_all &lt;/a&gt;" />
+                                            <f:selectItem itemEscaped="false" itemValue="Sin" itemLabel="&lt;i class=&quot;material-icons&quot;&gt;border_clear &lt;/a&gt;"></f:selectItem>
+                                        </h:selectOneRadio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+                <h:form>
+                    <div id="SSearch" class="selectExport">
+                        <div id="fondoSea" class="fondo"></div>
+                        <div class="marco1"></div>
+                        <div class="marco2">
+                            <div id="contFilter" class="row">
+                                <div class="input-field col s3">
+                                    <h:outputLabel  value="Nombre" for="nmb"></h:outputLabel>
+                                    <h:inputText id="nmb" value="#{zonaControlador.nmb}">
+                                        <f:ajax event="keyup" listener="#{zonaControlador.changeListener}" render="zonaTable"></f:ajax> 
+                                    </h:inputText>
+                                </div>
+                                <div class="input-field col s3">
+                                    <h:outputLabel value="Lugar" for="lug"></h:outputLabel>
+                                    <h:inputText id="lug" value="#{zonaControlador.lug}">
+                                        <f:ajax event="keyup" listener="#{zonaControlador.changeListener}" render="zonaTable"></f:ajax> 
+                                    </h:inputText>
+                                </div>
+                                <div class="input-field col s3">
+                                    <h:outputLabel value="Encargado" for="grado"></h:outputLabel>
+                                    <h:inputText id="grado" value="#{zonaControlador.gado}">
+                                        <f:ajax event="keyup" listener="#{zonaControlador.changeListener}" render="zonaTable"></f:ajax>  
+                                    </h:inputText>
+                                </div>
+                                <div class="input-field col s3">
+                                    <h:outputLabel value="Tiempo de servicio" for="tiservi"></h:outputLabel>
+                                    <h:inputText id="tiservi" value="#{zonaControlador.tservi}">
+                                        <f:ajax event="keyup" listener="#{zonaControlador.changeListener}" render="zonaTable"></f:ajax>  
+                                    </h:inputText>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="consulta">
+
+                        <div class="row">
+                            <h:form>
+                                <h:dataTable class="centered" value="#{zonaControlador.consultarZona()}" var="zss">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nombre"/>
+                                        </f:facet>
+                                        <h:outputText value="#{zss.nombre}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Lugar"/>
+                                        </f:facet>
+                                        <h:outputText value="#{zss.lugar}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Encargado"/>
+                                        </f:facet>
+                                        <h:outputText value="#{zss.encargado}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Horario"/>
+                                        </f:facet>
+                                        <div class="displayRowSaC">
+                                            <p>Entrada:</p>
+                                            <h:outputText value="#{zss.horaEntrada}">
+                                                <f:convertDateTime pattern="HH:mm" />
+                                            </h:outputText>
+                                        </div>
+                                        <div class="displayRowSaC">
+                                            <p>Salida:</p>
+                                            <h:outputText value="#{zss.horaSalida}">
+                                                <f:convertDateTime pattern="HH:mm" />
+                                            </h:outputText>
+                                        </div>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Tiempo de Servicio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{zss.tiempodeServicio} Hrs"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Cupos"/>
+                                        </f:facet>
+                                        <h:outputText value="#{zss.cupos}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Labores"/>
+                                        </f:facet>
+                                        <h:dataTable value="#{zonaControlador.retornarLista(zss.idZonaSS)}" var="item">
+                                            <h:column >
+                                                <h:outputText value="#{item.itemList}"></h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <div class="botonesControl">
+                                                    <h:commandButton action="#{zonaControlador.preEditarLabor(item,zss)}" value="Editar"></h:commandButton>
+                                                </div>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value=""/>
+                                        </f:facet>
+                                        <div class="botonesControlVarios">
+                                            <h:commandButton value="Eliminar" action="#{zonaControlador.Remover(zss)}"></h:commandButton>
+                                            <h:commandButton value="Actualizar" action="#{zonaControlador.preActualizar(zss)}"></h:commandButton>
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+
+                        </div>
+                    </div>
+                </h:form>
+
+
+
+
+            </main>
+
+        </f:view>
+        <script src="../../../Resources/js/ExpExcel.js" type="text/javascript"></script>
+        <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
+        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->
+        <script>
+                M.AutoInit();
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelectorAll('.fixed-action-btn');
+                    var instances = M.FloatingActionButton.init(elems, {
+                        direction: 'left',
+                        hoverEnabled: false
+                    });
+                });
+        </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <!-- Se vincula los scripts propios de la página-->
+
+
+    </h:body>
+</html>
+

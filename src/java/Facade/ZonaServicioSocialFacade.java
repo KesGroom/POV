@@ -36,5 +36,17 @@ public class ZonaServicioSocialFacade extends AbstractFacade<ZonaServicioSocial>
         q.setParameter("estado", estado);
         return q.getResultList();
     }
+   
     
+    public ZonaServicioSocial obtenerZona(int id){
+        ZonaServicioSocial zona = null;
+        try {
+        Query q = em.createQuery("SELECT z FROM ZonaServicioSocial z WHERE z.estado=1 AND z.idZonaSS=:id");
+        q.setParameter("id", id); 
+        zona=(ZonaServicioSocial)q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return zona;
+    }
 }

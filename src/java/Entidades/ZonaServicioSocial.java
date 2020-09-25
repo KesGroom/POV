@@ -16,7 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kesgr
+ * @author jusag
  */
 @Entity
 @Table(name = "zonas_servicio_social")
@@ -45,7 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ZonaServicioSocial.findByHoraSalida", query = "SELECT z FROM ZonaServicioSocial z WHERE z.horaSalida = :horaSalida")
     , @NamedQuery(name = "ZonaServicioSocial.findByTiempodeServicio", query = "SELECT z FROM ZonaServicioSocial z WHERE z.tiempodeServicio = :tiempodeServicio")
     , @NamedQuery(name = "ZonaServicioSocial.findByCupos", query = "SELECT z FROM ZonaServicioSocial z WHERE z.cupos = :cupos")
-    , @NamedQuery(name = "ZonaServicioSocial.findByEstado", query = "SELECT z FROM ZonaServicioSocial z WHERE z.estado = :estado")})
+    , @NamedQuery(name = "ZonaServicioSocial.findByEstado", query = "SELECT z FROM ZonaServicioSocial z WHERE z.estado = :estado")
+    , @NamedQuery(name = "ZonaServicioSocial.findByCantidadLabores", query = "SELECT z FROM ZonaServicioSocial z WHERE z.cantidadLabores = :cantidadLabores")
+    , @NamedQuery(name = "ZonaServicioSocial.findByDiaServicio", query = "SELECT z FROM ZonaServicioSocial z WHERE z.diaServicio = :diaServicio")})
 public class ZonaServicioSocial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -87,14 +88,19 @@ public class ZonaServicioSocial implements Serializable {
     @NotNull
     @Column(name = "Cupos")
     private int cupos;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "Labores")
-    private String labores;
     @Column(name = "Estado")
     private Integer estado;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CantidadLabores")
+    private int cantidadLabores;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 80)
+    @Column(name = "diaServicio")
+    private String diaServicio;
+    @OneToMany(mappedBy = "zonaServicio", fetch = FetchType.LAZY)
+    private List<Elementoslista> elementoslistaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "zonaServicio", fetch = FetchType.LAZY)
     private List<Salaserviciosocial> salaserviciosocialList;
 
@@ -105,7 +111,7 @@ public class ZonaServicioSocial implements Serializable {
         this.idZonaSS = idZonaSS;
     }
 
-    public ZonaServicioSocial(Integer idZonaSS, String nombre, String lugar, String encargado, Date horaEntrada, Date horaSalida, int tiempodeServicio, int cupos, String labores) {
+    public ZonaServicioSocial(Integer idZonaSS, String nombre, String lugar, String encargado, Date horaEntrada, Date horaSalida, int tiempodeServicio, int cupos, int cantidadLabores, String diaServicio) {
         this.idZonaSS = idZonaSS;
         this.nombre = nombre;
         this.lugar = lugar;
@@ -114,7 +120,8 @@ public class ZonaServicioSocial implements Serializable {
         this.horaSalida = horaSalida;
         this.tiempodeServicio = tiempodeServicio;
         this.cupos = cupos;
-        this.labores = labores;
+        this.cantidadLabores = cantidadLabores;
+        this.diaServicio = diaServicio;
     }
 
     public Integer getIdZonaSS() {
@@ -181,20 +188,37 @@ public class ZonaServicioSocial implements Serializable {
         this.cupos = cupos;
     }
 
-    public String getLabores() {
-        return labores;
-    }
-
-    public void setLabores(String labores) {
-        this.labores = labores;
-    }
-
     public Integer getEstado() {
         return estado;
     }
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public int getCantidadLabores() {
+        return cantidadLabores;
+    }
+
+    public void setCantidadLabores(int cantidadLabores) {
+        this.cantidadLabores = cantidadLabores;
+    }
+
+    public String getDiaServicio() {
+        return diaServicio;
+    }
+
+    public void setDiaServicio(String diaServicio) {
+        this.diaServicio = diaServicio;
+    }
+
+    @XmlTransient
+    public List<Elementoslista> getElementoslistaList() {
+        return elementoslistaList;
+    }
+
+    public void setElementoslistaList(List<Elementoslista> elementoslistaList) {
+        this.elementoslistaList = elementoslistaList;
     }
 
     @XmlTransient

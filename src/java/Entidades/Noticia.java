@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kesgr
+ * @author jusag
  */
 @Entity
 @Table(name = "noticias")
@@ -70,6 +70,8 @@ public class Noticia implements Serializable {
     private String imagen;
     @Column(name = "Estado")
     private Integer estado;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "FechaPublicacion")
     @Temporal(TemporalType.DATE)
     private Date fechaPublicacion;
@@ -87,11 +89,12 @@ public class Noticia implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-    public Noticia(Integer idNoticia, String titulo, String subtitulo, String informacion) {
+    public Noticia(Integer idNoticia, String titulo, String subtitulo, String informacion, Date fechaPublicacion) {
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.informacion = informacion;
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public Integer getIdNoticia() {

@@ -70,6 +70,17 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
         }
         return estudiante;
     }
+    public Estudiante EstudianteDocIn(int id) {
+        Estudiante estudiante = null;
+        try {
+            Query q = em.createQuery("SELECT e FROM Estudiante e WHERE e.estado=1 AND e.idUsuario=:id");
+            q.setParameter("id", id);
+            estudiante = (Estudiante) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return estudiante;
+    }
 
     public List<Estudiante> findByDoc(String doc) {
         int $estado = 1;

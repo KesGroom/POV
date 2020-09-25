@@ -16,20 +16,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kesgr
+ * @author jusag
  */
 @Entity
 @Table(name = "areagrado")
@@ -46,10 +44,6 @@ public class Areagrado implements Serializable {
     @Basic(optional = false)
     @Column(name = "idAreaGrado")
     private Integer idAreaGrado;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "Competencias")
-    private String competencias;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Estado")
@@ -60,6 +54,8 @@ public class Areagrado implements Serializable {
     @JoinColumn(name = "Grado", referencedColumnName = "Id_Grado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Grado grado;
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
+    private List<Elementoslista> elementoslistaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idArea", fetch = FetchType.LAZY)
     private List<Materia> materiaList;
 
@@ -81,14 +77,6 @@ public class Areagrado implements Serializable {
 
     public void setIdAreaGrado(Integer idAreaGrado) {
         this.idAreaGrado = idAreaGrado;
-    }
-
-    public String getCompetencias() {
-        return competencias;
-    }
-
-    public void setCompetencias(String competencias) {
-        this.competencias = competencias;
     }
 
     public int getEstado() {
@@ -113,6 +101,15 @@ public class Areagrado implements Serializable {
 
     public void setGrado(Grado grado) {
         this.grado = grado;
+    }
+
+    @XmlTransient
+    public List<Elementoslista> getElementoslistaList() {
+        return elementoslistaList;
+    }
+
+    public void setElementoslistaList(List<Elementoslista> elementoslistaList) {
+        this.elementoslistaList = elementoslistaList;
     }
 
     @XmlTransient

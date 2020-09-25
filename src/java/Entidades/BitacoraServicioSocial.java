@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kesgr
+ * @author jusag
  */
 @Entity
 @Table(name = "bitacora_servicio_social")
@@ -48,7 +48,7 @@ public class BitacoraServicioSocial implements Serializable {
     @Column(name = "Id_Bitacora_Servicio")
     private Integer idBitacoraServicio;
     @Column(name = "Fecha_Registro")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
     @Basic(optional = false)
     @NotNull

@@ -55,6 +55,9 @@ public class EstudianteControladores implements Serializable {
     public List<Estudiante> estudianteCurso(String Cur) {
         return estudianteFacade.EstudianteCurso(Cur);
     }
+    public Estudiante buscarEstudiante(Usuario id) {
+        return estudianteFacade.EstudianteDoc(id);
+    }
 
 
 //----- Getters and Setters ----------------------------------------------\\
