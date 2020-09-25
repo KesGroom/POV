@@ -1,0 +1,102 @@
+
+.desingBasic{
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.criteriosCont{
+    position: fixed;
+    height: 6rem;
+    width: 97.5%;
+    top: 2rem;
+    z-index: 100;
+}
+
+.graficaCont{
+    margin-top: 7.5rem;
+}
+
+.controlesCont{
+    height: 66px;
+    width: 97.5%;
+    background-color: #b71c1c;
+    position: fixed;
+    bottom: -1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    transition: all linear 400ms;
+}
+
+.btnPDF{
+    font-size: 14px;
+    outline: 0;
+    text-decoration: none;
+    color: black;
+    background-color: #fff;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    transition: all linear 400ms;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    margin-left: 1.5rem;
+    
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnPDF ion-icon{
+    margin-right: 0.5rem;
+}
+
+.btnPDF:hover{
+    color: #b71c1c;
+}
+
+.controlesCont.active .btnPDF{
+    height: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.controlesCont .accionador{
+    background-color: #E1DBDB;
+    padding: 0rem 0.5rem;
+    color: black;
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    top: -1rem;
+    left: 0.5rem;
+    height: 1rem;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;    
+}
+
+.controlesCont.active{
+    height: 0px;
+    padding: 0px;
+}

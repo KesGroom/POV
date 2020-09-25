@@ -5,19 +5,17 @@
  */
 package Facade;
 
-import Entidades.Noticia;
-import java.util.List;
+import Entidades.Salaserviciosocial;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author kesgr
  */
 @Stateless
-public class NoticiaFacade extends AbstractFacade<Noticia> {
+public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial> {
 
     @PersistenceContext(unitName = "POV_Gaes7PU")
     private EntityManager em;
@@ -27,15 +25,8 @@ public class NoticiaFacade extends AbstractFacade<Noticia> {
         return em;
     }
 
-    public NoticiaFacade() {
-        super(Noticia.class);
-    }
-    
-    public List<Noticia> consultarNoticia(int estado, int categoria) {
-        Query q = em.createQuery("SELECT n FROM Noticia n WHERE n.estado=:estado AND n.categoria.idCategoria=:categoria");
-        q.setParameter("estado", estado);
-        q.setParameter("categoria", categoria);
-        return q.getResultList();
+    public SalaserviciosocialFacade() {
+        super(Salaserviciosocial.class);
     }
     
 }
