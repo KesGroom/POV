@@ -31,7 +31,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
+<<<<<<< HEAD
  * @author kesgr
+=======
+ * @author Oscar M Jara C
+>>>>>>> origin/POV-by-Oscar
  */
 @Entity
 @Table(name = "actividades")

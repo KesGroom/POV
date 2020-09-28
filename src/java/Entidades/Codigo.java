@@ -20,7 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
+<<<<<<< HEAD
  * @author kesgr
+=======
+ * @author Oscar M Jara C
+>>>>>>> origin/POV-by-Oscar
  */
 @Entity
 @Table(name = "codigo")

@@ -28,7 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
+<<<<<<< HEAD
  * @author kesgr
+=======
+ * @author Oscar M Jara C
+>>>>>>> origin/POV-by-Oscar
  */
 @Entity
 @Table(name = "citas")
@@ -54,12 +58,20 @@ public class Cita implements Serializable {
     @Column(name = "AtencionCurso")
     private Integer atencionCurso;
     @Column(name = "Fecha_Registro")
+<<<<<<< HEAD
     @Temporal(TemporalType.DATE)
+=======
+    @Temporal(TemporalType.TIMESTAMP)
+>>>>>>> origin/POV-by-Oscar
     private Date fechaRegistro;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha_Cita")
+<<<<<<< HEAD
     @Temporal(TemporalType.DATE)
+=======
+    @Temporal(TemporalType.TIMESTAMP)
+>>>>>>> origin/POV-by-Oscar
     private Date fechaCita;
     @Basic(optional = false)
     @NotNull
@@ -70,7 +82,11 @@ public class Cita implements Serializable {
     @Column(name = "Estado")
     private Integer estado;
     @JoinColumn(name = "Acudiente", referencedColumnName = "Id_Usuario")
+<<<<<<< HEAD
     @ManyToOne(fetch = FetchType.LAZY)
+=======
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+>>>>>>> origin/POV-by-Oscar
     private Acudiente acudiente;
 
     public Cita() {
