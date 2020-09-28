@@ -41,7 +41,7 @@ public class BitacoraControlador implements Serializable {
     private Estudiante estudiante;
     private ZonaServicioSocial zona;
     private Usuario us;
-    private Date fechaRegistro = new Date();
+    private String fechaRegistro;
     private String coo;
     private String est;
     private String tpres;
@@ -117,13 +117,14 @@ public class BitacoraControlador implements Serializable {
         this.us = us;
     }
 
-    public Date getFechaRegistro() {
+    public String getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
 
     public String getCoo() {
         return coo;

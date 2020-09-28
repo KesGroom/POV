@@ -54,12 +54,12 @@ public class Cita implements Serializable {
     @Column(name = "AtencionCurso")
     private Integer atencionCurso;
     @Column(name = "Fecha_Registro")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha_Cita")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaCita;
     @Basic(optional = false)
     @NotNull
@@ -70,7 +70,7 @@ public class Cita implements Serializable {
     @Column(name = "Estado")
     private Integer estado;
     @JoinColumn(name = "Acudiente", referencedColumnName = "Id_Usuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Acudiente acudiente;
 
     public Cita() {

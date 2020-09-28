@@ -49,53 +49,87 @@ public class ZonaControlador implements Serializable {
     private String labores;
     private Estudiante estudiante;
     private String contItem;
+    private String nombreZona;
+    private String[] diaSemana;
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
-    
+
     @EJB
     SalaserviciosocialFacade salaFacade;
 
-    @EJB 
+    @EJB
     ElementoslistaFacade elFacade;
-    
+
     @EJB
     EstudianteFacade estFacade;
-    
+
     @Inject
     AlertasControlador alerta;
-    
+
     public String registrar() {
-        zona.setEstado(1);
-        zonaFacade.create(zona);
-        alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
-         String texto = labores;
-        List<String> Elementos = new ArrayList<>();
-        String item;
-        for (int i = 0;i < zona.getCantidadLabores(); i++) {
-            item = devuelveFrase2("<", ">", texto);
-            Elementos.add(item);
-            String searchText = devuelveFrase1("<", ">", texto);
-            String newText = reemplazar(texto, searchText, "");
-            texto = newText;
+        ZonaServicioSocial zonaPrueba = zonaFacade.obtenerZonaNombre(nombreZona);
+        if (zonaPrueba == null) {
+            zona.setEstado(1);
+            String diasem = "";
+            for (int i = 0; i < diaSemana.length; i++) {
+                if (i == 0) {
+                    diasem = diaSemana[i] + ", ";
+                } else if (i > 0 && i < diaSemana.length - 1) {
+                    diasem = diasem + diaSemana[i] + ", ";
+                } else {
+                    diasem = diasem + diaSemana[i];
+                }
+            }
+            zona.setDiaServicio(diasem);
+            zona.setNombre(nombreZona);
+            zonaFacade.create(zona);
+            alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
+            String texto = labores;
+            List<String> Elementos = new ArrayList<>();
+            String item;
+            for (int i = 0; i < zona.getCantidadLabores(); i++) {
+                item = devuelveFrase2("<", ">", texto);
+                Elementos.add(item);
+                String searchText = devuelveFrase1("<", ">", texto);
+                String newText = reemplazar(texto, searchText, "");
+                texto = newText;
+            }
+            for (int i = 0; i < Elementos.size(); i++) {
+                elLista.setZonaServicio(zona);
+                elLista.setItemList(Elementos.get(i));
+                elFacade.create(elLista);
+              
+            }
+            this.zona = new ZonaServicioSocial();
+            this.labores = "";
+            this.elLista = new Elementoslista();
+            return "ZonasSS.xhtml";
+        } else {
+            alerta.setMensaje("AlertaPopUp('Error al realizar el registro','Ya existe una zona servicio con el nombre','error');");
+            this.nombreZona = "";
+            return "RegistroZona.xhtml";
         }
-        for (int i = 0; i < Elementos.size(); i++) {
-            elLista.setZonaServicio(zona);
-            elLista.setItemList(Elementos.get(i));
-            elFacade.create(elLista);
-        }
-        this.zona = new ZonaServicioSocial();
-        this.labores = "";
-        this.elLista = new Elementoslista();
-        return "ZonasSS.xhtml";
     }
 
-     public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar){
+    public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar) {
         zona = zonaServicioSocialActualizar;
         return "ActualizarZona";
     }
 
     public String actualizar() {
+
+        String diasem = "";
+        for (int i = 0; i < diaSemana.length; i++) {
+            if (i == 0) {
+                diasem = diaSemana[i] + ", ";
+            } else if (i > 0 && i < diaSemana.length - 1) {
+                diasem = diasem + diaSemana[i] + ", ";
+            } else {
+                diasem = diasem + diaSemana[i];
+            }
+        }
+        zona.setDiaServicio(diasem);
         zonaFacade.edit(zona);
         return "ZonasSS";
     }
@@ -105,16 +139,24 @@ public class ZonaControlador implements Serializable {
         zona.setEstado(2);
         zonaFacade.edit(zona);
     }
+    public void rechazado(Salaserviciosocial salaRechazo) {
+        sala = salaRechazo;
+        zona.setEstado(2);
+        zonaFacade.edit(zona);
+    }
 
     public List<ZonaServicioSocial> consultarZona() {
         return zonaFacade.consultarZonaServicioSocial(1);
     }
-    public List<Elementoslista> retornarLista(int id){
-       return elFacade.obtenerElementosZona(id);
+
+    public List<Elementoslista> retornarLista(int id) {
+        return elFacade.obtenerElementosZona(id);
     }
-    public List<Salaserviciosocial> consultarSala(){
-    return salaFacade.findAll();
+
+    public List<Salaserviciosocial> consultarSala() {
+        return salaFacade.findAll();
     }
+
     //Metodos para la separación de los elementos de la lista
     public static String reemplazar(String cadena, String busqueda, String reemplazo) {
         return cadena.replaceAll(busqueda, reemplazo);
@@ -140,9 +182,9 @@ public class ZonaControlador implements Serializable {
         return fraseCompleta;
     }
 
-    public void postular(int zonaPostular, int estu){
+    public void postular(int zonaPostular, int estu) {
         Salaserviciosocial salaPrueba = salaFacade.obtenerSala(zonaPostular, estu);
-        if (salaPrueba==null) {
+        if (salaPrueba == null) {
             sala.setEstado(1);
             sala.setEstadoServicio("En espera");
             estudiante = estFacade.EstudianteDocIn(estu);
@@ -153,24 +195,24 @@ public class ZonaControlador implements Serializable {
             alerta.setMensaje("AlertaToast('Postulación exitosa','success');");
             this.sala = new Salaserviciosocial();
             this.zona = null;
-        }else{
+        } else {
             alerta.setMensaje("AlertaPopUp('Ha ocurrido un error','Ya se ha postulado a esta zona, por favor espere una respuesta','error');");
         }
     }
-    
-    public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon){
-         zona = zon;  
-         elLista = editarLabor;
-         return "ActualizarLabor";
+
+    public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon) {
+        zona = zon;
+        elLista = editarLabor;
+        return "ActualizarLabor";
     }
-    
-    public String editarLabor(){
-       elLista.setZonaServicio(zona);
-       elFacade.edit(elLista);
-       alerta.setMensaje("AlertaToast('Cambio de labor exitosa','success');");
-       return "ZonasSS";
+
+    public String editarLabor() {
+        elLista.setZonaServicio(zona);
+        elFacade.edit(elLista);
+        alerta.setMensaje("AlertaToast('Cambio de labor exitosa','success');");
+        return "ZonasSS";
     }
-    
+
     public ZonaServicioSocial getZona() {
         return zona;
     }
@@ -250,9 +292,21 @@ public class ZonaControlador implements Serializable {
     public void setContItem(String contItem) {
         this.contItem = contItem;
     }
-    
-    
-  
-    
+
+    public String getNombreZona() {
+        return nombreZona;
+    }
+
+    public void setNombreZona(String nombreZona) {
+        this.nombreZona = nombreZona;
+    }
+
+    public String[] getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String[] diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
 }
-    

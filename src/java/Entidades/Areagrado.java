@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Areagrado.findAll", query = "SELECT a FROM Areagrado a")
     , @NamedQuery(name = "Areagrado.findByIdAreaGrado", query = "SELECT a FROM Areagrado a WHERE a.idAreaGrado = :idAreaGrado")
-    , @NamedQuery(name = "Areagrado.findByEstado", query = "SELECT a FROM Areagrado a WHERE a.estado = :estado")})
+    , @NamedQuery(name = "Areagrado.findByEstado", query = "SELECT a FROM Areagrado a WHERE a.estado = :estado")
+    , @NamedQuery(name = "Areagrado.findByCantCompetencias", query = "SELECT a FROM Areagrado a WHERE a.cantCompetencias = :cantCompetencias")})
 public class Areagrado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,10 @@ public class Areagrado implements Serializable {
     @NotNull
     @Column(name = "Estado")
     private int estado;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantCompetencias")
+    private int cantCompetencias;
     @JoinColumn(name = "Area", referencedColumnName = "Id_Area")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Area area;
@@ -66,9 +71,10 @@ public class Areagrado implements Serializable {
         this.idAreaGrado = idAreaGrado;
     }
 
-    public Areagrado(Integer idAreaGrado, int estado) {
+    public Areagrado(Integer idAreaGrado, int estado, int cantCompetencias) {
         this.idAreaGrado = idAreaGrado;
         this.estado = estado;
+        this.cantCompetencias = cantCompetencias;
     }
 
     public Integer getIdAreaGrado() {
@@ -85,6 +91,14 @@ public class Areagrado implements Serializable {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public int getCantCompetencias() {
+        return cantCompetencias;
+    }
+
+    public void setCantCompetencias(int cantCompetencias) {
+        this.cantCompetencias = cantCompetencias;
     }
 
     public Area getArea() {

@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Materia.findAll", query = "SELECT m FROM Materia m")
     , @NamedQuery(name = "Materia.findByIdMateria", query = "SELECT m FROM Materia m WHERE m.idMateria = :idMateria")
     , @NamedQuery(name = "Materia.findByMateria", query = "SELECT m FROM Materia m WHERE m.materia = :materia")
-    , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")})
+    , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")
+    , @NamedQuery(name = "Materia.findByCantCompetencias", query = "SELECT m FROM Materia m WHERE m.cantCompetencias = :cantCompetencias")})
 public class Materia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,6 +54,10 @@ public class Materia implements Serializable {
     private String materia;
     @Column(name = "Estado")
     private Integer estado;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantCompetencias")
+    private int cantCompetencias;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMateria", fetch = FetchType.LAZY)
     private List<DocenteMateria> docenteMateriaList;
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
@@ -68,9 +73,10 @@ public class Materia implements Serializable {
         this.idMateria = idMateria;
     }
 
-    public Materia(Integer idMateria, String materia) {
+    public Materia(Integer idMateria, String materia, int cantCompetencias) {
         this.idMateria = idMateria;
         this.materia = materia;
+        this.cantCompetencias = cantCompetencias;
     }
 
     public Integer getIdMateria() {
@@ -95,6 +101,14 @@ public class Materia implements Serializable {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public int getCantCompetencias() {
+        return cantCompetencias;
+    }
+
+    public void setCantCompetencias(int cantCompetencias) {
+        this.cantCompetencias = cantCompetencias;
     }
 
     @XmlTransient

@@ -43,6 +43,18 @@
                                         <h:inputText value="#{zonaControlador.zona.encargado}" title="Encargado" required="true" autocomplete="off" id="encargado"></h:inputText>
                                         <h:outputLabel for="encargado" value="Encargado"></h:outputLabel>
                                     </div>
+                                    <div class="input-field col s12 Check">
+                                        <h:outputText class="FalseLabel" value="Días de servicio:"></h:outputText>
+                                        <h:selectManyCheckbox value="#{zonaControlador.diaSemana}">
+                                            <f:selectItem itemValue="Lunes" itemLabel="Lunes"> </f:selectItem>
+                                            <f:selectItem itemValue="Martes" itemLabel="Martes"> </f:selectItem>
+                                            <f:selectItem itemValue="Miercoles" itemLabel="Miercoles"> </f:selectItem>
+                                            <f:selectItem itemValue="Jueves" itemLabel="Jueves"> </f:selectItem>
+                                            <f:selectItem itemValue="Viernes" itemLabel="Viernes"> </f:selectItem>
+                                            <f:selectItem itemValue="Sabado" itemLabel="Sabado"> </f:selectItem>
+                                            <f:selectItem itemValue="Domingo" itemLabel="Domingo"> </f:selectItem>
+                                        </h:selectManyCheckbox>
+                                    </div>
                                     <div class="input-field col s6">
                                         <h:inputText value="#{zonaControlador.zona.horaEntrada}" title="Hora de entrada" required="true" autocomplete="off" id="horaEntrada">
                                             <f:convertDateTime pattern="HH:mm:ss"></f:convertDateTime>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
+        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <title>Registrar zona</title>
+    </h:head>
+    <h:body class="scrollbarStyle bodyFormBackground">
+        <f:view  locale="#{lenguajeControlador.languageSelected}">
+            <div class="Bread">
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Registrar cita</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="#">Registro</a>
+            </div>
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="IdAtencionArea:" for="idAtencionArea" />
+                        <h:inputText id="idAtencionArea" value="#{atencionAreaControlador.atencionarea.idAtencionArea}" title="IdAtencionArea" required="true" requiredMessage="The IdAtencionArea field is required."/>
+                        <h:outputLabel value="DiaSemana:" for="diaSemana" />
+                        <h:inputText id="diaSemana" value="#{atencionAreaControlador.atencionarea.diaSemana}" title="DiaSemana" required="true" requiredMessage="The DiaSemana field is required."/>
+                        <h:outputLabel value="HoraInicioAtencion:" for="horaInicioAtencion" />
+                        <h:inputText id="horaInicioAtencion" value="#{atencionAreaControlador.atencionarea.horaInicioAtencion}" title="HoraInicioAtencion" required="true" requiredMessage="The HoraInicioAtencion field is required.">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="HoraFinalAtencion:" for="horaFinalAtencion" />
+                        <h:inputText id="horaFinalAtencion" value="#{atencionAreaControlador.atencionarea.horaFinalAtencion}" title="HoraFinalAtencion" required="true" requiredMessage="The HoraFinalAtencion field is required.">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="Estado:" for="estado" />
+                        <h:inputText id="estado" value="#{atencionAreaControlador.atencionarea.estado}" title="Estado" />
+                        <h:outputLabel value="Area:" for="area" />
+                        <h:selectOneMenu id="area" value="#{atencionAreaControlador.atencionarea.area}" title="Area" required="true" requiredMessage="The Area field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="DocenteACargo:" for="docenteACargo" />
+                        <h:selectOneMenu id="docenteACargo" value="#{atencionAreaControlador.atencionarea.docenteACargo}" title="DocenteACargo" required="true" requiredMessage="The DocenteACargo field is required.">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </f:view>
+
+        </f:view>
+
+        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <script src="../../../Resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../Resources/js/Listas.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

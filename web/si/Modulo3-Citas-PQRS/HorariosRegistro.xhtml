@@ -24,48 +24,39 @@
                         <!-- Titulo -->
                         <div class="card red darken-4">
                             <div class="card-content white-text">
-                                <span class="card-title center-align">Registrar cita</span>
+                                <span class="card-title center-align">Registrar area de atención</span>
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="row">
                                 <h:form>
-                                      <div class="input-field cols12">
-                                        <h:outputLabel class="FalseLabel" value="Acudiente" for="acudiente" />
-                                        <h:selectOneMenu class="browser-default" id="acudiente" value="#{citaControlador.cita.acudiente}" required="true"><br/>
-                                            <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="a" itemLabel="#{a.nombre} #{a.apellido}" itemValue="#{a.idUsuario}"/>
-                                        </h:selectOneMenu>
-                                    </div>
+
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.atencionArea}" title="Atención area" required="true" autocomplete="off" id="area"></h:inputText>
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.area}" title="Atención area" required="true" autocomplete="off" id="area"></h:inputText>
                                         <h:outputLabel for="area" value="Atención area"></h:outputLabel>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.atencionCurso}" title="Atención curso" required="true" autocomplete="off" id="ateCurso"></h:inputText>
-                                        <h:outputLabel for="ateCurso" value="Atención curso"></h:outputLabel>
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.diaSemana}" title="Dia semana" required="true" autocomplete="off" id="diaSe"></h:inputText>
+                                        <h:outputLabel for="diaSem" value="Dia"></h:outputLabel>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.fechaRegistro}" title="Fecha de Registro" required="true" autocomplete="off" id="fecha">
-                                            
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaInicioAtencion}" title="Hora de inicio" required="true" autocomplete="off" id="horai">
+
+                                            <f:convertDateTime pattern="HH:mm:ss" />
                                         </h:inputText>
-                                        <h:outputLabel value="fecha"></h:outputLabel>
+                                        <h:outputLabel value="Hora de inicio" for="horai"></h:outputLabel>
                                     </div>
-                                    
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.fechaCita}" title="Fecha cita" required="true" autocomplete="off" id="fechaCita">
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaFinalAtencion}" title="Hora final" required="true" autocomplete="off" id="horaf">
+
+                                            <f:convertDateTime pattern="HH:mm:ss" />
                                         </h:inputText>
-                                        <h:outputLabel for="fechaCita" value="Fecha de la cita"></h:outputLabel>
-                                    </div>
-                                   <div class="input-field col s12">
-                                       <h:inputText value="#{citaControlador.cita.asunto}" title="Asunto" required="true" autocomplete="off" id="asunto"></h:inputText>
-                                        <h:outputLabel for="asunto" value="Asunto"></h:outputLabel>
+                                        <h:outputLabel value="Hora final" for="horaf"></h:outputLabel>
                                     </div>
                                     <div class="botonesControl">
-                                        <h:commandButton value="Registrar" action="#{citaControlador.registrarCita()}"></h:commandButton>
+                                        <h:commandButton value="Registrar" action="#{atencionAreaControlador.registrarAtencionArea()}"></h:commandButton>
                                     </div>
+
                                 </h:form>
                             </div>
                         </div>

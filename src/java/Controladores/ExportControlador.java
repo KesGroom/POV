@@ -66,13 +66,13 @@ public class ExportControlador {
             if (celda.getCellTypeEnum() == CellType.STRING) {
 
                         if (ncamp == 4) {
-                            query = query + "'" + celda.getRichStringCellValue() + "'";
+                            query = query + ", '" + celda.getRichStringCellValue() + "'";
                         }
                         if (ncamp == 6) {
-                            query = query + "'" + celda.getRichStringCellValue() + "'";
+                            query = query + ", '" + celda.getRichStringCellValue() + "'";
                         }
                         if (ncamp == 7) {
-                            query = query + "'" + celda.getRichStringCellValue() + "'";
+                            query = query + ", '" + celda.getRichStringCellValue() + "'";
                         }
 
                         //System.out.print("  " + celda.getRichStringCellValue());

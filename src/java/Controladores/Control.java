@@ -12,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -59,8 +58,8 @@ public class Control {
             while (itr.hasNext()) {
                 Row fila = itr.next();
 
-                int ncamp = 1;
-                String query = "INSERT INTO bitacora_servicio_social(Id_Bitacora_Servicio, Coordinador, SalaDeServicio, Fecha_Registro, Tiempo_Prestado, Observaciones, Labores_Realizadas, Estado) VALUES(";
+                int ncamp = 0;
+                String query = "INSERT INTO bitacora_servicio_social(Coordinador, SalaDeServicio, Fecha_Registro, Tiempo_Prestado, Observaciones, Labores_Realizadas, Estado) VALUES(";
 
                 Iterator<Cell> itrCelda = fila.cellIterator();
 
@@ -83,21 +82,25 @@ public class Control {
                             java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
                             query = query + ", " + sqlDate;
                         }*/
-                        if (ncamp == 6) {
+                        if (ncamp == 2) {
                             query = query + ", '" + celda.getRichStringCellValue() + "'";
                         }
-                        if (ncamp == 7) {
+                        if (ncamp == 4) {
+                            query = query + ", '" + celda.getRichStringCellValue() + "'";
+                        }
+                        if (ncamp == 5) {
                             query = query + ", '" + celda.getRichStringCellValue() + "'";
                         }
 
                         //System.out.print("  " + celda.getRichStringCellValue());
                     } else {
 
-                        if (ncamp == 1) {
-                            query = query + celda.getNumericCellValue();
-                        }
-                        if (ncamp == 2 || ncamp == 3 || ncamp == 5 || ncamp == 8) {
-                            query = query + ", " + celda.getNumericCellValue();
+                        if (ncamp == 0 || ncamp == 1 || ncamp == 3 || ncamp == 6) {
+                            if (ncamp == 0) {
+                                query = query + celda.getNumericCellValue();
+                            } else {
+                                query = query + ", " + celda.getNumericCellValue();
+                            }
                         }
 
                         //System.out.print("  " + celda.getNumericCellValue());
