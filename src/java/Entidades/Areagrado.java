@@ -27,11 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "areagrado")
@@ -40,11 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Areagrado.findAll", query = "SELECT a FROM Areagrado a")
     , @NamedQuery(name = "Areagrado.findByIdAreaGrado", query = "SELECT a FROM Areagrado a WHERE a.idAreaGrado = :idAreaGrado")
     , @NamedQuery(name = "Areagrado.findByEstado", query = "SELECT a FROM Areagrado a WHERE a.estado = :estado")
-<<<<<<< HEAD
     , @NamedQuery(name = "Areagrado.findByCantCompetencias", query = "SELECT a FROM Areagrado a WHERE a.cantCompetencias = :cantCompetencias")})
-=======
-    , @NamedQuery(name = "Areagrado.findByCantidadCompetencias", query = "SELECT a FROM Areagrado a WHERE a.cantidadCompetencias = :cantidadCompetencias")})
->>>>>>> origin/POV-by-Oscar
 public class Areagrado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,13 +51,8 @@ public class Areagrado implements Serializable {
     private int estado;
     @Basic(optional = false)
     @NotNull
-<<<<<<< HEAD
     @Column(name = "cantCompetencias")
     private int cantCompetencias;
-=======
-    @Column(name = "CantidadCompetencias")
-    private int cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     @JoinColumn(name = "Area", referencedColumnName = "Id_Area")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Area area;
@@ -84,17 +71,10 @@ public class Areagrado implements Serializable {
         this.idAreaGrado = idAreaGrado;
     }
 
-<<<<<<< HEAD
     public Areagrado(Integer idAreaGrado, int estado, int cantCompetencias) {
         this.idAreaGrado = idAreaGrado;
         this.estado = estado;
         this.cantCompetencias = cantCompetencias;
-=======
-    public Areagrado(Integer idAreaGrado, int estado, int cantidadCompetencias) {
-        this.idAreaGrado = idAreaGrado;
-        this.estado = estado;
-        this.cantidadCompetencias = cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     }
 
     public Integer getIdAreaGrado() {
@@ -113,21 +93,12 @@ public class Areagrado implements Serializable {
         this.estado = estado;
     }
 
-<<<<<<< HEAD
     public int getCantCompetencias() {
         return cantCompetencias;
     }
 
     public void setCantCompetencias(int cantCompetencias) {
         this.cantCompetencias = cantCompetencias;
-=======
-    public int getCantidadCompetencias() {
-        return cantidadCompetencias;
-    }
-
-    public void setCantidadCompetencias(int cantidadCompetencias) {
-        this.cantidadCompetencias = cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     }
 
     public Area getArea() {

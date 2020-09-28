@@ -6,10 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
-<<<<<<< HEAD
 import java.util.Date;
-=======
->>>>>>> origin/POV-by-Oscar
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -25,11 +22,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-<<<<<<< HEAD
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-=======
->>>>>>> origin/POV-by-Oscar
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,11 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "salaserviciosocial")
@@ -50,11 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Salaserviciosocial.findAll", query = "SELECT s FROM Salaserviciosocial s")
     , @NamedQuery(name = "Salaserviciosocial.findByIdSSS", query = "SELECT s FROM Salaserviciosocial s WHERE s.idSSS = :idSSS")
     , @NamedQuery(name = "Salaserviciosocial.findByEstadoServicio", query = "SELECT s FROM Salaserviciosocial s WHERE s.estadoServicio = :estadoServicio")
-<<<<<<< HEAD
     , @NamedQuery(name = "Salaserviciosocial.findByFechaPostulacion", query = "SELECT s FROM Salaserviciosocial s WHERE s.fechaPostulacion = :fechaPostulacion")})
-=======
-    , @NamedQuery(name = "Salaserviciosocial.findByEstado", query = "SELECT s FROM Salaserviciosocial s WHERE s.estado = :estado")})
->>>>>>> origin/POV-by-Oscar
 public class Salaserviciosocial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,14 +56,9 @@ public class Salaserviciosocial implements Serializable {
     private String estadoServicio;
     @Basic(optional = false)
     @NotNull
-<<<<<<< HEAD
     @Column(name = "FechaPostulacion")
     @Temporal(TemporalType.DATE)
     private Date fechaPostulacion;
-=======
-    @Column(name = "Estado")
-    private int estado;
->>>>>>> origin/POV-by-Oscar
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "salaDeServicio", fetch = FetchType.LAZY)
     private List<BitacoraServicioSocial> bitacoraServicioSocialList;
     @JoinColumn(name = "Estudiante", referencedColumnName = "Id_Usuario")
@@ -94,17 +75,10 @@ public class Salaserviciosocial implements Serializable {
         this.idSSS = idSSS;
     }
 
-<<<<<<< HEAD
     public Salaserviciosocial(Integer idSSS, String estadoServicio, Date fechaPostulacion) {
         this.idSSS = idSSS;
         this.estadoServicio = estadoServicio;
         this.fechaPostulacion = fechaPostulacion;
-=======
-    public Salaserviciosocial(Integer idSSS, String estadoServicio, int estado) {
-        this.idSSS = idSSS;
-        this.estadoServicio = estadoServicio;
-        this.estado = estado;
->>>>>>> origin/POV-by-Oscar
     }
 
     public Integer getIdSSS() {
@@ -123,21 +97,12 @@ public class Salaserviciosocial implements Serializable {
         this.estadoServicio = estadoServicio;
     }
 
-<<<<<<< HEAD
     public Date getFechaPostulacion() {
         return fechaPostulacion;
     }
 
     public void setFechaPostulacion(Date fechaPostulacion) {
         this.fechaPostulacion = fechaPostulacion;
-=======
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
->>>>>>> origin/POV-by-Oscar
     }
 
     @XmlTransient

@@ -28,11 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "materias")
@@ -42,11 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Materia.findByIdMateria", query = "SELECT m FROM Materia m WHERE m.idMateria = :idMateria")
     , @NamedQuery(name = "Materia.findByMateria", query = "SELECT m FROM Materia m WHERE m.materia = :materia")
     , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")
-<<<<<<< HEAD
     , @NamedQuery(name = "Materia.findByCantCompetencias", query = "SELECT m FROM Materia m WHERE m.cantCompetencias = :cantCompetencias")})
-=======
-    , @NamedQuery(name = "Materia.findByCantidadCompetencias", query = "SELECT m FROM Materia m WHERE m.cantidadCompetencias = :cantidadCompetencias")})
->>>>>>> origin/POV-by-Oscar
 public class Materia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,13 +56,8 @@ public class Materia implements Serializable {
     private Integer estado;
     @Basic(optional = false)
     @NotNull
-<<<<<<< HEAD
     @Column(name = "cantCompetencias")
     private int cantCompetencias;
-=======
-    @Column(name = "CantidadCompetencias")
-    private int cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMateria", fetch = FetchType.LAZY)
     private List<DocenteMateria> docenteMateriaList;
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
@@ -86,17 +73,10 @@ public class Materia implements Serializable {
         this.idMateria = idMateria;
     }
 
-<<<<<<< HEAD
     public Materia(Integer idMateria, String materia, int cantCompetencias) {
         this.idMateria = idMateria;
         this.materia = materia;
         this.cantCompetencias = cantCompetencias;
-=======
-    public Materia(Integer idMateria, String materia, int cantidadCompetencias) {
-        this.idMateria = idMateria;
-        this.materia = materia;
-        this.cantidadCompetencias = cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     }
 
     public Integer getIdMateria() {
@@ -123,21 +103,12 @@ public class Materia implements Serializable {
         this.estado = estado;
     }
 
-<<<<<<< HEAD
     public int getCantCompetencias() {
         return cantCompetencias;
     }
 
     public void setCantCompetencias(int cantCompetencias) {
         this.cantCompetencias = cantCompetencias;
-=======
-    public int getCantidadCompetencias() {
-        return cantidadCompetencias;
-    }
-
-    public void setCantidadCompetencias(int cantidadCompetencias) {
-        this.cantidadCompetencias = cantidadCompetencias;
->>>>>>> origin/POV-by-Oscar
     }
 
     @XmlTransient

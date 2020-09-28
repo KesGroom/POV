@@ -29,11 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "zonas_servicio_social")
@@ -49,12 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ZonaServicioSocial.findByTiempodeServicio", query = "SELECT z FROM ZonaServicioSocial z WHERE z.tiempodeServicio = :tiempodeServicio")
     , @NamedQuery(name = "ZonaServicioSocial.findByCupos", query = "SELECT z FROM ZonaServicioSocial z WHERE z.cupos = :cupos")
     , @NamedQuery(name = "ZonaServicioSocial.findByEstado", query = "SELECT z FROM ZonaServicioSocial z WHERE z.estado = :estado")
-<<<<<<< HEAD
     , @NamedQuery(name = "ZonaServicioSocial.findByCantidadLabores", query = "SELECT z FROM ZonaServicioSocial z WHERE z.cantidadLabores = :cantidadLabores")
     , @NamedQuery(name = "ZonaServicioSocial.findByDiaServicio", query = "SELECT z FROM ZonaServicioSocial z WHERE z.diaServicio = :diaServicio")})
-=======
-    , @NamedQuery(name = "ZonaServicioSocial.findByCantidadLabores", query = "SELECT z FROM ZonaServicioSocial z WHERE z.cantidadLabores = :cantidadLabores")})
->>>>>>> origin/POV-by-Oscar
 public class ZonaServicioSocial implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -102,14 +94,11 @@ public class ZonaServicioSocial implements Serializable {
     @NotNull
     @Column(name = "CantidadLabores")
     private int cantidadLabores;
-<<<<<<< HEAD
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 80)
     @Column(name = "diaServicio")
     private String diaServicio;
-=======
->>>>>>> origin/POV-by-Oscar
     @OneToMany(mappedBy = "zonaServicio", fetch = FetchType.LAZY)
     private List<Elementoslista> elementoslistaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "zonaServicio", fetch = FetchType.LAZY)
@@ -122,11 +111,7 @@ public class ZonaServicioSocial implements Serializable {
         this.idZonaSS = idZonaSS;
     }
 
-<<<<<<< HEAD
     public ZonaServicioSocial(Integer idZonaSS, String nombre, String lugar, String encargado, Date horaEntrada, Date horaSalida, int tiempodeServicio, int cupos, int cantidadLabores, String diaServicio) {
-=======
-    public ZonaServicioSocial(Integer idZonaSS, String nombre, String lugar, String encargado, Date horaEntrada, Date horaSalida, int tiempodeServicio, int cupos, int cantidadLabores) {
->>>>>>> origin/POV-by-Oscar
         this.idZonaSS = idZonaSS;
         this.nombre = nombre;
         this.lugar = lugar;
@@ -136,10 +121,7 @@ public class ZonaServicioSocial implements Serializable {
         this.tiempodeServicio = tiempodeServicio;
         this.cupos = cupos;
         this.cantidadLabores = cantidadLabores;
-<<<<<<< HEAD
         this.diaServicio = diaServicio;
-=======
->>>>>>> origin/POV-by-Oscar
     }
 
     public Integer getIdZonaSS() {
@@ -222,7 +204,6 @@ public class ZonaServicioSocial implements Serializable {
         this.cantidadLabores = cantidadLabores;
     }
 
-<<<<<<< HEAD
     public String getDiaServicio() {
         return diaServicio;
     }
@@ -231,8 +212,6 @@ public class ZonaServicioSocial implements Serializable {
         this.diaServicio = diaServicio;
     }
 
-=======
->>>>>>> origin/POV-by-Oscar
     @XmlTransient
     public List<Elementoslista> getElementoslistaList() {
         return elementoslistaList;

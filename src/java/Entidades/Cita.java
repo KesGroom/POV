@@ -28,11 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "citas")
@@ -40,8 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c")
     , @NamedQuery(name = "Cita.findByIdCita", query = "SELECT c FROM Cita c WHERE c.idCita = :idCita")
-    , @NamedQuery(name = "Cita.findByAtencionArea", query = "SELECT c FROM Cita c WHERE c.atencionArea = :atencionArea")
-    , @NamedQuery(name = "Cita.findByAtencionCurso", query = "SELECT c FROM Cita c WHERE c.atencionCurso = :atencionCurso")
     , @NamedQuery(name = "Cita.findByFechaRegistro", query = "SELECT c FROM Cita c WHERE c.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "Cita.findByFechaCita", query = "SELECT c FROM Cita c WHERE c.fechaCita = :fechaCita")
     , @NamedQuery(name = "Cita.findByEstado", query = "SELECT c FROM Cita c WHERE c.estado = :estado")})
@@ -53,25 +47,13 @@ public class Cita implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Cita")
     private Integer idCita;
-    @Column(name = "AtencionArea")
-    private Integer atencionArea;
-    @Column(name = "AtencionCurso")
-    private Integer atencionCurso;
     @Column(name = "Fecha_Registro")
-<<<<<<< HEAD
     @Temporal(TemporalType.DATE)
-=======
-    @Temporal(TemporalType.TIMESTAMP)
->>>>>>> origin/POV-by-Oscar
     private Date fechaRegistro;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Fecha_Cita")
-<<<<<<< HEAD
     @Temporal(TemporalType.DATE)
-=======
-    @Temporal(TemporalType.TIMESTAMP)
->>>>>>> origin/POV-by-Oscar
     private Date fechaCita;
     @Basic(optional = false)
     @NotNull
@@ -82,12 +64,14 @@ public class Cita implements Serializable {
     @Column(name = "Estado")
     private Integer estado;
     @JoinColumn(name = "Acudiente", referencedColumnName = "Id_Usuario")
-<<<<<<< HEAD
     @ManyToOne(fetch = FetchType.LAZY)
-=======
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
->>>>>>> origin/POV-by-Oscar
     private Acudiente acudiente;
+    @JoinColumn(name = "AtencionArea", referencedColumnName = "Id_AtencionArea")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Atencionarea atencionArea;
+    @JoinColumn(name = "AtencionCurso", referencedColumnName = "Id_AtencionCurso")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Atencioncurso atencionCurso;
 
     public Cita() {
     }
@@ -108,22 +92,6 @@ public class Cita implements Serializable {
 
     public void setIdCita(Integer idCita) {
         this.idCita = idCita;
-    }
-
-    public Integer getAtencionArea() {
-        return atencionArea;
-    }
-
-    public void setAtencionArea(Integer atencionArea) {
-        this.atencionArea = atencionArea;
-    }
-
-    public Integer getAtencionCurso() {
-        return atencionCurso;
-    }
-
-    public void setAtencionCurso(Integer atencionCurso) {
-        this.atencionCurso = atencionCurso;
     }
 
     public Date getFechaRegistro() {
@@ -164,6 +132,22 @@ public class Cita implements Serializable {
 
     public void setAcudiente(Acudiente acudiente) {
         this.acudiente = acudiente;
+    }
+
+    public Atencionarea getAtencionArea() {
+        return atencionArea;
+    }
+
+    public void setAtencionArea(Atencionarea atencionArea) {
+        this.atencionArea = atencionArea;
+    }
+
+    public Atencioncurso getAtencionCurso() {
+        return atencionCurso;
+    }
+
+    public void setAtencionCurso(Atencioncurso atencionCurso) {
+        this.atencionCurso = atencionCurso;
     }
 
     @Override

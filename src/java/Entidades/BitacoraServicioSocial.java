@@ -6,10 +6,6 @@
 package Entidades;
 
 import java.io.Serializable;
-<<<<<<< HEAD
-=======
-import java.util.Date;
->>>>>>> origin/POV-by-Oscar
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,22 +19,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-<<<<<<< HEAD
-=======
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
->>>>>>> origin/POV-by-Oscar
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "bitacora_servicio_social")
@@ -57,15 +44,9 @@ public class BitacoraServicioSocial implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Bitacora_Servicio")
     private Integer idBitacoraServicio;
-<<<<<<< HEAD
     @Size(max = 11)
     @Column(name = "Fecha_Registro")
     private String fechaRegistro;
-=======
-    @Column(name = "Fecha_Registro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRegistro;
->>>>>>> origin/POV-by-Oscar
     @Basic(optional = false)
     @NotNull
     @Column(name = "Tiempo_Prestado")
@@ -110,19 +91,11 @@ public class BitacoraServicioSocial implements Serializable {
         this.idBitacoraServicio = idBitacoraServicio;
     }
 
-<<<<<<< HEAD
     public String getFechaRegistro() {
         return fechaRegistro;
     }
 
     public void setFechaRegistro(String fechaRegistro) {
-=======
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
->>>>>>> origin/POV-by-Oscar
         this.fechaRegistro = fechaRegistro;
     }
 

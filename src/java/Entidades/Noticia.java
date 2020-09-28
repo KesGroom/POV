@@ -28,11 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
-<<<<<<< HEAD
- * @author kesgr
-=======
- * @author Oscar M Jara C
->>>>>>> origin/POV-by-Oscar
+ * @author jusag
  */
 @Entity
 @Table(name = "noticias")
@@ -74,11 +70,8 @@ public class Noticia implements Serializable {
     private String imagen;
     @Column(name = "Estado")
     private Integer estado;
-<<<<<<< HEAD
     @Basic(optional = false)
     @NotNull
-=======
->>>>>>> origin/POV-by-Oscar
     @Column(name = "FechaPublicacion")
     @Temporal(TemporalType.DATE)
     private Date fechaPublicacion;
@@ -96,19 +89,12 @@ public class Noticia implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-<<<<<<< HEAD
     public Noticia(Integer idNoticia, String titulo, String subtitulo, String informacion, Date fechaPublicacion) {
-=======
-    public Noticia(Integer idNoticia, String titulo, String subtitulo, String informacion) {
->>>>>>> origin/POV-by-Oscar
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.informacion = informacion;
-<<<<<<< HEAD
         this.fechaPublicacion = fechaPublicacion;
-=======
->>>>>>> origin/POV-by-Oscar
     }
 
     public Integer getIdNoticia() {

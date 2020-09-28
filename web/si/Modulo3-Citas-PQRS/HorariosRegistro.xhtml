@@ -82,22 +82,7 @@
                                         <h:inputText value="#{atencionAreaControlador.atencionarea.diaSemana}" title="Dia semana" required="true" autocomplete="off" id="diaSe"></h:inputText>
                                         <h:outputLabel for="diaSem" value="Dia"></h:outputLabel>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaInicioAtencion}" title="Hora de inicio" required="true" autocomplete="off" id="horai">
-
-                                            <f:convertDateTime pattern="HH:mm:ss" />
-                                        </h:inputText>
-                                        <h:outputLabel value="Hora de inicio" for="horai"></h:outputLabel>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaFinalAtencion}" title="Hora final" required="true" autocomplete="off" id="horaf">
-
-                                            <f:convertDateTime pattern="HH:mm:ss" />
-                                        </h:inputText>
-                                        <h:outputLabel value="Hora final" for="horaf"></h:outputLabel>
-                                    </div>
-                                    <div class="botonesControl">
-                                        <h:commandButton value="Registrar" action="#{atencionAreaControlador.registrarAtencionArea()}"></h:commandButton>
+                            
                                     </div>
 
                                 </h:form>

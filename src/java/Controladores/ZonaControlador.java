@@ -49,6 +49,7 @@ public class ZonaControlador implements Serializable {
     private String labores;
     private Estudiante estudiante;
     private String contItem;
+    private String[] diaSemana;
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
@@ -67,6 +68,15 @@ public class ZonaControlador implements Serializable {
     
     public String registrar() {
         zona.setEstado(1);
+        String diaSem="";
+        for (int i = 0; i < diaSemana.length; i++) {
+            if(i==diaSemana.length-1){
+                diaSem = diaSem+diaSemana[i];
+            }else{
+            diaSem = diaSem+diaSemana[i]+", ";
+            }
+        }
+        zona.setDiaServicio(diaSem);
         zonaFacade.create(zona);
         alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
          String texto = labores;
@@ -96,7 +106,17 @@ public class ZonaControlador implements Serializable {
     }
 
     public String actualizar() {
+        String diaSem="";
+        for (int i = 0; i < diaSemana.length; i++) {
+            if(i==diaSemana.length-1){
+                diaSem = diaSem+diaSemana[i];
+            }else{
+            diaSem = diaSem+diaSemana[i]+", ";
+            }
+        }
+        zona.setDiaServicio(diaSem);
         zonaFacade.edit(zona);
+        alerta.setMensaje("AlertaToast('Cambio de exitoso','success');");
         return "ZonasSS";
     }
 
@@ -112,9 +132,7 @@ public class ZonaControlador implements Serializable {
     public List<Elementoslista> retornarLista(int id){
        return elFacade.obtenerElementosZona(id);
     }
-    public List<Salaserviciosocial> consultarSala(){
-    return salaFacade.findAll();
-    }
+ 
     //Metodos para la separación de los elementos de la lista
     public static String reemplazar(String cadena, String busqueda, String reemplazo) {
         return cadena.replaceAll(busqueda, reemplazo);
@@ -231,6 +249,14 @@ public class ZonaControlador implements Serializable {
 
     public void setContItem(String contItem) {
         this.contItem = contItem;
+    }
+
+    public String[] getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String[] diaSemana) {
+        this.diaSemana = diaSemana;
     }
     
     

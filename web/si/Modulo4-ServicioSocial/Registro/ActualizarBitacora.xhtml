@@ -31,26 +31,20 @@
                             <div class="row">
                                 <h:form>
                                     <div class="input-field cols12">
-                                        <h:outputLabel class="FalseLabel" value="Coordinador:" for="coordinador" />
-                                        <h:selectOneMenu class="browser-default" id="coordinador" value="#{bitacoraControlador.bitacora.coordinador}" required="true"><br/>
-                                            <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="co" itemLabel="#{co.nombre} #{co.apellido}" itemValue="#{co.idUsuario}}"/>
-                                        </h:selectOneMenu>
+                                        <h:outputText class="FalseLabel" value="Coordinador:" />
+                                        <h:outputText value="#{bitacoraControlador.us.nombre} #{bitacoraControlador.us.apellido}"></h:outputText>
                                     </div>
                                     <div class="input-field cols12">
-                                        <h:selectOneMenu  class="browser-default" id="salaDeServicio" value="#{bitacoraControlador.bitacora.salaDeServicio}" title="Sala De Servicio" required="true"><br/>
-                                            <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{fixme}"/>
-                                        </h:selectOneMenu>
-                                        <h:outputLabel value="Sala de servicio:" for="salaDeServicio" />
+                                        <h:outputText value="Sala de servicio:" class="FalseLabel"/>
+                                        <h:outputText value="#{bitacoraControlador.sala.zonaServicio.nombre} - #{bitacoraControlador.sala.estudiante.usuario.nombre} #{bitacoraControlador.sala.estudiante.usuario.apellido}"></h:outputText>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{bitacoraControlador.bitacora.fechaRegistro}" title="Fecha de registro" required="true" autocomplete="off" id="fRegistro"></h:inputText>
-                                        <h:outputLabel for="fRegistro" value="Fecha de registro"></h:outputLabel>
+                                        <h:outputText value="Fecha de registro"/>
+                                        <h:outputText value="#{bitacoraControlador.bitacora.fechaRegistro}" title="Fecha de registro" id="fRegistro"/>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{bitacoraControlador.bitacora.tiempoPrestado}" title="Tiempo prestado" required="true" autocomplete="off" id="tPrestado"></h:inputText>
-                                        <h:outputLabel for="tPrestado" value="Tiempo prestado"></h:outputLabel>
+                                        <h:outputText value="Tiempo prestado"/>
+                                        <h:outputText value="#{bitacoraControlador.bitacora.tiempoPrestado}" title="Tiempo prestado" id="tPrestado"/>
                                     </div>
                                     <div class="input-field col s6">
                                         <h:inputText value="#{bitacoraControlador.bitacora.observaciones}" title="Observaciones" required="true" autocomplete="off" id="observaciones"></h:inputText>
@@ -61,7 +55,7 @@
                                         <h:outputLabel for="labor" value="Labores"></h:outputLabel>
                                     </div>
                                     <div class="botonesControl">
-                                        <h:commandButton value="Registrar" action="#{bitacoraControlador.actualizar()}"></h:commandButton>
+                                        <h:commandButton value="Actualizar" action="#{bitacoraControlador.actualizar()}"></h:commandButton>
                                     </div>
                                 </h:form>
                             </div>

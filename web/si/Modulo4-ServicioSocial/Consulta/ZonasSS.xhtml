@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
+  
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -153,7 +153,7 @@
                                             <h:outputText value=""/>
                                         </f:facet>
                                         <div class="botonesControl">    
-                                            <h:commandButton action="#{zonaControlador.postular(zss.idZonaSS,sesionControlador.usuario.idUsuario)}" value="Postular"></h:commandButton>
+                                            <h:commandButton action="#{salaControlador.postular(zss.idZonaSS,sesionControlador.usuario.idUsuario)}" value="Postular"></h:commandButton>
                                         </div>
                                     </h:column>
                                 </h:dataTable>
