@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
-        <link href="../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
         <!-- Se vincula los estilos css específicos de la página-->
         <link href="../../Resources/css/calendar.css" rel="stylesheet" type="text/css"/>
         <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
@@ -18,75 +17,86 @@
         <link rel="shorcut icon" href="../../Resources/img/Sistema/logoVersionFinal.png"/>
         <!-- Nombre que se visualizará en el navegador -->
         <title>Citas</title>
-        <link href="../../Resources/css/EstilosPrimefaces.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Resources/css/Citas.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
     </h:head>
-    <h:body>
+    <h:body class="scrollbarStyle bodyFormBackground">
         <f:view locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
                 <a href="">Principal</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon> 
                 <a href="#">Usuario</a>
             </div>
-
-            <main>
-                <div class="ContenedorCita">
-                    <div class="formularioCita">
-                        <f:view>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <!-- Titulo -->
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Formulario de solicitud</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
                             <h:form>
-                                <p:panelGrid columns="2">
-                                    <p:outputLabel value="Solicitado por:" for="acudiente" />
-                                    <p:selectOneMenu id="acudiente" value="#{citaControlador.acudiente.idUsuario}" required="true" requiredMessage="The Acudiente field is required.">
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="Acu" itemValue="#{Acu.idUsuario}" itemLabel="#{Acu.nombre} #{Acu.apellido}"/>
-                                    </p:selectOneMenu>
-
-                                    <p:outputLabel value="Asunto:" for="asunto" />
-                                    <p:inputTextarea rows="4" cols="30" id="asunto" value="#{citaControlador.cita.asunto}" title="Asunto" required="true" requiredMessage="The Asunto field is required."/>
-
-                                    <p:outputLabel value="Estudiante:" class="black-text" for="Estudiante" />
-                                    <p:selectOneMenu id="Estudiante" required="true" value="#{citaControlador.estudiante.idUsuario}">
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItem itemLabel="--Seleccione--" itemValue="'0'"></f:selectItem>
-                                        <f:selectItems value="#{citaControlador.AcudienteEst(sesionControlador.usuario.idUsuario)}" var="cD" itemLabel="#{cD.usuario.nombre} #{cD.usuario.apellido}" itemValue="#{cD.idCurso.curso}"/>
-                                    </p:selectOneMenu>
-
-                                    <p:outputLabel value="AtencionArea:" for="atencionArea" />
-                                    <p:selectOneMenu id="atencionArea" value="#{citaControlador.cita.atencionArea}" >
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{fixme}"/>
-                                    </p:selectOneMenu>
-                                    <p:outputLabel value="AtencionCurso:" for="atencionCurso" />
-                                    <p:selectOneMenu id="atencionCurso" value="#{citaControlador.cita.atencionCurso}" >
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{fixme}"/>
-                                    </p:selectOneMenu>
-                                    <p:outputLabel value="Fecha Cita:" for="fechaCita" />
-                                    <p:inputText id="fechaCita" readonly="true" class="inputFecha" value="#{citaControlador.cita.fechaCita}" title="FechaCita" required="true" requiredMessage="The FechaCita field is required.">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </p:inputText>
-                                </p:panelGrid>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:outputText class="FalseLabel" value="Solicitada por"></h:outputText>
+                                        <h:selectOneMenu id="acudiente" class="browser-default" value="#{citaControlador.acudiente.idUsuario}" required="true" requiredMessage="The Acudiente field is required.">
+                                            <!-- TODO: update below reference to list of available items-->
+                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="Acu" itemValue="#{Acu.idUsuario}" itemLabel="#{Acu.nombre} #{Acu.apellido}"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:outputText value="Estudiante" class="black-text"/>
+                                        <h:selectOneMenu required="true" class="browser-default" value="#{citaControlador.idEst}">
+                                            <f:selectItems value="#{citaControlador.AcudienteEst(sesionControlador.usuario.idUsuario)}" var="cD" itemLabel="#{cD.usuario.nombre} #{cD.usuario.apellido}" itemValue="#{cD.usuario.idUsuario}"/>
+                                            <f:ajax event="change" listener="#{citaControlador.obtenerAreas}" render="areas"></f:ajax>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:outputText value="Area de atención" class="black-text"/>
+                                        <h:selectOneMenu id="areas" class="browser-default" required="true" value="#{citaControlador.atencion}">
+                                            <f:selectItem itemLabel="#{citaControlador.curso.curso}" itemValue="#{citaControlador.curso.idCurso}"/>
+                                            <f:selectItems value="#{citaControlador.areaList}" var="cD2" itemLabel="#{cD2.area}" itemValue="#{cD2.idArea}"/>
+                                            
+                                        </h:selectOneMenu>
+                                    </div>
+                                    
+                                    <div class="botonesControl">
+                                        <h:commandButton value="#{Noticias.btnRegistrar}" action="#{noticiaControlador.registrar()}"></h:commandButton>
+                                    </div>
+                                </div>
                             </h:form>
-                        </f:view>
-
-                    </div>  
-
-                    <div class="root">
-                        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
-                            <div class="calendar" id="calendar2">
-
-                            </div>
-                        </c:if>
-                        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
-                            <div class="calendar" id="calendar">
-
-                            </div>
-                        </c:if>
-
-                    </div>        
+                        </div>
+                    </div>
                 </div>
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Calendario</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="root">
+                                <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                                    <div class="calendar" id="calendar2">
 
-            </main>
+                                    </div>
+                                </c:if>
+                                <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                                    <div class="calendar" id="calendar">
+
+                                    </div>
+                                </c:if>
+
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </f:view>
 
         <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->

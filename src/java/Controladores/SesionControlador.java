@@ -8,6 +8,8 @@ import Entidades.Usuario;
 import Facade.PermisoFacade;
 import Facade.RolFacade;
 import Controladores.LenguajeControlador;
+import Entidades.Estudiante;
+import Facade.EstudianteFacade;
 
 import Facade.UsuarioFacade;
 import javax.inject.Named;
@@ -43,6 +45,9 @@ public class SesionControlador implements Serializable {
 
     @EJB
     PermisoFacade permisoFacade;
+    
+    @EJB
+    EstudianteFacade estFacade;
     
     @Inject 
     SalaControlador sala;
@@ -115,7 +120,33 @@ public class SesionControlador implements Serializable {
     }
 
     public List<Permiso> hijos(int id) {
-        return permisoFacade.consultarHijos(id);
+        List<Permiso> hijos =  permisoFacade.consultarHijos(id);
+        if(rolSeleccionado.getIdRoles() == 3){
+            Estudiante estudiante = estFacade.EstudianteDoc(usuario);
+            if(estudiante.getEstadoServicioSocial() == 1){
+                for (int i = 0; i < hijos.size(); i++) {
+                    if(hijos.get(i).getIdPermiso() == 37){
+                        hijos.remove(i);
+                    }
+                }
+            }else if(estudiante.getEstadoServicioSocial() == 2){
+                for (int i = 0; i < hijos.size(); i++) {
+                    if(hijos.get(i).getIdPermiso() == 36){
+                        hijos.remove(i);
+                    }
+                }
+            }else if(estudiante.getEstadoServicioSocial() == 3){
+                for (int i = 0; i < hijos.size(); i++) {
+                    if(hijos.get(i).getIdPermiso() == 36 ){
+                        hijos.remove(i);
+                    }
+                    if(hijos.get(i).getIdPermiso() == 37){
+                        hijos.remove(i);
+                    }
+                }
+            }
+        }
+        return hijos;
     }
 
     public String Mensaje() {
