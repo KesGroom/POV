@@ -28,6 +28,8 @@
                 #{alertasControlador.mensaje}
             </script>
 
+
+
             <div class="Bread">
                 <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Principal</a>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -41,10 +43,38 @@
                     <li><a title="Añadir zona de servicio" href="RegistrarZona.xhtml" class="btn-floating red"><i class="material-icons">person_pin_circle</i></a></li>
                     <li><a title="Añadir bitácora de servicio" href="RegistrarBitacora.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
                     <li><a title="Solicitudes" href="SalaDeEspera.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
-                    <li><a title="Recuperar datos" href="../Consulta/vista.xhtml" class="btn-floating blue"><i class="material-icons">restore</i></a></li>
+                    <li><a title="Subir datos" class="btn-floating blue modal-trigger" href="#subirDatos"><i class="material-icons">file_upload</i></a></li>
+                    <li><a title="Subir datos" class="btn-floating orange modal-trigger" href="#bajarDatos"><i class="material-icons">file_download</i></a></li>
                 </ul>
             </div>
             <main>
+
+                <!-- Modal -->
+                <div id="subirDatos" class="modal">
+                    <div class="modal-content">
+                        <h:form enctype="multipart/form-data">
+                            <div class="botonesControl">
+                            <h:messages id="msj" showSummary="true" showDetail="true"/>
+                            <br/><br/>
+                            <h:inputFile value="#{controlControlador.excel}" style="font: bold 20px arial; color:blue;"/>
+                            </div>
+                            <div class="botonesControl">
+                            <h:commandButton  value="Iniciar Migración" actionListener="#{controlControlador.migrar(sesionControlador.usuario)}"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                        <!-- Modal 2 -->
+                <div id="bajarDatos" class="modal">
+                    <div class="modal-content">
+                        <h:form enctype="multipart/form-data">
+                            <h:outputLabel class="FalseLabel" value="Zona de servicio" for="" />
+                            <h:selectOneMenu value="Zona de servicio"></h:selectOneMenu>
+                        </h:form>
+                    </div>
+                </div>
+            
+
                 <div class="contenedorTitulos">
                     <a href="ZonasSS.xhtml" class="titulo">Zonas</a>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
