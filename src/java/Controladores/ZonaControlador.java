@@ -139,24 +139,6 @@ public class ZonaControlador implements Serializable {
 
         return fraseCompleta;
     }
-
-    public void postular(int zonaPostular, int estu){
-        Salaserviciosocial salaPrueba = salaFacade.obtenerSala(zonaPostular, estu);
-        if (salaPrueba==null) {
-            sala.setEstado(1);
-            sala.setEstadoServicio("En espera");
-            estudiante = estFacade.EstudianteDocIn(estu);
-            sala.setEstudiante(estudiante);
-            zona = zonaFacade.obtenerZona(zonaPostular);
-            sala.setZonaServicio(zona);
-            salaFacade.create(sala);
-            alerta.setMensaje("AlertaToast('Postulación exitosa','success');");
-            this.sala = new Salaserviciosocial();
-            this.zona = null;
-        }else{
-            alerta.setMensaje("AlertaPopUp('Ha ocurrido un error','Ya se ha postulado a esta zona, por favor espere una respuesta','error');");
-        }
-    }
     
     public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon){
          zona = zon;  

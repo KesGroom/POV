@@ -6,7 +6,6 @@
 package Entidades;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,15 +19,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jusag
+ * @author kesgr
  */
 @Entity
 @Table(name = "bitacora_servicio_social")
@@ -47,9 +44,9 @@ public class BitacoraServicioSocial implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Bitacora_Servicio")
     private Integer idBitacoraServicio;
+    @Size(max = 11)
     @Column(name = "Fecha_Registro")
-    @Temporal(TemporalType.DATE)
-    private Date fechaRegistro;
+    private String fechaRegistro;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Tiempo_Prestado")
@@ -94,11 +91,11 @@ public class BitacoraServicioSocial implements Serializable {
         this.idBitacoraServicio = idBitacoraServicio;
     }
 
-    public Date getFechaRegistro() {
+    public String getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(String fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

@@ -100,8 +100,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         Usuario usuario = null;
         try {
             Query q;
-            q = em.createQuery("SELECT u FROM Usuario u WHERE u.estado=1 AND u.numerodeDocumento LIKE '%:doc%'");
-            q.setParameter("doc", doc);
+            q = em.createQuery("SELECT u FROM Usuario u WHERE u.estado=1 AND u.numerodeDocumento=:doc");
+            q.setParameter("doc", doc);            
+            usuario = (Usuario) q.getSingleResult();          
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+        return usuario;
+    }
+    public Usuario SearchUserId(int id) {
+        Usuario usuario = null;
+        try {
+            Query q;
+            q = em.createQuery("SELECT u FROM Usuario u WHERE u.estado=1 AND u.idUsuario=:doc");
+            q.setParameter("doc", id);
             
             usuario = (Usuario) q.getSingleResult();
             

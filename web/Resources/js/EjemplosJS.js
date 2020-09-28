@@ -30,5 +30,28 @@ function graphicDougnout(id, labels, data, colores) {
 
     });
 };
+/* Tipo: Pie(Pastel)
+ * Parametros: 
+ * -Id del canvas(String o cadena de texto)
+ * -labels(Nombres de los elementos[List<String>])
+ * -data(Información númerica[List<Integer>)
+ * -colores(Colores generados aleatoriamente[List<String>)
+ * */
+
+function graphicPie(id, labels, data, colores) {
+
+    var ctx = document.getElementById(id).getContext("2d");
+    var graf = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                    data: data,
+                    backgroundColor: colores
+                }]
+        }
+
+    });
+};
 
 
