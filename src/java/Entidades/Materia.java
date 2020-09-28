@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kesgr
+ * @author Oscar M Jara C
  */
 @Entity
 @Table(name = "materias")
@@ -37,8 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Materia.findAll", query = "SELECT m FROM Materia m")
     , @NamedQuery(name = "Materia.findByIdMateria", query = "SELECT m FROM Materia m WHERE m.idMateria = :idMateria")
     , @NamedQuery(name = "Materia.findByMateria", query = "SELECT m FROM Materia m WHERE m.materia = :materia")
-    , @NamedQuery(name = "Materia.findByTemas", query = "SELECT m FROM Materia m WHERE m.temas = :temas")
-    , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")})
+    , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")
+    , @NamedQuery(name = "Materia.findByCantidadCompetencias", query = "SELECT m FROM Materia m WHERE m.cantidadCompetencias = :cantidadCompetencias")})
 public class Materia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,15 +52,16 @@ public class Materia implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "Materia")
     private String materia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "Temas")
-    private String temas;
     @Column(name = "Estado")
     private Integer estado;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CantidadCompetencias")
+    private int cantidadCompetencias;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMateria", fetch = FetchType.LAZY)
     private List<DocenteMateria> docenteMateriaList;
+    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
+    private List<Elementoslista> elementoslistaList;
     @JoinColumn(name = "Id_Area", referencedColumnName = "idAreaGrado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Areagrado idArea;
@@ -72,10 +73,10 @@ public class Materia implements Serializable {
         this.idMateria = idMateria;
     }
 
-    public Materia(Integer idMateria, String materia, String temas) {
+    public Materia(Integer idMateria, String materia, int cantidadCompetencias) {
         this.idMateria = idMateria;
         this.materia = materia;
-        this.temas = temas;
+        this.cantidadCompetencias = cantidadCompetencias;
     }
 
     public Integer getIdMateria() {
@@ -94,20 +95,20 @@ public class Materia implements Serializable {
         this.materia = materia;
     }
 
-    public String getTemas() {
-        return temas;
-    }
-
-    public void setTemas(String temas) {
-        this.temas = temas;
-    }
-
     public Integer getEstado() {
         return estado;
     }
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public int getCantidadCompetencias() {
+        return cantidadCompetencias;
+    }
+
+    public void setCantidadCompetencias(int cantidadCompetencias) {
+        this.cantidadCompetencias = cantidadCompetencias;
     }
 
     @XmlTransient
@@ -117,6 +118,15 @@ public class Materia implements Serializable {
 
     public void setDocenteMateriaList(List<DocenteMateria> docenteMateriaList) {
         this.docenteMateriaList = docenteMateriaList;
+    }
+
+    @XmlTransient
+    public List<Elementoslista> getElementoslistaList() {
+        return elementoslistaList;
+    }
+
+    public void setElementoslistaList(List<Elementoslista> elementoslistaList) {
+        this.elementoslistaList = elementoslistaList;
     }
 
     public Areagrado getIdArea() {

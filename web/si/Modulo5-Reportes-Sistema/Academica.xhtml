@@ -28,39 +28,7 @@
 
             <div class="row">
                 <!-- Inicia contenedor formularios -->
-                <!-- 
                 <div class="col s12 m6">
-                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
-                        
-
-                        <div class="card red darken-4">
-                            <div class="card-content white-text">
-                                <span class="card-title center-align">Añadir Area</span>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h:form>
-                                <div class="row">
-
-                                    <div class="input-field col s12">
-                                        <h:inputText value="" title="IdArea" required="true" autocomplete="off" id="InputArea1"></h:inputText>
-                                        <h:outputLabel for="InputArea1" value=""></h:outputLabel>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <h:inputTextarea  class="materialize-textarea" id="Area" value="" title="" cols="12" rows="6" required="true"></h:inputTextarea>
-                                        <h:outputLabel for="InputArea2" value="Area"></h:outputLabel>
-                                    </div>
-
-                                    <div class="botonesControl">
-                                        <h:commandButton value="Añadir Area" action=""></h:commandButton>
-                                    </div>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
-
-                --> <div class="col s12 m6">
                     <div class="card" style="padding: 1rem 0; margin: 3rem;">
                         <!-- Titulo -->
                         <div class="card red darken-4">
@@ -140,7 +108,42 @@
                             </h:form>
                         </div>
                     </div>
-                </div>  
+                </div>
+                
+                 
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        
+
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Añadir Area</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h:form>
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{gradoController.area.area}" title="Area" required="true" autocomplete="off" id="InputArea1"></h:inputText>
+                                        <h:outputLabel for="InputArea1" value="Nombre del area"></h:outputLabel>
+                                    </div>
+                                    <div class="Check col s12">
+                                        <h:selectManyCheckbox value=""> 
+                                            <f:selectItems value="#{gradoController.consultarTodos()}" var="GRA" itemLabel="#{GRA.grado}" itemValue="#{GRA.idGrado}"></f:selectItems>
+                                        </h:selectManyCheckbox>
+                                    </div
+
+                                    <div class="botonesControl">
+                                        <h:commandButton value="Añadir Area" action=""></h:commandButton>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+               
 
                 <!--
                 <div class="col s12 m6">
@@ -155,8 +158,8 @@
                             <div class="row">
 
                                 <div class="input-field col s12">
-                                    <h:inputText value="IdMateria" title="IdMateria" required="true" autocomplete="off" id="InputMateria1"></h:inputText>
-                                    <h:outputLabel for="InputMateria1" value="IdMateria"></h:outputLabel>
+                                    <h:inputText value="" title="Materia" required="true" autocomplete="off" id="InputMateria1"></h:inputText>
+                                    <h:outputLabel for="InputMateria1" value="Materia"></h:outputLabel>
                                 </div>
                                 <div class="input-field col s12">
                                     <h:inputText value="Materia" title="Materia" required="true" autocomplete="off" id="InputMateria2"></h:inputText>
@@ -206,6 +209,7 @@
                 $('.solo-numero').numeric();
             });
         </script>
+        <script src="../../Resources/js/Listas.js" type="text/javascript"></script>
     </h:body>
 </html>
 

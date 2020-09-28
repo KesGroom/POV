@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
+        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <title>Registrar zona</title>
+    </h:head>
+    <h:body class="scrollbarStyle bodyFormBackground">
+        <f:view  locale="#{lenguajeControlador.languageSelected}">
+            <div class="Bread">
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Registrar zona</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="#">Registro</a>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <!-- Titulo -->
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Registrar zona de servicio</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <h:form>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{zonaControlador.zona.nombre}" title="Nombre" required="true" autocomplete="off" id="nombre"></h:inputText>
+                                        <h:outputLabel for="nombre" value="Nombre"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{zonaControlador.zona.lugar}" title="Lugar" required="true" autocomplete="off" id="lugar"></h:inputText>
+                                        <h:outputLabel for="lugar" value="Lugar"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{zonaControlador.zona.encargado}" title="Encargado" required="true" autocomplete="off" id="encargado"></h:inputText>
+                                        <h:outputLabel for="encargado" value="Encargado"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <h:inputText value="#{zonaControlador.zona.horaEntrada}" title="Hora de entrada" required="true" autocomplete="off" id="horaEntrada">
+                                            <f:convertDateTime pattern="HH:mm:ss"></f:convertDateTime>
+                                        </h:inputText>
+                                        <h:outputLabel for="horaEntrada" value="Hora de entrada"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <h:inputText value="#{zonaControlador.zona.horaSalida}" title="Hora de salida" required="true" autocomplete="off" id="horaSalida">
+                                            <f:convertDateTime pattern="HH:mm:ss"></f:convertDateTime>
+                                        </h:inputText>
+                                        <h:outputLabel for="horaSalida" value="Hora de salida"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <h:inputText value="#{zonaControlador.zona.tiempodeServicio}" title="Tiempo de servicio" required="true" autocomplete="off" id="tiempoServicio"></h:inputText>
+                                        <h:outputLabel for="tiempoServicio" value="Horas de servicio solicitadas"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <h:inputText value="#{zonaControlador.zona.cupos}" title="Cupos" required="true" autocomplete="off" id="cupos"></h:inputText>
+                                        <h:outputLabel for="cupos" value="Cupos"></h:outputLabel>
+                                    </div>
+                                    <div class="col s12">
+                                        <div class="row">
+                                            <div class="col s12 botonesControl">
+                                                <a class="btn waves-effect waves-light red darken-4" onclick="AgregarElemento('Labor');">Agregar labor</a>
+                                            </div>
+                                            <div class="col s12" id="contList" style="margin: 2rem 0;">
+                                                
+                                            </div>
+                                            <div class="col s12 botonesControl">
+                                                <a class="btn waves-effect waves-light red darken-4" onclick="CombinarLista('j_idt6:labores', 'j_idt6:cantLabores');">Terminar lista de labores</a>
+                                            </div>
+                                        </div>
+                                        <h:inputText value="#{zonaControlador.labores}" title="Labores" required="true" autocomplete="off" id="labores" class="Oculto"></h:inputText>
+                                        <h:inputText value="#{zonaControlador.zona.cantidadLabores}" title="Labores" required="true" autocomplete="off" id="cantLabores" class="Oculto"></h:inputText>
+
+                                    </div>
+                                    <div class="botonesControl">
+                                        <h:commandButton value="Registrar" action="#{zonaControlador.registrar()}"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </f:view>
+
+        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <script src="../../../Resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../Resources/js/Listas.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kesgr
+ * @author Oscar M Jara C
  */
 @Entity
 @Table(name = "atencioncurso")

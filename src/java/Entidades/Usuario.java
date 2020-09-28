@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kesgr
+ * @author Oscar M Jara C
  */
 @Entity
 @Table(name = "usuarios")
