@@ -53,36 +53,36 @@ public class ZonaControlador implements Serializable {
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
-    
+
     @EJB
     SalaserviciosocialFacade salaFacade;
 
-    @EJB 
+    @EJB
     ElementoslistaFacade elFacade;
-    
+
     @EJB
     EstudianteFacade estFacade;
-    
+
     @Inject
     AlertasControlador alerta;
-    
+
     public String registrar() {
         zona.setEstado(1);
-        String diaSem="";
+        String diaSem = "";
         for (int i = 0; i < diaSemana.length; i++) {
-            if(i==diaSemana.length-1){
-                diaSem = diaSem+diaSemana[i];
-            }else{
-            diaSem = diaSem+diaSemana[i]+", ";
+            if (i == diaSemana.length - 1) {
+                diaSem = diaSem + diaSemana[i];
+            } else {
+                diaSem = diaSem + diaSemana[i] + ", ";
             }
         }
         zona.setDiaServicio(diaSem);
         zonaFacade.create(zona);
         alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
-         String texto = labores;
+        String texto = labores;
         List<String> Elementos = new ArrayList<>();
         String item;
-        for (int i = 0;i < zona.getCantidadLabores(); i++) {
+        for (int i = 0; i < zona.getCantidadLabores(); i++) {
             item = devuelveFrase2("<", ">", texto);
             Elementos.add(item);
             String searchText = devuelveFrase1("<", ">", texto);
@@ -100,18 +100,18 @@ public class ZonaControlador implements Serializable {
         return "ZonasSS.xhtml";
     }
 
-     public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar){
+    public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar) {
         zona = zonaServicioSocialActualizar;
         return "ActualizarZona";
     }
 
     public String actualizar() {
-        String diaSem="";
+        String diaSem = "";
         for (int i = 0; i < diaSemana.length; i++) {
-            if(i==diaSemana.length-1){
-                diaSem = diaSem+diaSemana[i];
-            }else{
-            diaSem = diaSem+diaSemana[i]+", ";
+            if (i == diaSemana.length - 1) {
+                diaSem = diaSem + diaSemana[i];
+            } else {
+                diaSem = diaSem + diaSemana[i] + ", ";
             }
         }
         zona.setDiaServicio(diaSem);
@@ -129,10 +129,11 @@ public class ZonaControlador implements Serializable {
     public List<ZonaServicioSocial> consultarZona() {
         return zonaFacade.consultarZonaServicioSocial(1);
     }
-    public List<Elementoslista> retornarLista(int id){
-       return elFacade.obtenerElementosZona(id);
+
+    public List<Elementoslista> retornarLista(int id) {
+        return elFacade.obtenerElementosZona(id);
     }
- 
+
     //Metodos para la separación de los elementos de la lista
     public static String reemplazar(String cadena, String busqueda, String reemplazo) {
         return cadena.replaceAll(busqueda, reemplazo);
@@ -157,20 +158,20 @@ public class ZonaControlador implements Serializable {
 
         return fraseCompleta;
     }
-    
-    public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon){
-         zona = zon;  
-         elLista = editarLabor;
-         return "ActualizarLabor";
+
+    public String preEditarLabor(Elementoslista editarLabor, ZonaServicioSocial zon) {
+        zona = zon;
+        elLista = editarLabor;
+        return "ActualizarLabor";
     }
-    
-    public String editarLabor(){
-       elLista.setZonaServicio(zona);
-       elFacade.edit(elLista);
-       alerta.setMensaje("AlertaToast('Cambio de labor exitosa','success');");
-       return "ZonasSS";
+
+    public String editarLabor() {
+        elLista.setZonaServicio(zona);
+        elFacade.edit(elLista);
+        alerta.setMensaje("AlertaToast('Cambio de labor exitosa','success');");
+        return "ZonasSS";
     }
-    
+
     public ZonaServicioSocial getZona() {
         return zona;
     }
@@ -258,9 +259,5 @@ public class ZonaControlador implements Serializable {
     public void setDiaSemana(String[] diaSemana) {
         this.diaSemana = diaSemana;
     }
-    
-    
-  
-    
+
 }
-    
