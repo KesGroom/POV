@@ -71,8 +71,8 @@ public class Control implements Serializable {
 
     @EJB
     SalaserviciosocialFacade SSFacade;
-    
-    @EJB 
+
+    @EJB
     EstudianteFacade estFacade;
 
     public Part getExcel() {
@@ -132,16 +132,22 @@ public class Control implements Serializable {
                             System.out.println((int) celda.getNumericCellValue());
                             break;
                         case 1:
+                            String doc = celda.getStringCellValue();
+                            System.out.println(doc);
+                            user = userFacade.SearchUser(doc);
+                            estudiante = estFacade.EstudianteDoc(user);
+                            break;
+                        case 2:
                             String fecha = celda.getStringCellValue();
                             fecha = reemplazar(fecha, String.valueOf('"'), "");
                             System.out.println(fecha);
                             btSS.setFechaRegistro(fecha);
                             break;
-                        case 2:
+                        case 3:
                             btSS.setTiempoPrestado((int) celda.getNumericCellValue());
                             System.out.println((int) celda.getNumericCellValue());
                             break;
-                        case 3:
+                        case 4:
                             btSS.setObservaciones(celda.getStringCellValue());
                             System.out.println(celda.getStringCellValue());
                             break;
@@ -156,11 +162,10 @@ public class Control implements Serializable {
                 btSS.setCoordinador(coordinador);
                 btSS.setEstado(1);
                 btFacade.create(btSS);
-                user = btSS.getSalaDeServicio().getEstudiante().getUsuario();
-                estudiante = estFacade.EstudianteDoc(user);
                 int tiempo = estudiante.getTiempoServicio();
-                estudiante.setTiempoServicio(tiempo+btSS.getTiempoPrestado());
+                estudiante.setTiempoServicio(tiempo + btSS.getTiempoPrestado());
                 estFacade.edit(estudiante);
+
             }
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Migración Exitosa"));
@@ -176,4 +181,3 @@ public class Control implements Serializable {
     }
 
 }
-

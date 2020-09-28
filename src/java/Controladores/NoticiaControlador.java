@@ -70,7 +70,7 @@ public class NoticiaControlador implements Serializable {
     }
 
     public List<Noticia> consultarNoticias(int categoria) throws IOException {
-        for (Noticia n : noticiaFacade.findAll()) {
+        /*for (Noticia n : noticiaFacade.findAll()) {
             int diferencia;
             if (n.getFechaPublicacion().getDate() >= fecha.getDate()) {
                 diferencia = n.getFechaPublicacion().getDate() - fecha.getDate();
@@ -85,7 +85,7 @@ public class NoticiaControlador implements Serializable {
                 Files.deleteIfExists(p);
                 noticiaFacade.remove(n);
             }
-        }
+        }*/
         return noticiaFacade.consultarNoticia(1, categoria);
     }
 

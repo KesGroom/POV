@@ -5,7 +5,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link href="../../Resources/css/3.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
@@ -18,7 +18,7 @@
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <a href="#">#{ListaNoticias.bcCurrentNews}</a>
             </div>
-            <main>
+            <main style="margin-top: 3rem;">
                 <h:form id="tabsNoticia">
                     <ul class="tabs">
                         <c:forEach items="#{categoriaControlador.consultarCategorias()}" var="cn">
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="card-content">
                                             <span class="card-title activator grey-text text-darken-4">#{noti.titulo}<i class="material-icons right">more_vert</i></span>
-                                            <p style="font-size: 0.8em;"><b>#{ListaNoticias.txtPublicadoPor}</b> #{noti.coordinador.nombre} <br/> <b>#{ListaNoticias.txtPublicationDate}</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month}/#{noti.fechaPublicacion.year}</p>
+                                            <p style="font-size: 0.8em;"><b>#{ListaNoticias.txtPublicadoPor}</b> #{noti.coordinador.nombre} <br/> <b>#{ListaNoticias.txtPublicationDate}</b> #{noti.fechaPublicacion.date}/#{noti.fechaPublicacion.month+1}/#{noti.fechaPublicacion.year+1900}</p>
                                         </div>
                                         <div class="card-reveal">
                                             <span class="card-title grey-text text-darken-4">#{noti.subtitulo}<i class="material-icons right">close</i></span>

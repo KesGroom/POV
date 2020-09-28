@@ -97,7 +97,7 @@ public class ZonaControlador implements Serializable {
         this.zona = new ZonaServicioSocial();
         this.labores = "";
         this.elLista = new Elementoslista();
-        return "ZonasSS.xhtml";
+        return "ZonasSS";
     }
 
     public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar) {

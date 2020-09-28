@@ -6,18 +6,28 @@
 package Controladores;
 
 import Entidades.Acudiente;
+import Entidades.Area;
+import Entidades.Areagrado;
 import Entidades.Cita;
+import Entidades.Curso;
+import Entidades.Docente;
 import Entidades.Estudiante;
 import Entidades.Materia;
+import Facade.AreaFacade;
+import Facade.AreaGradoFacade;
+import Facade.AtencionareaFacade;
+import Facade.AtencioncursoFacade;
 import Facade.CitaFacade;
 import Facade.EstudianteFacade;
 import Facade.MateriaFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.event.AjaxBehaviorEvent;
 
 /**
  *
@@ -31,6 +41,9 @@ public class CitaControlador implements Serializable {
     public CitaControlador() {
         cita = new Cita();
         acudiente = new Acudiente();
+        area = new Area();
+        curso = new Curso();
+        docente = new Docente();
     }
 
     //----- Attributes -------------------------------------------------------\\
@@ -38,15 +51,37 @@ public class CitaControlador implements Serializable {
     private Acudiente acudiente;
     private Estudiante estudiante;
     private Date fecha;
+    private Area area;
+    private Curso curso;
+    private Docente docente;
+    private Date fechaCita;
+    private int atencion;
+    private int idEst;
 
     //--List to register------------------------------------------\\
     private List<Materia> materias;
+    private List<Area> areaList;
+    private List<Docente> docenteList;
+    private List<Integer> diaList;
+    
 
     @EJB
     CitaFacade citaFacade;
 
     @EJB
     EstudianteFacade estudianteFacade;
+    
+    @EJB
+    AreaFacade areaFacade;
+    
+    @EJB
+    AreaGradoFacade agFacade;
+    
+    @EJB 
+    AtencionareaFacade aaFacade;
+    
+    @EJB
+    AtencioncursoFacade acFacade;
 
     @EJB
     MateriaFacade materiaFacade;
@@ -65,6 +100,33 @@ public class CitaControlador implements Serializable {
         cita.setEstado(1);
         cita.setFechaRegistro(fecha);
         citaFacade.create(cita);
+    }
+    
+    //----- Ajax ------------------------------------------------------\\
+    public void obtenerAreas(AjaxBehaviorEvent event){
+        System.out.println(idEst);
+        /*    curso = estudiante.getIdCurso();
+        areaList = new ArrayList<>();
+        for(Areagrado a : agFacade.consultarAreaGrado(1)){
+            if(curso.getGrado() == a.getGrado()){
+                areaList.add(a.getArea());
+                for (int i = 1; i < areaList.size(); i++) {
+                    if(areaList.get(i)== areaList.get(i-1)){
+                        areaList.remove(i);
+                    }
+                }
+            }
+        }*/
+    }
+    
+    public void obtenerDocentes(AjaxBehaviorEvent event){
+        
+    }
+    public void obtenerDias(AjaxBehaviorEvent event){
+        
+    }
+    public void obtenerHorarios(AjaxBehaviorEvent event){
+        
     }
 
     //----- Getters and Setters ----------------------------------------------\\
@@ -100,4 +162,87 @@ public class CitaControlador implements Serializable {
         this.estudiante = estudiante;
     }
 
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
+    public Date getFechaCita() {
+        return fechaCita;
+    }
+
+    public void setFechaCita(Date fechaCita) {
+        this.fechaCita = fechaCita;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
+
+    public List<Area> getAreaList() {
+        return areaList;
+    }
+
+    public void setAreaList(List<Area> areaList) {
+        this.areaList = areaList;
+    }
+
+    public List<Docente> getDocenteList() {
+        return docenteList;
+    }
+
+    public void setDocenteList(List<Docente> docenteList) {
+        this.docenteList = docenteList;
+    }
+
+    public List<Integer> getDiaList() {
+        return diaList;
+    }
+
+    public void setDiaList(List<Integer> diaList) {
+        this.diaList = diaList;
+    }
+
+    public int getAtencion() {
+        return atencion;
+    }
+
+    public void setAtencion(int atencion) {
+        this.atencion = atencion;
+    }
+
+    public int getIdEst() {
+        return idEst;
+    }
+
+    public void setIdEst(int idEst) {
+        this.idEst = idEst;
+    }
+
+    
+    
+    
 }

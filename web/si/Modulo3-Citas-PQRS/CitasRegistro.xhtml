@@ -2,88 +2,137 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
-        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
-        <title>Registrar zona</title>
+        <!-- Se enlaza a los estilos proporcionados por el framework materialize -->
+        <link href="../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <!-- Se vincula los estilos css específicos de la página-->
+        <link href="../../Resources/css/calendar.css" rel="stylesheet" type="text/css"/>
+        <!-- Este script se encarga de implementar los prefijos necesarios para algunas funciones y estilos
+        de cada navegador, se coloca en el inicio ya que es necesario que cargue estos prefijos antes de que
+        la página inicie para evitar fallos-->
+        <script src="../../Resources/js/prefix.js" type="text/javascript"></script>
+        <!-- Se incluye el icono del sistema -->
+        <link rel="shorcut icon" href="../../Resources/img/Sistema/logoVersionFinal.png"/>
+        <!-- Nombre que se visualizará en el navegador -->
+        <title>Citas</title>
+        <link href="../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body class="scrollbarStyle bodyFormBackground">
-        <f:view  locale="#{lenguajeControlador.languageSelected}">
+        <f:view locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
-                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Registrar cita</a>
-                <ion-icon name="chevron-forward-outline"></ion-icon>
-                <a href="#">Registro</a>
+                <a href="">Principal</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon> 
+                <a href="#">Usuario</a>
             </div>
-
             <div class="row">
-                <div class="col s12 m8 offset-m2">
+                <div class="col s12 m6">
                     <div class="card" style="padding: 1rem 0; margin: 3rem;">
                         <!-- Titulo -->
                         <div class="card red darken-4">
                             <div class="card-content white-text">
-                                <span class="card-title center-align">Registrar cita</span>
+                                <span class="card-title center-align">Formulario de solicitud</span>
                             </div>
                         </div>
                         <div class="card-content">
-                            <div class="row">
-                                <h:form>
-                                      <div class="input-field cols12">
-                                        <h:outputLabel class="FalseLabel" value="Acudiente" for="acudiente" />
-                                        <h:selectOneMenu class="browser-default" id="acudiente" value="#{citaControlador.cita.acudiente}" required="true"><br/>
+                            <h:form>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:outputText class="FalseLabel" value="Solicitada por"></h:outputText>
+                                        <h:selectOneMenu id="acudiente" class="browser-default" value="#{citaControlador.acudiente.idUsuario}" required="true" requiredMessage="The Acudiente field is required.">
                                             <!-- TODO: update below reference to list of available items-->
-                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="a" itemLabel="#{a.nombre} #{a.apellido}" itemValue="#{a.idUsuario}"/>
+                                            <f:selectItems value="#{usuarioControlador.conseguirUsuario(sesionControlador.usuario.idUsuario)}" var="Acu" itemValue="#{Acu.idUsuario}" itemLabel="#{Acu.nombre} #{Acu.apellido}"/>
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.atencionArea}" title="Atención area" required="true" autocomplete="off" id="area"></h:inputText>
-                                        <h:outputLabel for="area" value="Atención area"></h:outputLabel>
+                                        <h:outputText value="Estudiante" class="black-text"/>
+                                        <h:selectOneMenu required="true" class="browser-default" value="#{citaControlador.idEst}">
+                                            <f:selectItems value="#{citaControlador.AcudienteEst(sesionControlador.usuario.idUsuario)}" var="cD" itemLabel="#{cD.usuario.nombre} #{cD.usuario.apellido}" itemValue="#{cD.usuario.idUsuario}"/>
+                                            <f:ajax event="change" listener="#{citaControlador.obtenerAreas}" render="areas"></f:ajax>
+                                        </h:selectOneMenu>
                                     </div>
                                     <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.atencionCurso}" title="Atención curso" required="true" autocomplete="off" id="ateCurso"></h:inputText>
-                                        <h:outputLabel for="ateCurso" value="Atención curso"></h:outputLabel>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.fechaRegistro}" title="Fecha de Registro" required="true" autocomplete="off" id="fecha">
+                                        <h:outputText value="Area de atención" class="black-text"/>
+                                        <h:selectOneMenu id="areas" class="browser-default" required="true" value="#{citaControlador.atencion}">
+                                            <f:selectItem itemLabel="#{citaControlador.curso.curso}" itemValue="#{citaControlador.curso.idCurso}"/>
+                                            <f:selectItems value="#{citaControlador.areaList}" var="cD2" itemLabel="#{cD2.area}" itemValue="#{cD2.idArea}"/>
                                             
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:inputText>
-                                        <h:outputLabel value="fecha"></h:outputLabel>
+                                        </h:selectOneMenu>
                                     </div>
                                     
-                                    <div class="input-field col s12">
-                                        <h:inputText value="#{citaControlador.cita.fechaCita}" title="Fecha cita" required="true" autocomplete="off" id="fechaCita">
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:inputText>
-                                        <h:outputLabel for="fechaCita" value="Fecha de la cita"></h:outputLabel>
-                                    </div>
-                                   <div class="input-field col s12">
-                                       <h:inputText value="#{citaControlador.cita.asunto}" title="Asunto" required="true" autocomplete="off" id="asunto"></h:inputText>
-                                        <h:outputLabel for="asunto" value="Asunto"></h:outputLabel>
-                                    </div>
                                     <div class="botonesControl">
-                                        <h:commandButton value="Registrar" action="#{citaControlador.registrarCita()}"></h:commandButton>
+                                        <h:commandButton value="#{Noticias.btnRegistrar}" action="#{noticiaControlador.registrar()}"></h:commandButton>
                                     </div>
-                                </h:form>
-                            </div>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Calendario</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="root">
+                                <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+                                    <div class="calendar" id="calendar2">
 
+                                    </div>
+                                </c:if>
+                                <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+                                    <div class="calendar" id="calendar">
 
+                                    </div>
+                                </c:if>
+
+                            </div>    
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
         </f:view>
 
-        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <!-- Se enlaza a las funciones y eventos proporcionados por el framework materialize -->
+        <script src="../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <!-- Se vincula al script AutoIniti el cual contiene el inicializador automático de los elementos de materialize -->
         <script>
             M.AutoInit();
         </script>
+        <!-- Se hace uso de la iconografia de ionicons -->
         <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-        <script src="../../../Resources/js/jquery.min.js" type="text/javascript"></script>
-        <script src="../../../Resources/js/Listas.js" type="text/javascript"></script>
+        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+        <!-- Se vincula los scripts propios de la página-->
+        <script src="../../Resources/js/CalendarIng.js" type="text/javascript"></script>
+        <script src="../../Resources/js/CalendarioEsp.js" type="text/javascript"></script>
+        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.espaniol}">
+            <script type="text/javascript">
+            let calendar = new Calendario('calendar');
+            var inputFecha = document.getElementById("j_idt6:fechaCita");
+            var FechaSelected;
+            calendar.getElement().addEventListener('change', e => {
+                FechaSelected = (calendar.value().format('DD/MM/YYYY'));
+                inputFecha.value = FechaSelected;
+            });
+            </script>
+        </c:if>
+        <c:if test="#{lenguajeControlador.languageSelected == lenguajeControlador.ingles}">
+            <script type="text/javascript">
+                let calendar2 = new Calendar('calendar2');
+                calendar2.getElement().addEventListener('change', e => {
+                    FechaSelected = (calendar.value().format('DD/MM/YYYY'));
+                    inputFecha.value = FechaSelected;
+                });
+            </script>
+        </c:if>
     </h:body>
 </html>
 
