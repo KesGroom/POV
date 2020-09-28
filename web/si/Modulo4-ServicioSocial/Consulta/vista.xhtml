@@ -5,17 +5,20 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <title>Facelet Title</title>
+        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
     </h:head>
+
     <h:body>
         <f:view>
             <h:form enctype="multipart/form-data">            
                 <h:messages id="msj" showSummary="true" showDetail="true"/>
                 <h:outputLabel value="Migrar Excel a MySQL"/>
                 <br/><br/>
-                <h:inputFile value="#{control.excel}" style="font: bold 20px arial; color:blue;"/>
+                <h:inputFile value="#{controlControlador.excel}" style="font: bold 20px arial; color:blue;"/>
                 <br/><br/>
-                <h:commandButton  value="Iniciar Migración" actionListener="#{control.migrar()}"/>
+                <h:commandButton  value="Iniciar Migración" actionListener="#{controlControlador.migrar(sesionControlador.usuario)}"/>
             </h:form>
         </f:view>
     </h:body>

@@ -55,7 +55,7 @@ public class BitacoraControlador implements Serializable {
     public String registrar(){
         bitacora.setSalaDeServicio(sala);
         bitacora.setCoordinador(us);
-        bitacora.setFechaRegistro(fechaRegistro);
+
         
         bitacora.setEstado(1);
         bitacoraFacade.create(bitacora);

@@ -31,11 +31,11 @@ public class NoticiaFacade extends AbstractFacade<Noticia> {
         super(Noticia.class);
     }
     
-    public List<Noticia> consultarNoticia(int estado, int categoria){
+    public List<Noticia> consultarNoticia(int estado, int categoria) {
         Query q = em.createQuery("SELECT n FROM Noticia n WHERE n.estado=:estado AND n.categoria.idCategoria=:categoria");
-                q.setParameter("estado", estado);
-                q.setParameter("categoria", categoria);
-                return q.getResultList();
+        q.setParameter("estado", estado);
+        q.setParameter("categoria", categoria);
+        return q.getResultList();
     }
     
 }

@@ -70,6 +70,7 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> {
         }
         return estudiante;
     }
+    
     public Estudiante EstudianteDocIn(int id) {
         Estudiante estudiante = null;
         try {

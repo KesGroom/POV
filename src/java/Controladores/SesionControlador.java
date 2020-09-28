@@ -43,6 +43,9 @@ public class SesionControlador implements Serializable {
 
     @EJB
     PermisoFacade permisoFacade;
+    
+    @Inject 
+    SalaControlador sala;
 
     @Inject
     AlertasControlador alerta;
@@ -62,7 +65,7 @@ public class SesionControlador implements Serializable {
         if (usuario != null) {
             if (usuario.getEstado() == 1) {
                 rolSeleccionado = usuario.getIdRoles();
-
+                sala.sinRespuesta();
                 return "Resources/Pages/Dashboard?faces-redirect=true";
             } else {
                 if ("es".equals(lenguaje)) {

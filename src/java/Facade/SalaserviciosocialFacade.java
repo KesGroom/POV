@@ -6,6 +6,9 @@
 package Facade;
 
 import Entidades.Salaserviciosocial;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +18,7 @@ import javax.persistence.Query;
 /**
  *
  * @author jusag
+>>>>>>> POV-by-Santiago
  */
 @Stateless
 public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial> {
@@ -31,11 +35,21 @@ public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial>
         super(Salaserviciosocial.class);
     }
 
-    public Salaserviciosocial obtenerSala(int idZona, int idEstudiante) {
+    public Salaserviciosocial obtenerSala(int idEstudiante) {
         Salaserviciosocial sala = null;
         try {
-            Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.estudiante.idUsuario=:idEstudiante AND s.zonaServicio.idZonaSS=:idZona AND s.estadoServicio='En espera'");
+            Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.estudiante.idUsuario=:idEstudiante AND s.estadoServicio='En espera'");
             q.setParameter("idEstudiante", idEstudiante);
+            sala = (Salaserviciosocial) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return sala;
+    }
+    public Salaserviciosocial obtenerSalaZona(int idZona) {
+        Salaserviciosocial sala = null;
+        try {
+            Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.zonaServicio.idZonaSS=:idZona AND s.estadoServicio='Aceptado'");
             q.setParameter("idZona", idZona);
             sala = (Salaserviciosocial) q.getSingleResult();
         } catch (Exception e) {
