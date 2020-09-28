@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kesgr
+ * @author jusag
  */
 @Entity
 @Table(name = "acudientes")
@@ -47,7 +47,7 @@ public class Acudiente implements Serializable {
     @JoinColumn(name = "Id_Usuario", referencedColumnName = "Id_Usuario", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acudiente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "acudiente", fetch = FetchType.LAZY)
     private List<Cita> citaList;
     @OneToMany(mappedBy = "idAcudiente", fetch = FetchType.LAZY)
     private List<Estudiante> estudianteList;

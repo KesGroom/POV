@@ -10,6 +10,9 @@
         <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
         <title>Registrar zona</title>
     </h:head>
+    <script>
+        #{alertasControlador.mensaje}
+    </script>S
     <h:body class="scrollbarStyle bodyFormBackground">
         <f:view  locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
@@ -17,7 +20,7 @@
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <a href="#">Registro</a>
             </div>
-           <div class="row">
+            <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <div class="card" style="padding: 1rem 0; margin: 3rem;">
                         <!-- Titulo -->
@@ -50,7 +53,7 @@
 
         <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
         <script>
-            M.AutoInit();
+        M.AutoInit();
         </script>
         <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>

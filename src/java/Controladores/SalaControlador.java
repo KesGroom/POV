@@ -54,6 +54,7 @@ public class SalaControlador implements Serializable {
     @EJB
     EstudianteFacade estFacade;
 
+ 
     //----- Methods ----------------------------------------------------------\\
     public void postular(int zonaPostular, int estu) {
         Salaserviciosocial salaPrueba = salaFacade.obtenerSala(estu);
@@ -78,13 +79,37 @@ public class SalaControlador implements Serializable {
         for (Salaserviciosocial s : salaFacade.findAll()) {
             int dias = (int) ((s.getFechaPostulacion().getTime() - fecha.getTime()) / milisecondsByDay);
             if (dias < 0) {
-                dias = (int) ((fecha.getTime()-s.getFechaPostulacion().getTime()) / milisecondsByDay);
+                dias = (int) ((fecha.getTime() - s.getFechaPostulacion().getTime()) / milisecondsByDay);
             }
-            if(dias >= 5 && "En espera".equals(s.getEstadoServicio())){
+            if (dias >= 5 && "En espera".equals(s.getEstadoServicio())) {
                 s.setEstadoServicio("Rechazado");
                 salaFacade.edit(s);
             }
         }
+    }
+
+    public void aceptar(Salaserviciosocial salaAcep) {
+        sala = salaAcep;
+        sala.setEstadoServicio("Aceptado");
+        salaFacade.edit(sala);
+        estudiante = sala.getEstudiante();
+        estudiante.setEstadoServicioSocial(2);
+        estFacade.edit(estudiante);
+        alerta.setMensaje("AlertaToast('Estudiante rechazado','succces');");
+    }
+
+    public void rechazar(Salaserviciosocial salaAcep) {
+        sala = salaAcep;
+        sala.setEstadoServicio("Rechazado");
+        salaFacade.edit(sala);
+        alerta.setMensaje("AlertaToast('Estudiante rechazado','error');");
+    }
+
+    public List<Salaserviciosocial> consultarSala(int id) {
+        return salaFacade.consultarSalaServicioSocial(id);
+    }
+    public List<Salaserviciosocial> consultarSalaCo() {
+        return salaFacade.consultarSalaServicioSocialCo();
     }
 
     //----- Getters and Setters ----------------------------------------------\\

@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      >
     <h:head>
-        <link href="../../../Resources/css/zonaCoordinador.css" rel="stylesheet" type="text/css"/>
-        <link href="../../../Resources/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../../Resources/css/EP.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
         <script src="../../../Resources/js/prefix.js" type="text/javascript"></script>
         <title>Actualizar Zona</title>
     </h:head>
@@ -26,44 +25,61 @@
 
                 <div class="contenedorAct">
 
-                    <f:view locale="#{lenguajeControlador.languageSelected}">
+                    <div class="row displayRowSaC">
+                        <h:form class="col s6">
 
-                        <h:form>
-                            <h3 class="tituloFormulario"><h:outputText value="#{PQRS.titleActualizar}"/></h3>
-                            <p:panelGrid columns="2">
-                                <p:outputLabel value="#{PQRS.lblCategoria}" for="tipo" />
-                                <p:selectOneMenu id="tipo" value="#{pqrsControladores.pqrs.tipo}">
+                            <h3 class="tituloFormulario"><h:outputText value="#{PQRS.bcResponder}"/></h3>
+                            <div class="input-field">
+                                <h:outputText class="FalseLabel" value="#{PQRS.lblFechaAct}"/><br/>
+                                <h:outputText value="#{pqrsControladores.pqrs.fecha}" title="#{PQRS.lblFechaAct}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </div>
+                            <div class="input-field">
+                                <h:outputText value="#{PQRS.lblRemitente}" class="FalseLabel" /><br/>
+                                <h:outputText value="#{pqrsControladores.acudiente.usuario.nombre} #{pqrsControladores.acudiente.usuario.apellido}" title="#{PQRS.lblRemitente}" />
+                            </div>
+                            <div class="input-field">
+                                <h:outputText class="FalseLabel" value="#{PQRS.lblCategoria}"/><br/>
+                                <h:selectOneMenu id="tipo" value="#{pqrsControladores.pqrs.tipo}">
                                     <f:selectItem itemLabel="#{PQRS.opcPregunta}" itemValue="Pregunta"></f:selectItem>
                                     <f:selectItem itemLabel="#{PQRS.opcQueja}" itemValue="Queja"></f:selectItem>
                                     <f:selectItem itemLabel="#{PQRS.opcReclamo}" itemValue="Reclamo"></f:selectItem>
                                     <f:selectItem itemLabel="#{PQRS.opcSugerencia}" itemValue="Sugerencia"></f:selectItem>
-                                </p:selectOneMenu>
-                                <p:outputLabel value="#{PQRS.lblAsunto}" for="asunto" />
-                                <p:inputTextarea rows="4" cols="30" id="asunto" value="#{pqrsControladores.pqrs.asunto}" title="Asunto" />
-                                <p:outputLabel value="#{PQRS.lblFechaAct}" for="fecha" />
-                                <p:inputText id="fecha" readonly="true" value="#{pqrsControladores.pqrs.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required.">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </p:inputText>
-                                <p:outputLabel value="#{PQRS.lblRemitente}" for="Acudiente" />
-                                <p:inputText id="Acudiente" value="#{pqrsControladores.acudiente.usuario.nombre} #{pqrsControladores.acudiente.usuario.apellido}" readonly="true" title="Remitente" />
-                            </p:panelGrid>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="input-field">
+                                <h:outputLabel class="FalseLabel" value="#{PQRS.lblAsunto}" /><br/><br/>
+                                <h:outputText class="materialize-textarea" value="#{pqrsControladores.pqrs.asunto}" title="#{PQRS.lblAsunto}" />
+                            </div>
+                            <div class="input-field">
+                                <h:outputLabel value="#{PQRS.lblAsunto}" for="respuesta" /><br/>
+                                <h:inputTextarea class="materialize-textarea" id="respuesta" value="#{pqrsControladores.pqrs.respuesta}" title="#{PQRS.lblAsunto}" />
+                            </div>
                             <div class="botonesControl">
-                                <h:commandButton styleClass=" red darken-4 waves-effect waves-light" action="#{pqrsControladores.actualizarAcuPqrs()}" value="Actualizar"></h:commandButton>
+                                <h:commandButton action="#{pqrsControladores.actualizarAcuPqrs()}" value="#{PQRS.thResponder}"></h:commandButton>
                             </div>
                         </h:form>
+                        <div class="card col s4 offset-s1 orange accent-1">
+                            <div class="card-content">
+                                <h5 class="titulo center-align" >#{PQRS.tltTarjeta}</h5>
+                                <p class="textInfo center-align">
+                                    #{sesionControlador.usuario.nombre} #{PQRS.txtTarjeta1}
 
-                    </f:view>
+                                    #{PQRS.txtTarjeta2}
 
-                    <div class="card">
-                        <h5 class="titulo" >#{PQRS.tltTarjeta}</h5>
-                        <p class="textInfo">
-                            <h:form>
-                                #{sesionControlador.usuario.nombre}#{PQRS.txtTarjeta1}
-
-                                #{PQRS.txtTarjeta2}
-                            </h:form>
-                        </p>
+                                </p>
+                            </div>
+                        </div>
                     </div>
+
+
+
+
+
+
+
+
                 </div>
             </main>
         </f:view>

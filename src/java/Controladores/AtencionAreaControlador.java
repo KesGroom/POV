@@ -46,6 +46,7 @@ public class AtencionAreaControlador implements Serializable {
     @EJB
     AtencionareaFacade atencionAreaFacade;
     
+
     @EJB
     AtencioncursoFacade atencionCursoFacade;
 
@@ -54,6 +55,10 @@ public class AtencionAreaControlador implements Serializable {
         atencionarea.setDocenteACargo(docente);
         atencionarea.setArea(area);
         atencionAreaFacade.create(atencionarea);
+    }
+    
+    public List<Atencionarea> consultarAteCurso(){
+        return atencionAreaFacade.consultarAtencionarea(1);
     }
     
     public void registrarAtencionCurso(){

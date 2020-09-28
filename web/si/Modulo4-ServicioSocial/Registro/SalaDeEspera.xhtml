@@ -13,6 +13,11 @@
         <title>Registrar bitácora</title>
     </h:head>
     <h:body class="scrollbarStyle bodyFormBackground">
+
+        <script>
+            #{alertasControlador.mensaje}
+        </script>
+
         <f:view  locale="#{lenguajeControlador.languageSelected}">
             <div class="Bread">
                 <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Solicitudes</a>
@@ -34,7 +39,7 @@
 
 
                                 <h:form>
-                                    <h:dataTable value="#{zonaControlador.consultarSala()}" var="sa">
+                                    <h:dataTable value="#{salaControlador.consultarSalaCo()}" var="sa">
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Estudiante"/>
@@ -66,7 +71,7 @@
                                                 <h:outputText value="Aceptar"/>
                                             </f:facet>
                                             <div class="botonesControl">
-                                                <h:commandLink action="#{bitacoraControlador.preActualizar(bi)}"><i class="material-icons" style="color: green;">check</i></h:commandLink>
+                                                <h:commandLink action="#{salaControlador.aceptar(sa)}"><i class="material-icons" style="color: green;">check</i></h:commandLink>
                                             </div>
                                         </h:column>
                                         <h:column>
@@ -74,7 +79,7 @@
                                                 <h:outputText value="Rechazar"/>
                                             </f:facet>
                                             <div class="botonesControl">
-                                                <h:commandLink action="#{bitacoraControlador.preActualizar(bi)}"><i class="material-icons" style="color: red;">clear</i></h:commandLink>
+                                                <h:commandLink action="#{salaControlador.rechazar(sa)}"><i class="material-icons" style="color: red;">clear</i></h:commandLink>
                                             </div>
                                         </h:column>
                                     </h:dataTable>
@@ -88,7 +93,7 @@
 
             </div>
         </f:view>
-
+        <script src="../../../Resources/js/Alertas.js" type="text/javascript"></script>
         <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
         <script>
             M.AutoInit();

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../../Resources/css/5.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Resources/img/Sistema/LOGOFavicon.png" alt=""/>
+        <link href="../../../Resources/css/materialize.POV.css" rel="stylesheet" type="text/css"/>
+        <title>Registrar zona</title>
+    </h:head>
+    <h:body class="scrollbarStyle bodyFormBackground">
+        <f:view  locale="#{lenguajeControlador.languageSelected}">
+            <div class="Bread">
+                <a href="../../../Resources/Pages/VistaInicialDash.xhtml">Registrar cita</a>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <a href="#">Registro</a>
+            </div>
+            
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <!-- Titulo -->
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Registrar area de atención</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <h:form>
+
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.area}" title="Atención area" required="true" autocomplete="off" id="area"></h:inputText>
+                                        <h:outputLabel for="area" value="Atención area"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.diaSemana}" title="Dia semana" required="true" autocomplete="off" id="diaSe"></h:inputText>
+                                        <h:outputLabel for="diaSem" value="Dia"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaInicioAtencion}" title="Hora de inicio" required="true" autocomplete="off" id="horai">
+
+                                            <f:convertDateTime pattern="HH:mm:ss" />
+                                        </h:inputText>
+                                        <h:outputLabel value="Hora de inicio" for="horai"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.horaFinalAtencion}" title="Hora final" required="true" autocomplete="off" id="horaf">
+
+                                            <f:convertDateTime pattern="HH:mm:ss" />
+                                        </h:inputText>
+                                        <h:outputLabel value="Hora final" for="horaf"></h:outputLabel>
+                                    </div>
+                                    <div class="botonesControl">
+                                        <h:commandButton value="Registrar" action="#{atencionAreaControlador.registrarAtencionArea()}"></h:commandButton>
+                                    </div>
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card" style="padding: 1rem 0; margin: 3rem;">
+                        <!-- Titulo -->
+                        <div class="card red darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Registrar atención curso</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <h:form>
+
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.area}" title="Atención area" required="true" autocomplete="off" id="area"></h:inputText>
+                                        <h:outputLabel for="area" value="Atención area"></h:outputLabel>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:inputText value="#{atencionAreaControlador.atencionarea.diaSemana}" title="Dia semana" required="true" autocomplete="off" id="diaSe"></h:inputText>
+                                        <h:outputLabel for="diaSem" value="Dia"></h:outputLabel>
+                                    </div>
+                            
+                                    </div>
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </f:view>
+
+        <script src="../../../Resources/js/materialize.min.js" type="text/javascript"></script>
+        <script>
+            M.AutoInit();
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <script src="../../../Resources/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../Resources/js/Listas.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

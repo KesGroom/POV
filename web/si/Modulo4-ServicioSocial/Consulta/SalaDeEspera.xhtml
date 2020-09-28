@@ -34,30 +34,30 @@
 
 
                                 <h:form>
-                                    <h:dataTable value="#{zonaControlador.consultarSala()}" var="sa">
+                                    <h:dataTable value="#{salaControlador.consultarSala(sesionControlador.usuario.idUsuario)}" var="id">
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Estudiante"/>
                                             </f:facet>
-                                            <h:outputText value="#{sa.estudiante.usuario.nombre} #{sa.estudiante.usuario.apellido}"/>
+                                            <h:outputText value="#{id.estudiante.usuario.nombre} #{sa.estudiante.usuario.apellido}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Curso"/>
                                             </f:facet>
-                                            <h:outputText value="#{sa.estudiante.idCurso.curso}"/>
+                                            <h:outputText value="#{id.estudiante.idCurso.curso}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Zona postulada"/>
                                             </f:facet>
-                                            <h:outputText value="#{sa.zonaServicio.nombre}"/>
+                                            <h:outputText value="#{id.zonaServicio.nombre}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Estado"/>
                                             </f:facet>
-                                            <h:outputText style="color: orange;" value="#{sa.estadoServicio}"/>
+                                            <h:outputText style="color: orange;" value="#{id.estadoServicio}"/>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

@@ -6,6 +6,7 @@
 package Facade;
 
 import Entidades.Salaserviciosocial;
+import static Entidades.Salaserviciosocial_.estadoServicio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +18,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author jusag
->>>>>>> POV-by-Santiago
+ * @author jusag >>>>>>> POV-by-Santiago
  */
 @Stateless
 public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial> {
@@ -46,6 +46,19 @@ public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial>
         }
         return sala;
     }
+
+    public Salaserviciosocial obtenerSalaActiva(int idEstudiante) {
+        Salaserviciosocial sala = null;
+        try {
+            Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.estadoServicio='Aceptado' AND s.estudiante.idUsuario=:id");
+            q.setParameter("id", idEstudiante);
+            sala = (Salaserviciosocial) q.getSingleResult();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return sala;
+    }
+
     public Salaserviciosocial obtenerSalaZona(int idZona) {
         Salaserviciosocial sala = null;
         try {
@@ -58,9 +71,14 @@ public class SalaserviciosocialFacade extends AbstractFacade<Salaserviciosocial>
         return sala;
     }
 
-    public List<Salaserviciosocial> consultarSalaServicioSocial(int estado) {
-        Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.idSSS =:idSSS");
-        q.setParameter("estado", estado);
+    public List<Salaserviciosocial> consultarSalaServicioSocial(int id) {
+        Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.estudiante.idUsuario=:id");
+        q.setParameter("id", id);
+        return q.getResultList();
+    }
+
+    public List<Salaserviciosocial> consultarSalaServicioSocialCo() {
+        Query q = em.createQuery("SELECT s FROM Salaserviciosocial s WHERE s.estadoServicio='En espera'");
         return q.getResultList();
     }
 }
