@@ -31,7 +31,7 @@ public class CorreoControlador implements Serializable {
     public CorreoControlador() {
     }
 
-    private String ruta ="C:\\Users\\kesgr\\OneDrive\\Documentos\\GitHub\\POV\\web\\Resources\\img\\Noticias\\"; 
+    private String ruta ="C:\\Users\\jusag\\OneDrive\\Documents\\GitHub\\POV\\web\\Resources\\img\\Noticias\\"; 
     
     //----- Gráficas -------------------------------------------------------\\
     //----- Colores ------------------------------------\\

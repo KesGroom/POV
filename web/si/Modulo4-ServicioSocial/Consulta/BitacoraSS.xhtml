@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+  >
     <h:head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -39,6 +39,7 @@
                 </a>
                 <ul>
                     <li><a title="Consultar solicitudes" href="SalaDeEspera.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
+                    <li><a title="Ver progreso" href="grafico.html" class="btn-floating blue darken-1"><i class="material-icons">equalizer</i></a></li>
                 </ul>
             </div>
             <main>
@@ -134,13 +135,13 @@
                                         <f:facet name="header">
                                             <h:outputText value="Coordinador"/>
                                         </f:facet>
-                                        <h:outputText value="#{bi.coordinador}"/>
+                                        <h:outputText value="#{bi.coordinador.nombre} #{bi.coordinador.apellido}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">
                                             <h:outputText value="Estudiante"/>
                                         </f:facet>
-                                        <h:outputText value="#{bi.salaDeServicio}"/>
+                                        <h:outputText value="#{bi.salaDeServicio.estudiante.usuario.nombre} #{bi.salaDeServicio.estudiante.usuario.apellido}"/>
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">

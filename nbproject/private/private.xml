@@ -1,127 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="22">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="5">
         <file>
-            <url>src/java/Controladores/CitaControlador.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>39</line>
-                <key/>
-            </bookmark>
+            <url>src/java/Controladores/ZonaControlador.java</url>
             <bookmark id="2">
                 <name/>
-                <line>48</line>
-                <key/>
-            </bookmark>
-            <bookmark id="3">
-                <name/>
-                <line>88</line>
-                <key/>
-            </bookmark>
-            <bookmark id="4">
-                <name/>
-                <line>131</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>src/java/Controladores/RolControlador.java</url>
-            <bookmark id="22">
-                <name/>
-                <line>488</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>web/Resources/css/1.css</url>
-            <bookmark id="7">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="8">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="6">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-            <bookmark id="13">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>src/java/Controladores/EstudianteControladores.java</url>
-            <bookmark id="21">
-                <name/>
-                <line>78</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>src/java/Controladores/SesionControlador.java</url>
-            <bookmark id="19">
-                <name/>
-                <line>355</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>web/si/Modulo5-Reportes-Sistema/Usuarios.xhtml</url>
-            <bookmark id="15">
-                <name/>
-                <line>43</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
-            <url>src/java/Controladores/UsuarioControlador.java</url>
-            <bookmark id="10">
-                <name/>
-                <line>85</line>
-                <key/>
-            </bookmark>
-            <bookmark id="12">
-                <name/>
-                <line>178</line>
-                <key/>
-            </bookmark>
-            <bookmark id="16">
-                <name/>
-                <line>418</line>
-                <key/>
-            </bookmark>
-            <bookmark id="18">
-                <name/>
-                <line>444</line>
+                <line>49</line>
                 <key/>
             </bookmark>
             <bookmark id="5">
                 <name/>
-                <line>783</line>
+                <line>212</line>
                 <key/>
             </bookmark>
-            <bookmark id="9">
+            <bookmark id="3">
                 <name/>
-                <line>1202</line>
+                <line>280</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo5-Reportes-Sistema/ListaNoticias.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo3-Citas-PQRS/PQRS-Respuesta/ResponderPQRS.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo3-Citas-PQRS/PQRS-Registro/PQRS.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/Resources/Pages/Dashboard.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/src/java/Controladores/SesionControlador.java</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo3-Citas-PQRS/PQRS-Respuesta/PQRS.xhtml</file>
-            <file>file:/C:/Users/kesgr/OneDrive/Documentos/GitHub/POV/web/si/Modulo3-Citas-PQRS/PQRS-Registro/ActualizarPQRS.xhtml</file>
+            <file>file:/C:/Users/jusag/OneDrive/Documents/GitHub/POV/web/WEB-INF/glassfish-resources.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -44,7 +44,8 @@
                     <li><a title="Añadir bitácora de servicio" href="RegistrarBitacora.xhtml" class="btn-floating yellow darken-1"><i class="material-icons">assignment_ind</i></a></li>
                     <li><a title="Solicitudes" href="SalaDeEspera.xhtml" class="btn-floating green darken-1"><i class="material-icons">face</i></a></li>
                     <li><a title="Subir datos" class="btn-floating blue modal-trigger" href="#subirDatos"><i class="material-icons">file_upload</i></a></li>
-                    <li><a title="Subir datos" class="btn-floating orange modal-trigger" href="#bajarDatos"><i class="material-icons">file_download</i></a></li>
+                    <li><a title="Enviar correo" class="btn-floating orange modal-trigger" href="enviarCorreo.xhtml"><i class="material-icons">email</i></a></li>
+
                 </ul>
             </div>
             <main>
@@ -54,17 +55,17 @@
                     <div class="modal-content">
                         <h:form enctype="multipart/form-data">
                             <div class="botonesControl">
-                            <h:messages id="msj" showSummary="true" showDetail="true"/>
-                            <br/><br/>
-                            <h:inputFile value="#{controlControlador.excel}" style="font: bold 20px arial; color:blue;"/>
+                                <h:messages id="msj" showSummary="true" showDetail="true"/>
+                                <br/><br/>
+                                <h:inputFile value="#{controlControlador.excel}" style="font: bold 20px arial; color:blue;"/>
                             </div>
                             <div class="botonesControl">
-                            <h:commandButton  value="Iniciar Migración" actionListener="#{controlControlador.migrar(sesionControlador.usuario)}"/>
+                                <h:commandButton  value="Iniciar Migración" actionListener="#{controlControlador.migrar(sesionControlador.usuario)}"/>
                             </div>
                         </h:form>
                     </div>
                 </div>
-                        <!-- Modal 2 -->
+                <!-- Modal 2 -->
                 <div id="bajarDatos" class="modal">
                     <div class="modal-content">
                         <h:form enctype="multipart/form-data">
@@ -73,7 +74,7 @@
                         </h:form>
                     </div>
                 </div>
-            
+
 
                 <div class="contenedorTitulos">
                     <a href="ZonasSS.xhtml" class="titulo">Zonas</a>

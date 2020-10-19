@@ -50,6 +50,7 @@ public class ZonaControlador implements Serializable {
     private Estudiante estudiante;
     private String contItem;
     private String[] diaSemana;
+    private String nombreZona;
 
     @EJB
     ZonaServicioSocialFacade zonaFacade;
@@ -67,6 +68,8 @@ public class ZonaControlador implements Serializable {
     AlertasControlador alerta;
 
     public String registrar() {
+        ZonaServicioSocial zonaPrueba=zonaFacade.obtenerZonaNombre(nombreZona);
+        if(zonaPrueba==null){
         zona.setEstado(1);
         String diaSem = "";
         for (int i = 0; i < diaSemana.length; i++) {
@@ -76,6 +79,7 @@ public class ZonaControlador implements Serializable {
                 diaSem = diaSem + diaSemana[i] + ", ";
             }
         }
+        zona.setNombre(nombreZona);
         zona.setDiaServicio(diaSem);
         zonaFacade.create(zona);
         alerta.setMensaje("AlertaToast('Zona creada exitosamente','success');");
@@ -98,6 +102,10 @@ public class ZonaControlador implements Serializable {
         this.labores = "";
         this.elLista = new Elementoslista();
         return "ZonasSS";
+        }else{
+            alerta.setMensaje("AlertaPopUp('Error al registrar','Ya existe una zona con este nombre','error');");
+            return "ZonasSS";
+        }
     }
 
     public String preActualizar(ZonaServicioSocial zonaServicioSocialActualizar) {
@@ -120,6 +128,8 @@ public class ZonaControlador implements Serializable {
         return "ZonasSS";
     }
 
+    
+    
     public void Remover(ZonaServicioSocial zonaRemover) {
         zona = zonaRemover;
         zona.setEstado(2);
@@ -258,6 +268,14 @@ public class ZonaControlador implements Serializable {
 
     public void setDiaSemana(String[] diaSemana) {
         this.diaSemana = diaSemana;
+    }
+
+    public String getNombreZona() {
+        return nombreZona;
+    }
+
+    public void setNombreZona(String nombreZona) {
+        this.nombreZona = nombreZona;
     }
 
 }

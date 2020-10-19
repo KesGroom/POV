@@ -8,17 +8,30 @@ package Controladores;
 import Entidades.BitacoraServicioSocial;
 import Entidades.Estudiante;
 import Entidades.Salaserviciosocial;
+import Entidades.Usuario;
 import Entidades.ZonaServicioSocial;
 import Facade.EstudianteFacade;
 import Facade.SalaserviciosocialFacade;
+import Facade.UsuarioFacade;
 import Facade.ZonaServicioSocialFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.security.NoSuchProviderException;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -41,6 +54,9 @@ public class SalaControlador implements Serializable {
     private BitacoraServicioSocial bitacora;
     private Estudiante estudiante;
     private Date fecha = new Date();
+    private Usuario usuarioPrueba;
+    private String Documento;
+    private String Correo;
 
     @Inject
     AlertasControlador alerta;
@@ -54,9 +70,15 @@ public class SalaControlador implements Serializable {
     @EJB
     EstudianteFacade estFacade;
 
- 
+    @EJB
+    UsuarioFacade usuarioFacade;
+
+    @Inject
+    CorreoControlador1 correo;
+
     //----- Methods ----------------------------------------------------------\\
-    public void postular(int zonaPostular, int estu) {
+    public void postular(int zonaPostular, int estu) throws NoSuchProviderException, MessagingException {
+        usuarioPrueba = usuarioFacade.OlvidoContra(Documento, Correo);
         Salaserviciosocial salaPrueba = salaFacade.obtenerSala(estu);
         if (salaPrueba == null) {
             sala.setFechaPostulacion(fecha);
@@ -66,9 +88,13 @@ public class SalaControlador implements Serializable {
             zona = zonaFacade.obtenerZona(zonaPostular);
             sala.setZonaServicio(zona);
             salaFacade.create(sala);
+            correo.setAsunto("Su postulación a la zona "+sala.getZonaServicio().getNombre()+ " fue registrada");
+            correo.setCuerpo("Si dentro de 5 dias no recibe una respuesta podra postularse a otra zona");
+            correo.enviarEmail(getEstudiante().getUsuario().getCorreoElectronico(), "", correo.pagina());
             alerta.setMensaje("AlertaToast('Postulación exitosa','success');");
             this.sala = new Salaserviciosocial();
             this.zona = null;
+
         } else {
             alerta.setMensaje("AlertaPopUp('Ha ocurrido un error','Ya se ha postulado a una zona de servicio, por favor espere una respuesta','error');");
         }
@@ -88,26 +114,33 @@ public class SalaControlador implements Serializable {
         }
     }
 
-    public void aceptar(Salaserviciosocial salaAcep) {
+    public void aceptar(Salaserviciosocial salaAcep) throws NoSuchProviderException, MessagingException {
         sala = salaAcep;
         sala.setEstadoServicio("Aceptado");
         salaFacade.edit(sala);
         estudiante = sala.getEstudiante();
         estudiante.setEstadoServicioSocial(2);
         estFacade.edit(estudiante);
+        correo.setAsunto("Fuiste aceptado");
+        correo.setCuerpo("Querido estudiante " + sala.getEstudiante().getUsuario().getNombre() + " " + sala.getEstudiante().getUsuario().getApellido() + " la zona " + sala.getZonaServicio().getNombre() + " acepto tu postulación");
+        correo.enviarEmail(getEstudiante().getUsuario().getCorreoElectronico(), "", correo.pagina());
         alerta.setMensaje("AlertaToast('Estudiante rechazado','succces');");
     }
 
-    public void rechazar(Salaserviciosocial salaAcep) {
+    public void rechazar(Salaserviciosocial salaAcep) throws NoSuchProviderException, MessagingException {
         sala = salaAcep;
         sala.setEstadoServicio("Rechazado");
         salaFacade.edit(sala);
+        correo.setAsunto("Fuiste rechazado");
+        correo.setCuerpo("Querido estudiante " + sala.getEstudiante().getUsuario().getNombre() + " " + sala.getEstudiante().getUsuario().getApellido() + " la zona " + sala.getZonaServicio().getNombre() + " a rechazado tu postulación");
+        correo.enviarEmail(getEstudiante().getUsuario().getCorreoElectronico(), "", correo.pagina());
         alerta.setMensaje("AlertaToast('Estudiante rechazado','error');");
     }
 
     public List<Salaserviciosocial> consultarSala(int id) {
         return salaFacade.consultarSalaServicioSocial(id);
     }
+
     public List<Salaserviciosocial> consultarSalaCo() {
         return salaFacade.consultarSalaServicioSocialCo();
     }
